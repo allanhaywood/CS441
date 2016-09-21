@@ -1,0 +1,2 @@
+Name, Email, githubAccountName
+Allan Haywood, haywo001@cougars.csusm.edu, allanhaywood
