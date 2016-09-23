@@ -1,3 +1,4 @@
 Name, Email, githubAccountName
 Allan Haywood, haywo001@cougars.csusm.edu, allanhaywood
 Joshua Reaves, reave006@cougars.csusm.edu, reave006
+Joey Freeman, joseph.freeman.sd@gmail.com, joeyfreeman
