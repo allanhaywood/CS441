@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="SignInButton">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -27,7 +27,7 @@
      <string>Sign In</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="CreateAcctButton">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -40,7 +40,7 @@
      <string>Create Account</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="plainTextEdit">
+   <widget class="QPlainTextEdit" name="PasswordEnter">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -53,7 +53,7 @@
      <string>Password</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="plainTextEdit_2">
+   <widget class="QPlainTextEdit" name="EmailEnter">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -69,7 +69,7 @@
      <string>Email</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="LoginTitle">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -80,12 +80,16 @@
     </property>
     <property name="font">
      <font>
-      <family>Helvetica</family>
-      <pointsize>34</pointsize>
+      <family>Mistral</family>
+      <pointsize>48</pointsize>
+      <italic>true</italic>
      </font>
     </property>
     <property name="text">
-     <string>Spoiler</string>
+     <string>Plot Talk</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -94,7 +98,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="LoginTag">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -105,20 +109,40 @@
     </property>
     <property name="font">
      <font>
-      <family>Helvetica</family>
+      <family>Monotype Corsiva</family>
       <pointsize>22</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <weight>50</weight>
+      <italic>true</italic>
+      <bold>false</bold>
      </font>
     </property>
     <property name="text">
-     <string>NotoriousNine</string>
+     <string>All of the Talk, none of the Spoilers</string>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="ForgotPwd">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>310</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string>Forgot Password?</string>
     </property>
    </widget>
   </widget>
@@ -128,7 +152,7 @@
      <x>0</x>
      <y>0</y>
      <width>517</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
