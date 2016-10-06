@@ -18,6 +18,8 @@ public:
 private slots:
     void on_CreateAcctButton_clicked();
 
+    void on_SignInButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

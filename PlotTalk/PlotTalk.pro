@@ -14,10 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    createacctpage.cpp
+    createacctpage.cpp \
+    dashboard.cpp
 
 HEADERS  += mainwindow.h \
-    createacctpage.h
+    createacctpage.h \
+    dashboard.h
 
 FORMS    += mainwindow.ui \
-    createacctpage.ui
+    createacctpage.ui \
+    dashboard.ui
