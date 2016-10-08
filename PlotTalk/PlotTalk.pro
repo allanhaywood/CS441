@@ -15,12 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     createacctpage.cpp \
-    dashboard.cpp
+    dashboard.cpp \
+    forgotpassword.cpp
 
 HEADERS  += mainwindow.h \
     createacctpage.h \
-    dashboard.h
+    dashboard.h \
+    forgotpassword.h
 
 FORMS    += mainwindow.ui \
     createacctpage.ui \
-    dashboard.ui
+    dashboard.ui \
+    forgotpassword.ui
+

@@ -126,23 +126,37 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="ForgotPwd">
+   <widget class="QPushButton" name="ForgotPassButton">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>200</x>
       <y>310</y>
-      <width>91</width>
-      <height>20</height>
+      <width>101</width>
+      <height>23</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
       <italic>true</italic>
      </font>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#ForgotPassButton {
+color: rgb(35, 178, 255);
+}
+#ForgotPassButton:hover{
+color: rgb(20, 110, 255);
+}
+</string>
+    </property>
     <property name="text">
-     <string>Forgot Password?</string>
+     <string>Forgot password?</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>

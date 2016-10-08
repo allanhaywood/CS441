@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "createacctpage.h"
 #include "dashboard.h"
+#include "forgotpassword.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,5 +28,12 @@ void MainWindow::on_SignInButton_clicked()
     Dashboard *dash = new Dashboard();
     dash->setWindowState(Qt::WindowMaximized);
     dash->show();
+    this->close();
+}
+
+void MainWindow::on_ForgotPassButton_clicked()
+{
+    ForgotPassword *forgotPass = new ForgotPassword();
+    forgotPass->show();
     this->close();
 }
