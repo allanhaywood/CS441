@@ -16,15 +16,18 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     createacctpage.cpp \
     dashboard.cpp \
-    forgotpassword.cpp
+    forgotpassword.cpp \
+    accountdetails.cpp
 
 HEADERS  += mainwindow.h \
     createacctpage.h \
     dashboard.h \
-    forgotpassword.h
+    forgotpassword.h \
+    accountdetails.h
 
 FORMS    += mainwindow.ui \
     createacctpage.ui \
     dashboard.ui \
-    forgotpassword.ui
+    forgotpassword.ui \
+    accountdetails.ui
 

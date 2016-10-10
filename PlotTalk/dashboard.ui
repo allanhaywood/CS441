@@ -17,6 +17,9 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" rowspan="2">
+       <widget class="QListView" name="listViewLeft"/>
+      </item>
       <item row="0" column="4">
        <widget class="QPushButton" name="searchButton">
         <property name="font">
@@ -43,25 +46,22 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0" rowspan="2">
-       <widget class="QListView" name="listViewLeft"/>
-      </item>
-      <item row="0" column="5" rowspan="2">
-       <widget class="QListView" name="listViewRight"/>
-      </item>
       <item row="1" column="2" colspan="3">
        <widget class="QListView" name="listViewCenter"/>
+      </item>
+      <item row="1" column="5">
+       <widget class="QListView" name="listViewRight"/>
+      </item>
+      <item row="0" column="5">
+       <widget class="QPushButton" name="MyAccountButton">
+        <property name="text">
+         <string>My Account</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
    </layout>
-   <zorder>pushButton</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>searchBar</zorder>
-   <zorder>searchButton</zorder>
-   <zorder>listViewLeft</zorder>
-   <zorder>listViewRight</zorder>
-   <zorder>listViewRight</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -69,7 +69,7 @@
      <x>0</x>
      <y>0</y>
      <width>910</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
