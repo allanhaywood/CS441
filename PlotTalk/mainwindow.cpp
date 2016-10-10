@@ -3,6 +3,8 @@
 #include "createacctpage.h"
 #include "dashboard.h"
 #include "forgotpassword.h"
+#include <string>
+#include <vector>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,8 +20,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_CreateAcctButton_clicked()
 {
-    CreateAcctPage *creatingAcct =new CreateAcctPage();
-    creatingAcct->show();
+    CreateAcctPage *creatingAcct =new CreateAcctPage();//creates a pointer for the create account page
+    creatingAcct->show();//shows that page
+    this->close();//closes the mainWindow to avoid confusion
 }
 
 void MainWindow::on_SignInButton_clicked()

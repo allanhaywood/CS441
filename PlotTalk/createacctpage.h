@@ -15,6 +15,9 @@ public:
     explicit CreateAcctPage(QWidget *parent = 0);
     ~CreateAcctPage();
 
+private slots:
+    void on_CreateAcctButton_clicked();
+
 private:
     Ui::CreateAcctPage *ui;
 };
