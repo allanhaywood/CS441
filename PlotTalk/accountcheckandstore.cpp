@@ -2,5 +2,8 @@
 
 AccountCheckAndStore::AccountCheckAndStore()
 {
+private:
+
+
 
 }

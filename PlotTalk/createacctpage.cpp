@@ -27,13 +27,15 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        QString email;
        QString password;
 
-       //ui->LastNameBox->insertPlainText(firstName);//how to display a string in a box (probably works for a label too)
+
 
        firstName=ui->FirstNameBox->toPlainText();
        lastName=ui->LastNameBox->toPlainText();
        handle=ui->handleBox->toPlainText();
        email=ui->emailBox->toPlainText();
 
+
+       ui->LastNameBox->insertPlainText(firstName);//how to display a string in a box (probably works for a label too)
        //must check email to ensure it is not already used
 
        if(ui->PasswordBox1->text()==ui->PasswordBox2->text())//must also check to see if password matches requirements

@@ -10,14 +10,14 @@ class AccountManagerData;
 
 class AccountManager
 {
-public:
+private:
     AccountManager();
     AccountManager(const AccountManager &);
     AccountManager &operator=(const AccountManager &);
     ~AccountManager();
-
-private:
     QSharedDataPointer<AccountManagerData> data;
+public:
+
 };
 
 #endif // ACCOUNTMANAGER_H

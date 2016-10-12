@@ -2,9 +2,9 @@
 
 class AccountManagerData : public QSharedData
 {
-public:
 
-};
+
+private:
 
 AccountManager::AccountManager() : data(new AccountManagerData)
 {
@@ -27,3 +27,7 @@ AccountManager::~AccountManager()
 {
 
 }
+
+public:
+
+};
