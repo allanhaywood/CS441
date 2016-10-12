@@ -1,0 +1,6 @@
+#include "accountcheckandstore.h"
+
+AccountCheckAndStore::AccountCheckAndStore()
+{
+
+}
