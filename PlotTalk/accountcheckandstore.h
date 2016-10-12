@@ -8,8 +8,11 @@
 
 class AccountCheckAndStore
 {
-public:
+private:
     AccountCheckAndStore();
+    ~AccountCheckAndStore();
+
+public:
 };
 
 #endif // ACCOUNTCHECKANDSTORE_H

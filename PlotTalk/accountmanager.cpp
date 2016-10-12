@@ -1,10 +1,14 @@
 #include "accountmanager.h"
+#include "accountcheckandstore.h"
 
 class AccountManagerData : public QSharedData
 {
 
 
 private:
+
+static AccountManager* instance;
+
 
 AccountManager::AccountManager() : data(new AccountManagerData)
 {
@@ -25,9 +29,21 @@ AccountManager &AccountManager::operator=(const AccountManager &rhs)
 
 AccountManager::~AccountManager()
 {
-
+    delete instance;
+    instance=NULL;
 }
 
 public:
+
+static AccountManager::getInstance()
+{
+    if (instance!=NULL)
+    {
+        instance=new AccountManager();
+    }
+
+    return instance;
+}
+
 
 };

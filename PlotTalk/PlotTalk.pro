@@ -35,3 +35,6 @@ FORMS    += mainwindow.ui \
     forgotpassword.ui \
     accountdetails.ui
 
+DISTFILES += \
+    creatingNewAcct.qmodel
+
