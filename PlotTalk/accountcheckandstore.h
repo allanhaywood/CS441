@@ -13,6 +13,8 @@ private:
     ~AccountCheckAndStore();
 
 public:
+    static getInstance();
+    bool checkEmail(string email);
 };
 
 #endif // ACCOUNTCHECKANDSTORE_H
