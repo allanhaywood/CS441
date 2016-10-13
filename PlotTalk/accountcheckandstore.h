@@ -1,29 +1,34 @@
 #ifndef ACCOUNTCHECKANDSTORE_H
 #define ACCOUNTCHECKANDSTORE_H
 
-#include <QDeclarativeItem>
+
 #include <QMainWindow>
-#include <QObject>
 #include <QWidget>
+#include <QString>
+#include <QList>
 
 class AccountCheckAndStore
 {
  private:
     struct person
     {
-        string First;
-        string Last;
-        string email;
-        string password;
+        QString First;
+        QString Last;
+        QString email;
+        QString password;
     };
 
+    QList<person> ListOfPeople;
+    static AccountCheckAndStore* AccountInstance;
 
     AccountCheckAndStore();
     ~AccountCheckAndStore();
 
+
+
 public:
-    static getInstance();
-    bool checkEmail(string email);
+    static AccountCheckAndStore* getInstance();
+    bool checkEmail(QString &email);
     bool AddPerson(QString &first, QString &last, QString &email, QString &password);
 };
 

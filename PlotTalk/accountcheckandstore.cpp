@@ -1,17 +1,11 @@
-#include "accountcheckandstore.h"
-#include <QList>
+#ifndef ACCOUNTCHECKANDSTORE_C
+#define ACCOUNTCHECKANDSTORE_C
+
+#include "AccountCheckAndStore.h"
+
 
 AccountCheckAndStore::AccountCheckAndStore()
 {
-private:
-
-    QList ListOfPeople;
-
-    static AccountCheckAndStore* instance;
-
-AccountCheckAndStore::AccountCheckAndStore()
-{
-    ListOfPeople=new QList<person>();
 }
 
 AccountCheckAndStore::~AccountCheckAndStore()
@@ -19,16 +13,14 @@ AccountCheckAndStore::~AccountCheckAndStore()
 
 }
 
-public:
-
-static AccountCheckAndStore::getInstance()
+AccountCheckAndStore* AccountCheckAndStore::getInstance()
 {
-    if(instance==NULL)
+    if(AccountInstance==NULL)
     {
-        instance=new AccountCheckAndStore();
+        AccountInstance=new AccountCheckAndStore();
     }
 
-    return instance;
+    return AccountInstance;
 }
 
 bool AccountCheckAndStore::checkEmail(QString &email)
@@ -49,15 +41,15 @@ bool AccountCheckAndStore::AddPerson(QString &first, QString &last, QString &ema
     {
         return false;
     }
-    ThisGuy=new person;
-    ThisGuy.first=first;
-    ThisGuy.last=last;
-    ThisGuy.email=email;
-    ThisGuy.password=password;
+    person* ThisGuy=new person;
+    ThisGuy->First=first;
+    ThisGuy->Last=last;
+    ThisGuy->email=email;
+    ThisGuy->password=password;
 
-    ListOfPeople.append(ThisGuy);
+    ListOfPeople.append(*ThisGuy);
 
     return true;
 }
 
-}
+#endif // ACCOUNTCHECKANDSTORE_C

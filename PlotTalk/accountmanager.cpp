@@ -1,42 +1,9 @@
 #include "accountmanager.h"
 #include "accountcheckandstore.h"
 
-class AccountManagerData : public QSharedData
-{
+AccountManager *AccountManager::instance=0;
 
-
-private:
-
-static AccountManager* instance;
-AccountCheckAndStore::getInstance();
-
-
-AccountManager::AccountManager() : data(new AccountManagerData)
-{
-
-}
-
-AccountManager::AccountManager(const AccountManager &rhs) : data(rhs.data)
-{
-
-}
-
-AccountManager &AccountManager::operator=(const AccountManager &rhs)
-{
-    if (this != &rhs)
-        data.operator=(rhs.data);
-    return *this;
-}
-
-AccountManager::~AccountManager()
-{
-    delete instance;
-    instance=NULL;
-}
-
-public:
-
-static AccountManager::getInstance()
+AccountManager* AccountManager::getInstance()
 {
     if (instance!=NULL)
     {
@@ -46,12 +13,31 @@ static AccountManager::getInstance()
     return instance;
 }
 
-bool AccountManager::createAccount(QString &first, QString &last, QString &email, QString &password)
+
+AccountManager::AccountManager()
 {
-  if(AccountCheckAndStore::AddPerson(first,last,email,password))
-      return true;
-  else
-      return false;
 }
 
-};
+AccountManager::~AccountManager()
+{
+    delete instance;
+    instance=NULL;
+}
+
+
+
+bool AccountManager::createAccount(QString &first, QString &last, QString &email, QString &password)
+{
+    AccountCheckAndStore *intoDatabase =AccountCheckAndStore::getInstance();
+
+    if(intoDatabase->AddPerson(first,last,email,password))
+  {
+      return true;
+  }
+  else
+  {
+      return false;
+  }
+}
+
+

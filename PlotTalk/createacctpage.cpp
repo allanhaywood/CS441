@@ -36,8 +36,8 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        email=ui->emailBox->toPlainText();
 
 
-       AccountManager::getInstance();
-       AccountManager::createAccount(firstName,lastName,email,password);
+       AccountManager::getInstance()
+       ->createAccount(firstName,lastName,email,password);
 
 
        //ui->LastNameBox->insertPlainText(firstName);//how to display a string in a box (probably works for a label too)
