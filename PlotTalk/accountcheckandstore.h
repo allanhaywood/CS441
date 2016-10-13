@@ -8,13 +8,23 @@
 
 class AccountCheckAndStore
 {
-private:
+ private:
+    struct person
+    {
+        string First;
+        string Last;
+        string email;
+        string password;
+    };
+
+
     AccountCheckAndStore();
     ~AccountCheckAndStore();
 
 public:
     static getInstance();
     bool checkEmail(string email);
+    bool AddPerson(QString &first, QString &last, QString &email, QString &password);
 };
 
 #endif // ACCOUNTCHECKANDSTORE_H

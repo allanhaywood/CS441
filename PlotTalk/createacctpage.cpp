@@ -1,6 +1,7 @@
 #include "createacctpage.h"
 #include "ui_createacctpage.h"
 #include "mainwindow.h"
+#include "accountmanager.h"
 #include <QMessageBox>
 
 CreateAcctPage::CreateAcctPage(QWidget *parent) :
@@ -33,6 +34,10 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        lastName=ui->LastNameBox->toPlainText();
        handle=ui->handleBox->toPlainText();
        email=ui->emailBox->toPlainText();
+
+
+       AccountManager::getInstance();
+       AccountManager::createAccount(firstName,lastName,email,password);
 
 
        //ui->LastNameBox->insertPlainText(firstName);//how to display a string in a box (probably works for a label too)

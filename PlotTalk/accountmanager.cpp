@@ -8,6 +8,7 @@ class AccountManagerData : public QSharedData
 private:
 
 static AccountManager* instance;
+AccountCheckAndStore::getInstance();
 
 
 AccountManager::AccountManager() : data(new AccountManagerData)
@@ -45,5 +46,12 @@ static AccountManager::getInstance()
     return instance;
 }
 
+bool AccountManager::createAccount(QString &first, QString &last, QString &email, QString &password)
+{
+  if(AccountCheckAndStore::AddPerson(first,last,email,password))
+      return true;
+  else
+      return false;
+}
 
 };

@@ -4,13 +4,6 @@
 AccountCheckAndStore::AccountCheckAndStore()
 {
 private:
-    struct person
-    {
-        string First;
-        string Last;
-        string email;
-        string password;
-    };
 
     QList ListOfPeople;
 
