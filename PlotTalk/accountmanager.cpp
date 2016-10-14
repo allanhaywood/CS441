@@ -1,3 +1,6 @@
+#ifndef ACCOUNTMANAGER_C
+#define ACCOUNTMANAGER_C
+
 #include "accountmanager.h"
 #include "accountcheckandstore.h"
 
@@ -24,6 +27,7 @@ AccountManager::~AccountManager()
     instance=NULL;
 }
 
+#endif//accountManager
 
 
 bool AccountManager::createAccount(QString &first, QString &last, QString &email, QString &password)

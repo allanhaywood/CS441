@@ -3,6 +3,7 @@
 
 #include "AccountCheckAndStore.h"
 
+AccountCheckAndStore *AccountCheckAndStore::AccountInstance=0;
 
 AccountCheckAndStore::AccountCheckAndStore()
 {

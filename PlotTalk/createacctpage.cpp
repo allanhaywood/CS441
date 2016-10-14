@@ -36,8 +36,8 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        email=ui->emailBox->toPlainText();
 
 
-       AccountManager::getInstance()
-       ->createAccount(firstName,lastName,email,password);
+       AccountManager *addNew= AccountManager::getInstance();
+       if(addNew->createAccount(firstName,lastName,email,password))
 
 
        //ui->LastNameBox->insertPlainText(firstName);//how to display a string in a box (probably works for a label too)
@@ -46,12 +46,23 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        if(ui->PasswordBox1->text()==ui->PasswordBox2->text())//must also check to see if password matches requirements
        {
            password=ui->PasswordBox1->text();
-           this->close();
-           QMessageBox congrats;
-           congrats.setText("Thank you for joining PlotTalk! "+firstName + "! \n Try out your new account by logging in!");
-           congrats.exec();
-           MainWindow *openAgain=new MainWindow();
-           openAgain->show();
+           AccountManager *addNew= AccountManager::getInstance();
+           if(!addNew->createAccount(firstName,lastName,email,password))
+           {
+               this->close();
+               QMessageBox congrats;
+               congrats.setText("Thank you for joining PlotTalk! "+firstName + "! \n Try out your new account by logging in!");
+               congrats.exec();
+               MainWindow *openAgain=new MainWindow();
+               openAgain->show();
+           }
+           else
+           {
+               QMessageBox duplicateEmail;
+               duplicateEmail.setText("That email address already exists in our system.\n Did you loose your password?");
+               duplicateEmail.exec();
+               ui->emailBox->clear();
+           }
 
        }
        else

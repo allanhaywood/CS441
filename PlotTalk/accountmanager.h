@@ -2,7 +2,6 @@
 #define ACCOUNTMANAGER_H
 
 #include <QMainWindow>
-#include <QSharedDataPointer>
 #include <QWidget>
 
 
