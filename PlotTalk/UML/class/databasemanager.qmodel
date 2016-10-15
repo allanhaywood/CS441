@@ -49,8 +49,8 @@
                          </base-DElement>
                          <object>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</object>
                          <name>DatabaseManager</name>
-                         <pos>x:150;y:115</pos>
-                         <rect>x:-110;y:-90;w:220;h:180</rect>
+                         <pos>x:195;y:440</pos>
+                         <rect>x:-160;y:-90;w:320;h:180</rect>
                          <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -71,11 +71,13 @@
                          </base-DElement>
                          <object>{91dccd19-091e-4cda-91c5-8ef79bf5963e}</object>
                          <name>Connection</name>
-                         <pos>x:190;y:255</pos>
-                         <rect>x:-40;y:-30;w:80;h:60</rect>
+                         <pos>x:625;y:375</pos>
+                         <rect>x:-165;y:-70;w:330;h:140</rect>
+                         <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
+                       <show-all-members>true</show-all-members>
                       </DClass>
                      </instance>
                     </item>
@@ -91,7 +93,7 @@
                          </base-DElement>
                          <object>{9d8f7e25-8599-4e80-9ad1-5820fdeb70f7}</object>
                          <name>SqlLiteConnection</name>
-                         <pos>x:205;y:525</pos>
+                         <pos>x:170;y:735</pos>
                          <rect>x:-55;y:-35;w:110;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -112,8 +114,8 @@
                          </base-DElement>
                          <object>{37c2168b-3d2a-4e03-94ff-99f9650d457e}</object>
                          <name>MySqlConnection</name>
-                         <pos>x:60;y:525</pos>
-                         <rect>x:-50;y:-65;w:100;h:130</rect>
+                         <pos>x:340;y:890</pos>
+                         <rect>x:-295;y:-75;w:590;h:150</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -133,11 +135,13 @@
                          </base-DElement>
                          <object>{7fa5a772-8bfc-4549-9aeb-54978eb2e221}</object>
                          <name>SqlConnection</name>
-                         <pos>x:115;y:400</pos>
-                         <rect>x:-45;y:-30;w:90;h:60</rect>
+                         <pos>x:610;y:635</pos>
+                         <rect>x:-120;y:-35;w:240;h:70</rect>
+                         <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
+                       <show-all-members>true</show-all-members>
                       </DClass>
                      </instance>
                     </item>
@@ -160,42 +164,6 @@
                      </instance>
                     </item>
                     <item>
-                     <instance type="DInheritance">
-                      <DInheritance>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{465c8d74-019c-451c-992b-274b3cbe7ec3}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{3be5c821-7494-40db-8158-b5ad2100eca7}</object>
-                         <a>{7b70fd60-6679-4108-8c85-89f2502bb64b}</a>
-                         <b>{994c68ba-0e94-4709-a010-a1f84e45887d}</b>
-                        </DRelation>
-                       </base-DRelation>
-                      </DInheritance>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DInheritance">
-                      <DInheritance>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{6efdcc35-7144-406e-8888-e6cd99b29962}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{af08ebd4-486a-4f19-af8c-fa8ad6a77b0c}</object>
-                         <a>{7b70fd60-6679-4108-8c85-89f2502bb64b}</a>
-                         <b>{980a9a0a-78ad-49dc-8866-20f442301962}</b>
-                        </DRelation>
-                       </base-DRelation>
-                      </DInheritance>
-                     </instance>
-                    </item>
-                    <item>
                      <instance type="DClass">
                       <DClass>
                        <base-DObject>
@@ -207,8 +175,8 @@
                          </base-DElement>
                          <object>{e6e599fd-6c9c-4e19-a37c-fd06dc0c748b}</object>
                          <name>CsvConnection</name>
-                         <pos>x:290;y:410</pos>
-                         <rect>x:-45;y:-35;w:90;h:70</rect>
+                         <pos>x:1135;y:705</pos>
+                         <rect>x:-150;y:-55;w:300;h:110</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -246,8 +214,8 @@
                          </base-DElement>
                          <object>{c1338012-887d-40f1-b7f2-c83ff9132c06}</object>
                          <name>JsonConnection</name>
-                         <pos>x:445;y:410</pos>
-                         <rect>x:-50;y:-35;w:100;h:70</rect>
+                         <pos>x:1105;y:510</pos>
+                         <rect>x:-140;y:-55;w:280;h:110</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -283,14 +251,255 @@
                        </base-DElement>
                        <text>Examples of options, probaby
 won't implement all of these.</text>
-                       <pos>x:320;y:290</pos>
+                       <pos>x:920;y:400</pos>
                        <rect>x:0;y:0;w:159.578;h:44</rect>
                       </DAnnotation>
                      </instance>
                     </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{3db16105-19e4-4b2a-ba16-421408de4c9a}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Connection defines the methods the applicaiton can use to:
+Get data from the datastore
+Add data to the datastore
+Modify data in the data store
+When an object is to be returned from a function, that is backed by
+the database, a reference should be returned.</text>
+                       <pos>x:475;y:155</pos>
+                       <rect>x:0;y:0;w:343.797;h:100</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{56b2cd04-7fdf-4130-8dc0-a8d9fbd3d4d2}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>DatabaseManager manages the connection to the datastore
+It optimizes the connection to the datastore using caching, and other
+capabilities to be added over time. It should provide a local observer design
+pattern to let the rest of the application know when there are updates. Ideally,
+also eventually implement observer design pattern against the server backend, 
+so polling isn't needed.
+
+NOTE: The local in-memory cache will allow the application to refresh as much
+as it want's, and not worry about db impact, or user experience impact.
+
+NOTE: Since DatabaseManager is doing caching, when a method is called that returns
+a reference to data that is cached, the cache (maybe in a dictionary) should be searched 
+so that if that object has already been created and a reference provided before,
+that same reference is provided again.</text>
+                       <pos>x:5;y:100</pos>
+                       <rect>x:0;y:0;w:449.859;h:212</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DDependency">
+                      <DDependency>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{5ec52dc9-0b74-4084-9581-c5db14a6e93f}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{ccb8766c-6114-4f9f-a67a-8beb06c77da5}</object>
+                         <a>{8ce53dfc-1022-4235-aa87-012052ae215f}</a>
+                         <b>{2d385b34-0269-4aa7-8417-955683a54755}</b>
+                        </DRelation>
+                       </base-DRelation>
+                      </DDependency>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{89e150ad-8964-4730-a215-3663232eb1c6}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{6e828a3c-cef9-418c-9be0-60257237deae}</object>
+                         <a>{994c68ba-0e94-4709-a010-a1f84e45887d}</a>
+                         <b>{2d385b34-0269-4aa7-8417-955683a54755}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <b>
+                        <DAssociationEnd>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </b>
+                      </DAssociation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{60cc2f38-a6d9-4b28-bfe5-1394410804f0}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{d17ab489-bf3c-43aa-b1e5-7db8a8ed9a94}</object>
+                         <a>{980a9a0a-78ad-49dc-8866-20f442301962}</a>
+                         <b>{2d385b34-0269-4aa7-8417-955683a54755}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <b>
+                        <DAssociationEnd>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </b>
+                      </DAssociation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{26f1204c-12ee-4fac-8168-f329e1dbeb5a}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{fda9aef7-ece7-4bf7-bbca-3c980825952e}</object>
+                         <a>{43f3d675-c535-44f8-bc29-e6dd497dd648}</a>
+                         <b>{2d385b34-0269-4aa7-8417-955683a54755}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <b>
+                        <DAssociationEnd>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </b>
+                      </DAssociation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{1e23ab5a-435e-4096-aaed-8a65340bbf33}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Singleton</text>
+                       <pos>x:160;y:320</pos>
+                       <rect>x:0;y:0;w:60.875;h:30</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{ea2abeec-f4c7-4dd9-8de9-cec54b876d66}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Singleton</text>
+                       <pos>x:590;y:280</pos>
+                       <rect>x:0;y:0;w:60.875;h:30</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{33fbabb8-3025-448f-beab-167817ef4104}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>One Connection only</text>
+                       <pos>x:115;y:380</pos>
+                       <rect>x:0;y:0;w:116.547;h:30</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{d2ebd50a-8eeb-419f-a697-80091ef5fc65}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>NOTE: Unless there are security concerns, there will most likely be just a single user connection
+to the db, used by the application, this is not the same as the user accounts for each end user.</text>
+                       <pos>x:5;y:975</pos>
+                       <rect>x:0;y:0;w:480.578;h:44</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{52c45c08-f2d2-4f74-a3f1-0b5a7f4a338d}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>NOTE: Since sqlite and mysql should have some decent overlap
+ideally things that can be shared are implemented here</text>
+                       <pos>x:560;y:685</pos>
+                       <rect>x:0;y:0;w:324.438;h:44</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DDependency">
+                      <DDependency>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{aaf7a7ee-732e-4cd6-af7e-7d1a35c6c41c}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{1462e944-b565-4788-a22e-64cf2b9a0ba0}</object>
+                         <a>{7b70fd60-6679-4108-8c85-89f2502bb64b}</a>
+                         <b>{994c68ba-0e94-4709-a010-a1f84e45887d}</b>
+                        </DRelation>
+                       </base-DRelation>
+                      </DDependency>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DDependency">
+                      <DDependency>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{1cce3749-0237-42d3-b216-786daa637f67}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{ff0524c4-9712-4811-8d78-05c98c8d8706}</object>
+                         <a>{7b70fd60-6679-4108-8c85-89f2502bb64b}</a>
+                         <b>{980a9a0a-78ad-49dc-8866-20f442301962}</b>
+                        </DRelation>
+                       </base-DRelation>
+                      </DDependency>
+                     </instance>
+                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1475820112563</last-modified>
+                  <last-modified>1476509705031</last-modified>
                   <toolbarid>Classes</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -313,15 +522,62 @@ won't implement all of these.</text>
                    </MElement>
                   </base-MElement>
                   <name>DatabaseManager</name>
+                  <relations>
+                   <handles>
+                    <handles>
+                     <qlist>
+                      <item>
+                       <handle>
+                        <uid>{4504ae45-7f89-4972-94ef-4c2d1a7f0e42}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{4504ae45-7f89-4972-94ef-4c2d1a7f0e42}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</a>
+                             <b>{91dccd19-091e-4cda-91c5-8ef79bf5963e}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <navigable>true</navigable>
+                            </MAssociationEnd>
+                           </a>
+                           <b>
+                            <MAssociationEnd>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </b>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                     </qlist>
+                    </handles>
+                   </handles>
+                  </relations>
                  </MObject>
                 </base-MObject>
                 <members>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{daaaab6e-4461-419c-bd09-b9de8473c545}</uid>
+                    <uid>{b791a1f6-0f84-4f1f-bb82-5fc42875c423}</uid>
                     <type>1</type>
                     <declaration>connection</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1bfa5633-d5e7-4764-b69c-700171f135d0}</uid>
+                    <type>2</type>
+                    <declaration>DatabaseManager:DatabaseManager(Connection connection)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -415,12 +671,128 @@ won't implement all of these.</text>
                         </target>
                        </handle>
                       </item>
+                      <item>
+                       <handle>
+                        <uid>{0a617cb4-59d9-43df-9a66-94cfd448fc98}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{0a617cb4-59d9-43df-9a66-94cfd448fc98}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{91dccd19-091e-4cda-91c5-8ef79bf5963e}</a>
+                             <b>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <navigable>true</navigable>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </a>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{45860a2c-f5c3-44b1-993a-c806bfbe46bf}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{45860a2c-f5c3-44b1-993a-c806bfbe46bf}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{91dccd19-091e-4cda-91c5-8ef79bf5963e}</a>
+                             <b>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <b>
+                            <MAssociationEnd>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </b>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{ccb8766c-6114-4f9f-a67a-8beb06c77da5}</uid>
+                        <target>
+                         <instance type="MDependency">
+                          <MDependency>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{ccb8766c-6114-4f9f-a67a-8beb06c77da5}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{91dccd19-091e-4cda-91c5-8ef79bf5963e}</a>
+                             <b>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MDependency>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
                      </qlist>
                     </handles>
                    </handles>
                   </relations>
                  </MObject>
                 </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{f2d144e1-f045-4a3f-adb5-9482ca66862f}</uid>
+                    <type>2</type>
+                    <declaration>TvShow&amp;:getTvShow(QString name)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{6777b0fb-bd0e-4ae5-aa74-491c38d0bed6}</uid>
+                    <type>2</type>
+                    <declaration>User:getUser(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5771d2d6-c906-4d42-95d2-09a1af94a9f4}</uid>
+                    <type>2</type>
+                    <declaration>addReactionToEpisode(Episode episode, Reaction reaction)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{cbc61251-5e8f-4ca4-8d2a-8e7d65693d5f}</uid>
+                    <type>2</type>
+                    <declaration>markEpisodeAsWatched(Episode episode)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5811bff4-4266-41c8-a7f4-ff772c250029}</uid>
+                    <type>2</type>
+                    <declaration>... etc()</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
                </MClass>
               </instance>
              </target>
@@ -440,13 +812,48 @@ won't implement all of these.</text>
                    </MElement>
                   </base-MElement>
                   <name>SqlLiteConnection</name>
+                  <relations>
+                   <handles>
+                    <handles>
+                     <qlist>
+                      <item>
+                       <handle>
+                        <uid>{d17ab489-bf3c-43aa-b1e5-7db8a8ed9a94}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{d17ab489-bf3c-43aa-b1e5-7db8a8ed9a94}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{9d8f7e25-8599-4e80-9ad1-5820fdeb70f7}</a>
+                             <b>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <b>
+                            <MAssociationEnd>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </b>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                     </qlist>
+                    </handles>
+                   </handles>
+                  </relations>
                  </MObject>
                 </base-MObject>
                 <members>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{8d07ca91-3e90-4170-8582-7d1557c2535d}</uid>
+                    <uid>{9653ba66-9c24-4dc4-a42e-bf0140d399fe}</uid>
                     <type>1</type>
                     <declaration>pathToSq3</declaration>
                    </MClassMember>
@@ -472,43 +879,85 @@ won't implement all of these.</text>
                    </MElement>
                   </base-MElement>
                   <name>MySqlConnection</name>
+                  <relations>
+                   <handles>
+                    <handles>
+                     <qlist>
+                      <item>
+                       <handle>
+                        <uid>{6e828a3c-cef9-418c-9be0-60257237deae}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{6e828a3c-cef9-418c-9be0-60257237deae}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{37c2168b-3d2a-4e03-94ff-99f9650d457e}</a>
+                             <b>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <b>
+                            <MAssociationEnd>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </b>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                     </qlist>
+                    </handles>
+                   </handles>
+                  </relations>
                  </MObject>
                 </base-MObject>
                 <members>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{e4f6d3d1-f25a-4a64-b46d-e02f6fbcb4df}</uid>
+                    <uid>{1d47b416-6bbd-4a6e-8703-ce0e22f38bc7}</uid>
                     <type>1</type>
-                    <declaration>host</declaration>
+                    <declaration>-host</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ccfa0113-a065-48db-81d8-e96f5ad7f9b6}</uid>
+                    <uid>{04e750b1-18a7-49bd-bc67-679920e0056a}</uid>
                     <type>1</type>
-                    <declaration>port</declaration>
+                    <declaration>-port</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{7e794e50-f89b-4d6e-9523-1f805fb532f7}</uid>
+                    <uid>{289430e9-4eeb-460b-a9f8-140951637803}</uid>
                     <type>1</type>
-                    <declaration>username</declaration>
+                    <declaration>-username</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ee417cc3-e688-4a7a-95ae-870ce02f4541}</uid>
+                    <uid>{fbf36ea9-811e-4691-9d7d-256bddf17bc4}</uid>
                     <type>1</type>
-                    <declaration>password</declaration>
+                    <declaration>-password</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d1b15ad5-1d97-4858-a6ee-3c33412e2220}</uid>
+                    <uid>{97b9f111-8be6-442e-9bd2-48176fd5e546}</uid>
                     <type>1</type>
-                    <declaration>database</declaration>
+                    <declaration>-database</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{b5eb51c9-6d44-4236-8a00-9a3fb9960cbf}</uid>
+                    <type>2</type>
+                    <declaration>MySqlConnection:MySqlConnection(QString host, QInt port, QString username, QString password, QString database)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -580,12 +1029,67 @@ won't implement all of these.</text>
                         </target>
                        </handle>
                       </item>
+                      <item>
+                       <handle>
+                        <uid>{1462e944-b565-4788-a22e-64cf2b9a0ba0}</uid>
+                        <target>
+                         <instance type="MDependency">
+                          <MDependency>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{1462e944-b565-4788-a22e-64cf2b9a0ba0}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{7fa5a772-8bfc-4549-9aeb-54978eb2e221}</a>
+                             <b>{37c2168b-3d2a-4e03-94ff-99f9650d457e}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MDependency>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{ff0524c4-9712-4811-8d78-05c98c8d8706}</uid>
+                        <target>
+                         <instance type="MDependency">
+                          <MDependency>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{ff0524c4-9712-4811-8d78-05c98c8d8706}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{7fa5a772-8bfc-4549-9aeb-54978eb2e221}</a>
+                             <b>{9d8f7e25-8599-4e80-9ad1-5820fdeb70f7}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MDependency>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
                      </qlist>
                     </handles>
                    </handles>
                   </relations>
                  </MObject>
                 </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{cfa1c45d-6a5a-4eb9-88a1-463b92cab99c}</uid>
+                    <type>2</type>
+                    <declaration>...implement abstract methods from parent()</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
                </MClass>
               </instance>
              </target>
@@ -605,15 +1109,64 @@ won't implement all of these.</text>
                    </MElement>
                   </base-MElement>
                   <name>CsvConnection</name>
+                  <relations>
+                   <handles>
+                    <handles>
+                     <qlist>
+                      <item>
+                       <handle>
+                        <uid>{fda9aef7-ece7-4bf7-bbca-3c980825952e}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{fda9aef7-ece7-4bf7-bbca-3c980825952e}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{e6e599fd-6c9c-4e19-a37c-fd06dc0c748b}</a>
+                             <b>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <b>
+                            <MAssociationEnd>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </b>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                     </qlist>
+                    </handles>
+                   </handles>
+                  </relations>
                  </MObject>
                 </base-MObject>
                 <members>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{572a8e46-1be2-4f3a-879b-ce5ce9d5686b}</uid>
+                    <uid>{088cca8f-37e5-4668-8cec-76a301bbf915}</uid>
                     <type>1</type>
-                    <declaration>pathToCsv</declaration>
+                    <declaration>-pathToCsvFolder</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{432e3498-98e1-4af2-9a58-99c1dc0449a3}</uid>
+                    <type>2</type>
+                    <declaration>CsvConnection:CsvConnection(QString pathToCsvFolder)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7ce79dce-3668-45f3-8af3-609e634d9eab}</uid>
+                    <type>2</type>
+                    <declaration>...implement abstract methods from parent()</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -643,9 +1196,97 @@ won't implement all of these.</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{fabf0316-6ed9-473f-822a-188c65a53d58}</uid>
+                    <uid>{a847811d-d501-49ea-bf47-074225630d71}</uid>
                     <type>1</type>
-                    <declaration>pathToJson</declaration>
+                    <declaration>-pathToJson</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f93090fe-c6f5-42b8-ad67-7e1721e9da3f}</uid>
+                    <type>2</type>
+                    <declaration>JsonConnection:JsonConnection(QString pathToJson)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5c22b96c-9d94-42c2-bcad-d422af1176b7}</uid>
+                    <type>2</type>
+                    <declaration>...implement abstract methods from parent()</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{3f7b596f-c34a-4089-b993-256c58b1cdef}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{3f7b596f-c34a-4089-b993-256c58b1cdef}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>User</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{6efd8e9b-cb95-469d-8c4c-05b0a68c11e4}</uid>
+                    <type>1</type>
+                    <declaration>QString username</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5531f6b0-dbd6-441e-83c5-a0bbfe75ccc7}</uid>
+                    <type>1</type>
+                    <declaration>-QString salt</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ec72f44e-201f-4698-bd71-c072de6b1d21}</uid>
+                    <type>1</type>
+                    <declaration>-QByteArray hash</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5d6708c0-e9e5-43c5-8c95-504db1428451}</uid>
+                    <type>2</type>
+                    <declaration>User:User(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{fd800612-cd39-43c8-a410-4514b22fcb9e}</uid>
+                    <type>2</type>
+                    <declaration>User:User(QString username, QString salt, QByteArray hash)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{cdafe07c-13c1-4d02-8d2b-c44c3b66261a}</uid>
+                    <type>2</type>
+                    <declaration>storePassword(QString password)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{8a13e95d-700f-4113-a4ac-cad0e8d1e059}</uid>
+                    <type>2</type>
+                    <declaration>bool:checkPasswordCorrect(QString password)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
