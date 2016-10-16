@@ -22,7 +22,7 @@ private:
     AccountManager();
     ~AccountManager();
 
-    bool checkEmail(QString &email);
+    bool checkEmail(QString &emailToCheck);
     bool checkHandle(QString &handle);
     bool loadDetails(QString &handle);
 
@@ -34,7 +34,9 @@ public:
     static AccountManager* getInstance();
     bool createAccount(QString &first, QString &last, QString &email, QString &handle, QString &password);
     Person getCurrentAccount();
-    Person findPersonByEmail(QString &email);
+
+
+    Person findPersonByEmail(QString &emailtoCheck);
     Person findPersonByHandle(QString &handle);
 
 

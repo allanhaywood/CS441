@@ -19,7 +19,7 @@ AccountManager* AccountManager::getInstance()
 AccountManager::AccountManager()
 {
     QString filename="Data.txt";//constructs a file name Data.txt
-    file (filename);//opens that file and sets it to file in the header for use in other fucntions
+    file.open (filename);//opens that file and sets it to file in the header for use in other fucntions
 }
 
 AccountManager::~AccountManager()
@@ -46,42 +46,107 @@ bool AccountManager::createAccount(QString &first, QString &last, QString &email
     }
 }
 
-bool AccountManager::loadDetails(QString &handle)
+bool AccountManager::findPersonByHandle(Person &PassBack, QString &handleToCheck)
 {
+QString first;
+QString last;
+QString email;
+QString handle;
+QString password;
+
     QTextStream in(&file);
     while(!in.atEnd())
     {
-        QString line=in.readLine();
-        while(line)
-        {
+    in>>email;
+    in>>first;
+    in>>last;
+    in>>handle;
+    in>>password;
 
+        if (handle==handleToCheck)
+        {
+            PassBack.firstName=first;
+            PassBack.lastName=last;
+            PassBack.email=email;
+            PassBack.handle=handle;
+            PassBack.password=handle;
+
+            ThisGuy=PassBack;
+
+            return true;
         }
     }
+
+    return false;
 }
 
-bool AccountManager::checkEmail(QString &email)
+bool AccountManager::checkEmail(QString &emailToCheck)
 {
+    QString first;
+    QString last;
+    QString email;
+    QString handle;
+    QString password;
 
+        QTextStream in(&file);
+        while(!in.atEnd())
+        {
+        in>>email;
+        in>>first;
+        in>>last;
+        in>>handle;
+        in>>password;
+
+            if (email==emailToCheck)
+            {
+                return true;
+            }
+        }
+
+        return false;
 }
 
-bool AccountManager::checkHandle(QString &handle)
-{
 
-}
 
 Person AccountManager::getCurrentAccount()
 {
 return ThisGuy;
 }
 
-Person AccountManager::findPersonByEmail(QString &email)
+Person AccountManager::findPersonByEmail(QString &emailtoCheck)
 {
+    QString first;
+    QString last;
+    QString email;
+    QString handle;
+    QString password;
 
+        QTextStream in(&file);
+        while(!in.atEnd())
+        {
+        in>>email;
+        in>>first;
+        in>>last;
+        in>>handle;
+        in>>password;
+
+            if (email==emailtoCheck)
+            {
+                PassBack.firstName=first;
+                PassBack.lastName=last;
+                PassBack.email=email;
+                PassBack.handle=handle;
+                PassBack.password=handle;
+
+                ThisGuy=PassBack;
+
+                return true;
+            }
+        }
+
+        return false;
 }
 
-Person AccountManager::findPersonByHandle(QString &handle)
-{
 
-}
 
 #endif//accountManager
