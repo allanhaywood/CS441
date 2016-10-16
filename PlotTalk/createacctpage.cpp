@@ -8,16 +8,16 @@ CreateAcctPage::CreateAcctPage(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CreateAcctPage)
 {
-    ui->setupUi(this);
-    ui->incorrectPasswordLabel->hide();
-    ui->PasswordBox1->setEchoMode(QLineEdit::Password);
-    ui->PasswordBox2->setEchoMode(QLineEdit::Password);
+    ui->setupUi(this);//system generated to show box
+    ui->incorrectPasswordLabel->hide();//hides the "incorrect password" field
+    ui->PasswordBox1->setEchoMode(QLineEdit::Password);//hides password box entries
+    ui->PasswordBox2->setEchoMode(QLineEdit::Password);//hides password box entries
 }
 
 CreateAcctPage::~CreateAcctPage()
 {
 
-    delete ui;
+    delete ui;//when destroyed destroys
 }
 
 void CreateAcctPage::on_CreateAcctButton_clicked()
@@ -26,7 +26,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        QString lastName;
        QString handle;
        QString email;
-       QString password;
+       QString password;//strings to hold the info for account
 
 
 

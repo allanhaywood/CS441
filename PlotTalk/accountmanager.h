@@ -3,7 +3,17 @@
 
 #include <QMainWindow>
 #include <QWidget>
+#include <QFile>
+#include <QTextStream>
 
+struct Person
+{
+    QString firstName;
+    QString lastName;
+    QString email;
+    QString handle;
+    QString password;
+};
 
 class AccountManager
 {
@@ -12,10 +22,21 @@ private:
     AccountManager();
     ~AccountManager();
 
+    bool checkEmail(QString &email);
+    bool checkHandle(QString &handle);
+    bool loadDetails(QString &handle);
+
+    QFile file;
+    Person ThisGuy;
+
 public:
 
     static AccountManager* getInstance();
-    bool createAccount(QString &first, QString &last, QString &email, QString &password);
+    bool createAccount(QString &first, QString &last, QString &email, QString &handle, QString &password);
+    Person getCurrentAccount();
+    Person findPersonByEmail(QString &email);
+    Person findPersonByHandle(QString &handle);
+
 
 };
 

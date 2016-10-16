@@ -19,7 +19,6 @@ SOURCES += main.cpp\
     forgotpassword.cpp \
     accountdetails.cpp \
     accountmanager.cpp \
-    accountcheckandstore.cpp\
     addnewmedia.cpp\
 
 
@@ -29,7 +28,6 @@ HEADERS  += mainwindow.h \
     forgotpassword.h \
     accountdetails.h \
     accountmanager.h \
-    accountcheckandstore.h\
     addnewmedia.h\
 
 
