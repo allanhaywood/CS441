@@ -6,7 +6,7 @@
 #include <QFile>
 #include <QTextStream>
 
-struct Person
+struct Person//a person element for passing around as needed (may need to be migrated to a different header file)
 {
     QString firstName;
     QString lastName;
@@ -18,27 +18,23 @@ struct Person
 class AccountManager
 {
 private:
-    static AccountManager* instance;
-    AccountManager();
-    ~AccountManager();
+    static AccountManager* instance;//creates the static instance
+    AccountManager();//constructor
+    ~AccountManager();//destructor
 
-    bool checkEmail(QString &emailToCheck);
-    bool checkHandle(QString &handle);
-    bool loadDetails(QString &handle);
 
-    QFile file;
+    QString fileName="Data.txt";
     Person ThisGuy;
 
 public:
 
     static AccountManager* getInstance();
-    bool createAccount(QString &first, QString &last, QString &email, QString &handle, QString &password);
-    Person getCurrentAccount();
+    bool createAccount(QString &first, QString &last, QString &email, QString &handle, QString &password);//done
+    Person getCurrentAccount();//done
 
 
-    Person findPersonByEmail(QString &emailtoCheck);
-    Person findPersonByHandle(QString &handle);
-
+    bool findPersonByEmail(Person &PassBack, QString &emailtoCheck);//done
+    bool findPersonByHandle(Person &PassBack, QString &handleToCheck);//done
 
 };
 

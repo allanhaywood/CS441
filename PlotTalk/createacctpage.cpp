@@ -30,14 +30,14 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
 
 
 
-       firstName=ui->FirstNameBox->toPlainText();
-       lastName=ui->LastNameBox->toPlainText();
-       handle=ui->handleBox->toPlainText();
-       email=ui->emailBox->toPlainText();
+       firstName=ui->FirstNameBox->text();
+       lastName=ui->LastNameBox->text();
+       handle=ui->handleBox->text();
+       email=ui->emailBox->text();
 
 
        AccountManager *addNew= AccountManager::getInstance();
-       if(addNew->createAccount(firstName,lastName,email,password))
+       if(addNew->createAccount(firstName,lastName,email,handle,password))
 
 
        //ui->LastNameBox->insertPlainText(firstName);//how to display a string in a box (probably works for a label too)
@@ -47,7 +47,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        {
            password=ui->PasswordBox1->text();
            AccountManager *addNew= AccountManager::getInstance();
-           if(!addNew->createAccount(firstName,lastName,email,password))
+           if(addNew->createAccount(firstName,lastName,email,handle,password))
            {
                this->close();
                QMessageBox congrats;
