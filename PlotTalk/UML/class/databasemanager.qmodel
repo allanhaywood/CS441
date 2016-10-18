@@ -269,9 +269,15 @@ Get data from the datastore
 Add data to the datastore
 Modify data in the data store
 When an object is to be returned from a function, that is backed by
-the database, a reference should be returned.</text>
-                       <pos>x:475;y:155</pos>
-                       <rect>x:0;y:0;w:343.797;h:100</rect>
+the database, a reference should be returned.
+
+NOTE: In order to have just one location to define what type of connection
+to use, Connection will be mostly abstract, except for its default constructor.
+The default constructor will implemented code to return the connection type
+the developer wants to be active. We may move the definition into a config
+file, but that isn't required.</text>
+                       <pos>x:455;y:80</pos>
+                       <rect>x:0;y:0;w:386.516;h:184</rect>
                       </DAnnotation>
                      </instance>
                     </item>
@@ -499,7 +505,7 @@ ideally things that can be shared are implemented here</text>
                     </item>
                    </qlist>
                   </elements>
-                  <last-modified>1476509705031</last-modified>
+                  <last-modified>1476771401722</last-modified>
                   <toolbarid>Classes</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -758,35 +764,35 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{f2d144e1-f045-4a3f-adb5-9482ca66862f}</uid>
+                    <uid>{2e786ee3-5699-4919-a552-fa0f239db37d}</uid>
                     <type>2</type>
                     <declaration>TvShow&amp;:getTvShow(QString name)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{6777b0fb-bd0e-4ae5-aa74-491c38d0bed6}</uid>
+                    <uid>{51cba649-9ec0-4314-a63a-30b645b27101}</uid>
                     <type>2</type>
                     <declaration>User:getUser(QString username)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{5771d2d6-c906-4d42-95d2-09a1af94a9f4}</uid>
+                    <uid>{ec954711-b85b-44ad-b78e-3bfeeae9f9b7}</uid>
                     <type>2</type>
                     <declaration>addReactionToEpisode(Episode episode, Reaction reaction)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{cbc61251-5e8f-4ca4-8d2a-8e7d65693d5f}</uid>
+                    <uid>{e8155c94-ab8d-406f-9c0b-6730b49430eb}</uid>
                     <type>2</type>
                     <declaration>markEpisodeAsWatched(Episode episode)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{5811bff4-4266-41c8-a7f4-ff772c250029}</uid>
+                    <uid>{c78a80b4-454c-4592-86a7-fde4c4b4d02a}</uid>
                     <type>2</type>
                     <declaration>... etc()</declaration>
                    </MClassMember>
