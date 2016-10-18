@@ -197,7 +197,7 @@
     </font>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::ClickFocus</enum>
+    <enum>Qt::StrongFocus</enum>
    </property>
   </widget>
   <widget class="QLineEdit" name="PasswordBox2">
@@ -215,7 +215,7 @@
     </font>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::ClickFocus</enum>
+    <enum>Qt::StrongFocus</enum>
    </property>
   </widget>
   <widget class="QLabel" name="EmailLabel">

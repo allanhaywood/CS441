@@ -3,11 +3,11 @@
 
 #include "accountmanager.h"
 
-AccountManager *AccountManager::instance=0;//sets initial instance to 0
+AccountManager *AccountManager::instance=NULL;//sets initial instance to 0
 
 AccountManager* AccountManager::getInstance()//returns a new instance or the same instance as needed
 {
-    if (instance!=NULL)
+    if (instance==NULL)
     {
         instance=new AccountManager();
     }
@@ -35,6 +35,7 @@ bool AccountManager::createAccount(QString &first, QString &last, QString &email
     Person hold;
     if(findPersonByEmail(hold,email) && findPersonByHandle(hold,handle))//very inefficient, may need to be fixed
     {//checks to make sure email and handle are both unique
+
         QFile file(fileName);//opens a file
 
         if(file.open(QIODevice::Append))//checks to see if the file exists and opens it for appending
