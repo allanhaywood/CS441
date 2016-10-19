@@ -16,7 +16,15 @@ public:
     ~Dashboard();
 
 private slots:
-    void on_MyAccountButton_clicked();
+    void on_myAccountButton_clicked();
+
+    void on_homeButton_clicked();
+
+    void on_popularButton_clicked();
+
+    void on_watchedButton_clicked();
+
+    void on_searchButton_clicked();
 
 private:
     Ui::Dashboard *ui;
