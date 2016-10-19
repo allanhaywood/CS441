@@ -13,8 +13,28 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    createacctpage.cpp \
+    dashboard.cpp \
+    forgotpassword.cpp \
+    accountmanager.cpp \
+    addnewmedia.cpp\
 
-HEADERS  += mainwindow.h
 
-FORMS    += mainwindow.ui
+HEADERS  += mainwindow.h \
+    createacctpage.h \
+    dashboard.h \
+    forgotpassword.h \
+    accountmanager.h \
+    addnewmedia.h\
+
+
+FORMS    += mainwindow.ui \
+    createacctpage.ui \
+    dashboard.ui \
+    forgotpassword.ui \
+    addnewmedia.ui\
+
+DISTFILES += \
+    creatingNewAcct.qmodel
+
