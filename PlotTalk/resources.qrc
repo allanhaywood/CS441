@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>1_003.png</file>
+        <file>1211813364.png</file>
+        <file>iu.png</file>
+        <file>administrator.png</file>
+        <file>remove-icon-png-26.png</file>
+        <file>Search.png</file>
+    </qresource>
+</RCC>
