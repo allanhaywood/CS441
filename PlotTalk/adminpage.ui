@@ -70,7 +70,7 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/images/1_003.png</normaloff>:/images/1_003.png</iconset>
+       <normaloff>:/images/group_icon.png</normaloff>:/images/group_icon.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="media">
@@ -90,7 +90,7 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/images/1211813364.png</normaloff>:/images/1211813364.png</iconset>
+       <normaloff>:/images/play_icon.png</normaloff>:/images/play_icon.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -116,7 +116,7 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/images/1211813364.png</normaloff>:/images/1211813364.png</iconset>
+       <normaloff>:/images/play_icon.png</normaloff>:/images/play_icon.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="search_movie">
@@ -167,7 +167,7 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/images/remove-icon-png-26.png</normaloff>:/images/remove-icon-png-26.png</iconset>
+       <normaloff>:/images/remove_icon.png</normaloff>:/images/remove_icon.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="delete_series">
@@ -184,7 +184,7 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/images/remove-icon-png-26.png</normaloff>:/images/remove-icon-png-26.png</iconset>
+       <normaloff>:/images/remove_icon.png</normaloff>:/images/remove_icon.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="delete_user">
@@ -201,7 +201,7 @@
      </property>
      <property name="icon">
       <iconset resource="resources.qrc">
-       <normaloff>:/images/remove-icon-png-26.png</normaloff>:/images/remove-icon-png-26.png</iconset>
+       <normaloff>:/images/remove_icon.png</normaloff>:/images/remove_icon.png</iconset>
      </property>
     </widget>
     <widget class="Line" name="line">
@@ -274,7 +274,7 @@
      <x>0</x>
      <y>0</y>
      <width>331</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAdminPage">

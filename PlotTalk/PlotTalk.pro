@@ -19,6 +19,7 @@ SOURCES += main.cpp\
     forgotpassword.cpp \
     accountmanager.cpp \
     addnewmedia.cpp\
+    adminpage.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -27,6 +28,7 @@ HEADERS  += mainwindow.h \
     forgotpassword.h \
     accountmanager.h \
     addnewmedia.h\
+    adminpage.h
 
 
 FORMS    += mainwindow.ui \
@@ -34,7 +36,11 @@ FORMS    += mainwindow.ui \
     dashboard.ui \
     forgotpassword.ui \
     addnewmedia.ui\
+    adminpage.ui
 
 DISTFILES += \
     creatingNewAcct.qmodel
+
+RESOURCES += \
+    resources.qrc
 

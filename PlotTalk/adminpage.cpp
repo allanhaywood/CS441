@@ -1,5 +1,6 @@
 #include "adminpage.h"
 #include "ui_adminpage.h"
+#include <QMessageBox>
 
 AdminPage::AdminPage(QWidget *parent) :
     QMainWindow(parent),
