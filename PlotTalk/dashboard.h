@@ -2,6 +2,7 @@
 #define DASHBOARD_H
 
 #include <QMainWindow>
+#include<adminpage.h>
 
 namespace Ui {
 class Dashboard;
@@ -26,8 +27,11 @@ private slots:
 
     void on_searchButton_clicked();
 
+    void on_adminButton_clicked();
+
 private:
     Ui::Dashboard *ui;
+    AdminPage* adminWindow = NULL;
 };
 
 #endif // DASHBOARD_H
