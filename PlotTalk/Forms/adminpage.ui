@@ -52,8 +52,8 @@
       <string>Edit Comments</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/iu.png</normaloff>:/images/iu.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/iu.png</normaloff>:/images/Images/iu.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="Users">
@@ -69,8 +69,8 @@
       <string>View Users</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/group_icon.png</normaloff>:/images/group_icon.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/group_icon.png</normaloff>:/images/Images/group_icon.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="media">
@@ -89,8 +89,8 @@
       <string>Add Movie</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/play_icon.png</normaloff>:/images/play_icon.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/play_icon.png</normaloff>:/images/Images/play_icon.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -115,8 +115,8 @@
       <string>Add Series</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/play_icon.png</normaloff>:/images/play_icon.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/play_icon.png</normaloff>:/images/Images/play_icon.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="search_movie">
@@ -132,8 +132,8 @@
       <string>Search Movie</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/Search.png</normaloff>:/images/Search.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/Search.png</normaloff>:/images/Images/Search.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="search_series">
@@ -149,8 +149,8 @@
       <string>Search Series</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/Search.png</normaloff>:/images/Search.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/Search.png</normaloff>:/images/Images/Search.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="delete_movie">
@@ -166,8 +166,8 @@
       <string>Delete Movie</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/remove_icon.png</normaloff>:/images/remove_icon.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/remove_icon.png</normaloff>:/images/Images/remove_icon.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="delete_series">
@@ -183,8 +183,8 @@
       <string>Delete Series</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/remove_icon.png</normaloff>:/images/remove_icon.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/remove_icon.png</normaloff>:/images/Images/remove_icon.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="delete_user">
@@ -200,8 +200,8 @@
       <string>Delete User</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/remove_icon.png</normaloff>:/images/remove_icon.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/remove_icon.png</normaloff>:/images/Images/remove_icon.png</iconset>
      </property>
     </widget>
     <widget class="Line" name="line">
@@ -256,8 +256,8 @@
       <string>Administration Interface</string>
      </property>
      <property name="icon">
-      <iconset resource="resources.qrc">
-       <normaloff>:/images/administrator.png</normaloff>:/images/administrator.png</iconset>
+      <iconset resource="../Resources/resources.qrc">
+       <normaloff>:/images/Images/administrator.png</normaloff>:/images/Images/administrator.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -296,7 +296,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../Resources/resources.qrc"/>
  </resources>
  <connections/>
 </ui>
