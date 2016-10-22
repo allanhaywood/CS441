@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Images/group_icon.png</file>
+        <file>Images/play_icon.png</file>
+        <file>Images/iu.png</file>
+        <file>Images/administrator.png</file>
+        <file>Images/remove_icon.png</file>
+        <file>Images/Search.png</file>
+    </qresource>
+</RCC>

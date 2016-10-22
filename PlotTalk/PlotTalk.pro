@@ -5,25 +5,49 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
 TARGET = PlotTalk
-#INCLUDEPATH += .
+INCLUDEPATH += \
+    . \
+    Src
 
 HEADERS += \
     Src/mainwindow.h \
-    Src/tvshow.h
+    Src/tvshow.h \
+    Src/createacctpage.h \
+    Src/dashboard.h \
+    Src/forgotpassword.h \
+    Src/accountmanager.h \
+    Src/addnewmedia.h \
+    Src/adminpage.h
 
 SOURCES += \
     Src/main.cpp \
     Src/mainwindow.cpp \
     Src/tvshow.cpp \
+    Src/createacctpage.cpp \
+    Src/dashboard.cpp \
+    Src/forgotpassword.cpp \
+    Src/accountmanager.cpp \
+    Src/addnewmedia.cpp \
+    Src/adminpage.cpp
            
 FORMS += \
-    Src/mainwindow.ui
+    Forms/mainwindow.ui \
+    Forms/createacctpage.ui \
+    Forms/dashboard.ui \
+    Forms/forgotpassword.ui \
+    Forms/addnewmedia.ui\
+    Forms/adminpage.ui
+
+RESOURCES += \
+    Resources/resources.qrc
 
 test {
     message(Test build)
 
     QT += testlib
     TARGET = PlotTalkTest
+
+    INCLUDEPATH += Test
 
     SOURCES -= Src/main.cpp
 
