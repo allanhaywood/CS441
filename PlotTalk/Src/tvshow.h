@@ -2,7 +2,6 @@
 #define TVSHOW_H
 #include <QString>
 
-
 class TvShow
 {
 public:

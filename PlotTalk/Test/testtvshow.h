@@ -2,7 +2,6 @@
 #define TESTTVSHOW_H
 
 #include <QObject>
-#include <QtTest/QtTest>
 #include "../Src/tvshow.h"
 
 class TestTvShow : public QObject

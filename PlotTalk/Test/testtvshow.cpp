@@ -1,3 +1,4 @@
+#include <QtTest/QtTest>
 #include "testtvshow.h"
 
 void TestTvShow::testDefaultConstructor()
