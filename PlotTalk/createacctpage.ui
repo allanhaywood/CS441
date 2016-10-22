@@ -196,9 +196,6 @@
      <pointsize>12</pointsize>
     </font>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::StrongFocus</enum>
-   </property>
   </widget>
   <widget class="QLineEdit" name="PasswordBox2">
    <property name="geometry">
@@ -213,9 +210,6 @@
     <font>
      <pointsize>12</pointsize>
     </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::StrongFocus</enum>
    </property>
   </widget>
   <widget class="QLabel" name="EmailLabel">
@@ -294,6 +288,25 @@
     <font>
      <pointsize>12</pointsize>
     </font>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pwdMatch">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>470</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <italic>true</italic>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#55aa00;&quot;&gt;Passwords Match!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>

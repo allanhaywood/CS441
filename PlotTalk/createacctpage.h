@@ -19,6 +19,8 @@ public:
 private slots:
     void on_CreateAcctButton_clicked();
 
+    void on_PasswordBox2_textChanged(const QString &arg1);
+
 private:
     Ui::CreateAcctPage *ui;
 };
