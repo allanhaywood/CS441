@@ -1,6 +1,7 @@
 #ifndef CREATEACCTPAGE_H
 #define CREATEACCTPAGE_H
 
+#include <QMessageBox>
 #include <QDialog>
 
 namespace Ui {

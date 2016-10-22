@@ -1,8 +1,10 @@
+#ifndef CREATEACCTPAGE_C
+#define CREATEACCTPAGE_C
+
 #include "createacctpage.h"
 #include "ui_createacctpage.h"
 #include "mainwindow.h"
 #include "accountmanager.h"
-#include <QMessageBox>
 
 CreateAcctPage::CreateAcctPage(QWidget *parent) :
     QDialog(parent),
@@ -22,6 +24,7 @@ CreateAcctPage::~CreateAcctPage()
 
 void CreateAcctPage::on_CreateAcctButton_clicked()
 {
+
        QString firstName;
        QString lastName;
        QString handle;
@@ -46,6 +49,8 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        if(ui->PasswordBox1->text()==ui->PasswordBox2->text())//must also check to see if password matches requirements
        {
            password=ui->PasswordBox1->text();
+          // QJsonObject member;
+           //member={"first name":firstName, "last name":lastName, "handle":handle, "e-mail":email, "Password":password};
            AccountManager *addNew= AccountManager::getInstance();
            if(addNew->createAccount(firstName,lastName,email,handle,password))
            {
@@ -71,3 +76,5 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        }
 
 }
+
+#endif

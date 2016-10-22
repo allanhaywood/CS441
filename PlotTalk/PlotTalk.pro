@@ -20,6 +20,7 @@ SOURCES += main.cpp\
     accountdetails.cpp \
     accountmanager.cpp \
     addnewmedia.cpp\
+    person.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -29,6 +30,7 @@ HEADERS  += mainwindow.h \
     accountdetails.h \
     accountmanager.h \
     addnewmedia.h\
+    person.h
 
 
 FORMS    += mainwindow.ui \
