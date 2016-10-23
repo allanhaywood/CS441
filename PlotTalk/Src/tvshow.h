@@ -6,21 +6,17 @@ class TvShow
 {
 public:
     QString name;
-    QString imdbLink;
+    QString tmdbLink;
     QString graphicLink;
 
     // TODO: Add Seasons once Season class is available.
 
-    TvShow();
-
-    //TvShow(QString name, QString imdbLink, QString graphicLink, Connection& connection);
-    TvShow(QString name, QString imdbLink, QString graphicLink);
+    TvShow(QString name, QString tmdbLink, QString graphicLink);
 
     //setConnection(Connection& connection);
 
 private:
-    //Connection& connection;
-
+    //Connection connection;
 };
 
 #endif // TVSHOW_H
