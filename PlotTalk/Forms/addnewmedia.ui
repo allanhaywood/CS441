@@ -16,7 +16,7 @@
   <widget class="QLabel" name="NewMediaTitle">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>160</x>
      <y>10</y>
      <width>171</width>
      <height>41</height>
@@ -39,7 +39,7 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>350</x>
      <y>390</y>
      <width>101</width>
      <height>23</height>
@@ -69,7 +69,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Search for new Media</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
@@ -109,19 +109,6 @@
    </property>
    <property name="text">
     <string>Media to be added are listed below before adding.</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_3">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>390</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Cancel</string>
    </property>
   </widget>
  </widget>

@@ -1,6 +1,3 @@
-#ifndef CREATEACCTPAGE_C
-#define CREATEACCTPAGE_C
-
 #include "createacctpage.h"
 #include "ui_createacctpage.h"
 #include "mainwindow.h"
@@ -100,8 +97,6 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        }
 
 }
-
-#endif
 
 void CreateAcctPage::on_PasswordBox2_textChanged(const QString &arg1)
 {

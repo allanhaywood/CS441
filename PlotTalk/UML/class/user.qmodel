@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qmt>
+ <project>
+  <uid>{fd8d84b0-225d-4161-92ed-62b40d60b8b9}</uid>
+  <root-package>
+   <instance>
+    <MPackage>
+     <base-MObject>
+      <MObject>
+       <base-MElement>
+        <MElement>
+         <uid>{05a0db31-06fb-46df-a5e9-60453ae9fa33}</uid>
+        </MElement>
+       </base-MElement>
+       <name>User</name>
+       <children>
+        <handles>
+         <handles>
+          <qlist>
+           <item>
+            <handle>
+             <uid>{4e883757-1447-426d-8f6c-91dcc53c5ffc}</uid>
+             <target>
+              <instance type="MCanvasDiagram">
+               <MCanvasDiagram>
+                <base-MDiagram>
+                 <MDiagram>
+                  <base-MObject>
+                   <MObject>
+                    <base-MElement>
+                     <MElement>
+                      <uid>{4e883757-1447-426d-8f6c-91dcc53c5ffc}</uid>
+                     </MElement>
+                    </base-MElement>
+                    <name>User</name>
+                   </MObject>
+                  </base-MObject>
+                  <elements>
+                   <qlist>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{bb2070cf-dc2c-4f31-8c39-bc3cedf9dcff}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>Notes on securly handeling password
+
+Pepper is hardcoded as a constant in the code.
+
+On account creation: 
+  
+# Salt generated and stored with each password in the db 
+salt = Generate a random string and hash with sha3_512 
+  
+passSaltPepper = concat password, salt and pepper together 
+QByteArray hash = QCryptographicHash::​hash(passSaltPepper.toLocal8bit(), QCryptographicHash::Sha3_512); 
+  
+#Store salt and hash in db linked to this user only. 
+  
+# Later, when an existing user logs in, the entered password is combined with the salt found stored with the account, 
+and also combined with the hard coded constant pepper, and the same hash algorithm is run. 
+If the hash just generated, matches the hash stored in the db, then the user is permitted to log in. 
+  
+#If it doesn't match, an error is reported that either the username or password is incorrect. 
+There should be no information disclosure on login failure. For example, indicating that the user doesn't exist, 
+or that the user exists, but the password was incorrect. 
+  
+# The below is optional for now, but the salt and pepper above should be used. 
+NOTE: Investigate if there is a secure, in memory way to temporarily store the passwords when they are momentarily in plaintext. 
+For example, C# contains securestring. Which prevents/minimizes possibility of attacks on memory. 
+If an equivalent to securestring is not found, there may be alternatives to properly handling the plaintext version of the 
+string (example, using a symmetric hash before storing it in memory for longer periods of time, 
+limiting number of copies in memory, and actively, overwriting with junk data, then deleting when done with it). </text>
+                       <pos>x:115;y:665</pos>
+                       <rect>x:0;y:0;w:804.656;h:548</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{262587c9-273d-4b42-8221-2e3dbc1b1c33}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{53cae8aa-c4d4-4aa9-aa43-1fe814a1ebe4}</object>
+                         <name>User</name>
+                         <pos>x:270;y:490</pos>
+                         <rect>x:-160;y:-80;w:320;h:160</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAnnotation">
+                      <DAnnotation>
+                       <base-DElement>
+                        <DElement>
+                         <uid>{8685bf01-d304-4234-bc82-dfc03c339d6b}</uid>
+                        </DElement>
+                       </base-DElement>
+                       <text>NOTE: Figure out how to store and represent in a class
+which episodes a user has watched.</text>
+                       <pos>x:540;y:440</pos>
+                       <rect>x:0;y:0;w:283.578;h:44</rect>
+                      </DAnnotation>
+                     </instance>
+                    </item>
+                   </qlist>
+                  </elements>
+                  <last-modified>1476509617790</last-modified>
+                  <toolbarid>General</toolbarid>
+                 </MDiagram>
+                </base-MDiagram>
+               </MCanvasDiagram>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{53cae8aa-c4d4-4aa9-aa43-1fe814a1ebe4}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{53cae8aa-c4d4-4aa9-aa43-1fe814a1ebe4}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>User</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{a4f3a3d5-eb2b-48e6-99da-91f6c1ee4851}</uid>
+                    <type>1</type>
+                    <declaration>QString username</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f95269b9-e4d4-457f-9cc9-a2eb228265c9}</uid>
+                    <type>1</type>
+                    <declaration>-QString salt</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1980b0b9-8e20-421d-a2d2-ca9cadfa18d2}</uid>
+                    <type>1</type>
+                    <declaration>-QByteArray hash</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2e971b7a-8477-43a4-9ede-afdce76be0d5}</uid>
+                    <type>2</type>
+                    <declaration>User:User(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{47743ced-5aa8-440b-8276-0c536b876b58}</uid>
+                    <type>2</type>
+                    <declaration>User:User(QString username, QString salt, QByteArray hash)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{4f3773db-dae7-4989-a93f-0b90da243a7d}</uid>
+                    <type>2</type>
+                    <declaration>storePassword(QString password)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{6779de9c-0a26-48d3-95f4-7b7296dfae35}</uid>
+                    <type>2</type>
+                    <declaration>bool:checkPasswordCorrect(QString password)</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+          </qlist>
+         </handles>
+        </handles>
+       </children>
+      </MObject>
+     </base-MObject>
+    </MPackage>
+   </instance>
+  </root-package>
+ </project>
+</qmt>
