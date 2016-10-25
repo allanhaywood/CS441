@@ -764,35 +764,35 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{2e786ee3-5699-4919-a552-fa0f239db37d}</uid>
+                    <uid>{3b58d9dd-a470-4e38-ad40-77f07c65a32e}</uid>
                     <type>2</type>
-                    <declaration>TvShow&amp;:getTvShow(QString name)</declaration>
+                    <declaration>void:getTvShow(QString name, TvShow&amp; tvshow)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{51cba649-9ec0-4314-a63a-30b645b27101}</uid>
+                    <uid>{b9221b7e-28ee-4265-b0ef-5a22513822f5}</uid>
                     <type>2</type>
                     <declaration>User:getUser(QString username)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ec954711-b85b-44ad-b78e-3bfeeae9f9b7}</uid>
+                    <uid>{9f829511-716f-4875-8f57-113918e45bf3}</uid>
                     <type>2</type>
                     <declaration>addReactionToEpisode(Episode episode, Reaction reaction)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{e8155c94-ab8d-406f-9c0b-6730b49430eb}</uid>
+                    <uid>{b2f2f239-e053-4e11-9b7b-4a4ac915167f}</uid>
                     <type>2</type>
                     <declaration>markEpisodeAsWatched(Episode episode)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{c78a80b4-454c-4592-86a7-fde4c4b4d02a}</uid>
+                    <uid>{bdfbb283-438e-4b15-a23b-9752f6d36fde}</uid>
                     <type>2</type>
                     <declaration>... etc()</declaration>
                    </MClassMember>

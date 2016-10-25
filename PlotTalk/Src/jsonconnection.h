@@ -3,16 +3,17 @@
 #include <QString>
 #include <QJsonObject>
 
+#include "connection.h"
 #include "tvshow.h"
 
-class JsonConnection
+class JsonConnection : public Connection
 {
 public:
     JsonConnection(QString pathToJson);
 
     QString getPathToJson();
 
-    TvShow getTvShow(QString name);
+    void getTvShow(QString name, TvShow &tvShow);
 
 private:
     QString pathToJson;

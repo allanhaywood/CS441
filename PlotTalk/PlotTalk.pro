@@ -16,7 +16,8 @@ HEADERS += \
     Src/accountmanager.h \
     Src/addnewmedia.h \
     Src/adminpage.h \
-    Src/jsonconnection.h
+    Src/jsonconnection.h \
+    Src/connection.h
 
 SOURCES += \
     Src/main.cpp \
@@ -28,7 +29,8 @@ SOURCES += \
     Src/accountmanager.cpp \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
-    Src/jsonconnection.cpp
+    Src/jsonconnection.cpp \
+    Src/connection.cpp
            
 FORMS += \
     Forms/mainwindow.ui \
@@ -59,6 +61,7 @@ test {
         Test/testmain.cpp \
         Test/testtvshow.cpp \
         Test/testjsonconnection.cpp
+
 } else {
     message(Normal build)
 }

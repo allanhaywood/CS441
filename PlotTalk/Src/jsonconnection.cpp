@@ -35,7 +35,7 @@ QString JsonConnection::getPathToJson()
  * @return The Tvshow, if no match is found an empty TvShow is returned.
  * TODO: Change behavior for when a matching TvShow is not found, need to investigate best option.
  */
-TvShow JsonConnection::getTvShow(QString name)
+void JsonConnection::getTvShow(QString name, TvShow &tvShow)
 {
     QString jsonName = "";
     QString jsonTmdbLink = "";
@@ -65,7 +65,7 @@ TvShow JsonConnection::getTvShow(QString name)
     }
 
     // Use the information found to construct and return a TvShow of the requested tvshow.
-    return TvShow(jsonName, jsonTmdbLink, jsonGraphicLink);
+    tvShow = TvShow(jsonName, jsonTmdbLink, jsonGraphicLink);
 }
 
 /**

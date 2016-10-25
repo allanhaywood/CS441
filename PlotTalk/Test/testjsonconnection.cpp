@@ -9,7 +9,9 @@ void TestJsonConnection::testGetTvShow()
     QString expectedGraphicLink = "https://images-na.ssl-images-amazon.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SY1000_CR0,0,674,1000_AL_.jpg";
 
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
-    TvShow tvShow = jsonConnection.getTvShow(name);
+
+    TvShow tvShow = TvShow("", "", "");
+    jsonConnection.getTvShow(name, tvShow);
 
     QCOMPARE(tvShow.name.toLower(), name.toLower());
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
