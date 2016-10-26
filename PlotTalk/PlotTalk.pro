@@ -17,7 +17,8 @@ HEADERS += \
     Src/addnewmedia.h \
     Src/adminpage.h \
     Src/jsonconnection.h \
-    Src/connection.h
+    Src/connection.h \
+    Src/databasemanager.h
 
 SOURCES += \
     Src/main.cpp \
@@ -30,7 +31,8 @@ SOURCES += \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
     Src/jsonconnection.cpp \
-    Src/connection.cpp
+    Src/connection.cpp \
+    Src/databasemanager.cpp
            
 FORMS += \
     Forms/mainwindow.ui \
@@ -55,12 +57,14 @@ test {
 
     HEADERS += \
         Test/testtvshow.h \
-        Test/testjsonconnection.h
+        Test/testjsonconnection.h \
+        Test/testdatabasemanager.h
 
     SOURCES += \
         Test/testmain.cpp \
         Test/testtvshow.cpp \
-        Test/testjsonconnection.cpp
+        Test/testjsonconnection.cpp \
+        Test/testdatabasemanager.cpp
 
 } else {
     message(Normal build)
