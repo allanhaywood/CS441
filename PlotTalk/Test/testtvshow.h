@@ -2,13 +2,13 @@
 #define TESTTVSHOW_H
 
 #include <QObject>
-#include "../Src/tvshow.h"
+#include "tvshow.h"
 
 class TestTvShow : public QObject
 {
     Q_OBJECT
 private slots:
-    void testDefaultConstructor();
+    void testConstructor();
 };
 
 #endif // TESTTVSHOW_H

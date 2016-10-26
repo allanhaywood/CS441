@@ -7,4 +7,7 @@
         <file>Images/remove_icon.png</file>
         <file>Images/Search.png</file>
     </qresource>
+    <qresource prefix="/json">
+        <file>Json/test.json</file>
+    </qresource>    
 </RCC>
