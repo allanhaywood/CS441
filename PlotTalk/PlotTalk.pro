@@ -17,8 +17,9 @@ HEADERS += \
     Src/addnewmedia.h \
     Src/adminpage.h \
     Src/jsonconnection.h \
-    Src/connection.h \
-    Src/databasemanager.h
+    Src/databasemanager.h \
+    Src/iconnection.h \
+    Src/singleton.h
 
 SOURCES += \
     Src/main.cpp \
@@ -31,7 +32,6 @@ SOURCES += \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
     Src/jsonconnection.cpp \
-    Src/connection.cpp \
     Src/databasemanager.cpp
            
 FORMS += \

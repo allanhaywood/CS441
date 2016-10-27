@@ -1,3 +1,7 @@
+/* Tests the Tv Show class.
+ *
+ * @author Allan Haywood
+ */
 #include <QtTest/QtTest>
 #include "testtvshow.h"
 

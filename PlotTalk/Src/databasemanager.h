@@ -1,19 +1,29 @@
+/* Header for the jsonconnection class.
+ *
+ * @author Allan Haywood
+ */
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
 
-#include <connection.h>
+#include "singleton.h"
+#include <iconnection.h>
 #include <jsonconnection.h>
 
-class DatabaseManager : public Connection
+class DatabaseManager : public IConnection
 {
 public:
     DatabaseManager();
+    DatabaseManager(QString jsonPath);
 
-    // Connection interface
+    // IConnection interface
     void getTvShow(QString name, TvShow &tvShow);
 
 private:
-    JsonConnection connection;
+
+    DatabaseManager(DatabaseManager const&);    // copy constructor hidden
+    DatabaseManager& operator=(DatabaseManager const&);  // assign op hidden
+
+    JsonConnection jsonConnection;
 };
 
 #endif // DATABASEMANAGER_H

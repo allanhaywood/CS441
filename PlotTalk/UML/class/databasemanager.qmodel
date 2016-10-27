@@ -926,44 +926,44 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{1d47b416-6bbd-4a6e-8703-ce0e22f38bc7}</uid>
+                    <uid>{5e73cb34-744d-4cd0-89e0-03b4c56178be}</uid>
                     <type>1</type>
-                    <declaration>-host</declaration>
+                    <declaration>-QString host</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{04e750b1-18a7-49bd-bc67-679920e0056a}</uid>
+                    <uid>{4c7013e3-ad2a-4d8b-97cd-0016dde46654}</uid>
                     <type>1</type>
-                    <declaration>-port</declaration>
+                    <declaration>-quint port</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{289430e9-4eeb-460b-a9f8-140951637803}</uid>
+                    <uid>{61d17a9b-d4aa-47fc-abb8-c03f2f8deb1d}</uid>
                     <type>1</type>
-                    <declaration>-username</declaration>
+                    <declaration>-QString username</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{fbf36ea9-811e-4691-9d7d-256bddf17bc4}</uid>
+                    <uid>{894f24f1-e1b6-4c94-9155-bd8f2ea6275a}</uid>
                     <type>1</type>
-                    <declaration>-password</declaration>
+                    <declaration>-QString password</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{97b9f111-8be6-442e-9bd2-48176fd5e546}</uid>
+                    <uid>{9fe3afa6-1751-4329-bc3a-0c3308b889b7}</uid>
                     <type>1</type>
-                    <declaration>-database</declaration>
+                    <declaration>-QString database</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{b5eb51c9-6d44-4236-8a00-9a3fb9960cbf}</uid>
+                    <uid>{86ed999a-2c97-4077-af67-a987aaed4b4f}</uid>
                     <type>2</type>
-                    <declaration>MySqlConnection:MySqlConnection(QString host, QInt port, QString username, QString password, QString database)</declaration>
+                    <declaration>MySqlConnection:MySqlConnection(QString host, quint port, QString username, QString password, QString database)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>

@@ -1,5 +1,6 @@
-/**
- * The TvShow class.
+/* The TvShow class.
+ *
+ * @author Allan Haywood
  */
 #include "tvshow.h"
 

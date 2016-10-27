@@ -1,3 +1,7 @@
+/* Header for tests for the tv show.
+ *
+ * @author Allan Haywood
+ */
 #ifndef TESTTVSHOW_H
 #define TESTTVSHOW_H
 

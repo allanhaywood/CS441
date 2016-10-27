@@ -1,5 +1,6 @@
-/**
- * JsonConnection class handles reading and writting data to a json formatted file.
+/* JsonConnection class handles reading and writting data to a json formatted file.
+ *
+ * @author Allan Haywood
  */
 #include <QString>
 #include <QFile>

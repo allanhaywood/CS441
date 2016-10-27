@@ -1,3 +1,7 @@
+/* Main for all the unit tests.
+ *
+ * @author Allan Haywood
+ */
 #include <QtTest/QtTest>
 
 // Add includes for all test class headers here.
