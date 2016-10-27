@@ -14,6 +14,7 @@ public:
     QString graphicLink;
 
     // TODO: Add Seasons once Season class is available.
+    TvShow();
     TvShow(QString name, QString tmdbLink, QString graphicLink);
 
     //setConnection(Connection& connection);

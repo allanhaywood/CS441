@@ -21,6 +21,11 @@
 #include "databasemanager.h"
 #include "jsonconnection.h"
 
+#include <QMap>
+#include <QDebug>
+
+QMap<QString, TvShow> tvShowMap;
+
 /**
  * @brief DatabaseManager::DatabaseManager Default constructor, currently defaults to using Json connection.
  */
@@ -39,11 +44,22 @@ DatabaseManager::DatabaseManager(QString jsonPath) : jsonConnection(jsonPath)
 /**
  * @brief DatabaseManager::getTvShow Updates the provided TvShow reference to the requested tvshow.
  * @param name The name of the tvshow to fetch.
- * @param tvShow The TvShow object to update to the provided tvshow name.
+ * @return A reference to the TvShow object.
  */
-void DatabaseManager::getTvShow(QString name, TvShow &tvShow)
+TvShow& DatabaseManager::getTvShow(QString name)
 {
     // @todo Determine how to decide to use either json or mysql connection at runtime,
     // or at the very least, a single location to choose which one.
-    jsonConnection.getTvShow(name, tvShow);
+
+    // @todo Add caching so that it doesn't call getTvShow if it isn't needed.
+
+    // If the tvshow doesn't already exist in the map, add it.
+    if (! tvShowMap.contains(name))
+    {
+        tvShowMap[name] = TvShow();
+    }
+
+    jsonConnection.getTvShow(name, tvShowMap[name]);
+
+    return tvShowMap[name];
 }

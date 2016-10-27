@@ -14,8 +14,7 @@ void TestDatabaseManager::testGetTvShowDefaultConstructor()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    TvShow tvShow = TvShow("", "", "");
-    DatabaseManagerSingleton::Instance().getTvShow(name, tvShow);
+    TvShow tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
 
     QCOMPARE(tvShow.name.toLower(), name.toLower());
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
@@ -31,8 +30,7 @@ void TestDatabaseManager::TestGetTvShowJsonPathConstructor()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    TvShow tvShow = TvShow("", "", "");
-    DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShow(name, tvShow);
+    TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShow(name);
 
     QCOMPARE(tvShow.name.toLower(), name.toLower());
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());

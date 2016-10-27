@@ -5,6 +5,17 @@
 #include "tvshow.h"
 
 /**
+ * @brief TvShow::TvShow Default constructor.
+ */
+TvShow::TvShow()
+{
+    name = "";
+    tmdbLink = "";
+    graphicLink = "";
+    //this->connection = connection;
+}
+
+/**
  * @brief TvShow::TvShow Represents a tvshow in our application.
  * @param name The name of the tvshow.
  * @param tmdbLink The tmdbLink for this show.
