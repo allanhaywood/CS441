@@ -5,9 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
 TARGET = PlotTalk
-INCLUDEPATH += \
-    . \
-    Src
+INCLUDEPATH += Src
 
 HEADERS += \
     Src/mainwindow.h \
@@ -18,9 +16,11 @@ HEADERS += \
     Src/accountmanager.h \
     Src/addnewmedia.h \
     Src/adminpage.h \
-	Src/accountdetails.h \
-	Src/person.h
-	
+    Src/accountdetails.h \
+    Src/person.h \
+    Src/jsonconnection.h
+
+
 SOURCES += \
     Src/main.cpp \
     Src/mainwindow.cpp \
@@ -31,9 +31,10 @@ SOURCES += \
     Src/accountmanager.cpp \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
-	Src/accountdetails.cpp \
-	Src/person.cpp
- 
+    Src/accountdetails.cpp \
+    Src/person.cpp \
+    Src/jsonconnection.cpp
+
            
 FORMS += \
     Forms/mainwindow.ui \
@@ -58,11 +59,13 @@ test {
     SOURCES -= Src/main.cpp
 
     HEADERS += \
-        Test/testtvshow.h
+        Test/testtvshow.h \
+        Test/testjsonconnection.h
 
     SOURCES += \
         Test/testmain.cpp \
-        Test/testtvshow.cpp
+        Test/testtvshow.cpp \
+        Test/testjsonconnection.cpp
 } else {
     message(Normal build)
 }
