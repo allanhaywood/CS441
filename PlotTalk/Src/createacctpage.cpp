@@ -24,6 +24,20 @@ CreateAcctPage::~CreateAcctPage()
 
 void CreateAcctPage::on_CreateAcctButton_clicked()
 {
+    QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}");
+    QRegularExpression checkPassword("(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*s).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
+
+
+       /*
+
+This regular expression match can be used for validating strong password.
+It expects atleast 1 small-case letter, 1 Capital letter, 1 digit,
+1 special character and the length should be between 6-10 characters.
+The sequence of the characters is not important. This expression follows the
+above 4 norms specified by microsoft for a strong password.
+//(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?&gt;.&lt;,])(?!.*\s).*$
+
+*/
 
        QString firstName;
        QString lastName;
@@ -31,12 +45,17 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        QString email;
        QString password;//strings to hold the info for account
 
+       QValidator *validEmail=new QRegularExpressionValidator(checkEmail, 0);
+       QValidator *validPwd = new QRegularExpressionValidator(checkPassword,0);
+
+       int num=0;
        firstName=ui->FirstNameBox->text();
        lastName=ui->LastNameBox->text();
        handle=ui->handleBox->text();
        email=ui->emailBox->text();
+       password=ui->PasswordBox1->text();
 
-       if(ui->PasswordBox1->text()==ui->PasswordBox2->text())//must also check to see if password matches requirements
+       if((ui->PasswordBox1->text()==ui->PasswordBox2->text()) && (validPwd->validate(password,num)==2))//must also check to see if password matches requirements
        {
          Person hold;
 
@@ -48,7 +67,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
            {
                if(!addNew->findPersonByHandle(hold,handle))
                {
-                   if(email.contains('@')&&email.contains('.'))
+                   if(validEmail->validate(email,num)==2) //email.contains('@')&&email.contains('.'))
                    {
                         addNew->createAccount(firstName,lastName,email,handle,password);
                         this->close();
@@ -93,7 +112,18 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        }
        else
        {
-           ui->incorrectPasswordLabel->show();
+           if(!(validPwd->validate(password,num)==2))
+           {
+               QMessageBox InvalidPwd2;
+               InvalidPwd2.setText("Incorrect Password Format");
+               InvalidPwd2.exec();
+               ui->PasswordBox1->clear();
+               ui->PasswordBox2->clear();
+           }
+           else
+           {
+           ui->incorrectPasswordLabel->show();  
+           }
        }
 
 }
