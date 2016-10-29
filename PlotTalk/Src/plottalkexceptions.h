@@ -1,3 +1,8 @@
+/* Header for the plottalkexceptions.
+ * This header contains all of the exceptions used within PlotTalk code.
+ *
+ * @author Allan Haywood
+ */
 #ifndef PLOTTALKEXCEPTIONS_H
 #define PLOTTALKEXCEPTIONS_H
 
