@@ -3,9 +3,14 @@
  * @author Allan Haywood
  */
 #include <QtTest/QtTest>
+#include "plottalkexceptions.h"
 #include "testdatabasemanager.h"
 
-void TestDatabaseManager::testGetTvShowDefaultConstructor()
+/**
+ * @brief TestDatabaseManager::TestGetTvShowDefaultConstructor Uses the default constructor for the DBManager and looks up
+ * a TvShow.
+ */
+void TestDatabaseManager::TestGetTvShowDefaultConstructor()
 {
     // Set up strings to compare against.
     QString name = "Game Of Thrones";
@@ -14,13 +19,16 @@ void TestDatabaseManager::testGetTvShowDefaultConstructor()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    TvShow tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
+    TvShow& tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
 
     QCOMPARE(tvShow.name.toLower(), name.toLower());
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
     QCOMPARE(tvShow.graphicLink.toLower(), expectedGraphicLink.toLower());
 }
 
+/**
+ * @brief TestDatabaseManager::TestGetTvShowJsonPathConstructor Uses the json path constructor, and looks up a Tvshow.
+ */
 void TestDatabaseManager::TestGetTvShowJsonPathConstructor()
 {
     // Set up strings to compare against.
@@ -30,9 +38,27 @@ void TestDatabaseManager::TestGetTvShowJsonPathConstructor()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShow(name);
+    TvShow& tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShow(name);
 
     QCOMPARE(tvShow.name.toLower(), name.toLower());
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
     QCOMPARE(tvShow.graphicLink.toLower(), expectedGraphicLink.toLower());
+}
+
+/**
+ * @brief TestDatabaseManager::NegTestGetTvShowJsonPathConstructor Looks up a TvShow that doesn't exist in the json file.
+ * Checks that that proper exception is thrown.
+ */
+void TestDatabaseManager::NegTestGetTvShowJsonPathConstructor()
+{
+    // Set up strings to compare against.
+    QString name = "Doesn't exist";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    QVERIFY_EXCEPTION_THROWN
+            (
+                TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShow(name),
+                NotFound
+            );
 }

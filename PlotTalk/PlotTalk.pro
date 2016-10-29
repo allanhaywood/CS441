@@ -19,7 +19,8 @@ HEADERS += \
     Src/jsonconnection.h \
     Src/databasemanager.h \
     Src/iconnection.h \
-    Src/singleton.h
+    Src/singleton.h \
+    Src/plottalkexceptions.h
 
 SOURCES += \
     Src/main.cpp \

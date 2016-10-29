@@ -14,6 +14,9 @@
 class IConnection
 {
 public:
+    /**
+     * @exception NotFound If specified tvshow is not found.
+     */
     virtual void getTvShow(QString name, TvShow &tvShow) = 0;
 private:
 };

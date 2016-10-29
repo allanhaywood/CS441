@@ -12,7 +12,7 @@ class TestTvShow : public QObject
 {
     Q_OBJECT
 private slots:
-    void testConstructor();
+    void TestConstructor();
 };
 
 #endif // TESTTVSHOW_H

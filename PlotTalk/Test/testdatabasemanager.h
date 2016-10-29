@@ -12,8 +12,9 @@ class TestDatabaseManager : public QObject
 {
     Q_OBJECT
 private slots:
-    void testGetTvShowDefaultConstructor();
+    void TestGetTvShowDefaultConstructor();
     void TestGetTvShowJsonPathConstructor();
+    void NegTestGetTvShowJsonPathConstructor();
 };
 
 #endif // TESTDATABASEMANAGER_H

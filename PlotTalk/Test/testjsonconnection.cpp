@@ -5,7 +5,7 @@
 #include <QtTest/QtTest>
 #include "testjsonconnection.h"
 
-void TestJsonConnection::testGetTvShow()
+void TestJsonConnection::TestGetTvShow()
 {
     // Set up strings to compare against.
     QString name = "Game Of Thrones";

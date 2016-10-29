@@ -12,7 +12,7 @@ class TestJsonConnection : public QObject
 {
     Q_OBJECT
 private slots:
-    void testGetTvShow();
+    void TestGetTvShow();
 };
 
 #endif // TESTJSONCONNECTION_H

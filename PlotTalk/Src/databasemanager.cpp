@@ -52,13 +52,6 @@ TvShow& DatabaseManager::getTvShow(QString name)
     // or at the very least, a single location to choose which one.
 
     // @todo Add caching so that it doesn't call getTvShow if it isn't needed.
-
-    // If the tvshow doesn't already exist in the map, add it.
-    if (! tvShowMap.contains(name))
-    {
-        tvShowMap[name] = TvShow();
-    }
-
     jsonConnection.getTvShow(name, tvShowMap[name]);
 
     return tvShowMap[name];

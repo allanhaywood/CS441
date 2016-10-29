@@ -11,6 +11,7 @@
 #include <QVariantMap>
 
 #include "jsonconnection.h"
+#include "plottalkexceptions.h"
 
 /**
  * @brief JsonConnection::JsonConnection construcs Json connection for the file at the given path.
@@ -51,6 +52,7 @@ void JsonConnection::getTvShow(QString name, TvShow &tvShow)
 
     // Loops through each element in the TvShow array to try and find a match on the name.
     QJsonObject obj;
+    bool found = false;
     foreach (const QJsonValue &value, tvshows)
     {
         // If there is a match on the tvname, extract all the elements needed to construct
@@ -61,8 +63,15 @@ void JsonConnection::getTvShow(QString name, TvShow &tvShow)
             jsonName = obj["name"].toString();
             jsonTmdbLink = obj["tmdbLink"].toString();
             jsonGraphicLink = obj["graphicLink"].toString();
+            found = true;
             break;
         }
+    }
+
+    if (! found)
+    {
+        qDebug() << "No match found for:" << name;
+        throw NotFound{};
     }
 
     // Use the information found to construct and return a TvShow of the requested tvshow.
