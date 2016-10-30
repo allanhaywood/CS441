@@ -23,7 +23,6 @@ HEADERS += \
     Src/plottalkexceptions.h \
     Src/reaction.h \
     Src/reply.h \
-    Test/testreply.h \
     Src/review.h \
     Src/comment.h
 
@@ -41,7 +40,6 @@ SOURCES += \
     Src/databasemanager.cpp \
     Src/reaction.cpp \
     Src/reply.cpp \
-    Test/testreply.cpp \
     Src/review.cpp \
     Src/comment.cpp
            
@@ -69,13 +67,15 @@ test {
     HEADERS += \
         Test/testtvshow.h \
         Test/testjsonconnection.h \
-        Test/testdatabasemanager.h
+        Test/testdatabasemanager.h \
+		Test/testreply.h
 
     SOURCES += \
         Test/testmain.cpp \
         Test/testtvshow.cpp \
         Test/testjsonconnection.cpp \
-        Test/testdatabasemanager.cpp
+        Test/testdatabasemanager.cpp \
+		Test/testreply.cpp
 
 } else {
     message(Normal build)
