@@ -16,7 +16,11 @@ HEADERS += \
     Src/accountmanager.h \
     Src/addnewmedia.h \
     Src/adminpage.h \
-    Src/jsonconnection.h
+    Src/accountdetails.h \
+    Src/person.h \
+    Src/jsonconnection.h \
+    Src/about.h
+
 
 SOURCES += \
     Src/main.cpp \
@@ -28,15 +32,21 @@ SOURCES += \
     Src/accountmanager.cpp \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
-    Src/jsonconnection.cpp
+    Src/accountdetails.cpp \
+    Src/person.cpp \
+    Src/jsonconnection.cpp \
+    Src/about.cpp
+
            
 FORMS += \
     Forms/mainwindow.ui \
     Forms/createacctpage.ui \
     Forms/dashboard.ui \
     Forms/forgotpassword.ui \
-    Forms/addnewmedia.ui\
-    Forms/adminpage.ui
+    Forms/addnewmedia.ui \
+    Forms/adminpage.ui \
+    Forms/accountdetails.ui \
+    Forms/about.ui
 
 RESOURCES += \
     Resources/resources.qrc

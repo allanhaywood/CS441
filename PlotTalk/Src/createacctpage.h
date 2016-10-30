@@ -1,7 +1,10 @@
 #ifndef CREATEACCTPAGE_H
 #define CREATEACCTPAGE_H
 
+#include <QMessageBox>
 #include <QDialog>
+#include <QRegExp>
+#include <QRegularExpressionValidator>
 
 namespace Ui {
 class CreateAcctPage;
@@ -17,6 +20,8 @@ public:
 
 private slots:
     void on_CreateAcctButton_clicked();
+
+    void on_PasswordBox2_textChanged(const QString &arg1);
 
 private:
     Ui::CreateAcctPage *ui;
