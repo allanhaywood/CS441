@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1433</width>
-    <height>602</height>
+    <height>653</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,6 +17,19 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="3">
+       <widget class="QLineEdit" name="searchBar">
+        <property name="font">
+         <font>
+          <family>Georgia</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="placeholderText">
+         <string>Enter title of movie or TV show</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1">
        <spacer name="horizontalSpacer">
         <property name="orientation">
@@ -56,32 +69,6 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QPushButton" name="popularButton">
-        <property name="font">
-         <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Popular</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLineEdit" name="searchBar">
-        <property name="font">
-         <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="placeholderText">
-         <string>Enter title of movie or TV show</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="6">
        <widget class="QPushButton" name="alertsButton">
         <property name="font">
@@ -95,8 +82,34 @@
         </property>
        </widget>
       </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="popularButton">
+        <property name="font">
+         <font>
+          <family>Georgia</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Popular</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="2">
        <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="5">
+       <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -134,18 +147,18 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+      <item row="4" column="0">
+       <widget class="QPushButton" name="adminButton">
+        <property name="font">
+         <font>
+          <family>Georgia</family>
+          <pointsize>12</pointsize>
+         </font>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
+        <property name="text">
+         <string>Admin</string>
         </property>
-       </spacer>
+       </widget>
       </item>
       <item row="2" column="1" rowspan="5" colspan="8">
        <widget class="QStackedWidget" name="stackedWidget">
@@ -390,9 +403,6 @@
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="1" column="0">
-            <widget class="QListView" name="watchedList"/>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="watchedText">
              <property name="font">
@@ -406,22 +416,47 @@
              </property>
             </widget>
            </item>
+           <item row="1" column="0">
+            <widget class="QListView" name="watchedList"/>
+           </item>
           </layout>
          </widget>
+         <widget class="QLabel" name="label">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>540</y>
+            <width>391</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_2">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>520</y>
+            <width>41</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>../Resources/Images/MoviesDBlogo.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
         </widget>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QPushButton" name="adminButton">
-        <property name="font">
-         <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Admin</string>
-        </property>
        </widget>
       </item>
      </layout>
