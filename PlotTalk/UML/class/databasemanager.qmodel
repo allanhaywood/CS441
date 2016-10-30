@@ -50,7 +50,7 @@
                          <object>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</object>
                          <name>DatabaseManager</name>
                          <pos>x:195;y:440</pos>
-                         <rect>x:-160;y:-90;w:320;h:180</rect>
+                         <rect>x:-220;y:-90;w:440;h:180</rect>
                          <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -309,24 +309,6 @@ that same reference is provided again.</text>
                      </instance>
                     </item>
                     <item>
-                     <instance type="DDependency">
-                      <DDependency>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{5ec52dc9-0b74-4084-9581-c5db14a6e93f}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{ccb8766c-6114-4f9f-a67a-8beb06c77da5}</object>
-                         <a>{8ce53dfc-1022-4235-aa87-012052ae215f}</a>
-                         <b>{2d385b34-0269-4aa7-8417-955683a54755}</b>
-                        </DRelation>
-                       </base-DRelation>
-                      </DDependency>
-                     </instance>
-                    </item>
-                    <item>
                      <instance type="DAssociation">
                       <DAssociation>
                        <base-DRelation>
@@ -505,7 +487,7 @@ ideally things that can be shared are implemented here</text>
                     </item>
                    </qlist>
                   </elements>
-                  <last-modified>1476771401722</last-modified>
+                  <last-modified>1477611212647</last-modified>
                   <toolbarid>Classes</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -574,16 +556,30 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{b791a1f6-0f84-4f1f-bb82-5fc42875c423}</uid>
+                    <uid>{06ccb35e-7907-4362-a1b1-7436e86197d7}</uid>
                     <type>1</type>
                     <declaration>connection</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{1bfa5633-d5e7-4764-b69c-700171f135d0}</uid>
+                    <uid>{3f0f90b2-b786-4d4c-b4b3-cc3af4e78dc5}</uid>
                     <type>2</type>
                     <declaration>DatabaseManager:DatabaseManager(Connection connection)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{33e8f2d9-a8e8-481a-a667-b6920c2eb224}</uid>
+                    <type>2</type>
+                    <declaration>TvShow&amp;:getTvShow(QString name)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{315d39e9-cc9f-46b2-9b43-09de182d1825}</uid>
+                    <type>2</type>
+                    <declaration>The above pattern for getTvShow will be repeated to allign with iconnection interface()</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -764,35 +760,35 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{2e786ee3-5699-4919-a552-fa0f239db37d}</uid>
+                    <uid>{3b58d9dd-a470-4e38-ad40-77f07c65a32e}</uid>
                     <type>2</type>
-                    <declaration>TvShow&amp;:getTvShow(QString name)</declaration>
+                    <declaration>void:getTvShow(QString name, TvShow&amp; tvshow)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{51cba649-9ec0-4314-a63a-30b645b27101}</uid>
+                    <uid>{b9221b7e-28ee-4265-b0ef-5a22513822f5}</uid>
                     <type>2</type>
                     <declaration>User:getUser(QString username)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ec954711-b85b-44ad-b78e-3bfeeae9f9b7}</uid>
+                    <uid>{9f829511-716f-4875-8f57-113918e45bf3}</uid>
                     <type>2</type>
                     <declaration>addReactionToEpisode(Episode episode, Reaction reaction)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{e8155c94-ab8d-406f-9c0b-6730b49430eb}</uid>
+                    <uid>{b2f2f239-e053-4e11-9b7b-4a4ac915167f}</uid>
                     <type>2</type>
                     <declaration>markEpisodeAsWatched(Episode episode)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{c78a80b4-454c-4592-86a7-fde4c4b4d02a}</uid>
+                    <uid>{bdfbb283-438e-4b15-a23b-9752f6d36fde}</uid>
                     <type>2</type>
                     <declaration>... etc()</declaration>
                    </MClassMember>
@@ -926,44 +922,44 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{1d47b416-6bbd-4a6e-8703-ce0e22f38bc7}</uid>
+                    <uid>{5e73cb34-744d-4cd0-89e0-03b4c56178be}</uid>
                     <type>1</type>
-                    <declaration>-host</declaration>
+                    <declaration>-QString host</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{04e750b1-18a7-49bd-bc67-679920e0056a}</uid>
+                    <uid>{4c7013e3-ad2a-4d8b-97cd-0016dde46654}</uid>
                     <type>1</type>
-                    <declaration>-port</declaration>
+                    <declaration>-quint port</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{289430e9-4eeb-460b-a9f8-140951637803}</uid>
+                    <uid>{61d17a9b-d4aa-47fc-abb8-c03f2f8deb1d}</uid>
                     <type>1</type>
-                    <declaration>-username</declaration>
+                    <declaration>-QString username</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{fbf36ea9-811e-4691-9d7d-256bddf17bc4}</uid>
+                    <uid>{894f24f1-e1b6-4c94-9155-bd8f2ea6275a}</uid>
                     <type>1</type>
-                    <declaration>-password</declaration>
+                    <declaration>-QString password</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{97b9f111-8be6-442e-9bd2-48176fd5e546}</uid>
+                    <uid>{9fe3afa6-1751-4329-bc3a-0c3308b889b7}</uid>
                     <type>1</type>
-                    <declaration>-database</declaration>
+                    <declaration>-QString database</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{b5eb51c9-6d44-4236-8a00-9a3fb9960cbf}</uid>
+                    <uid>{86ed999a-2c97-4077-af67-a987aaed4b4f}</uid>
                     <type>2</type>
-                    <declaration>MySqlConnection:MySqlConnection(QString host, QInt port, QString username, QString password, QString database)</declaration>
+                    <declaration>MySqlConnection:MySqlConnection(QString host, quint port, QString username, QString password, QString database)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
