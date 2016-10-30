@@ -20,7 +20,12 @@ HEADERS += \
     Src/databasemanager.h \
     Src/iconnection.h \
     Src/singleton.h \
-    Src/plottalkexceptions.h
+    Src/plottalkexceptions.h \
+    Src/reaction.h \
+    Src/reply.h \
+    Test/testreply.h \
+    Src/review.h \
+    Src/comment.h
 
 SOURCES += \
     Src/main.cpp \
@@ -33,7 +38,12 @@ SOURCES += \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
     Src/jsonconnection.cpp \
-    Src/databasemanager.cpp
+    Src/databasemanager.cpp \
+    Src/reaction.cpp \
+    Src/reply.cpp \
+    Test/testreply.cpp \
+    Src/review.cpp \
+    Src/comment.cpp
            
 FORMS += \
     Forms/mainwindow.ui \
