@@ -10,5 +10,6 @@
     </qresource>
     <qresource prefix="/json">
         <file>Json/test.json</file>
-    </qresource>
+        <file>Json/test2.json</file>
+    </qresource>    
 </RCC>

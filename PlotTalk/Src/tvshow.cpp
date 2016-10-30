@@ -1,7 +1,19 @@
-/**
- * The TvShow class.
+/* The TvShow class.
+ *
+ * @author Allan Haywood
  */
 #include "tvshow.h"
+
+/**
+ * @brief TvShow::TvShow Default constructor.
+ */
+TvShow::TvShow()
+{
+    name = "";
+    tmdbLink = "";
+    graphicLink = "";
+    //this->connection = connection;
+}
 
 /**
  * @brief TvShow::TvShow Represents a tvshow in our application.

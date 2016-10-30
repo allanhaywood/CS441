@@ -1,7 +1,11 @@
+/* Tests the Tv Show class.
+ *
+ * @author Allan Haywood
+ */
 #include <QtTest/QtTest>
 #include "testtvshow.h"
 
-void TestTvShow::testConstructor()
+void TestTvShow::TestConstructor()
 {
     // Set up strings to compare against.
     QString name = "Tvshow name";

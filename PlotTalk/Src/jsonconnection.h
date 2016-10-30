@@ -1,18 +1,24 @@
+/* Header for the jsonconnection class.
+ *
+ * @author Allan Haywood
+ */
+
 #ifndef JSONCONNECTION_H
 #define JSONCONNECTION_H
 #include <QString>
 #include <QJsonObject>
 
+#include "iconnection.h"
 #include "tvshow.h"
 
-class JsonConnection
+class JsonConnection : public IConnection
 {
 public:
     JsonConnection(QString pathToJson);
 
     QString getPathToJson();
 
-    TvShow getTvShow(QString name);
+    void getTvShow(QString name, TvShow &tvShow);
 
 private:
     QString pathToJson;

@@ -18,8 +18,16 @@ HEADERS += \
     Src/adminpage.h \
     Src/accountdetails.h \
     Src/person.h \
+    Src/about.h \
     Src/jsonconnection.h \
-    Src/about.h
+    Src/databasemanager.h \
+    Src/iconnection.h \
+    Src/singleton.h \
+    Src/plottalkexceptions.h \
+    Src/reaction.h \
+    Src/reply.h \
+    Src/review.h \
+    Src/comment.h
 
 
 SOURCES += \
@@ -34,10 +42,15 @@ SOURCES += \
     Src/adminpage.cpp \
     Src/accountdetails.cpp \
     Src/person.cpp \
+    Src/about.cpp \
     Src/jsonconnection.cpp \
-    Src/about.cpp
+    Src/databasemanager.cpp \
+    Src/reaction.cpp \
+    Src/reply.cpp \
+    Src/review.cpp \
+    Src/comment.cpp
 
-           
+
 FORMS += \
     Forms/mainwindow.ui \
     Forms/createacctpage.ui \
@@ -63,12 +76,17 @@ test {
 
     HEADERS += \
         Test/testtvshow.h \
-        Test/testjsonconnection.h
+        Test/testjsonconnection.h \
+        Test/testdatabasemanager.h \
+                Test/testreply.h
 
     SOURCES += \
         Test/testmain.cpp \
         Test/testtvshow.cpp \
-        Test/testjsonconnection.cpp
+        Test/testjsonconnection.cpp \
+        Test/testdatabasemanager.cpp \
+                Test/testreply.cpp
+
 } else {
     message(Normal build)
 }
