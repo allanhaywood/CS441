@@ -70,7 +70,7 @@
        </widget>
       </item>
       <item row="0" column="6">
-       <widget class="QPushButton" name="alertsButton">
+       <widget class="QPushButton" name="AboutButton">
         <property name="font">
          <font>
           <family>Georgia</family>
@@ -78,7 +78,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Alerts</string>
+         <string>About us</string>
         </property>
        </widget>
       </item>
@@ -160,7 +160,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1" rowspan="5" colspan="8">
+      <item row="2" column="1" rowspan="6" colspan="8">
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
          <number>5</number>
@@ -421,42 +421,45 @@
            </item>
           </layout>
          </widget>
-         <widget class="QLabel" name="label">
-          <property name="geometry">
-           <rect>
-            <x>60</x>
-            <y>540</y>
-            <width>391</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_2">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>520</y>
-            <width>41</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap>../Resources/Images/MoviesDBlogo.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-         </widget>
         </widget>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>500</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../Resources/resources.qrc">:/images/Images/MoviesDBlogo.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
      </layout>
@@ -475,6 +478,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

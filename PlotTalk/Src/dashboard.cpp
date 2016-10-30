@@ -2,6 +2,7 @@
 #include "ui_dashboard.h"
 #include "adminpage.h"
 #include "accountdetails.h"
+#include "about.h"
 
 
 Dashboard::Dashboard(QWidget *parent) :
@@ -55,4 +56,14 @@ void Dashboard::on_adminButton_clicked()
     }
     adminWindow->show();
     adminWindow->raise();
+}
+
+void Dashboard::on_AboutButton_clicked()
+{
+    if(AboutPage == NULL)
+    {
+        AboutPage= new About();
+    }
+    AboutPage->show();
+    AboutPage->raise();
 }

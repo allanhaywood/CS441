@@ -19,7 +19,6 @@ HEADERS += \
     Src/accountdetails.h \
     Src/person.h \
     Src/jsonconnection.h \
-    about.h \
     Src/about.h
 
 
@@ -36,7 +35,6 @@ SOURCES += \
     Src/accountdetails.cpp \
     Src/person.cpp \
     Src/jsonconnection.cpp \
-    about.cpp \
     Src/about.cpp
 
            
@@ -47,8 +45,7 @@ FORMS += \
     Forms/forgotpassword.ui \
     Forms/addnewmedia.ui \
     Forms/adminpage.ui \
-	Forms/accountdetails.ui \
-    about.ui \
+    Forms/accountdetails.ui \
     Forms/about.ui
 
 RESOURCES += \
