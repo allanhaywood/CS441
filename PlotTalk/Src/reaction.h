@@ -1,4 +1,4 @@
-/* Reaction class that is inherited by Comment, Review, and Reply.
+/* Reaction base class that is inherited by Comment, Review, and Reply.
  * Provides common functionality for all posts by users on media items.
  * @author Joey Freeman
 */
@@ -10,9 +10,10 @@
 
 class Reaction
 {
-public:
+protected: //protected constructors to prevent direct instantiation of base class
     Reaction();
     Reaction(int inMediaID, QString inUserName, QString inText);
+public:
     int postID; //unique identifier of post
     int mediaID; //unique idenitifer of episode/season/movie this Reaction appears on
     QString userName; //should be initialized to current user

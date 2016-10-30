@@ -1,4 +1,5 @@
 #include <QtTest/QtTest>
+#include <QDebug>
 #include "review.h"
 #include "testreply.h"
 
@@ -6,7 +7,7 @@ void TestReply::TestCreateReply()
 {
     // Set up values to compare against
     int mediaID = 10;
-    QString currentDateTime = QDateTime::currentDateTimeUtc().toString("MM/DD/YYYY h:m ap");
+    QString currentDateTime = QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap UTC");
     QString userNameReview = "user1";
     int rating = 1;
     QString textReview = "I hate this show.";
@@ -19,7 +20,6 @@ void TestReply::TestCreateReply()
     reply.setDateTimePosted();
     review.addReply(reply.postID);
 
-     /*
     QCOMPARE(review.userName, userNameReview);
     QCOMPARE(review.mediaID, mediaID);
     QCOMPARE(review.text, textReview);
@@ -29,7 +29,7 @@ void TestReply::TestCreateReply()
     QCOMPARE(reply.userName, userNameReply);
     QCOMPARE(reply.mediaID, mediaID);
     QCOMPARE(reply.text, textReply);
-    */
-    QCOMPARE("test", "test");
+    QCOMPARE(reply.dateTimePosted, review.dateTimePosted);
+    qDebug() << "Review and reply created at " << reply.dateTimePosted;
 
 }

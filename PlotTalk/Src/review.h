@@ -7,7 +7,7 @@ class Review : public Reaction
 public:
     Review();
     Review(int inMediaID, QString inUserName, QString inText, int inRating);
-    int rating;
+    int rating; //rating of review
 };
 
 #endif // REVIEW_H

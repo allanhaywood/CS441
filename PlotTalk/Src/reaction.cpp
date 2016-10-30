@@ -16,7 +16,7 @@ Reaction::Reaction(int inMediaID, QString inUserName, QString inText) {
  * @brief Reaction::setDateTime Sets the dateTimePosted to the current system time in UTC
  */
 void Reaction::setDateTimePosted() {
-    dateTimePosted = QDateTime::currentDateTimeUtc().toString("MM/DD/YYYY h:m ap");
+    dateTimePosted = QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap UTC");
 }
 
 /**

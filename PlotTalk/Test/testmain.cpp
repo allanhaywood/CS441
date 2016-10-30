@@ -21,8 +21,17 @@ int main(int argc, char** argv)
     TestReply testReply;
 
     // Add references to each test class variable here, seperating with |
-    return QTest::qExec(&testTvShow, argc, argv) |
-           QTest::qExec(&testJsonConnection, argc, argv) |
-           QTest::qExec(&testDatabaseManager, argc, argv) |
-           QTest::qExec(&testReply, argc, argv);
+    int result = QTest::qExec(&testTvShow, argc, argv) |
+                 QTest::qExec(&testReply, argc, argv) |
+                 QTest::qExec(&testJsonConnection, argc, argv) |
+                 QTest::qExec(&testDatabaseManager, argc, argv);
+
+    //make the overall result of the tests more obvious
+    if (result == 0) {
+        qDebug() << "ALL TESTS PASSED";
+    } else {
+        qDebug() << "TEST FAILED";
+    }
+
+    return result;
 }
