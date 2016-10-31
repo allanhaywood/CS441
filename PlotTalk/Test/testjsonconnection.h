@@ -13,6 +13,12 @@ class TestJsonConnection : public QObject
     Q_OBJECT
 private slots:
     void TestGetTvShow();
+    void TestGetUser();
+    void TestUserExists();
+    void NegTestUserExists();
+    void TestEmailExists();
+    void NegTestEmailExists();
+
 };
 
 #endif // TESTJSONCONNECTION_H

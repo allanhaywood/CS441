@@ -62,3 +62,60 @@ void TestDatabaseManager::NegTestGetTvShowJsonPathConstructor()
                 NotFound
             );
 }
+
+void TestDatabaseManager::TestGetUserDefaultConstructor()
+{
+    // Set up strings to compare against.
+    QString username = "bsmith";
+    QString expectedEmail = "bsmith@gmail.com";
+    QString expectedPasswordhash = "badpasswordhash";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    User& user = DatabaseManagerSingleton::Instance().getUser(username);
+
+    QCOMPARE(user.username.toLower(), username.toLower());
+    QCOMPARE(user.email.toLower(), expectedEmail.toLower());
+    QCOMPARE(user.passwordhash, expectedPasswordhash.toLower());
+}
+
+void TestDatabaseManager::TestUserExists()
+{
+    QString username = "bsmith";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    // Validate that true is returned.
+    QVERIFY(DatabaseManagerSingleton::Instance().usernameExists(username));
+}
+
+void TestDatabaseManager::NegTestUserExists()
+{
+    QString username = "zsmith";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    // Validate that false is returned.
+    QVERIFY(! DatabaseManagerSingleton::Instance().usernameExists(username));
+}
+
+void TestDatabaseManager::TestEmailExists()
+{
+    QString email = "bsmith@gmail.com";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    // Validate that true is returned.
+    QVERIFY(DatabaseManagerSingleton::Instance().emailExists(email));
+}
+
+void TestDatabaseManager::NegTestEmailExists()
+{
+    QString email = "zsmith@gmail.com";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    // Validate that false is returned.
+    QVERIFY(! DatabaseManagerSingleton::Instance().emailExists(email));
+}
+

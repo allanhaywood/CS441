@@ -8,11 +8,11 @@
 
 #include <QException>
 
-class NotFound : public QException
+class InvalidEmail : public QException
 {
 public:
     void raise() const { throw *this; }
-    NotFound *clone() const { return new NotFound(*this); }
+    InvalidEmail *clone() const { return new InvalidEmail(*this); }
 };
 
 class InvalidPassword : public QException
@@ -22,11 +22,17 @@ public:
     InvalidPassword *clone() const { return new InvalidPassword(*this); }
 };
 
-class InvalidEmail : public QException
+class NotFound : public QException
 {
 public:
     void raise() const { throw *this; }
-    InvalidEmail *clone() const { return new InvalidEmail(*this); }
+    NotFound *clone() const { return new NotFound(*this); }
 };
 
+class NotImplemented : public QException
+{
+public:
+    void raise() const { throw *this; }
+    NotImplemented *clone() const { return new NotImplemented(*this); }
+};
 #endif // PLOTTALKEXCEPTIONS_H

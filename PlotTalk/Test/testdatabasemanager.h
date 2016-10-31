@@ -15,6 +15,11 @@ private slots:
     void TestGetTvShowDefaultConstructor();
     void TestGetTvShowJsonPathConstructor();
     void NegTestGetTvShowJsonPathConstructor();
+    void TestGetUserDefaultConstructor();
+    void TestUserExists();
+    void NegTestUserExists();
+    void TestEmailExists();
+    void NegTestEmailExists();
 };
 
 #endif // TESTDATABASEMANAGER_H

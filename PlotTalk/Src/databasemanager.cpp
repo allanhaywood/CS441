@@ -24,12 +24,10 @@
 #include <QMap>
 #include <QDebug>
 
-QMap<QString, TvShow> tvShowMap;
-
 /**
  * @brief DatabaseManager::DatabaseManager Default constructor, currently defaults to using Json connection.
  */
-DatabaseManager::DatabaseManager() : jsonConnection(":/json/Json/test.json")
+DatabaseManager::DatabaseManager() : connection(":/json/Json/test.json")
 {
 }
 
@@ -37,22 +35,41 @@ DatabaseManager::DatabaseManager() : jsonConnection(":/json/Json/test.json")
  * @brief DatabaseManager::DatabaseManager Constructor that allows the json path to be provided.
  * @param jsonPath The path to the json file to use, can either be on file system, or in resources.
  */
-DatabaseManager::DatabaseManager(QString jsonPath) : jsonConnection(jsonPath)
+DatabaseManager::DatabaseManager(QString jsonPath) : connection(jsonPath)
 {
 }
+
 
 /**
  * @brief DatabaseManager::getTvShow Updates the provided TvShow reference to the requested tvshow.
  * @param name The name of the tvshow to fetch.
  * @return A reference to the TvShow object.
  */
-TvShow& DatabaseManager::getTvShow(QString name)
+TvShow &DatabaseManager::getTvShow(QString name)
 {
     // @todo Determine how to decide to use either json or mysql connection at runtime,
     // or at the very least, a single location to choose which one.
 
     // @todo Add caching so that it doesn't call getTvShow if it isn't needed.
-    jsonConnection.getTvShow(name, tvShowMap[name]);
+    connection.getTvShow(name, tvShowMap[name]);
 
     return tvShowMap[name];
+}
+
+User &DatabaseManager::getUser(QString username)
+{
+    // @todo Add caching so that it doesn't call getUser if it isn't needed.
+    connection.getUser(username, userMap[username]);
+
+    return userMap[username];
+}
+
+bool DatabaseManager::usernameExists(QString username)
+{
+    return connection.usernameExists(username);
+}
+
+bool DatabaseManager::emailExists(QString email)
+{
+    return connection.emailExists(email);
 }

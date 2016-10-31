@@ -20,7 +20,8 @@ HEADERS += \
     Src/databasemanager.h \
     Src/iconnection.h \
     Src/singleton.h \
-    Src/plottalkexceptions.h
+    Src/plottalkexceptions.h \
+    Src/user.h
 
 SOURCES += \
     Src/main.cpp \
@@ -33,7 +34,8 @@ SOURCES += \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
     Src/jsonconnection.cpp \
-    Src/databasemanager.cpp
+    Src/databasemanager.cpp \
+    Src/user.cpp
            
 FORMS += \
     Forms/mainwindow.ui \
