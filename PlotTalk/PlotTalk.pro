@@ -34,7 +34,7 @@ SOURCES += \
     Src/adminpage.cpp \
     Src/jsonconnection.cpp \
     Src/databasemanager.cpp
-           
+
 FORMS += \
     Forms/mainwindow.ui \
     Forms/createacctpage.ui \
