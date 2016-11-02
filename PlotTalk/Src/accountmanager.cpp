@@ -97,18 +97,14 @@ bool AccountManager::findPersonByEmail(QString &emailtoCheck)
 int AccountManager::checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
 {
     QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
-    QRegularExpression checkPassword("(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*s).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
+    QRegularExpression checkPassword("(?=^.{8,30}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
 
     QValidator *validEmail=new QRegularExpressionValidator(checkEmail, 0);
     QValidator *validPwd = new QRegularExpressionValidator(checkPassword,0);
 
 /*
-This regular expression match can be used for validating strong password.
-It expects atleast 1 small-case letter, 1 Capital letter, 1 digit,
-1 special character and the length should be between 6-10 characters.
-The sequence of the characters is not important. This expression follows the
-above 4 norms specified by microsoft for a strong password.
-//(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?&gt;.&lt;,])(?!.*\s).*$
+
+Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case letter At least 1 Capital letter At least 1 digit At least 1 special character Length should be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
 
 */
     int num=0;

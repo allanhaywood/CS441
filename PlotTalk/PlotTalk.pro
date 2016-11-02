@@ -27,8 +27,7 @@ HEADERS += \
     Src/reaction.h \
     Src/reply.h \
     Src/review.h \
-    Src/comment.h \
-    Test/testcreateaccountpage.h
+    Src/comment.h
 
 
 SOURCES += \
@@ -49,8 +48,7 @@ SOURCES += \
     Src/reaction.cpp \
     Src/reply.cpp \
     Src/review.cpp \
-    Src/comment.cpp \
-    Test/testcreateaccountpage.cpp
+    Src/comment.cpp
 
 
 
@@ -83,7 +81,6 @@ test {
         Test/testjsonconnection.h \
         Test/testdatabasemanager.h \
         Test/testaccountmanager.h \
-        Test/testcreateaccountpage.h \
                 Test/testreply.h
 
     SOURCES += \
@@ -92,7 +89,6 @@ test {
         Test/testjsonconnection.cpp \
         Test/testdatabasemanager.cpp \
         Test/testaccountmanager.cpp \
-        Test/testcreateaccountpage.cpp \
                 Test/testreply.cpp
 
 } else {

@@ -33,7 +33,6 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        QString email;
        QString password;//strings to hold the info for account
 
-       int num=0;
        firstName=ui->FirstNameBox->text();
        lastName=ui->LastNameBox->text();
        handle=ui->handleBox->text();
@@ -47,7 +46,6 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
            {
            case 1:
            {
-
                this->close();
                QMessageBox congrats;
                congrats.setText("Thank you for joining PlotTalk! "+firstName + "! \n Try out your new account by logging in!");
@@ -86,7 +84,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
            case 5:
            {
                QMessageBox InvalidPwd;
-               InvalidPwd.setText("The password must have the following characteristics:\nIt must be more than 6 characters\nIt must not contain a space\nIt must contain both capital and lowercase letters\nIt must include at least one special symbol");
+               InvalidPwd.setText("The password must have the following characteristics:\nIt must be more than 8 characters\nIt must contain both capital and lowercase letters\nIt must include at least one special symbol");
                InvalidPwd.exec();
                ui->PasswordBox1->clear();
                ui->PasswordBox2->clear();

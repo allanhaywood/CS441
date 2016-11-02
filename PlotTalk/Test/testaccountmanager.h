@@ -8,11 +8,8 @@ class testAccountManager : public QObject
 {
     Q_OBJECT
 private slots:
-    void testConstructor();//test the singleton constructor
-    void TestcreateAccount();//generates a new account
+    void testCheckFields();//check all types of account creation errors
     void testGetCurrentAccount();//returns the account that was created
-    void TestFindPersonByEmail();//check if an email exists in the database
-    void testFindPersonByHandle();//check if a handle exists in the database
 };
 
 #endif // TESTACCOUNTMANAGER_H
