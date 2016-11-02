@@ -2,6 +2,8 @@
 #define ACCOUNTMANAGER_C
 
 #include "accountmanager.h"
+#include <QRegExp>
+#include <QRegularExpressionValidator>
 
 AccountManager *AccountManager::instance=NULL;//sets initial instance to NULL
 
@@ -27,36 +29,19 @@ AccountManager::~AccountManager()//destructor
     instance=NULL;//removes dangling pointers
 }
 
-/*
-QJsonDocument AccountManager::loadJson()
-{
-    QFile jsonFile(fileName);
-    jsonFile.open(QFile::ReadOnly);
-    return QJsonDocument().fromJson(jsonFile.readAll());
 
-}
-
-void AccountManager::saveInfoToJson(QJsonDocument document)
-{
-    QFile jsonFile(fileName);
-    jsonFile.open(QFile::WriteOnly);
-    jsonFile.write(document.toJson());
-}
-
-*/
-bool AccountManager::createAccount(QString &first, QString &last, QString &email, QString &handle, QString &password)
+bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
 {//places an account into the database, returns true if complete, false if email or handle are not unique
 
-   Person hold;
 
    Person thisPerson;
    thisPerson.firstName=first;
    thisPerson.lastName=last;
-   thisPerson.email=email;
+   thisPerson.email=Email;
    thisPerson.handle=handle;
    thisPerson.password=password;
 
-    if(!findPersonByEmail(hold,email) && !findPersonByHandle(hold,handle))//very inefficient, may need to be fixed
+    if(!findPersonByEmail(Email) && !findPersonByHandle(handle))//very inefficient, may need to be fixed
         {//checks to make sure email and handle are both unique
             peopleList.append(thisPerson);
             thisGuy=thisPerson;
@@ -66,7 +51,7 @@ bool AccountManager::createAccount(QString &first, QString &last, QString &email
     return false;//returns false, something went wrong
 }
 
-bool AccountManager::findPersonByHandle(Person &PassBack, QString &handleToCheck)
+bool AccountManager::findPersonByHandle(QString &handleToCheck)
 {//finds an account by handle, passes back true and a person if found false if not.
 
     if(peopleList.size()==0)
@@ -78,7 +63,6 @@ bool AccountManager::findPersonByHandle(Person &PassBack, QString &handleToCheck
     {
         if(peopleList[i].handle==handleToCheck)
         {
-            PassBack=peopleList[i];
             return true;//person is in list
         }
     }
@@ -91,7 +75,7 @@ Person AccountManager::getCurrentAccount()
 return thisGuy;//useful for getting info into various pages without searching the database
 }
 
-bool AccountManager::findPersonByEmail(Person &PassBack, QString &emailtoCheck)
+bool AccountManager::findPersonByEmail(QString &emailtoCheck)
 {//finds a person by email, saves data to a person class and returns true if found, returns false if not found
 
     if(peopleList.size()==0)
@@ -103,12 +87,71 @@ bool AccountManager::findPersonByEmail(Person &PassBack, QString &emailtoCheck)
     {
         if(peopleList[i].email==emailtoCheck)
         {
-            PassBack=peopleList[i];
             return true;//person is in list
         }
     }
 
     return false;//list is not empty but person is not in list
+}
+
+int AccountManager::checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
+{
+    QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
+    QRegularExpression checkPassword("(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*s).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
+
+    QValidator *validEmail=new QRegularExpressionValidator(checkEmail, 0);
+    QValidator *validPwd = new QRegularExpressionValidator(checkPassword,0);
+
+/*
+This regular expression match can be used for validating strong password.
+It expects atleast 1 small-case letter, 1 Capital letter, 1 digit,
+1 special character and the length should be between 6-10 characters.
+The sequence of the characters is not important. This expression follows the
+above 4 norms specified by microsoft for a strong password.
+//(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?&gt;.&lt;,])(?!.*\s).*$
+
+*/
+    int num=0;
+    if(validEmail->validate(email,num)==2)//valid email
+    {
+        if(validPwd->validate(password,num)==2)//valid password
+        {
+            if(!findPersonByEmail(email))//email is unique
+            {
+                if(!findPersonByHandle(handle))//handle is unique
+                {
+                    if((fName.size()>0)&&(lName.size()>0))//person has a name
+                    {
+                        createAccount(fName,lName,email,handle,password);
+                        return 1;//all is go and account is created
+                    }
+                    else
+                    {
+                        return 6;//name is not acceptable
+                    }
+                }
+                else
+                {
+                    return 3;//handle is already used
+                }
+            }
+            else
+            {
+                return 4;//email is already used
+            }
+        }
+        else
+        {
+            return 5;//password format is bad
+        }
+    }
+    else
+    {
+        return 2;//email format is bad
+    }
+
+   return 7;
+
 }
 
 

@@ -155,7 +155,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Robert </string>
+    <string>Robert Carleton</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -207,7 +207,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Maria</string>
+    <string>Maria Milena Arcena</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_12">
@@ -220,7 +220,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Deanna</string>
+    <string>Deanna Anguiano</string>
    </property>
   </widget>
   <widget class="QPushButton" name="OkayButton">

@@ -3,8 +3,7 @@
 
 #include <QMessageBox>
 #include <QDialog>
-#include <QRegExp>
-#include <QRegularExpressionValidator>
+
 
 namespace Ui {
 class CreateAcctPage;

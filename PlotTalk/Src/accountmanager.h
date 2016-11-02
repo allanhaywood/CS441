@@ -23,11 +23,11 @@ private:
 public:
 
     static AccountManager* getInstance();
-    bool createAccount(QString &first, QString &last, QString &email, QString &handle, QString &password);//done
+    bool createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password);//done
     Person getCurrentAccount();//done
-    bool findPersonByEmail(Person &PassBack, QString &emailtoCheck);//done
-    bool findPersonByHandle(Person &PassBack, QString &handleToCheck);//done
-
+    bool findPersonByEmail(QString &emailtoCheck);//done
+    bool findPersonByHandle(QString &handleToCheck);//done
+    int checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password);
 };
 
 #endif // ACCOUNTMANAGER_H
