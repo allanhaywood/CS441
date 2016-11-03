@@ -153,18 +153,24 @@
          <number>5</number>
         </property>
         <widget class="QWidget" name="page">
-         <widget class="QWidget" name="gridLayoutWidget">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
-            <x>0</x>
-            <y>0</y>
+            <x>1</x>
+            <y>1</y>
             <width>1331</width>
-            <height>621</height>
+            <height>511</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0" colspan="2">
+           <item row="0" column="0">
             <widget class="QLabel" name="welcomeText">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
              <property name="font">
               <font>
                <family>Georgia</family>
@@ -177,30 +183,36 @@
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QListView" name="leftList"/>
-           </item>
-           <item row="1" column="1">
-            <widget class="QListView" name="rightList"/>
+            <widget class="QSplitter" name="splitter_welcomePage">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QListView" name="leftList"/>
+             <widget class="QListView" name="rightList"/>
+            </widget>
            </item>
           </layout>
          </widget>
         </widget>
         <widget class="QWidget" name="page_3">
-         <widget class="QWidget" name="gridLayoutWidget_3">
+         <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
-            <x>0</x>
-            <y>0</y>
+            <x>1</x>
+            <y>1</y>
             <width>1331</width>
             <height>511</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
-           <item row="1" column="0">
-            <widget class="QListView" name="popularList"/>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="popularText">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
              <property name="font">
               <font>
                <family>Georgia</family>
@@ -212,25 +224,37 @@
              </property>
             </widget>
            </item>
+           <item row="1" column="0">
+            <widget class="QSplitter" name="splitter_popularPage">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QListWidget" name="popularSeasonList"/>
+             <widget class="QListView" name="popularList"/>
+            </widget>
+           </item>
           </layout>
          </widget>
         </widget>
         <widget class="QWidget" name="page_4">
-         <widget class="QWidget" name="gridLayoutWidget_4">
+         <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>1331</width>
+            <x>1</x>
+            <y>1</y>
+            <width>1341</width>
             <height>511</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
-           <item row="1" column="0">
-            <widget class="QListView" name="searchResults"/>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="searchResultsText">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
              <property name="font">
               <font>
                <family>Georgia</family>
@@ -242,28 +266,58 @@
              </property>
             </widget>
            </item>
+           <item row="1" column="0">
+            <widget class="QSplitter" name="splitter_SearchResultsPage">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QListWidget" name="searchResultsSeasonsList"/>
+             <widget class="QListView" name="searchResults"/>
+            </widget>
+           </item>
           </layout>
          </widget>
         </widget>
         <widget class="QWidget" name="page_5">
-         <widget class="QLabel" name="mediaItemText">
+         <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
-            <x>620</x>
-            <y>10</y>
-            <width>91</width>
-            <height>20</height>
+            <x>0</x>
+            <y>0</y>
+            <width>1341</width>
+            <height>521</height>
            </rect>
           </property>
-          <property name="font">
-           <font>
-            <family>Georgia</family>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Media Item</string>
-          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QLabel" name="mediaItemText">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Georgia</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Media Item</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QSplitter" name="splitter_mediaInfoPage">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QListWidget" name="mediaNameList"/>
+             <widget class="QListWidget" name="mediaInfoList"/>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </widget>
         <widget class="QWidget" name="page_6">
@@ -380,21 +434,24 @@
          <zorder>gridLayoutWidget_5</zorder>
         </widget>
         <widget class="QWidget" name="page_2">
-         <widget class="QWidget" name="gridLayoutWidget_2">
+         <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
-            <x>0</x>
-            <y>0</y>
+            <x>1</x>
+            <y>1</y>
             <width>1331</width>
             <height>511</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="1" column="0">
-            <widget class="QListView" name="watchedList"/>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="watchedText">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
              <property name="font">
               <font>
                <family>Georgia</family>
@@ -404,6 +461,15 @@
              <property name="text">
               <string>My Watched Media:</string>
              </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QSplitter" name="splitter_watchedMediaPage">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QListWidget" name="watchedSeasonsList"/>
+             <widget class="QListView" name="watchedList"/>
             </widget>
            </item>
           </layout>
