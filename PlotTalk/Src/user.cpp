@@ -1,3 +1,7 @@
+/* Implementation of the user class.
+ *
+ * @author Allan Haywood
+ */
 #include "user.h"
 
 User::User()

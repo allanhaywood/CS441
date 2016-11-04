@@ -57,6 +57,13 @@ TvShow &DatabaseManager::getTvShow(QString name)
     return tvShowMap[name];
 }
 
+/**
+ * @brief DatabaseManager::getUser Returns the specified user.
+ * @param username The username of the user to return.
+ * @return The user requested.
+ *
+ * @throws NotFound if user is not found.
+ */
 User &DatabaseManager::getUser(QString username)
 {
     // @todo Add caching so that it doesn't call getUser if it isn't needed.
@@ -65,6 +72,12 @@ User &DatabaseManager::getUser(QString username)
     return userMap[username];
 }
 
+/**
+ * @brief DatabaseManager::addUser Adds the provided user.
+ * @param user The user to add.
+ *
+ * @throws AlreadyExists if user already exists.
+ */
 void DatabaseManager::addUser(User user)
 {
     // Will throw exception if user already exists.
@@ -75,12 +88,22 @@ void DatabaseManager::addUser(User user)
     userMap[user.username] = user;
 }
 
+/**
+ * @brief DatabaseManager::removeUser Removes the specified user.
+ * @param username The user to remove.
+ */
 void DatabaseManager::removeUser(QString username)
 {
     connection.removeUser(username);
     userMap.remove(username);
 }
 
+/**
+ * @brief DatabaseManager::updateUser Updates the provided user to match the provided user.
+ * @param user The new state of the user to store.
+ *
+ * @throws NotFound if the specified user is not found.
+ */
 void DatabaseManager::updateUser(User user)
 {
     if (! connection.usernameExists(user.username))
@@ -93,17 +116,25 @@ void DatabaseManager::updateUser(User user)
     userMap[user.username].passwordHash = user.passwordHash;
     userMap[user.username].email = user.email;
 
-
-
     connection.removeUser(user.username);
     connection.addUser(user);
 }
 
+/**
+ * @brief DatabaseManager::usernameExists Checks if the specified user already exists.
+ * @param username The username to check if it already exists.
+ * @return True if the user exists, false, if it doesn't.
+ */
 bool DatabaseManager::usernameExists(QString username)
 {
     return connection.usernameExists(username);
 }
 
+/**
+ * @brief DatabaseManager::emailExists Checks if the specified email already exists.
+ * @param email The email to check if it already exists.
+ * @return True if the email exists, false if it doesn't.
+ */
 bool DatabaseManager::emailExists(QString email)
 {
     return connection.emailExists(email);

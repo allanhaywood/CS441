@@ -58,6 +58,10 @@ QString JsonConnection::getPathToJson()
     return this->pathToJson;
 }
 
+/**
+ * @brief JsonConnection::setPathToJson Sets the current path to the json file.
+ * @param newPathToJson The new path of the json file to use.
+ */
 void JsonConnection::setPathToJson(QString newPathToJson)
 {
     // @todo Add path validation.
@@ -117,6 +121,13 @@ void JsonConnection::addTvShow(TvShow tvShow)
     jsonObject.
 }*/
 
+/**
+ * @brief JsonConnection::getUser Updates reference to the specified user.
+ * @param username The username to retrieve.
+ * @param user The user object to update.
+ *
+ * @throws NotFound if user is not found.
+ */
 void JsonConnection::getUser(QString username, User &user)
 {
     QString jsonUsername;
@@ -163,6 +174,12 @@ void JsonConnection::getUser(QString username, User &user)
     user = User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash);
 }
 
+/**
+ * @brief JsonConnection::addUser Adds the specified user.
+ * @param user The user object to add.
+ *
+ * @throws AlreadyExists if the user already exists.
+ */
 void JsonConnection::addUser(User user)
 {
     // First check if user already exists.
@@ -199,6 +216,10 @@ void JsonConnection::addUser(User user)
     saveJson();
 }
 
+/**
+ * @brief JsonConnection::removeUser Removes the specified user.
+ * @param username The username to remove.
+ */
 void JsonConnection::removeUser(QString username)
 {
     // First check if user already exists.
@@ -250,6 +271,11 @@ void JsonConnection::removeUser(QString username)
     saveJson();
 }
 
+/**
+ * @brief JsonConnection::usernameExists Checks if the specified username exists.
+ * @param username The username to check.
+ * @return True if the user exists, false, if it doesn't.
+ */
 bool JsonConnection::usernameExists(QString username)
 {
     User user = User();
@@ -267,6 +293,11 @@ bool JsonConnection::usernameExists(QString username)
     return found;
 }
 
+/**
+ * @brief JsonConnection::emailExists Checks if the specified email exists.
+ * @param email The email to check.
+ * @return True if the email exists, False if it doesn't.
+ */
 bool JsonConnection::emailExists(QString email)
 {
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
@@ -335,6 +366,11 @@ void JsonConnection::loadJson()
     this->json = jsonObject;
 }
 
+/**
+ * @brief JsonConnection::saveJson Saves the current state to the json file.
+ *
+ * @throws InvalideJsonFormat if the json cannot be parsed.
+ */
 void JsonConnection::saveJson()
 {
     QFile file;
@@ -368,6 +404,11 @@ void JsonConnection::saveJson()
     }
 }
 
+/**
+ * @brief JsonConnection::getTopLevelJsonArray Gets the specified top level array.
+ * @param jsonArrayName The json array to return.
+ * @return The json array.
+ */
 QJsonArray JsonConnection::getTopLevelJsonArray(QString jsonArrayName)
 {
     // The json object can contain many arrays, TvShow, Users, Seasons, etc.

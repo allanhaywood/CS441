@@ -19,12 +19,14 @@ public:
     // in addition, instead of return void, it returns a reference of the object.
     TvShow& getTvShow(QString name);
 
+    // @throws NotFound when user does not exist.
     User& getUser(QString username);
 
     void addUser(User user);
 
     void removeUser(QString username);
 
+    // @throws NotFound when user does not exist.
     void updateUser(User user);
 
     bool usernameExists(QString username);
