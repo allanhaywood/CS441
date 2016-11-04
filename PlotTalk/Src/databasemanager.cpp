@@ -139,3 +139,30 @@ bool DatabaseManager::emailExists(QString email)
 {
     return connection.emailExists(email);
 }
+
+/**
+ * @brief DatabaseManager::getListOfAllTvShows Returns a list of all tvshows recorded at the current connection.
+ * @return List of tvshow names.
+ */
+QList<QString> DatabaseManager::getListOfAllTvShows()
+{
+    return connection.getListOfAllTvShows();
+}
+
+/**
+ * @brief DatabaseManager::getListOfCachedTvShows Returns a list of all locally cached tvshows.
+ * @return List of tvshow names.
+ */
+QList<QString> DatabaseManager::getListOfCachedTvShows()
+{
+    return tvShowMap.keys();
+}
+
+/**
+ * @brief DatabaseManager::emptyCache Used for testing only, to empty cache.
+ */
+void DatabaseManager::emptyCache()
+{
+    tvShowMap.clear();
+    userMap.clear();
+}

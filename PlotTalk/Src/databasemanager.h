@@ -4,10 +4,11 @@
  */
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
+#include <QMap>
+#include <QList>
+
 #include "singleton.h"
 #include "jsonconnection.h"
-
-#include <QMap>
 
 class DatabaseManager
 {
@@ -32,6 +33,15 @@ public:
     bool usernameExists(QString username);
 
     bool emailExists(QString email);
+
+    QList<QString> getListOfAllTvShows();
+
+    QList<QString> getListOfCachedTvShows();
+
+    //@todo Add get list of watched tvshows, once watched functionality is added.
+
+    // Used for testing only.
+    void emptyCache();
 
 private:
     QMap<QString, TvShow> tvShowMap;

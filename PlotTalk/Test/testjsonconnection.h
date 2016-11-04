@@ -21,6 +21,7 @@ private slots:
     void TestEmailExists();
     void NegTestEmailExists();
     void TestSaveJson();
+    void TestGetListOfAllTvShows();
 };
 
 #endif // TESTJSONCONNECTION_H
