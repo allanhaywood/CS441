@@ -23,6 +23,7 @@ private slots:
     void TestEmailExists();
     void NegTestEmailExists();
     void TestUpdateUser();
+    void NegUpdateUser();
 };
 
 #endif // TESTDATABASEMANAGER_H

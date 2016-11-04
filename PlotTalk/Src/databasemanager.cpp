@@ -20,6 +20,7 @@
  */
 #include "databasemanager.h"
 #include "jsonconnection.h"
+#include "plottalkexceptions.h"
 
 #include <QMap>
 #include <QDebug>
@@ -82,10 +83,17 @@ void DatabaseManager::removeUser(QString username)
 
 void DatabaseManager::updateUser(User user)
 {
+    if (! connection.usernameExists(user.username))
+    {
+        throw NotFound{};
+    }
+
     userMap[user.username].firstName = user.firstName;
     userMap[user.username].lastName = user.lastName;
     userMap[user.username].passwordHash = user.passwordHash;
     userMap[user.username].email = user.email;
+
+
 
     connection.removeUser(user.username);
     connection.addUser(user);

@@ -208,4 +208,26 @@ void TestDatabaseManager::TestUpdateUser()
     QCOMPARE(user2.passwordHash, expectedPasswordHash);
 }
 
+void TestDatabaseManager::NegUpdateUser()
+{
+    // Set up strings to compare against.
+    QString username = "barrysmith";
+    QString expectedFirstName = "Barry";
+    QString expectedLastName = "Smithers";
+    QString expectedEmail = "bsmithers@gmail.com";
+    QString expectedPasswordHash = "badpasswordhash3";
+
+    User user = User(username, expectedFirstName, expectedLastName, expectedEmail, expectedPasswordHash);
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    QVERIFY_EXCEPTION_THROWN
+    (
+        DatabaseManagerSingleton::Instance().updateUser(user),
+        NotFound
+    );
+
+
+}
+
 
