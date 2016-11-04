@@ -208,7 +208,7 @@
          </widget>
         </widget>
         <widget class="QWidget" name="page_3">
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
             <x>1</x>
@@ -250,7 +250,7 @@
          </widget>
         </widget>
         <widget class="QWidget" name="page_4">
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
             <x>1</x>
@@ -292,7 +292,7 @@
          </widget>
         </widget>
         <widget class="QWidget" name="page_5">
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
             <x>0</x>
@@ -447,7 +447,7 @@
          <zorder>gridLayoutWidget_5</zorder>
         </widget>
         <widget class="QWidget" name="page_2">
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
             <x>1</x>
