@@ -80,6 +80,17 @@ void DatabaseManager::removeUser(QString username)
     userMap.remove(username);
 }
 
+void DatabaseManager::updateUser(User user)
+{
+    userMap[user.username].firstName = user.firstName;
+    userMap[user.username].lastName = user.lastName;
+    userMap[user.username].passwordHash = user.passwordHash;
+    userMap[user.username].email = user.email;
+
+    connection.removeUser(user.username);
+    connection.addUser(user);
+}
+
 bool DatabaseManager::usernameExists(QString username)
 {
     return connection.usernameExists(username);

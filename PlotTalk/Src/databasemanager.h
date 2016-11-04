@@ -25,6 +25,8 @@ public:
 
     void removeUser(QString username);
 
+    void updateUser(User user);
+
     bool usernameExists(QString username);
 
     bool emailExists(QString email);

@@ -41,8 +41,6 @@ public:
     // Does not throw exception if use is not found.
     virtual void removeUser(QString username) = 0;
 
-    //virtual void modifyUser(User user) = 0;
-
     //virtual void saveUser(User user) = 0;
 
     virtual bool usernameExists(QString username) = 0;
