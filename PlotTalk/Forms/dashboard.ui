@@ -62,6 +62,11 @@ font: bold;
 font-size: 14px;
 }
 
+QCheckBox {
+font-family: tahoma;
+font-size: 13px;
+}
+
 QListView {
 background-color: rgb(217, 217, 217)
 }
@@ -77,7 +82,7 @@ background-color: rgb(217, 217, 217)
       <item row="2" column="1" rowspan="8" colspan="7">
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>0</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="page">
          <widget class="QWidget" name="layoutWidget">
@@ -349,8 +354,8 @@ background-color: rgb(217, 217, 217)
               <widget class="QCheckBox" name="NotificationsCheckBox">
                <property name="font">
                 <font>
-                 <family>Georgia</family>
-                 <pointsize>12</pointsize>
+                 <family>tahoma</family>
+                 <pointsize>-1</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -480,6 +485,12 @@ background-color: rgb(217, 217, 217)
       </item>
       <item row="4" column="0">
        <widget class="QPushButton" name="watchedButton">
+        <property name="minimumSize">
+         <size>
+          <width>110</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <family>20px</family>
@@ -496,10 +507,15 @@ background-color: rgb(217, 217, 217)
       </item>
       <item row="0" column="7">
        <widget class="QPushButton" name="myAccountButton">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>25</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <family>20px</family>
-          <pointsize>12</pointsize>
           <weight>75</weight>
           <italic>false</italic>
           <bold>true</bold>
@@ -541,10 +557,15 @@ background-color: rgb(217, 217, 217)
       </item>
       <item row="0" column="3">
        <widget class="QPushButton" name="searchButton">
+        <property name="minimumSize">
+         <size>
+          <width>60</width>
+          <height>25</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <family>20px</family>
-          <pointsize>12</pointsize>
           <weight>75</weight>
           <italic>false</italic>
           <bold>true</bold>
@@ -570,10 +591,27 @@ background-color: rgb(217, 217, 217)
       </item>
       <item row="0" column="5" colspan="2">
        <widget class="QPushButton" name="alertsButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>60</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <family>20px</family>
-          <pointsize>12</pointsize>
           <weight>75</weight>
           <italic>false</italic>
           <bold>true</bold>
