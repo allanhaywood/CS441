@@ -59,8 +59,6 @@ RESOURCES += \
 test {
     message(Test build)
 
-    CONFIG += console
-
     QT += testlib
     TARGET = PlotTalkTest
 
