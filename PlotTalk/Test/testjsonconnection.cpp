@@ -38,7 +38,7 @@ void TestJsonConnection::TestGetUser()
 
     QCOMPARE(user.username.toLower(), username.toLower());
     QCOMPARE(user.email.toLower(), expectedEmail.toLower());
-    QCOMPARE(user.passwordhash, expectedPasswordHash);
+    QCOMPARE(user.passwordHash, expectedPasswordHash);
 }
 
 void TestJsonConnection::TestAddUser()
@@ -62,7 +62,7 @@ void TestJsonConnection::TestAddUser()
 
     user.username = username;
     user.email = expectedEmail;
-    user.passwordhash = expectedPasswordHash;
+    user.passwordHash = expectedPasswordHash;
 
     jsonConnection.addUser(user);
 
@@ -71,7 +71,7 @@ void TestJsonConnection::TestAddUser()
 
     QCOMPARE(user.username.toLower(), username.toLower());
     QCOMPARE(user.email.toLower(), expectedEmail.toLower());
-    QCOMPARE(user.passwordhash, expectedPasswordHash);
+    QCOMPARE(user.passwordHash, expectedPasswordHash);
 }
 
 void TestJsonConnection::NegTestAddUser()

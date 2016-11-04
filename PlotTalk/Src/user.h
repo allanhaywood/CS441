@@ -10,13 +10,16 @@
 class User
 {
 public:
+
     QString username;
+    QString firstName;
+    QString lastName;
     QString email;
-    QString passwordhash;
+    QString passwordHash;
 
     // TODO: Complete creating User object.
     User();
-    User(QString username, QString email, QString passwordhash);
+    User(QString username, QString firstname, QString lastName, QString email, QString passwordHash);
 
 private:
     //Connection connection;

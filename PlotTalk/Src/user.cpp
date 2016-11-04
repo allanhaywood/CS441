@@ -4,12 +4,14 @@ User::User()
 {
     username = "";
     email = "";
-    passwordhash = "";
+    passwordHash = "";
 }
 
-User::User(QString username, QString email, QString passwordhash)
+User::User(QString username, QString firstName, QString lastName, QString email, QString passwordhash)
 {
     this->username = username;
+    this->firstName = firstName;
+    this->lastName = lastName;
     this->email = email;
-    this->passwordhash = passwordhash;
+    this->passwordHash = passwordhash;
 }

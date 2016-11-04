@@ -120,8 +120,10 @@ void JsonConnection::addTvShow(TvShow tvShow)
 void JsonConnection::getUser(QString username, User &user)
 {
     QString jsonUsername;
+    QString jsonFirstName;
+    QString jsonLastName;
     QString jsonEmail;
-    QString jsonPasswordhash;
+    QString jsonPasswordHash;
 
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
 
@@ -142,8 +144,10 @@ void JsonConnection::getUser(QString username, User &user)
         if(QString::compare(obj["username"].toString(), username, Qt::CaseInsensitive)==0)
         {
             jsonUsername = obj["username"].toString();
+            jsonFirstName = obj["firstName"].toString();
+            jsonLastName = obj["lastName"].toString();
             jsonEmail = obj["email"].toString();
-            jsonPasswordhash = obj["passwordhash"].toString();
+            jsonPasswordHash = obj["passwordHash"].toString();
             found = true;
             break;
         }
@@ -156,7 +160,7 @@ void JsonConnection::getUser(QString username, User &user)
     }
 
     // Use the information found to construct a user of the requested tvshow.
-    user = User(jsonUsername, jsonEmail, jsonPasswordhash);
+    user = User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash);
 }
 
 void JsonConnection::addUser(User user)
@@ -179,8 +183,10 @@ void JsonConnection::addUser(User user)
     QJsonObject jsonObject = QJsonObject();
 
     jsonObject.insert("username", QJsonValue(user.username));
+    jsonObject.insert("firstName", QJsonValue(user.firstName));
+    jsonObject.insert("lastName", QJsonValue(user.lastName));
     jsonObject.insert("email", QJsonValue(user.email));
-    jsonObject.insert("passwordhash", QJsonValue(user.passwordhash));
+    jsonObject.insert("passwordHash", QJsonValue(user.passwordHash));
 
     qDebug() << "jsonObject after insert:" << jsonObject;
 
@@ -213,7 +219,6 @@ void JsonConnection::removeUser(QString username)
 
     // Loops through each element in the users array to try and find a match on the name.
     QJsonObject obj;
-    bool found = false;
     int count = 0;
     foreach (const QJsonValue &value, users)
     {

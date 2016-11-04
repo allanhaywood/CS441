@@ -67,6 +67,8 @@ void TestDatabaseManager::TestGetUserDefaultConstructor()
 {
     // Set up strings to compare against.
     QString username = "bsmith";
+    QString expectedFirstName = "Bob";
+    QString expectedLastName = "Smith";
     QString expectedEmail = "bsmith@gmail.com";
     QString expectedPasswordhash = "badpasswordhash";
 
@@ -74,40 +76,48 @@ void TestDatabaseManager::TestGetUserDefaultConstructor()
 
     User& user = DatabaseManagerSingleton::Instance().getUser(username);
 
-    QCOMPARE(user.username.toLower(), username.toLower());
-    QCOMPARE(user.email.toLower(), expectedEmail.toLower());
-    QCOMPARE(user.passwordhash, expectedPasswordhash.toLower());
+    QCOMPARE(user.username, username);
+    QCOMPARE(user.firstName, expectedFirstName);
+    QCOMPARE(user.lastName, expectedLastName);
+    QCOMPARE(user.email, expectedEmail);
+    QCOMPARE(user.passwordHash, expectedPasswordhash);
 }
 
 void TestDatabaseManager::TestAddUser()
 {
     // Set up strings to compare against.
     QString username = "nuser";
+    QString expectedFirstName = "New";
+    QString expectedLastName = "User";
     QString expectedEmail = "nuser@gmail.com";
     QString expectedPasswordHash = "newuser123";
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    User userBefore = User(username, expectedEmail, expectedPasswordHash);
+    User userBefore = User(username, expectedFirstName, expectedLastName, expectedEmail, expectedPasswordHash);
     DatabaseManagerSingleton::Instance().addUser(userBefore);
 
     User userAfter = DatabaseManagerSingleton::Instance().getUser(username);
 
-    QCOMPARE(userAfter.username.toLower(), username.toLower());
-    QCOMPARE(userAfter.email.toLower(), expectedEmail.toLower());
-    QCOMPARE(userAfter.passwordhash, expectedPasswordHash);
+    QCOMPARE(userAfter.username, username);
+    QCOMPARE(userAfter.firstName, expectedFirstName);
+    QCOMPARE(userAfter.lastName, expectedLastName);
+    QCOMPARE(userAfter.email, expectedEmail);
+    QCOMPARE(userAfter.passwordHash, expectedPasswordHash);
 }
 
 void TestDatabaseManager::NegTestAddUser()
 {
     // Set up strings to compare against.
     QString username = "nuser";
+    QString firstName = "New";
+    QString lastName = "User";
     QString expectedEmail = "nuser@gmail.com";
     QString expectedPasswordHash = "newuser123";
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    User user = User(username, expectedEmail, expectedPasswordHash);
+    User user = User(username, firstName, lastName, expectedEmail, expectedPasswordHash);
 
     qDebug() << "Removing user before attempting to add.";
     DatabaseManagerSingleton::Instance().removeUser(username);

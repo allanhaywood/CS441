@@ -16,13 +16,17 @@
     [
         {
             "username":"bsmith",
+            "firstName":"Bob",
+            "lastName":"Smith",
             "email":"bsmith@gmail.com",
-            "passwordhash":"badpasswordhash"
+            "passwordHash":"badpasswordhash"
         },
         {
             "username":"jsmith",
+            "firstName":"John",
+            "lastName":"Smith",
             "email":"jsmith@gmail.com",
-            "passwordhash":"badpasswordhash2"
+            "passwordHash":"badpasswordhash2"
         }
     ]
 }
