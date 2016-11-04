@@ -57,10 +57,10 @@ void TestDatabaseManager::NegTestGetTvShowJsonPathConstructor()
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     QVERIFY_EXCEPTION_THROWN
-            (
-                TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShow(name),
-                NotFound
-            );
+    (
+        TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShow(name),
+        NotFound
+    );
 }
 
 void TestDatabaseManager::TestGetUserDefaultConstructor()
@@ -77,6 +77,50 @@ void TestDatabaseManager::TestGetUserDefaultConstructor()
     QCOMPARE(user.username.toLower(), username.toLower());
     QCOMPARE(user.email.toLower(), expectedEmail.toLower());
     QCOMPARE(user.passwordhash, expectedPasswordhash.toLower());
+}
+
+void TestDatabaseManager::TestAddUser()
+{
+    // Set up strings to compare against.
+    QString username = "nuser";
+    QString expectedEmail = "nuser@gmail.com";
+    QString expectedPasswordHash = "newuser123";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    User userBefore = User(username, expectedEmail, expectedPasswordHash);
+    DatabaseManagerSingleton::Instance().addUser(userBefore);
+
+    User userAfter = DatabaseManagerSingleton::Instance().getUser(username);
+
+    QCOMPARE(userAfter.username.toLower(), username.toLower());
+    QCOMPARE(userAfter.email.toLower(), expectedEmail.toLower());
+    QCOMPARE(userAfter.passwordhash, expectedPasswordHash);
+}
+
+void TestDatabaseManager::NegTestAddUser()
+{
+    // Set up strings to compare against.
+    QString username = "nuser";
+    QString expectedEmail = "nuser@gmail.com";
+    QString expectedPasswordHash = "newuser123";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    User user = User(username, expectedEmail, expectedPasswordHash);
+
+    qDebug() << "Removing user before attempting to add.";
+    DatabaseManagerSingleton::Instance().removeUser(username);
+
+    qDebug() << "Adding user:" << username;
+    DatabaseManagerSingleton::Instance().addUser(user);
+
+    qDebug() << "Adding user again:" << username;
+    QVERIFY_EXCEPTION_THROWN
+    (
+        DatabaseManagerSingleton::Instance().addUser(user),
+        AlreadyExists
+    );
 }
 
 void TestDatabaseManager::TestUserExists()

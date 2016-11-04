@@ -27,7 +27,7 @@
 /**
  * @brief DatabaseManager::DatabaseManager Default constructor, currently defaults to using Json connection.
  */
-DatabaseManager::DatabaseManager() : connection(":/json/Json/test.json")
+DatabaseManager::DatabaseManager() : connection()
 {
 }
 
@@ -62,6 +62,22 @@ User &DatabaseManager::getUser(QString username)
     connection.getUser(username, userMap[username]);
 
     return userMap[username];
+}
+
+void DatabaseManager::addUser(User user)
+{
+    // Will throw exception if user already exists.
+    connection.addUser(user);
+
+    // Will only get here if user does not already exist,
+    // preventing accidental modification.
+    userMap[user.username] = user;
+}
+
+void DatabaseManager::removeUser(QString username)
+{
+    connection.removeUser(username);
+    userMap.remove(username);
 }
 
 bool DatabaseManager::usernameExists(QString username)

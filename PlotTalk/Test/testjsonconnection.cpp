@@ -3,6 +3,8 @@
  * @author Allan Haywood
  */
 #include <QtTest/QtTest>
+#include <QDir>
+#include "plottalkexceptions.h"
 #include "testjsonconnection.h"
 
 void TestJsonConnection::TestGetTvShow()
@@ -37,6 +39,56 @@ void TestJsonConnection::TestGetUser()
     QCOMPARE(user.username.toLower(), username.toLower());
     QCOMPARE(user.email.toLower(), expectedEmail.toLower());
     QCOMPARE(user.passwordhash, expectedPasswordHash);
+}
+
+void TestJsonConnection::TestAddUser()
+{
+    // Set up strings to compare against.
+    QString username = "nuser";
+    QString expectedEmail = "nuser@gmail.com";
+    QString expectedPasswordHash = "newuser123";
+
+    // Get json from resources, but it isn't writeable so save to a different location.
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    // Create a test json file
+    QString currentPath = QDir::currentPath();
+    currentPath.append("/testJson.json");
+    QString jsonPath = QDir::cleanPath(currentPath);
+
+    jsonConnection.setPathToJson(jsonPath);
+
+    User user = User();
+
+    user.username = username;
+    user.email = expectedEmail;
+    user.passwordhash = expectedPasswordHash;
+
+    jsonConnection.addUser(user);
+
+    user = User();
+    jsonConnection.getUser(username, user);
+
+    QCOMPARE(user.username.toLower(), username.toLower());
+    QCOMPARE(user.email.toLower(), expectedEmail.toLower());
+    QCOMPARE(user.passwordhash, expectedPasswordHash);
+}
+
+void TestJsonConnection::NegTestAddUser()
+{
+    // Set up strings to compare against.
+    QString username = "bsmith";
+
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    User user = User();
+    jsonConnection.getUser(username, user);
+
+    QVERIFY_EXCEPTION_THROWN
+            (
+                jsonConnection.addUser(user),
+                AlreadyExists
+            );
 }
 
 void TestJsonConnection::TestUserExists()
@@ -77,4 +129,33 @@ void TestJsonConnection::NegTestEmailExists()
 
     // Validate that false is returned.
     QVERIFY(! jsonConnection.emailExists(email));
+}
+
+void TestJsonConnection::TestSaveJson()
+{
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    QJsonObject jsonObjectBefore = jsonConnection.json;
+
+    qDebug() << "Json object:" << jsonObjectBefore;
+
+    // Create a test json file
+    QString currentPath = QDir::currentPath();
+    currentPath.append("/testJson.json");
+    QString jsonPath = QDir::cleanPath(currentPath);
+
+    qDebug() << "Json save path:" << jsonPath;
+
+    jsonConnection.setPathToJson(jsonPath);
+
+    jsonConnection.saveJson();
+
+    jsonConnection.loadJson();
+
+    QJsonObject jsonObjectAfter = jsonConnection.json;
+
+    qDebug() << "Json object:" << jsonObjectAfter;
+
+    // Verify newly loaded json object is not empty.
+    QVERIFY(! jsonObjectAfter.isEmpty());
 }

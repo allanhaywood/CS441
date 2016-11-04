@@ -22,9 +22,28 @@ public:
     virtual void getTvShow(QString name, TvShow &tvShow) = 0;
 
     /**
+     * @exception AlreadyExists If specified tvshow is already added.
+     */
+    //virtual void addTvShow(TvShow tvShow) = 0;
+
+    //virtual void saveTvShow(TvShow tvShow) = 0;
+
+    /**
      * @exception NotFound If specified user is not found.
      */
     virtual void getUser(QString username, User &user) = 0;
+
+    /**
+     * @exception AlreadyExists if specified user is already added.
+     */
+    virtual void addUser(User user) = 0;
+
+    // Does not throw exception if use is not found.
+    virtual void removeUser(QString username) = 0;
+
+    //virtual void modifyUser(User user) = 0;
+
+    //virtual void saveUser(User user) = 0;
 
     virtual bool usernameExists(QString username) = 0;
 
