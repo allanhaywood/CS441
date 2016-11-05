@@ -10,5 +10,9 @@
     <qresource prefix="/json">
         <file>Json/test.json</file>
         <file>Json/test2.json</file>
-    </qresource>    
+    </qresource>
+    <qresource prefix="/fonts">
+    	<file>Fonts/Comix_Loud.ttf</file>
+	<file>Fonts/Bikinis_Personal_Use.ttf</file>
+    </qresource>
 </RCC>
