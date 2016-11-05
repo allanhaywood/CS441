@@ -2,6 +2,8 @@
 #define ACCOUNTMANAGER_C
 
 #include "accountmanager.h"
+
+
 #include <QRegExp>
 #include <QRegularExpressionValidator>
 
@@ -33,17 +35,12 @@ AccountManager::~AccountManager()//destructor
 bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
 {//places an account into the database, returns true if complete, false if email or handle are not unique
 
+   User thisPerson(handle, first, last,Email,password);//add Password Hash when possible
 
-   Person thisPerson;
-   thisPerson.firstName=first;
-   thisPerson.lastName=last;
-   thisPerson.email=Email;
-   thisPerson.handle=handle;
-   thisPerson.password=password;
-
-    if(!findPersonByEmail(Email) && !findPersonByHandle(handle))//very inefficient, may need to be fixed
+   DatabaseManager database;
+    if(!database.usernameExists(handle) && !database.emailExists(Email))//very inefficient, may need to be fixed
         {//checks to make sure email and handle are both unique
-            peopleList.append(thisPerson);
+            database.addUser(thisPerson);
             thisGuy=thisPerson;
             return true;//returns true that the account was created
         }
@@ -51,47 +48,9 @@ bool AccountManager::createAccount(QString &first, QString &last, QString &Email
     return false;//returns false, something went wrong
 }
 
-bool AccountManager::findPersonByHandle(QString &handleToCheck)
-{//finds an account by handle, passes back true and a person if found false if not.
-
-    if(peopleList.size()==0)
-    {
-        return false;//person is not in list
-    }
-
-    for (int i =0; i<peopleList.size();i++)
-    {
-        if(peopleList[i].handle==handleToCheck)
-        {
-            return true;//person is in list
-        }
-    }
-
-    return false;//list is not empty but person is not in list
-}
-
-Person AccountManager::getCurrentAccount()
+User AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
 return thisGuy;//useful for getting info into various pages without searching the database
-}
-
-bool AccountManager::findPersonByEmail(QString &emailtoCheck)
-{//finds a person by email, saves data to a person class and returns true if found, returns false if not found
-
-    if(peopleList.size()==0)
-    {
-        return false;//person is not in list
-    }
-
-    for (int i =0; i<peopleList.size();i++)
-    {
-        if(peopleList[i].email==emailtoCheck)
-        {
-            return true;//person is in list
-        }
-    }
-
-    return false;//list is not empty but person is not in list
 }
 
 int AccountManager::checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
@@ -104,21 +63,25 @@ int AccountManager::checkFields(QString &fName, QString &lName, QString &handle,
 
 /*
 
-Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case letter At least 1 Capital letter At least 1 digit At least 1 special character Length should be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
+Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case
+letter At least 1 Capital letter At least 1 digit At least 1 special character Length should
+be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
 
 */
     int num=0;
+    DatabaseManager database;
     if(validEmail->validate(email,num)==2)//valid email
     {
         if(validPwd->validate(password,num)==2)//valid password
         {
-            if(!findPersonByEmail(email))//email is unique
+            if(!database.emailExists(email))//email is unique
             {
-                if(!findPersonByHandle(handle))//handle is unique
+                if(!database.usernameExists(handle))//handle is unique
                 {
                     if((fName.size()>0)&&(lName.size()>0))//person has a name
                     {
-                        createAccount(fName,lName,email,handle,password);
+                        User newAccount(handle,fName,lName,email,password);
+                        database.addUser(newAccount);
                         return 1;//all is go and account is created
                     }
                     else
@@ -146,8 +109,7 @@ Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least
         return 2;//email format is bad
     }
 
-   return 7;
-
+   return 7;//default, but shouldn't be called
 }
 
 

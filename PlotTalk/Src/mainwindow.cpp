@@ -3,6 +3,8 @@
 #include "createacctpage.h"
 #include "dashboard.h"
 #include "forgotpassword.h"
+#include "databasemanager.h"
+#include "user.h"
 #include <string>
 #include <vector>
 
@@ -27,11 +29,26 @@ void MainWindow::on_CreateAcctButton_clicked()
 
 void MainWindow::on_SignInButton_clicked()
 {
-    //TODO: add authentication logic
+    QString password=ui->PasswordEnter->toPlainText();
+    QString email=ui->EmailEnter->toPlainText();
+
+/*
+   DatabaseManager access;
+    try
+    {
+   User client=access.HaveYouSignedUpYet?------------------------needs to be created
+*/
     Dashboard *dash = new Dashboard();
     dash->setWindowState(Qt::WindowMaximized);
     dash->show();
     this->close();
+/*
+}
+    catch//the user doesn't exist-------------------------------------throws an error
+    {
+
+    }
+    */
 }
 
 void MainWindow::on_ForgotPassButton_clicked()
