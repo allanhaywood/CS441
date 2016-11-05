@@ -21,6 +21,7 @@ HEADERS += \
     Src/iconnection.h \
     Src/singleton.h \
     Src/plottalkexceptions.h \
+    Src/user.h \
     Src/reaction.h \
     Src/reply.h \
     Src/review.h \
@@ -38,6 +39,7 @@ SOURCES += \
     Src/adminpage.cpp \
     Src/jsonconnection.cpp \
     Src/databasemanager.cpp \
+    Src/user.cpp \
     Src/reaction.cpp \
     Src/reply.cpp \
     Src/review.cpp \
@@ -68,14 +70,14 @@ test {
         Test/testtvshow.h \
         Test/testjsonconnection.h \
         Test/testdatabasemanager.h \
-		Test/testreply.h
+        Test/testreply.h
 
     SOURCES += \
         Test/testmain.cpp \
         Test/testtvshow.cpp \
         Test/testjsonconnection.cpp \
         Test/testdatabasemanager.cpp \
-		Test/testreply.cpp
+        Test/testreply.cpp
 
 } else {
     message(Normal build)
