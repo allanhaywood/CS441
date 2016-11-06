@@ -134,7 +134,7 @@ bool AccountManager::checkEmailAndPassword(QString& email, QString& password, Us
     DatabaseManager database;
         if(database.emailExists(email))
         {
-            User hold= new User();
+            User hold;
             user=hold;
            // database.getUser()
             //check password associated with email and return true if it is correct

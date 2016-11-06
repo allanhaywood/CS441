@@ -15,6 +15,10 @@ CreateAcctPage::CreateAcctPage(QWidget *parent) :
     ui->pwdMatch->hide();//hides the passwords match field
     ui->PasswordBox1->setEchoMode(QLineEdit::Password);//hides password box entries
     ui->PasswordBox2->setEchoMode(QLineEdit::Password);//hides password box entries
+
+    // set font for title
+    QFont comixLoud("Comix Loud", 28, QFont::Normal, false);
+    ui->CreateAcctHeader->setFont(comixLoud);
 }
 
 CreateAcctPage::~CreateAcctPage()

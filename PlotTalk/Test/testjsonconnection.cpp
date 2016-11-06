@@ -159,3 +159,16 @@ void TestJsonConnection::TestSaveJson()
     // Verify newly loaded json object is not empty.
     QVERIFY(! jsonObjectAfter.isEmpty());
 }
+
+void TestJsonConnection::TestGetListOfAllTvShows()
+{
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    QList<QString> allTvShows = jsonConnection.getListOfAllTvShows();
+
+    QString tvShow0 = "Game of Thrones";
+    QString tvShow1 = "Mr. Robot";
+
+    QCOMPARE(allTvShows[0],tvShow0);
+    QCOMPARE(allTvShows[1],tvShow1);
+}

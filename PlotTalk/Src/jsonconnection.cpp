@@ -326,6 +326,25 @@ bool JsonConnection::emailExists(QString email)
 }
 
 /**
+ * @brief JsonConnection::getListOfAllTvShows Gets a list of all tvshows stored in the json file.
+ * @return A QList of all tvshow names.
+ */
+QList<QString> JsonConnection::getListOfAllTvShows()
+{
+    QJsonArray tvshows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
+
+    QJsonObject obj;
+    QList<QString> tvShows;
+    foreach (const QJsonValue &value, tvshows)
+    {
+        obj = value.toObject();
+        tvShows.append(obj["name"].toString());
+    }
+
+    return tvShows;
+}
+
+/**
  * @brief JsonConnection::loadJson Reads the specified json from file and returns a QJsonObject.
  * @param pathToJson The path to the Json file, it can be either in resources, or on the filesystem.
  */
