@@ -2,8 +2,10 @@
 #define ACCOUNTMANAGER_C
 
 #include "accountmanager.h"
+#include <QRegExp>
+#include <QRegularExpressionValidator>
 
-AccountManager *AccountManager::instance=NULL;//sets initial instance to 0
+AccountManager *AccountManager::instance=NULL;//sets initial instance to NULL
 
 AccountManager* AccountManager::getInstance()//returns a new instance or the same instance as needed
 {
@@ -17,7 +19,8 @@ AccountManager* AccountManager::getInstance()//returns a new instance or the sam
 
 
 AccountManager::AccountManager()//constructor
-{//nothing constructed except the singleton
+{
+    //nothing constructed except the singleton
 }
 
 AccountManager::~AccountManager()//destructor
@@ -27,107 +30,124 @@ AccountManager::~AccountManager()//destructor
 }
 
 
-
-
-bool AccountManager::createAccount(QString &first, QString &last, QString &email, QString &handle, QString &password)
+bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
 {//places an account into the database, returns true if complete, false if email or handle are not unique
 
-    Person hold;
-    if(findPersonByEmail(hold,email) && findPersonByHandle(hold,handle))//very inefficient, may need to be fixed
-    {//checks to make sure email and handle are both unique
 
-        QFile file(fileName);//opens a file
+   Person thisPerson;
+   thisPerson.firstName=first;
+   thisPerson.lastName=last;
+   thisPerson.email=Email;
+   thisPerson.handle=handle;
+   thisPerson.password=password;
 
-        if(file.open(QIODevice::Append))//checks to see if the file exists and opens it for appending
-        {
-            QTextStream stream(&file);//sets up the stream
-
-            stream << email << " " << first << " " << last << " " <<handle << " "<< password << endl;
-           //prints -email, firstname, lastname, handle, password- into file
-            file.close();//closes the file as it has been writen to now
+    if(!findPersonByEmail(Email) && !findPersonByHandle(handle))//very inefficient, may need to be fixed
+        {//checks to make sure email and handle are both unique
+            peopleList.append(thisPerson);
+            thisGuy=thisPerson;
             return true;//returns true that the account was created
         }
-        file.close();//closes the file without writing, something went wrong
-    }
 
     return false;//returns false, something went wrong
 }
 
-bool AccountManager::findPersonByHandle(Person &PassBack, QString &handleToCheck)
+bool AccountManager::findPersonByHandle(QString &handleToCheck)
 {//finds an account by handle, passes back true and a person if found false if not.
-QString first;
-QString last;
-QString email;
-QString handle;
-QString password;//places for the variables as retrieved by the next section
 
-    QFile file(fileName);
-    QTextStream in(&file);//opens a file and calls it "in"
-    while(!in.atEnd())//if it's at the end stops
+    if(peopleList.size()==0)
     {
-    in>>email;
-    in>>first;
-    in>>last;
-    in>>handle;
-    in>>password;//stores the variables from the file into strings
+        return false;//person is not in list
+    }
 
-        if (handle==handleToCheck)//once stored, checks the handle to see if it's a match
+    for (int i =0; i<peopleList.size();i++)
+    {
+        if(peopleList[i].handle==handleToCheck)
         {
-            PassBack.firstName=first;
-            PassBack.lastName=last;
-            PassBack.email=email;
-            PassBack.handle=handle;
-            PassBack.password=handle;//if correct puts the info into the PassBack person for passage back
-
-            ThisGuy=PassBack;//Stores the passback variable into ThisGuy as it will be the new account.
-            file.close();
-            return true;
+            return true;//person is in list
         }
     }
-    file.close();
-    return false;//if the previous does not return true than the handles was not found
+
+    return false;//list is not empty but person is not in list
 }
 
 Person AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
-return ThisGuy;//useful for getting info into various pages without searching the database
+return thisGuy;//useful for getting info into various pages without searching the database
 }
 
-bool AccountManager::findPersonByEmail(Person &PassBack, QString &emailtoCheck)
+bool AccountManager::findPersonByEmail(QString &emailtoCheck)
 {//finds a person by email, saves data to a person class and returns true if found, returns false if not found
-    QString first;
-    QString last;
-    QString email;
-    QString handle;
-    QString password;//variables to hold data for the next section
 
-    QFile file(fileName);
-    QTextStream in(&file);//opens the file and calls it in
-    while(!in.atEnd())
+    if(peopleList.size()==0)
     {
-        in>>email;
-        in>>first;
-        in>>last;
-        in>>handle;
-        in>>password;//pulls the data from the file
+        return false;//person is not in list
+    }
 
-        if (email==emailtoCheck)//checks the email against the file
+    for (int i =0; i<peopleList.size();i++)
+    {
+        if(peopleList[i].email==emailtoCheck)
         {
-           PassBack.firstName=first;
-           PassBack.lastName=last;
-           PassBack.email=email;
-           PassBack.handle=handle;
-           PassBack.password=handle;//if it's a match gathers the information into passback to reutrn to the client
-
-           ThisGuy=PassBack;//stores the new user as the current in the program
-
-           file.close();
-           return true;
+            return true;//person is in list
         }
     }
 
-    file.close();
-    return false;//returns false if email is not found
+    return false;//list is not empty but person is not in list
+}
+
+int AccountManager::checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
+{
+    QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
+    QRegularExpression checkPassword("(?=^.{8,30}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
+
+    QValidator *validEmail=new QRegularExpressionValidator(checkEmail, 0);
+    QValidator *validPwd = new QRegularExpressionValidator(checkPassword,0);
+
+/*
+
+Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case letter At least 1 Capital letter At least 1 digit At least 1 special character Length should be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
+
+*/
+    int num=0;
+    if(validEmail->validate(email,num)==2)//valid email
+    {
+        if(validPwd->validate(password,num)==2)//valid password
+        {
+            if(!findPersonByEmail(email))//email is unique
+            {
+                if(!findPersonByHandle(handle))//handle is unique
+                {
+                    if((fName.size()>0)&&(lName.size()>0))//person has a name
+                    {
+                        createAccount(fName,lName,email,handle,password);
+                        return 1;//all is go and account is created
+                    }
+                    else
+                    {
+                        return 6;//name is not acceptable
+                    }
+                }
+                else
+                {
+                    return 3;//handle is already used
+                }
+            }
+            else
+            {
+                return 4;//email is already used
+            }
+        }
+        else
+        {
+            return 5;//password format is bad
+        }
+    }
+    else
+    {
+        return 2;//email format is bad
+    }
+
+   return 7;
+
 }
 
 

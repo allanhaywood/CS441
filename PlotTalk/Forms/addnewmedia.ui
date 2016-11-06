@@ -11,14 +11,63 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Plot Talk</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#AddNewMedia {
+background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(23, 165, 239, 255), stop:1 rgba(255, 255, 255, 255))
+}
+
+QListWidget {
+background-color: rgb(203, 233, 255)
+}
+
+QTableView {
+background-color: rgb(203, 233, 255)
+}
+
+QPushButton {
+background-color: rgb(17, 224, 255);
+border-style: solid;
+border-width: 1.5px;
+border-radius: 15px;
+border-color: rgb(149, 255, 247);
+font-family: verdana;
+font: bold, 10px;
+color: black;
+padding: 0px;
+text-align: center;
+}
+
+QPushButton:hover {
+background-color: rgb(131, 229, 255)
+}
+
+QPlainTextEdit {
+background-color: white;
+border-color: rgb(149, 255, 247);
+border-radius: 5px;
+font-family: verdana;
+}
+
+QLineEdit {
+background-color: white;
+border-color: rgb(149, 255, 247);
+border-radius: 5px;
+font-family: verdana;
+}
+
+#NewMediaTitle {
+font-family: tahoma;
+font: bold, 16px;
+}</string>
   </property>
   <widget class="QLabel" name="NewMediaTitle">
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>10</y>
-     <width>171</width>
+     <y>20</y>
+     <width>191</width>
      <height>41</height>
     </rect>
    </property>

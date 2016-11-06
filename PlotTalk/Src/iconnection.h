@@ -46,6 +46,8 @@ public:
     virtual bool usernameExists(QString username) = 0;
 
     virtual bool emailExists(QString email) = 0;
+
+    virtual QList<QString> getListOfAllTvShows() = 0;
 private:
 };
 

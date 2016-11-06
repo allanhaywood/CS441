@@ -24,6 +24,8 @@ private slots:
     void NegTestEmailExists();
     void TestUpdateUser();
     void NegUpdateUser();
+    void TestGetListOfAllTvShows();
+    void TestGetListOfCachedTvShows();
 };
 
 #endif // TESTDATABASEMANAGER_H

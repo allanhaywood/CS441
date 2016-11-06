@@ -6,18 +6,80 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1433</width>
-    <height>602</height>
+    <width>1377</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PlotTalk</string>
+   <string>Plot Talk</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#Dashboard {
+/* background: rgb(140, 225, 255) */
+background: rgb(60, 139, 212)
+}
+
+#centralWidget {
+background: rgb(60, 139, 212)
+}
+
+
+QPushButton {
+background-color: rgb(17, 224, 255);
+border-style: solid;
+border-width: 1.5px;
+border-radius: 15px;
+border-color: black;
+font-family: tahoma;
+font: bold, 20px;
+color: black;
+padding: 0px;
+text-align: center;
+}
+
+QPushButton:hover {
+background-color: rgb(235, 247, 255)
+}
+
+QPlainTextEdit {
+background-color: white;
+border-color: rgb(149, 255, 247);
+border-radius: 5px;
+font-family: tahoma;
+}
+
+QLineEdit {
+background-color: white;
+border-color: rgb(149, 255, 247);
+border-radius: 5px;
+font-family: tahoma;
+font-size: 12px;
+}
+
+QLabel {
+font-family: verdana;
+font: bold;
+font-size: 14px;
+}
+
+QCheckBox {
+font-family: tahoma;
+font-size: 13px;
+}
+
+QListView {
+background-color: rgb(217, 217, 217)
+}
+
+QListWidget {
+background-color: rgb(217, 217, 217)
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="1">
+      <item row="0" column="2">
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -30,51 +92,12 @@
         </property>
        </spacer>
       </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="homeButton">
-        <property name="font">
-         <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Home</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="8">
-       <widget class="QPushButton" name="myAccountButton">
-        <property name="font">
-         <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>My Account</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QPushButton" name="popularButton">
-        <property name="font">
-         <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Popular</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="3">
        <widget class="QLineEdit" name="searchBar">
         <property name="font">
          <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
+          <family>tahoma</family>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="placeholderText">
@@ -82,38 +105,20 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="6">
-       <widget class="QPushButton" name="alertsButton">
-        <property name="font">
-         <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Alerts</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item row="0" column="4">
        <widget class="QPushButton" name="searchButton">
+        <property name="minimumSize">
+         <size>
+          <width>60</width>
+          <height>25</height>
+         </size>
+        </property>
         <property name="font">
          <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
+          <family>20px</family>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -121,16 +126,57 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QPushButton" name="watchedButton">
+      <item row="0" column="8">
+       <widget class="QPushButton" name="myAccountButton">
+        <property name="minimumSize">
+         <size>
+          <width>80</width>
+          <height>25</height>
+         </size>
+        </property>
         <property name="font">
          <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
+          <family>20px</family>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
-         <string>Watched</string>
+         <string>My Account</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6" colspan="2">
+       <widget class="QPushButton" name="alertsButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>60</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>20px</family>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Alerts</string>
         </property>
        </widget>
       </item>
@@ -147,7 +193,61 @@
         </property>
        </spacer>
       </item>
-      <item row="2" column="1" rowspan="5" colspan="8">
+      <item row="3" column="0">
+       <widget class="QPushButton" name="popularButton">
+        <property name="font">
+         <font>
+          <family>20px</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Popular</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QPushButton" name="watchedButton">
+        <property name="minimumSize">
+         <size>
+          <width>110</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>20px</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Watched</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="homeButton">
+        <property name="font">
+         <font>
+          <family>20px</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Home</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" rowspan="9" colspan="7">
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
          <number>5</number>
@@ -173,8 +273,11 @@
              </property>
              <property name="font">
               <font>
-               <family>Georgia</family>
-               <pointsize>12</pointsize>
+               <family>verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <italic>false</italic>
+               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -195,7 +298,7 @@
          </widget>
         </widget>
         <widget class="QWidget" name="page_3">
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>1</x>
@@ -215,8 +318,11 @@
              </property>
              <property name="font">
               <font>
-               <family>Georgia</family>
-               <pointsize>12</pointsize>
+               <family>verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <italic>false</italic>
+               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -237,7 +343,7 @@
          </widget>
         </widget>
         <widget class="QWidget" name="page_4">
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>1</x>
@@ -257,8 +363,11 @@
              </property>
              <property name="font">
               <font>
-               <family>Georgia</family>
-               <pointsize>12</pointsize>
+               <family>verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <italic>false</italic>
+               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -279,7 +388,7 @@
          </widget>
         </widget>
         <widget class="QWidget" name="page_5">
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>0</x>
@@ -299,8 +408,11 @@
              </property>
              <property name="font">
               <font>
-               <family>Georgia</family>
-               <pointsize>12</pointsize>
+               <family>verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <italic>false</italic>
+               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -326,7 +438,7 @@
            <rect>
             <x>500</x>
             <y>20</y>
-            <width>310</width>
+            <width>314</width>
             <height>146</height>
            </rect>
           </property>
@@ -335,8 +447,11 @@
             <widget class="QLabel" name="MyAccountTitleLabel">
              <property name="font">
               <font>
-               <family>Georgia</family>
-               <pointsize>24</pointsize>
+               <family>verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <italic>false</italic>
+               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -353,8 +468,11 @@
               <widget class="QLabel" name="UsernameLabel">
                <property name="font">
                 <font>
-                 <family>Georgia</family>
-                 <pointsize>12</pointsize>
+                 <family>verdana</family>
+                 <pointsize>-1</pointsize>
+                 <weight>75</weight>
+                 <italic>false</italic>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="text">
@@ -369,8 +487,11 @@
               <widget class="QLabel" name="EmailLabel">
                <property name="font">
                 <font>
-                 <family>Georgia</family>
-                 <pointsize>12</pointsize>
+                 <family>verdana</family>
+                 <pointsize>-1</pointsize>
+                 <weight>75</weight>
+                 <italic>false</italic>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="text">
@@ -385,8 +506,11 @@
               <widget class="QLabel" name="NotificationsLabel">
                <property name="font">
                 <font>
-                 <family>Georgia</family>
-                 <pointsize>12</pointsize>
+                 <family>verdana</family>
+                 <pointsize>-1</pointsize>
+                 <weight>75</weight>
+                 <italic>false</italic>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="text">
@@ -398,8 +522,8 @@
               <widget class="QCheckBox" name="NotificationsCheckBox">
                <property name="font">
                 <font>
-                 <family>Georgia</family>
-                 <pointsize>12</pointsize>
+                 <family>tahoma</family>
+                 <pointsize>-1</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -422,8 +546,10 @@
           </property>
           <property name="font">
            <font>
-            <family>Georgia</family>
-            <pointsize>12</pointsize>
+            <family>20px</family>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
            </font>
           </property>
           <property name="text">
@@ -434,7 +560,7 @@
          <zorder>gridLayoutWidget_5</zorder>
         </widget>
         <widget class="QWidget" name="page_2">
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>1</x>
@@ -454,8 +580,11 @@
              </property>
              <property name="font">
               <font>
-               <family>Georgia</family>
-               <pointsize>12</pointsize>
+               <family>verdana</family>
+               <pointsize>-1</pointsize>
+               <weight>75</weight>
+               <italic>false</italic>
+               <bold>true</bold>
               </font>
              </property>
              <property name="text">
@@ -477,16 +606,57 @@
         </widget>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="10" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:400;&quot;&gt;This product uses the TMDb API but is not endorsed or certified by TMDb&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
        <widget class="QPushButton" name="adminButton">
         <property name="font">
          <font>
-          <family>Georgia</family>
-          <pointsize>12</pointsize>
+          <family>20px</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
          <string>Admin</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>35</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../Resources/resources.qrc">:/images/Images/MoviesDBlogo.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
         </property>
        </widget>
       </item>
@@ -499,13 +669,15 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1433</width>
+     <width>1377</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
