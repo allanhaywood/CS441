@@ -230,4 +230,35 @@ void TestDatabaseManager::NegUpdateUser()
 
 }
 
+void TestDatabaseManager::TestGetListOfAllTvShows()
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    QList<QString> allTvShows = DatabaseManagerSingleton::Instance().getListOfAllTvShows();
+
+    QString tvShow0 = "Game of Thrones";
+    QString tvShow1 = "Mr. Robot";
+
+    QCOMPARE(allTvShows[0],tvShow0);
+    QCOMPARE(allTvShows[1],tvShow1);
+}
+
+void TestDatabaseManager::TestGetListOfCachedTvShows()
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    DatabaseManagerSingleton::Instance().emptyCache();
+
+    TvShow tvShow = DatabaseManagerSingleton::Instance().getTvShow("Mr. Robot");
+
+    QList<QString> cachedTvShows = DatabaseManagerSingleton::Instance().getListOfCachedTvShows();
+
+    QString tvShow0 = "Mr. Robot";
+
+    // Validate there is only one entry.
+    QCOMPARE(cachedTvShows.length(),1);
+
+    QCOMPARE(cachedTvShows[0],tvShow0);
+}
+
 
