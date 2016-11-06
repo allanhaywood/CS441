@@ -9,18 +9,21 @@
 class TvShow
 {
 public:
-    QString name;
-    QString tmdbLink;
+    int showId;
+    QString Title;
+    QString Link;
     QString graphicLink;
-
+    int SeasonId; //Foreign Key For Seasons Class
     // TODO: Add Seasons once Season class is available.
     TvShow();
-    TvShow(QString name, QString tmdbLink, QString graphicLink);
+    TvShow(int showId,QString Title, QString Link, QString graphicLink);
+    GetTvShow();
+    GetSeason(SeasonId);
 
-    //setConnection(Connection& connection);
+
 
 private:
-    //Connection connection;
-};
+
+//json Connector};
 
 #endif // TVSHOW_H

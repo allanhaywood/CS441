@@ -9,10 +9,11 @@
  */
 TvShow::TvShow()
 {
-    name = "";
-    tmdbLink = "";
+    showId=0;
+    Link = "";
     graphicLink = "";
-    //this->connection = connection;
+
+   //Invoke Json Connector?
 }
 
 /**
@@ -23,8 +24,6 @@ TvShow::TvShow()
  */
 TvShow::TvShow(QString name, QString tmdbLink, QString graphicLink)
 {
-    this->name = name;
-    this->tmdbLink = tmdbLink;
-    this->graphicLink = graphicLink;
-    //this->connection = connection;
+
+
 }
