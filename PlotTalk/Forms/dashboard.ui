@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1377</width>
-    <height>706</height>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -126,18 +126,26 @@ background-color: rgb(217, 217, 217)
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
+      <item row="0" column="8">
+       <widget class="QPushButton" name="myAccountButton">
+        <property name="minimumSize">
          <size>
-          <width>40</width>
-          <height>20</height>
+          <width>80</width>
+          <height>25</height>
          </size>
         </property>
-       </spacer>
+        <property name="font">
+         <font>
+          <family>20px</family>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>My Account</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="6" colspan="2">
        <widget class="QPushButton" name="alertsButton">
@@ -172,42 +180,18 @@ background-color: rgb(217, 217, 217)
         </property>
        </widget>
       </item>
-      <item row="0" column="8">
-       <widget class="QPushButton" name="myAccountButton">
-        <property name="minimumSize">
+      <item row="0" column="5">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
          <size>
-          <width>80</width>
-          <height>25</height>
+          <width>40</width>
+          <height>20</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>20px</family>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>My Account</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QPushButton" name="homeButton">
-        <property name="font">
-         <font>
-          <family>20px</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <italic>false</italic>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Home</string>
-        </property>
-       </widget>
+       </spacer>
       </item>
       <item row="3" column="0">
        <widget class="QPushButton" name="popularButton">
@@ -247,7 +231,23 @@ background-color: rgb(217, 217, 217)
         </property>
        </widget>
       </item>
-      <item row="2" column="2" rowspan="8" colspan="7">
+      <item row="2" column="0">
+       <widget class="QPushButton" name="homeButton">
+        <property name="font">
+         <font>
+          <family>20px</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Home</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" rowspan="9" colspan="7">
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
          <number>5</number>
@@ -606,7 +606,7 @@ background-color: rgb(217, 217, 217)
         </widget>
        </widget>
       </item>
-      <item row="9" column="0">
+      <item row="10" column="0">
        <widget class="QLabel" name="label_2">
         <property name="maximumSize">
          <size>
@@ -638,12 +638,12 @@ background-color: rgb(217, 217, 217)
         </property>
        </widget>
       </item>
-      <item row="8" column="0">
+      <item row="9" column="0">
        <widget class="QLabel" name="label">
         <property name="maximumSize">
          <size>
-          <width>50</width>
-          <height>50</height>
+          <width>35</width>
+          <height>35</height>
          </size>
         </property>
         <property name="text">
