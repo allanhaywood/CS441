@@ -31,6 +31,11 @@ AccountManager::~AccountManager()//destructor
     instance=NULL;//removes dangling pointers
 }
 
+/**
+ * @brief
+ * @param
+ * @return
+ */
 
 bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
 {//places an account into the database, returns true if complete, false if email or handle are not unique
@@ -48,10 +53,22 @@ bool AccountManager::createAccount(QString &first, QString &last, QString &Email
     return false;//returns false, something went wrong
 }
 
+/**
+ * @brief
+ * @param
+ * @return
+ */
+
 User AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
 return thisGuy;//useful for getting info into various pages without searching the database
 }
+
+/**
+ * @brief
+ * @param
+ * @return
+ */
 
 int AccountManager::checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
 {
@@ -110,6 +127,23 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
     }
 
    return 7;//default, but shouldn't be called
+}
+
+bool AccountManager::checkEmailAndPassword(QString& email, QString& password, User &user)
+{
+    DatabaseManager database;
+        if(database.emailExists(email))
+        {
+            User hold= new User();
+            user=hold;
+           // database.getUser()
+            //check password associated with email and return true if it is correct
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 }
 
 

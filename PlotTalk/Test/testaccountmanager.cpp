@@ -11,14 +11,14 @@ void testAccountManager::testGetCurrentAccount()//returns the account that was c
     QString validEmail3="reave005@cougars.csusm.edu";
     QString validPwd="aRe1nOt2?!";
 
-    Person holder;
+    User holder;
     AccountManager *checkme= AccountManager::getInstance();
     QCOMPARE((checkme->checkFields(fName,lName,validHandle3,validEmail3,validPwd)),1);
     holder=checkme->getCurrentAccount();
     QCOMPARE(holder.firstName,fName);
     QCOMPARE(holder.lastName,lName);
     QCOMPARE(holder.email,validEmail3);
-    QCOMPARE(holder.password,validPwd);
+    QCOMPARE(holder.username,validPwd);
 }
 
 

@@ -19,7 +19,6 @@ private:
     static AccountManager* instance;//creates the static instance
     AccountManager();//constructor
     ~AccountManager();//destructor
-    //QList<Person> peopleList;//will be replaced by database manager
     User thisGuy;
 
 public:
@@ -27,9 +26,8 @@ public:
     static AccountManager* getInstance();
     bool createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password);//done
     User getCurrentAccount();//done
-    bool findPersonByEmail(QString &emailtoCheck, DatabaseManager database);//done
-    bool findPersonByHandle(QString &handleToCheck, DatabaseManager database);//done
     int checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password);
+    bool checkEmailAndPassword(QString& email, QString& password, User &user);
 };
 
 #endif // ACCOUNTMANAGER_H

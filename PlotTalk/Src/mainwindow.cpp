@@ -3,7 +3,7 @@
 #include "createacctpage.h"
 #include "dashboard.h"
 #include "forgotpassword.h"
-#include "databasemanager.h"
+#include "accountmanager.h"
 #include "user.h"
 #include <string>
 #include <vector>
@@ -32,16 +32,22 @@ void MainWindow::on_SignInButton_clicked()
     QString password=ui->PasswordEnter->toPlainText();
     QString email=ui->EmailEnter->toPlainText();
 
-/*
-   DatabaseManager access;
-    try
+    User toPass;
+    AccountManager account;
+    if(account.checkEmailAndPassword(email,password,toPass));
     {
-   User client=access.HaveYouSignedUpYet?------------------------needs to be created
-*/
-    Dashboard *dash = new Dashboard();
-    dash->setWindowState(Qt::WindowMaximized);
-    dash->show();
-    this->close();
+        Dashboard *dash = new Dashboard();//needs to accept user object
+        dash->setWindowState(Qt::WindowMaximized);
+        dash->show();
+        this->close();
+    }
+    else
+    {
+        QMessageBox incorrect;
+        incorrect.setText("Incorrect email or password");
+        incorrect.exec();
+        ui->PasswordEnter->clear();
+    }
 /*
 }
     catch//the user doesn't exist-------------------------------------throws an error
