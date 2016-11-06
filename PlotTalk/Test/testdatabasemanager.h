@@ -16,6 +16,7 @@ private slots:
     void TestGetTvShowJsonPathConstructor();
     void NegTestGetTvShowJsonPathConstructor();
     void TestGetUserDefaultConstructor();
+    void TestGetUserByEmail();
     void TestAddUser();
     void NegTestAddUser();
     void TestUserExists();

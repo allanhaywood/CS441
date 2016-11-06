@@ -28,6 +28,8 @@ void TestJsonConnection::TestGetUser()
 {
     // Set up strings to compare against.
     QString username = "bsmith";
+    QString expectedFirstName = "Bob";
+    QString expectedLastName = "Smith";
     QString expectedEmail = "bsmith@gmail.com";
     QString expectedPasswordHash = "badpasswordhash";
 
@@ -36,9 +38,22 @@ void TestJsonConnection::TestGetUser()
     User user = User();
     jsonConnection.getUser(username, user);
 
-    QCOMPARE(user.username.toLower(), username.toLower());
+    QCOMPARE(user.username, username);
+    QCOMPARE(user.firstName, expectedFirstName);
+    QCOMPARE(user.lastName, expectedLastName);
     QCOMPARE(user.email.toLower(), expectedEmail.toLower());
     QCOMPARE(user.passwordHash, expectedPasswordHash);
+}
+
+void TestJsonConnection::TestGetUserNameByEmail()
+{
+    // Set up strings to compare against.
+    QString expectedUsername = "bsmith";
+    QString email = "bsmith@gmail.com";
+
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    QCOMPARE(jsonConnection.getUserNameByEmail(email), expectedUsername);
 }
 
 void TestJsonConnection::TestAddUser()
