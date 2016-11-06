@@ -8,22 +8,24 @@
 
 class TvShow
 {
+private:
+
+
 public:
-    int showId;
+    TvShow(); //Default Constructor
+    int showId;  //Identifier for TvShow Primary Key
     QString Title;
     QString Link;
     QString graphicLink;
     int SeasonId; //Foreign Key For Seasons Class
-    // TODO: Add Seasons once Season class is available.
-    TvShow();
-    TvShow(int showId,QString Title, QString Link, QString graphicLink);
-    GetTvShow();
-    GetSeason(SeasonId);
+    GetSeason(int seasonid); //Method for grabbing a particular season
 
 
 
-private:
 
-//json Connector};
+
+
+//json Connector;
 
 #endif // TVSHOW_H
+};
