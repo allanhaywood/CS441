@@ -5,6 +5,7 @@
 #ifndef TVSHOW_H
 #define TVSHOW_H
 #include <QString>
+#include <QVector>
 
 class TvShow
 {
@@ -19,7 +20,8 @@ public:
     QString graphicLink;
     int SeasonId; //Foreign Key For Seasons Class
     GetSeason(int seasonid); //Method for grabbing a particular season
-
+    QVector<QString> TvComments;
+    QVector<QString> TvReplies;
 
 
 

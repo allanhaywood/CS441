@@ -9,10 +9,12 @@
 class Episode
 {
 protected:
-    Episode(); //constructor
-    Episode(int inMediaID, Qstring inUserName, Qstring inText);
+     //constructor
+
 
 public:
+    Episode();
+    Episode(int inMediaID, Qstring inUserName, Qstring inText);
     int mediaId; //Placeholder for Episode Unique Id
     int seasonId; //For Season Unique Id
     QString EpisodeTitle; //For Episode Title from Database
