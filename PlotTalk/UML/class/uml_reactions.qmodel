@@ -50,7 +50,7 @@
                          <object>{5546faef-3392-4694-a52f-9cad885cb83d}</object>
                          <name>Reaction (abstract base class)</name>
                          <pos>x:440;y:290</pos>
-                         <rect>x:-140;y:-70;w:280;h:140</rect>
+                         <rect>x:-145;y:-75;w:290;h:150</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -92,7 +92,7 @@
                          <object>{16bdd8d3-7e57-4ec5-b248-b55ef1fcc51a}</object>
                          <name>Comment</name>
                          <pos>x:500;y:495</pos>
-                         <rect>x:-145;y:-50;w:290;h:100</rect>
+                         <rect>x:-145;y:-55;w:290;h:110</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -140,24 +140,6 @@
                      </instance>
                     </item>
                     <item>
-                     <instance type="DInheritance">
-                      <DInheritance>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{58503328-1fd7-4957-afd8-17f21f8a004a}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{2602476d-d395-4bde-9e2e-e9414a5498bf}</object>
-                         <a>{78046581-b0dc-46d6-9908-5ef3b55933d8}</a>
-                         <b>{de9a25f3-cf65-4bc0-b262-3361cd26fc1f}</b>
-                        </DRelation>
-                       </base-DRelation>
-                      </DInheritance>
-                     </instance>
-                    </item>
-                    <item>
                      <instance type="DClass">
                       <DClass>
                        <base-DObject>
@@ -170,7 +152,7 @@
                          <object>{a1a864a3-4353-4ba5-b91b-3d2c91b51990}</object>
                          <name>Episode</name>
                          <pos>x:140;y:345</pos>
-                         <rect>x:-90;y:-40;w:180;h:80</rect>
+                         <rect>x:-95;y:-45;w:190;h:90</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -193,9 +175,15 @@
                          <b>{b1955551-03d4-4d78-a154-80804d7393d7}</b>
                         </DRelation>
                        </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                        </DAssociationEnd>
+                       </a>
                        <b>
                         <DAssociationEnd>
-                         <kind>1</kind>
+                         <cradinality>0..*</cradinality>
+                         <kind>2</kind>
                         </DAssociationEnd>
                        </b>
                       </DAssociation>
@@ -216,10 +204,16 @@
                          <b>{b1955551-03d4-4d78-a154-80804d7393d7}</b>
                         </DRelation>
                        </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                        </DAssociationEnd>
+                       </a>
                        <b>
                         <DAssociationEnd>
+                         <cradinality>0..*</cradinality>
                          <navigable>true</navigable>
-                         <kind>1</kind>
+                         <kind>2</kind>
                         </DAssociationEnd>
                        </b>
                       </DAssociation>
@@ -235,33 +229,9 @@
                        </base-DElement>
                        <text>Nested replies are not allowed, so Reply does not contain reply list or addReply method</text>
                        <pos>x:698;y:605</pos>
-                       <rect>x:0;y:0;w:267;h:42</rect>
+                       <rect>x:0;y:0;w:267;h:44</rect>
                        <auto-sized>false</auto-sized>
                       </DAnnotation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DAssociation">
-                      <DAssociation>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{2b3e63ec-565e-48b2-8a4a-94f80e124e61}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{7477cb45-d7b9-4879-88ec-2bed2bb5ef5b}</object>
-                         <a>{9688f9ef-5f8b-4b02-a7ee-928f2b3dc9f4}</a>
-                         <b>{de9a25f3-cf65-4bc0-b262-3361cd26fc1f}</b>
-                        </DRelation>
-                       </base-DRelation>
-                       <b>
-                        <DAssociationEnd>
-                         <navigable>true</navigable>
-                         <kind>1</kind>
-                        </DAssociationEnd>
-                       </b>
-                      </DAssociation>
                      </instance>
                     </item>
                     <item>
@@ -274,7 +244,7 @@
                        </base-DElement>
                        <text>Review, Comment, and Reply are subclasses of Reaction</text>
                        <pos>x:621;y:375</pos>
-                       <rect>x:0;y:0;w:346;h:29</rect>
+                       <rect>x:0;y:0;w:346;h:30</rect>
                        <auto-sized>false</auto-sized>
                       </DAnnotation>
                      </instance>
@@ -294,9 +264,15 @@
                          <b>{78046581-b0dc-46d6-9908-5ef3b55933d8}</b>
                         </DRelation>
                        </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                        </DAssociationEnd>
+                       </a>
                        <b>
                         <DAssociationEnd>
-                         <kind>1</kind>
+                         <cradinality>0..*</cradinality>
+                         <kind>2</kind>
                         </DAssociationEnd>
                        </b>
                       </DAssociation>
@@ -320,15 +296,51 @@
                        <b>
                         <DAssociationEnd>
                          <navigable>true</navigable>
-                         <kind>1</kind>
+                         <kind>2</kind>
                         </DAssociationEnd>
                        </b>
                       </DAssociation>
                      </instance>
                     </item>
+                    <item>
+                     <instance type="DInheritance">
+                      <DInheritance>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{42970fbc-8e03-42a8-99e1-512a09c5d1cf}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{2a782048-b81e-4e50-a2f8-71849ef3f72e}</object>
+                         <a>{9688f9ef-5f8b-4b02-a7ee-928f2b3dc9f4}</a>
+                         <b>{de9a25f3-cf65-4bc0-b262-3361cd26fc1f}</b>
+                        </DRelation>
+                       </base-DRelation>
+                      </DInheritance>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DInheritance">
+                      <DInheritance>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{ce2339f6-37f5-4769-9e92-4954330f1c38}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{ebb2df43-306d-41de-bc13-03663d08b591}</object>
+                         <a>{78046581-b0dc-46d6-9908-5ef3b55933d8}</a>
+                         <b>{de9a25f3-cf65-4bc0-b262-3361cd26fc1f}</b>
+                        </DRelation>
+                       </base-DRelation>
+                      </DInheritance>
+                     </instance>
+                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1478387948548</last-modified>
+                  <last-modified>1478552027063</last-modified>
                   <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -788,6 +800,28 @@
                         </target>
                        </handle>
                       </item>
+                      <item>
+                       <handle>
+                        <uid>{b85fb459-7e44-4902-a2ac-d85250a30021}</uid>
+                        <target>
+                         <instance type="MInheritance">
+                          <MInheritance>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{b85fb459-7e44-4902-a2ac-d85250a30021}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{5546faef-3392-4694-a52f-9cad885cb83d}</a>
+                             <b>{226f5d27-38e9-4359-bb1b-2f050bc72e48}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MInheritance>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
                      </qlist>
                     </handles>
                    </handles>
@@ -798,42 +832,42 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{be704aae-7a15-43d7-8dcc-60be5b17504a}</uid>
+                    <uid>{ee57ee51-e0aa-4f1e-984d-97c4b668023f}</uid>
                     <type>1</type>
                     <declaration>+ int postID</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{2bfa39fc-7f91-41da-b093-6df361d1111a}</uid>
+                    <uid>{31452c1d-39e8-45f8-9a4d-2f2f6aa35dae}</uid>
                     <type>1</type>
                     <declaration>+ int mediaID</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{a6811cd1-efba-4006-985b-268772b42fbc}</uid>
+                    <uid>{409a7d94-5672-4c66-b6c9-85338130e667}</uid>
                     <type>1</type>
                     <declaration>+ int userID</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ec9ce5b8-65c4-4aba-8831-dd6be6b97e94}</uid>
+                    <uid>{b1499b3c-04b5-4418-bfe7-f1d2903ac4cc}</uid>
                     <type>1</type>
                     <declaration>+ QString text</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{72e7bed6-48b2-45e2-ba23-3095ea21cf17}</uid>
+                    <uid>{fdf53385-b738-4ff0-baf4-edd3e71e6d0e}</uid>
                     <type>1</type>
                     <declaration>+ QString timeDatePosted</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{a84046a9-b95e-4260-acaa-b3e69e0108df}</uid>
+                    <uid>{e221493d-67f7-4792-8ee7-7c10d34ffc50}</uid>
                     <type>2</type>
                     <declaration># Reaction(int inMediaID, int inUserID, QString inText)</declaration>
                    </MClassMember>
@@ -984,9 +1018,15 @@
                              <b>{a1a864a3-4353-4ba5-b91b-3d2c91b51990}</b>
                             </MRelation>
                            </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                            </MAssociationEnd>
+                           </a>
                            <b>
                             <MAssociationEnd>
-                             <kind>1</kind>
+                             <cardinality>0..*</cardinality>
+                             <kind>2</kind>
                             </MAssociationEnd>
                            </b>
                           </MAssociation>
@@ -1094,13 +1134,41 @@
                              <b>{a1a864a3-4353-4ba5-b91b-3d2c91b51990}</b>
                             </MRelation>
                            </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                            </MAssociationEnd>
+                           </a>
                            <b>
                             <MAssociationEnd>
+                             <cardinality>0..*</cardinality>
                              <navigable>true</navigable>
-                             <kind>1</kind>
+                             <kind>2</kind>
                             </MAssociationEnd>
                            </b>
                           </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{ebb2df43-306d-41de-bc13-03663d08b591}</uid>
+                        <target>
+                         <instance type="MInheritance">
+                          <MInheritance>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{ebb2df43-306d-41de-bc13-03663d08b591}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{16bdd8d3-7e57-4ec5-b248-b55ef1fcc51a}</a>
+                             <b>{5546faef-3392-4694-a52f-9cad885cb83d}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MInheritance>
                          </instance>
                         </target>
                        </handle>
@@ -1115,21 +1183,21 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{67a18ed0-b60b-4b41-a9a9-1532f4e76f2e}</uid>
+                    <uid>{68304e9c-5d7e-4941-96d0-24c27bc5fe0f}</uid>
                     <type>2</type>
                     <declaration>+ Comment(int inMediaID, int inUserID, QString inText)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{8af540a9-1657-4388-b220-6a7cafd81fa5}</uid>
+                    <uid>{56099006-80a7-48fa-94b9-e161b8c9e63c}</uid>
                     <type>1</type>
                     <declaration>+ QVector&lt;Reply&gt; replies</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{c193b7c7-8741-40c7-8ec6-3d868201c100}</uid>
+                    <uid>{866a7a15-7c27-4873-ace2-45b72580058e}</uid>
                     <type>2</type>
                     <declaration>+ addReply(Reply reply)</declaration>
                    </MClassMember>
@@ -1201,7 +1269,6 @@
                            <b>
                             <MAssociationEnd>
                              <navigable>true</navigable>
-                             <kind>1</kind>
                             </MAssociationEnd>
                            </b>
                           </MAssociation>
@@ -1270,9 +1337,15 @@
                              <b>{16bdd8d3-7e57-4ec5-b248-b55ef1fcc51a}</b>
                             </MRelation>
                            </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                            </MAssociationEnd>
+                           </a>
                            <b>
                             <MAssociationEnd>
-                             <kind>1</kind>
+                             <cardinality>0..*</cardinality>
+                             <kind>2</kind>
                             </MAssociationEnd>
                            </b>
                           </MAssociation>
@@ -1349,10 +1422,32 @@
                            <b>
                             <MAssociationEnd>
                              <navigable>true</navigable>
-                             <kind>1</kind>
+                             <kind>2</kind>
                             </MAssociationEnd>
                            </b>
                           </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{2a782048-b81e-4e50-a2f8-71849ef3f72e}</uid>
+                        <target>
+                         <instance type="MInheritance">
+                          <MInheritance>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{2a782048-b81e-4e50-a2f8-71849ef3f72e}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{226f5d27-38e9-4359-bb1b-2f050bc72e48}</a>
+                             <b>{5546faef-3392-4694-a52f-9cad885cb83d}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MInheritance>
                          </instance>
                         </target>
                        </handle>
@@ -1367,7 +1462,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{f999b308-3e2a-4b7b-ae1f-4f5c287643e2}</uid>
+                    <uid>{77687c72-0cba-4ea5-8eba-3ea725d99cbd}</uid>
                     <type>2</type>
                     <declaration>+ Reply(int inMediaID, int inUserID, QString inText)</declaration>
                    </MClassMember>
