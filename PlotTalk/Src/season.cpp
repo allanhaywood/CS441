@@ -3,12 +3,12 @@
 /**
  * @brief Season:: a TvShow will have a list of Seasons, and each season will have a list of episodes
  * @param number of season
- * @param a list of episdoes for that season
+ * @param a list of episodes for that season
  */
-Season::Season(QString seasonNumber,QList episdoes)
+Season::Season(QString seasonNumber, QList<int> episodes)
 {
     this->seasonNumber = seasonNumber;
-    this->episdoes = episdoes;
+    this->episodes = episodes;
 }
 /**
  * @brief Season:: a TvShow will have a list of Seasons, and each season will have a list of episodes
@@ -17,6 +17,6 @@ Season::Season(QString seasonNumber,QList episdoes)
  */
 int Season::numberOfEpisodes()
 {
-    return this->episdoes.size();
+    return episodes.size();
 
 }

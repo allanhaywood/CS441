@@ -28,7 +28,9 @@ HEADERS += \
     Src/reaction.h \
     Src/reply.h \
     Src/review.h \
-    Src/comment.h
+    Src/comment.h \
+    Src/season.h \
+    Test/testseason.h
 
 
 SOURCES += \
@@ -50,7 +52,9 @@ SOURCES += \
     Src/reaction.cpp \
     Src/reply.cpp \
     Src/review.cpp \
-    Src/comment.cpp
+    Src/comment.cpp \
+    Src/season.cpp \
+    Test/testseason.cpp
 
 
 

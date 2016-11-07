@@ -8,11 +8,11 @@ class Season
 {
 public:
     QString seasonNumber;
-    Qlist<Episodes> episdoes;
+    QList<int> episodes;
 
-    int nubmberOfEpisodes();
+    int numberOfEpisodes();
 
-    Season(QString seasonNumber,QList episdoes);
+    Season(QString seasonNumber,QList<int> episodes);
 };
 
 #endif // SEASON_H
