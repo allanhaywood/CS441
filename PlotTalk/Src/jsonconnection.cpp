@@ -176,6 +176,50 @@ void JsonConnection::getUser(QString username, User &user)
 }
 
 /**
+ * @brief JsonConnection::getUserNameByEmail Gets the username for the specified email.
+ * @param email The email to search for.
+ * @return The username that matches the email.
+ *
+ * @throws NotFound
+ */
+QString JsonConnection::getUserNameByEmail(QString email)
+{
+    QString jsonUsername;
+
+    QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
+
+    qDebug() << "Looking for user email:" << email;
+
+    qDebug() << "Users:" << users;
+
+    // Loops through each element in the users array to try and find a match on the name.
+    QJsonObject obj;
+    bool found = false;
+    foreach (const QJsonValue &value, users)
+    {
+        // If there is a match on the user name, extract all the elements needed to construct
+        // the user object.
+        obj = value.toObject();
+
+        qDebug() << "User:" << obj;
+        if(QString::compare(obj["email"].toString(), email, Qt::CaseInsensitive)==0)
+        {
+            jsonUsername = obj["username"].toString();
+            found = true;
+            break;
+        }
+    }
+
+    if (! found)
+    {
+        qDebug() << "No match found for:" << email;
+        throw NotFound{};
+    }
+
+    return jsonUsername;
+}
+
+/**
  * @brief JsonConnection::addUser Adds the specified user.
  * @param user The user object to add.
  *
