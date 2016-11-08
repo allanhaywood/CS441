@@ -83,6 +83,26 @@ void TestDatabaseManager::TestGetUserDefaultConstructor()
     QCOMPARE(user.passwordHash, expectedPasswordhash);
 }
 
+void TestDatabaseManager::TestGetUserByEmail()
+{
+    // Set up strings to compare against.
+    QString expectedUsername = "bsmith";
+    QString expectedFirstName = "Bob";
+    QString expectedLastName = "Smith";
+    QString email = "bsmith@gmail.com";
+    QString expectedPasswordhash = "badpasswordhash";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    User& user = DatabaseManagerSingleton::Instance().getUserByEmail(email);
+
+    QCOMPARE(user.username, expectedUsername);
+    QCOMPARE(user.firstName, expectedFirstName);
+    QCOMPARE(user.lastName, expectedLastName);
+    QCOMPARE(user.email, email);
+    QCOMPARE(user.passwordHash, expectedPasswordhash);
+}
+
 void TestDatabaseManager::TestAddUser()
 {
     // Set up strings to compare against.

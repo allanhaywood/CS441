@@ -73,6 +73,23 @@ User &DatabaseManager::getUser(QString username)
 }
 
 /**
+ * @brief DatabaseManager::getUserByEmail Gets the user by email address.
+ * @param email The email to search for.
+ * @return The user requested.
+ *
+ * @throws NotFound if user is not found.
+ */
+User &DatabaseManager::getUserByEmail(QString email)
+{
+    // @todo Add caching so that it doesn't call getUser if it isn't needed.
+    QString username = connection.getUserNameByEmail(email);
+
+    connection.getUser(username, userMap[username]);
+
+    return userMap[username];
+}
+
+/**
  * @brief DatabaseManager::addUser Adds the provided user.
  * @param user The user to add.
  *

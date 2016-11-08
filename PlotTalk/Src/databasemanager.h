@@ -23,6 +23,9 @@ public:
     // @throws NotFound when user does not exist.
     User& getUser(QString username);
 
+    // @throws NotFound when user does not exist.
+    User& getUserByEmail(QString email);
+
     void addUser(User user);
 
     void removeUser(QString username);
