@@ -3,7 +3,7 @@
 
 #endif // EPISODE_H
 
-#include<Qstring>
+#include<QString>
 #include<QVector>
 
 class Episode
