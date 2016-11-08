@@ -30,7 +30,6 @@ HEADERS += \
     Src/review.h \
     Src/comment.h
 
-
 SOURCES += \
     Src/main.cpp \
     Src/mainwindow.cpp \
@@ -51,9 +50,6 @@ SOURCES += \
     Src/reply.cpp \
     Src/review.cpp \
     Src/comment.cpp
-
-
-
 
 FORMS += \
     Forms/mainwindow.ui \
@@ -83,8 +79,8 @@ test {
         Test/testjsonconnection.h \
         Test/testdatabasemanager.h \
         Test/testaccountmanager.h \
-        Test/testreply.h
-
+        Test/testreply.h \
+        Test/testuser.h
 
     SOURCES += \
         Test/testmain.cpp \
@@ -92,7 +88,8 @@ test {
         Test/testjsonconnection.cpp \
         Test/testdatabasemanager.cpp \
         Test/testaccountmanager.cpp \
-        Test/testreply.cpp
+        Test/testreply.cpp \
+        Test/testuser.cpp
 
 } else {
     message(Normal build)

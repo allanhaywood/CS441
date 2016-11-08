@@ -3,6 +3,7 @@
 #include "createacctpage.h"
 #include "dashboard.h"
 #include "forgotpassword.h"
+#include "accountmanager.h"
 #include <string>
 #include <vector>
 #include <QFont>
@@ -51,6 +52,20 @@ void MainWindow::on_SignInButton_clicked()
     //TODO: add authentication logic
     Dashboard *dash = new Dashboard();
     dash->setWindowState(Qt::WindowMaximized);
+    AccountManager *accountManager = AccountManager::getInstance();
+
+    bool isAdmin = accountManager->getCurrentAccount().isAdmin;
+
+    if (! isAdmin)
+    {
+        qDebug() << "Hiding admin button.";
+        dash->hideAdminButton();
+    }
+    else
+    {
+        qDebug() << "Not hiding admin button.";
+    }
+
     dash->show();
     this->close();
 }

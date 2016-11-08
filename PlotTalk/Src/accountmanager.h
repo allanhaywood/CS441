@@ -8,9 +8,6 @@
 #include <QList>
 #include "person.h"
 
-
-
-
 class AccountManager
 {
 private:

@@ -10,6 +10,7 @@
 #include "testdatabasemanager.h"
 #include "testreply.h"
 #include "testaccountmanager.h"
+#include "testuser.h"
 
 int main(int argc, char** argv)
 {
@@ -21,9 +22,11 @@ int main(int argc, char** argv)
     TestDatabaseManager testDatabaseManager;
     TestReply testReply;
     testAccountManager testActMgr;
+    TestUser testUser;
 
     // Add references to each test class variable here, seperating with ||
     int result = QTest::qExec(&testTvShow, argc, argv) ||
+                 QTest::qExec(&testUser, argc,argv) ||
                  QTest::qExec(&testReply, argc, argv) ||
                  QTest::qExec(&testJsonConnection, argc, argv) ||
                  QTest::qExec(&testDatabaseManager, argc, argv) ||

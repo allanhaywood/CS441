@@ -45,6 +45,29 @@ void TestJsonConnection::TestGetUser()
     QCOMPARE(user.passwordHash, expectedPasswordHash);
 }
 
+void TestJsonConnection::TestGetAdminUser()
+{
+    // Set up strings to compare against.
+    QString username = "admin";
+    QString expectedFirstName = "admin";
+    QString expectedLastName = "admin";
+    QString expectedEmail = "admin@gmail.com";
+    QString expectedPasswordHash = "plottalkadmin";
+    bool expectedIsAdmin = true;
+
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    User user = User();
+    jsonConnection.getUser(username, user);
+
+    QCOMPARE(user.username, username);
+    QCOMPARE(user.firstName, expectedFirstName);
+    QCOMPARE(user.lastName, expectedLastName);
+    QCOMPARE(user.email.toLower(), expectedEmail.toLower());
+    QCOMPARE(user.passwordHash, expectedPasswordHash);
+    QCOMPARE(user.isAdmin(), expectedIsAdmin);
+}
+
 void TestJsonConnection::TestGetUserNameByEmail()
 {
     // Set up strings to compare against.
@@ -60,8 +83,10 @@ void TestJsonConnection::TestAddUser()
 {
     // Set up strings to compare against.
     QString username = "nuser";
-    QString expectedEmail = "nuser@gmail.com";
-    QString expectedPasswordHash = "newuser123";
+    QString firstName = "New";
+    QString lastName = "User";
+    QString email = "nuser@gmail.com";
+    QString passwordHash = "newuser123";
 
     // Get json from resources, but it isn't writeable so save to a different location.
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
@@ -73,20 +98,53 @@ void TestJsonConnection::TestAddUser()
 
     jsonConnection.setPathToJson(jsonPath);
 
-    User user = User();
-
-    user.username = username;
-    user.email = expectedEmail;
-    user.passwordHash = expectedPasswordHash;
+    User user = User(username, firstName, lastName, email, passwordHash);
 
     jsonConnection.addUser(user);
 
     user = User();
     jsonConnection.getUser(username, user);
 
-    QCOMPARE(user.username.toLower(), username.toLower());
-    QCOMPARE(user.email.toLower(), expectedEmail.toLower());
-    QCOMPARE(user.passwordHash, expectedPasswordHash);
+    QCOMPARE(user.username, username);
+    QCOMPARE(user.firstName, firstName);
+    QCOMPARE(user.lastName, lastName);
+    QCOMPARE(user.email, email);
+    QCOMPARE(user.passwordHash, passwordHash);
+    QCOMPARE(user.isAdmin(), false);
+}
+
+void TestJsonConnection::TestAddAdminUser()
+{
+    // Set up strings to compare against.
+    QString username = "nuser";
+    QString firstName = "New";
+    QString lastName = "User";
+    QString email = "nuser@gmail.com";
+    QString passwordHash = "newuser123";
+
+    // Get json from resources, but it isn't writeable so save to a different location.
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    // Create a test json file
+    QString currentPath = QDir::currentPath();
+    currentPath.append("/testJson.json");
+    QString jsonPath = QDir::cleanPath(currentPath);
+
+    jsonConnection.setPathToJson(jsonPath);
+
+    User user = User(username, firstName, lastName, email, passwordHash, true);
+
+    jsonConnection.addUser(user);
+
+    user = User();
+    jsonConnection.getUser(username, user);
+
+    QCOMPARE(user.username, username);
+    QCOMPARE(user.firstName, firstName);
+    QCOMPARE(user.lastName, lastName);
+    QCOMPARE(user.email, email);
+    QCOMPARE(user.passwordHash, passwordHash);
+    QCOMPARE(user.isAdmin(), true);
 }
 
 void TestJsonConnection::NegTestAddUser()
@@ -152,14 +210,10 @@ void TestJsonConnection::TestSaveJson()
 
     QJsonObject jsonObjectBefore = jsonConnection.json;
 
-    qDebug() << "Json object:" << jsonObjectBefore;
-
     // Create a test json file
     QString currentPath = QDir::currentPath();
     currentPath.append("/testJson.json");
     QString jsonPath = QDir::cleanPath(currentPath);
-
-    qDebug() << "Json save path:" << jsonPath;
 
     jsonConnection.setPathToJson(jsonPath);
 
@@ -168,8 +222,6 @@ void TestJsonConnection::TestSaveJson()
     jsonConnection.loadJson();
 
     QJsonObject jsonObjectAfter = jsonConnection.json;
-
-    qDebug() << "Json object:" << jsonObjectAfter;
 
     // Verify newly loaded json object is not empty.
     QVERIFY(! jsonObjectAfter.isEmpty());

@@ -11,6 +11,7 @@ public:
     QString email;
     QString handle;
     QString password;
+    bool isAdmin = false; // Temporary until I get Josh's changes.
 
     Person();
 };

@@ -23,6 +23,11 @@ Dashboard::~Dashboard()
     delete ui;
 }
 
+void Dashboard::hideAdminButton()
+{
+    ui->adminButton->hide();
+}
+
 void Dashboard::on_myAccountButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);

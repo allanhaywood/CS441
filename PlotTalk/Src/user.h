@@ -19,10 +19,13 @@ public:
 
     // TODO: Complete creating User object.
     User();
-    User(QString username, QString firstname, QString lastName, QString email, QString passwordHash);
+    User(QString username, QString firstName, QString lastName, QString email, QString passwordHash);
+    User(QString username, QString firstName, QString lastName, QString email, QString passwordHash, bool isAdmin);
+
+    bool isAdmin();
 
 private:
-    //Connection connection;
+    bool _isAdmin;
 };
 
 #endif // USER_H
