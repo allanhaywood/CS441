@@ -9,26 +9,19 @@
 
 class TvShow
 {
-protected:
-TvShow();
 
 public:
-     //Default Constructor
-    int showId;  //Identifier for TvShow Primary Key
-    QString Title;
-    QString Link;
+
+    QString name; //Variable for TvShow Title
+    QString tmdbLink;
     QString graphicLink;
-    int SeasonId; //Foreign Key For Seasons Class
-    //Season GetSeason(int seasonid); //Method for grabbing a particular season
-    QVector<QString> TvComments;
-    QVector<QString> TvReplies;
-
-
-
-
-
-//json Connector;
-
+    int showId; //Variable for TvShow Primary Key
+    int seasonId; //Foreign Key For Seasons Class
+    QVector<QString> tvcomments;
+    QVector<QString> tvreplies;
+    // TODO: Add Seasons once Season class is available.
+    TvShow();
+    TvShow(QString name, QString tmdbLink, QString graphicLink);
 
 };
 

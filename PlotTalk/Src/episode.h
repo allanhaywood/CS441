@@ -14,11 +14,11 @@ protected:
 
 public:
     Episode();
-    Episode(int inMediaID, Qstring inUserName, Qstring inText);
+    Episode(int inMediaID, QString epsummary, QString Title);
     int mediaId; //Placeholder for Episode Unique Id
     int seasonId; //For Season Unique Id
-    QString EpisodeTitle; //For Episode Title from Database
-    QString EpSummary;
+    QString episodeTitle; //For Episode Title from Database
+    QString epSummary;
     ~Episode();
 
 //Set connection Object
