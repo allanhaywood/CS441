@@ -26,6 +26,7 @@ TvShow::TvShow()
 
 TvShow::TvShow(QString name, QString tmdbLink, QString graphicLink)
 {
+    showId=0;
     this->name = name;
     this->tmdbLink = tmdbLink;
     this->graphicLink = graphicLink;
