@@ -5,7 +5,7 @@ Reply::Reply()
 
 }
 
-Reply::Reply(int inMediaID, QString inUserName, QString inText) : Reaction( inMediaID, inUserName, inText)
+Reply::Reply(int inMediaID, int inUserID, QString inText) : Reaction( inMediaID, inUserID, inText)
 {
 
 }
