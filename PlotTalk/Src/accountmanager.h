@@ -10,8 +10,15 @@
 #include "databasemanager.h"
 #include "user.h"
 
-
-
+enum class selectEnum//creates an enum that is used to pass back errors from account manager
+{
+    ALLCLEAR,
+    BAD_EMAIL,
+    DUPLICATE_EMAIL,
+    USERNAME_TAKEN,
+    VALUES_MISSING,
+    BAD_PASSWORD
+};
 
 class AccountManager
 {
@@ -23,10 +30,11 @@ private:
 
 public:
 
+
     static AccountManager* getInstance();
     bool createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password);//done
     User getCurrentAccount();//done
-    int checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password);
+    selectEnum checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password);
     bool checkEmailAndPassword(QString& email, QString& password, User &user);
 };
 

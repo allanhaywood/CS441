@@ -23,10 +23,10 @@ int main(int argc, char** argv)
     testAccountManager testActMgr;
 
     // Add references to each test class variable here, seperating with |
-    int result = QTest::qExec(&testTvShow, argc, argv) |
-                 QTest::qExec(&testReply, argc, argv) |
-                 QTest::qExec(&testJsonConnection, argc, argv) |
-                 QTest::qExec(&testDatabaseManager, argc, argv) |
+    int result = QTest::qExec(&testTvShow, argc, argv) ||
+                 QTest::qExec(&testReply, argc, argv) ||
+                 QTest::qExec(&testJsonConnection, argc, argv) ||
+                 QTest::qExec(&testDatabaseManager, argc, argv) ||
                  QTest::qExec(&testActMgr,argc,argv);
 
     //make the overall result of the tests more obvious

@@ -70,7 +70,7 @@ return thisGuy;//useful for getting info into various pages without searching th
  * @return
  */
 
-int AccountManager::checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
+selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
 {
     QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
     QRegularExpression checkPassword("(?=^.{8,30}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
@@ -87,58 +87,44 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
 */
     int num=0;
     DatabaseManager database;
-    if(validEmail->validate(email,num)==2)//valid email
-    {
-        if(validPwd->validate(password,num)==2)//valid password
-        {
-            if(!database.emailExists(email))//email is unique
-            {
-                if(!database.usernameExists(handle))//handle is unique
-                {
-                    if((fName.size()>0)&&(lName.size()>0))//person has a name
-                    {
-                        User newAccount(handle,fName,lName,email,password);
-                        database.addUser(newAccount);
-                        return 1;//all is go and account is created
-                    }
-                    else
-                    {
-                        return 6;//name is not acceptable
-                    }
-                }
-                else
-                {
-                    return 3;//handle is already used
-                }
-            }
-            else
-            {
-                return 4;//email is already used
-            }
-        }
-        else
-        {
-            return 5;//password format is bad
-        }
-    }
-    else
-    {
-        return 2;//email format is bad
-    }
 
-   return 7;//default, but shouldn't be called
+    if((fName.size()<=1)||(lName.size()<=1)||(handle.size()<=1))
+        return selectEnum::VALUES_MISSING;//need good names and handle
+    if(validEmail->validate(email,num)!=2)
+        return selectEnum::BAD_EMAIL;//email is bad format
+    if(database.emailExists(email))
+        return selectEnum::DUPLICATE_EMAIL;//email already exists
+    if(database.usernameExists(handle))
+        return selectEnum::USERNAME_TAKEN;//username is taken
+    if(validPwd->validate(password,num)!=2)
+        return selectEnum::BAD_PASSWORD;//password not correct format
+
+    createAccount(fName,lName,email,handle,password);
+    return selectEnum::ALLCLEAR;
 }
 
+
+/**
+ * @brief
+ * @param
+ * @return
+ */
 bool AccountManager::checkEmailAndPassword(QString& email, QString& password, User &user)
 {
     DatabaseManager database;
         if(database.emailExists(email))
         {
-            User hold;
-            user=hold;
-           // database.getUser()
-            //check password associated with email and return true if it is correct
-            return true;
+            User hold=database.getUserByEmail(email);
+
+            if(hold.passwordHash==password)
+            {
+                user=hold;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
