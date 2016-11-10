@@ -5,15 +5,11 @@
 #include <QWidget>
 #include <QFile>
 #include <QTextStream>
+#include <QList>
+#include "person.h"
 
-struct Person//a person element for passing around as needed (may need to be migrated to a different header file)
-{
-    QString firstName;
-    QString lastName;
-    QString email;
-    QString handle;
-    QString password;
-};
+
+
 
 class AccountManager
 {
@@ -21,21 +17,17 @@ private:
     static AccountManager* instance;//creates the static instance
     AccountManager();//constructor
     ~AccountManager();//destructor
-
-
-    QString fileName="Data.txt";
-    Person ThisGuy;
+    QList<Person> peopleList;//will be replaced by database manager
+    Person thisGuy;
 
 public:
 
     static AccountManager* getInstance();
-    bool createAccount(QString &first, QString &last, QString &email, QString &handle, QString &password);//done
+    bool createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password);//done
     Person getCurrentAccount();//done
-
-
-    bool findPersonByEmail(Person &PassBack, QString &emailtoCheck);//done
-    bool findPersonByHandle(Person &PassBack, QString &handleToCheck);//done
-
+    bool findPersonByEmail(QString &emailtoCheck);//done
+    bool findPersonByHandle(QString &handleToCheck);//done
+    int checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password);
 };
 
 #endif // ACCOUNTMANAGER_H

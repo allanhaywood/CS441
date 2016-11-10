@@ -1,1 +1,32 @@
-{"TvShow":[{"name":"Game of Thrones","tmdbLink":"https://www.themoviedb.org/tv/1399-game-of-thrones","graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg"},{"name":"Mr. Robot","tmdbLink":"https://www.themoviedb.org/tv/62560-mr-robot","graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg"}]}
+{
+"TvShow":
+    [
+        {
+            "name":"Game of Thrones",
+            "tmdbLink":"https://www.themoviedb.org/tv/1399-game-of-thrones",
+            "graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg"
+        },
+        {
+            "name":"Mr. Robot",
+            "tmdbLink":"https://www.themoviedb.org/tv/62560-mr-robot",
+            "graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg"
+        }
+    ],
+"User":
+    [
+        {
+            "username":"bsmith",
+            "firstName":"Bob",
+            "lastName":"Smith",
+            "email":"bsmith@gmail.com",
+            "passwordHash":"badpasswordhash"
+        },
+        {
+            "username":"jsmith",
+            "firstName":"John",
+            "lastName":"Smith",
+            "email":"jsmith@gmail.com",
+            "passwordHash":"badpasswordhash2"
+        }
+    ]
+}

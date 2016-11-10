@@ -8,18 +8,18 @@
 
 #include <QException>
 
-class NotFound : public QException
+class AlreadyExists : public QException
 {
 public:
     void raise() const { throw *this; }
-    NotFound *clone() const { return new NotFound(*this); }
+    AlreadyExists *clone() const { return new AlreadyExists(*this); }
 };
 
-class InvalidPassword : public QException
+class FileIOError : public QException
 {
 public:
     void raise() const { throw *this; }
-    InvalidPassword *clone() const { return new InvalidPassword(*this); }
+    FileIOError *clone() const { return new FileIOError(*this); }
 };
 
 class InvalidEmail : public QException
@@ -29,4 +29,38 @@ public:
     InvalidEmail *clone() const { return new InvalidEmail(*this); }
 };
 
+class InvalidJsonFormat : public QException
+{
+public:
+    void raise() const { throw *this; }
+    InvalidJsonFormat *clone() const { return new InvalidJsonFormat(*this); }
+};
+
+class InvalidPassword : public QException
+{
+public:
+    void raise() const { throw *this; }
+    InvalidPassword *clone() const { return new InvalidPassword(*this); }
+};
+
+class NotFound : public QException
+{
+public:
+    void raise() const { throw *this; }
+    NotFound *clone() const { return new NotFound(*this); }
+};
+
+class NotImplemented : public QException
+{
+public:
+    void raise() const { throw *this; }
+    NotImplemented *clone() const { return new NotImplemented(*this); }
+};
+
+class Unexpected : public QException
+{
+public:
+    void raise() const { throw *this; }
+    Unexpected *clone() const { return new Unexpected(*this); }
+};
 #endif // PLOTTALKEXCEPTIONS_H
