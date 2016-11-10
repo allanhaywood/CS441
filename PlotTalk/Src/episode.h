@@ -5,6 +5,8 @@
 
 #include<QString>
 #include<QVector>
+#include<review.h>
+#include<comment.h>
 
 class Episode
 {
@@ -19,6 +21,8 @@ public:
     int seasonId; //For Season Unique Id
     QString episodeTitle; //For Episode Title from Database
     QString epSummary;
+    QVector<Review> reviews;
+    QVector<Comment> comments;
     ~Episode();
 
 //Set connection Object

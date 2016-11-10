@@ -17,8 +17,6 @@ public:
     QString graphicLink;
     int showId; //Variable for TvShow Primary Key
     int seasonId; //Foreign Key For Seasons Class
-    QVector<QString> tvcomments;
-    QVector<QString> tvreplies;
     // TODO: Add Seasons once Season class is available.
     TvShow();
     TvShow(QString name, QString tmdbLink, QString graphicLink);
