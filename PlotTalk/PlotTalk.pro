@@ -28,7 +28,8 @@ HEADERS += \
     Src/reaction.h \
     Src/reply.h \
     Src/review.h \
-    Src/comment.h
+    Src/comment.h \
+    Src/episode.h
 
 
 SOURCES += \
@@ -50,10 +51,8 @@ SOURCES += \
     Src/reaction.cpp \
     Src/reply.cpp \
     Src/review.cpp \
-    Src/comment.cpp
-
-
-
+    Src/comment.cpp \
+    Src/episode.cpp
 
 FORMS += \
     Forms/mainwindow.ui \
