@@ -34,6 +34,11 @@ public:
     virtual void getUser(QString username, User &user) = 0;
 
     /**
+     * @exception NotFound If specified user is not found.
+     */
+    virtual QString getUserNameByEmail(QString email) = 0;
+
+    /**
      * @exception AlreadyExists if specified user is already added.
      */
     virtual void addUser(User user) = 0;

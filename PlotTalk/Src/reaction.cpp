@@ -5,9 +5,9 @@ Reaction::Reaction() {
 
 }
 
-Reaction::Reaction(int inMediaID, QString inUserName, QString inText) {
+Reaction::Reaction(int inMediaID, int inUserID, QString inText) {
     mediaID = inMediaID;
-    userName = inUserName;
+    userID = inUserID;
     text = inText;
 }
 
@@ -17,13 +17,6 @@ Reaction::Reaction(int inMediaID, QString inUserName, QString inText) {
  */
 void Reaction::setDateTimePosted() {
     dateTimePosted = QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap UTC");
-}
-
-/**
- * @brief Reaction::addReply Adds the ID of a reply to this Reaction
- */
-void Reaction::addReply(int replyID) {
-    replies.push_back(replyID);
 }
 
 

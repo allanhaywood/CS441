@@ -29,7 +29,8 @@ HEADERS += \
     Src/reply.h \
     Src/review.h \
     Src/comment.h \
-    Src/season.h
+    Src/season.h \
+    Src/episode.h
 
 SOURCES += \
     Src/main.cpp \
@@ -51,9 +52,8 @@ SOURCES += \
     Src/reply.cpp \
     Src/review.cpp \
     Src/comment.cpp \
-    Src/season.cpp
-
-
+    Src/season.cpp \
+    Src/episode.cpp
 
 FORMS += \
     Forms/mainwindow.ui \

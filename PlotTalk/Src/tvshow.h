@@ -5,22 +5,22 @@
 #ifndef TVSHOW_H
 #define TVSHOW_H
 #include <QString>
+#include <QVector>
 
 class TvShow
 {
+
 public:
-    QString name;
+
+    QString name; //Variable for TvShow Title
     QString tmdbLink;
     QString graphicLink;
-
+    int showId; //Variable for TvShow Primary Key
+    int seasonId; //Foreign Key For Seasons Class
     // TODO: Add Seasons once Season class is available.
     TvShow();
     TvShow(QString name, QString tmdbLink, QString graphicLink);
 
-    //setConnection(Connection& connection);
-
-private:
-    //Connection connection;
 };
 
-#endif // TVSHOW_H
+#endif

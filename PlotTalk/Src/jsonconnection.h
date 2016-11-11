@@ -33,6 +33,9 @@ public:
     // @throws NotFound when user is not found.
     void getUser(QString username, User &user);
 
+    // @throws NotFound when user is not found.
+    QString getUserNameByEmail(QString email);
+
     void addUser(User user);
 
     void removeUser(QString username);
@@ -56,8 +59,6 @@ private:
     QString pathToJson;
 
     QJsonArray getTopLevelJsonArray(QString jsonArrayName);
-
-
 };
 
 #endif // JSONCONNECTION_H
