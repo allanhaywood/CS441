@@ -6,6 +6,7 @@
         <file>Images/administrator.png</file>
         <file>Images/remove_icon.png</file>
         <file>Images/Search.png</file>
+        <file>Images/MoviesDBlogo.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>Json/test.json</file>

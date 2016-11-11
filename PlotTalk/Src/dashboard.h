@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include<adminpage.h>
+#include <about.h>
 
 namespace Ui {
 class Dashboard;
@@ -29,9 +30,12 @@ private slots:
 
     void on_adminButton_clicked();
 
+    void on_AboutButton_clicked();
+
 private:
     Ui::Dashboard *ui;
     AdminPage* adminWindow = NULL;
+    About* AboutPage = NULL;
 };
 
 #endif // DASHBOARD_H

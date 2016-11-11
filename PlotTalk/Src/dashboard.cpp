@@ -1,6 +1,9 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
 #include "adminpage.h"
+#include "accountdetails.h"
+#include "about.h"
+
 
 Dashboard::Dashboard(QWidget *parent) :
     QMainWindow(parent),
@@ -23,6 +26,8 @@ Dashboard::~Dashboard()
 void Dashboard::on_myAccountButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
+    AccountDetails *accntDetails = new AccountDetails();
+	accntDetails->show();
 }
 
 void Dashboard::on_homeButton_clicked()
@@ -53,4 +58,14 @@ void Dashboard::on_adminButton_clicked()
     }
     adminWindow->show();
     adminWindow->raise();
+}
+
+void Dashboard::on_AboutButton_clicked()
+{
+    if(AboutPage == NULL)
+    {
+        AboutPage= new About();
+    }
+    AboutPage->show();
+    AboutPage->raise();
 }
