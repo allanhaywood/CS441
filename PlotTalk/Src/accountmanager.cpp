@@ -32,31 +32,24 @@ AccountManager::~AccountManager()//destructor
 }
 
 /**
- * @brief
- * @param
- * @return
+ * @brief places an account into the database
+ * @param accepts user information in QString format in the order: first,last,Email,userName,password
+ * @return true always as it will always call the database manager and insert the info
  */
 
 bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
-{//places an account into the database, returns true if complete, false if email or handle are not unique
-
-   User thisPerson(handle, first, last,Email,password);//add Password Hash when possible
-
+{
+   User thisUser(handle, first, last,Email,password);//add Password Hash when possible
    DatabaseManager database;
-    if(!database.usernameExists(handle) && !database.emailExists(Email))//very inefficient, may need to be fixed
-        {//checks to make sure email and handle are both unique
-            database.addUser(thisPerson);
-            thisGuy=thisPerson;
-            return true;//returns true that the account was created
-        }
-
-    return false;//returns false, something went wrong
+   database.addUser(thisUser);
+   thisGuy=thisUser;
+   return true;//reminant of previous code
 }
 
 /**
- * @brief
- * @param
- * @return
+ * @brief gets the current account that is stored as a private object in the persistant account manager
+ * @param none
+ * @return a user object
  */
 
 User AccountManager::getCurrentAccount()
@@ -65,9 +58,9 @@ return thisGuy;//useful for getting info into various pages without searching th
 }
 
 /**
- * @brief
- * @param
- * @return
+ * @brief checks that user information is not previously in the database or unacceptable
+ * @param Takes user information in string form (first name, last name, username, email, password)
+ * @return an enum value that tells the client the user has been added or what error the data contains
  */
 
 selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
@@ -105,9 +98,9 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
 
 
 /**
- * @brief
- * @param
- * @return
+ * @brief Used by login, this checks to ensure email and password are correct and matching in the system
+ * @param takes an email string, a password string, and a user object.
+ * @return true and fills passses back the found user by reference if user exists, false and no passback if not found.
  */
 bool AccountManager::checkEmailAndPassword(QString& email, QString& password, User &user)
 {
