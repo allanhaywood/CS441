@@ -28,8 +28,8 @@ HEADERS += \
     Src/reply.h \
     Src/review.h \
     Src/comment.h \
+    Src/season.h \
     Src/episode.h
-
 
 SOURCES += \
     Src/main.cpp \
@@ -50,6 +50,7 @@ SOURCES += \
     Src/reply.cpp \
     Src/review.cpp \
     Src/comment.cpp \
+    Src/season.cpp \
     Src/episode.cpp
 
 FORMS += \
@@ -80,7 +81,8 @@ test {
         Test/testjsonconnection.h \
         Test/testdatabasemanager.h \
         Test/testaccountmanager.h \
-        Test/testreply.h
+        Test/testreply.h \
+        Test/testseason.h
 
 
     SOURCES += \
@@ -89,7 +91,8 @@ test {
         Test/testjsonconnection.cpp \
         Test/testdatabasemanager.cpp \
         Test/testaccountmanager.cpp \
-        Test/testreply.cpp
+        Test/testreply.cpp \
+        Test/testseason.cpp
 
 } else {
     message(Normal build)
