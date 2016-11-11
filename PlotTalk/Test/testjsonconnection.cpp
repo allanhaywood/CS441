@@ -16,8 +16,7 @@ void TestJsonConnection::TestGetTvShow()
 
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
 
-    TvShow tvShow = TvShow();
-    jsonConnection.getTvShow(name, tvShow);
+    TvShow tvShow = jsonConnection.getTvShow(name);
 
     QCOMPARE(tvShow.name.toLower(), name.toLower());
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
@@ -35,8 +34,7 @@ void TestJsonConnection::TestGetUser()
 
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
 
-    User user = User();
-    jsonConnection.getUser(username, user);
+    User user = jsonConnection.getUser(username);
 
     QCOMPARE(user.username, username);
     QCOMPARE(user.firstName, expectedFirstName);
@@ -81,8 +79,7 @@ void TestJsonConnection::TestAddUser()
 
     jsonConnection.addUser(user);
 
-    user = User();
-    jsonConnection.getUser(username, user);
+    user = jsonConnection.getUser(username);
 
     QCOMPARE(user.username.toLower(), username.toLower());
     QCOMPARE(user.email.toLower(), expectedEmail.toLower());
@@ -96,8 +93,7 @@ void TestJsonConnection::NegTestAddUser()
 
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
 
-    User user = User();
-    jsonConnection.getUser(username, user);
+    User user = jsonConnection.getUser(username);
 
     QVERIFY_EXCEPTION_THROWN
             (

@@ -26,12 +26,12 @@ public:
     void setPathToJson(QString newPathToJson);
 
     // @throws NotFound when TvShow is not found.
-    void getTvShow(QString name, TvShow &tvShow);
+    TvShow getTvShow(QString name);
 
     //void addTvShow(TvShow tvShow);
 
     // @throws NotFound when user is not found.
-    void getUser(QString username, User &user);
+    User getUser(QString username);
 
     // @throws NotFound when user is not found.
     QString getUserNameByEmail(QString email);

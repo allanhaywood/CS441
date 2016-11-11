@@ -72,9 +72,10 @@ void JsonConnection::setPathToJson(QString newPathToJson)
  * @brief JsonConnection::getTvShow Returns the tvshow with the provided name.
  * @param The name of the tvshow to retrieve.
  * @return The Tvshow, if no match is found an empty TvShow is returned.
- * TODO: Change behavior for when a matching TvShow is not found, need to investigate best option.
+ *
+ * @todo: Change behavior for when a matching TvShow is not found, need to investigate best option.
  */
-void JsonConnection::getTvShow(QString name, TvShow &tvShow)
+TvShow JsonConnection::getTvShow(QString name)
 {
     QString jsonName = "";
     QString jsonTmdbLink = "";
@@ -107,7 +108,7 @@ void JsonConnection::getTvShow(QString name, TvShow &tvShow)
     }
 
     // Use the information found to construct and return a TvShow of the requested tvshow.
-    tvShow = TvShow(jsonName, jsonTmdbLink, jsonGraphicLink);
+    return TvShow(jsonName, jsonTmdbLink, jsonGraphicLink);
 }
 
 /*
@@ -124,11 +125,11 @@ void JsonConnection::addTvShow(TvShow tvShow)
 /**
  * @brief JsonConnection::getUser Updates reference to the specified user.
  * @param username The username to retrieve.
- * @param user The user object to update.
+ * @return The user that matches.
  *
- * @throws NotFound if user is not found.
+ * * @throws NotFound if user is not found.
  */
-void JsonConnection::getUser(QString username, User &user)
+User JsonConnection::getUser(QString username)
 {
     QString jsonUsername;
     QString jsonFirstName;
@@ -171,7 +172,7 @@ void JsonConnection::getUser(QString username, User &user)
     }
 
     // Use the information found to construct a user of the requested tvshow.
-    user = User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash);
+    return User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash);
 }
 
 /**
@@ -229,10 +230,9 @@ void JsonConnection::addUser(User user)
     // First check if user already exists.
     qDebug() << "json before:" << json;
 
-    User testExistUser = User();
     try
     {
-        getUser(user.username, testExistUser);
+        User testExistUser = getUser(user.username);
         throw AlreadyExists{};
     }
     catch (NotFound)
@@ -269,10 +269,9 @@ void JsonConnection::removeUser(QString username)
     // First check if user already exists.
     qDebug() << "json before:" << json;
 
-    User testExistUser = User();
     try
     {
-        getUser(username, testExistUser);
+        User testExistUser = getUser(username);
     }
     catch (NotFound)
     {
@@ -322,11 +321,10 @@ void JsonConnection::removeUser(QString username)
  */
 bool JsonConnection::usernameExists(QString username)
 {
-    User user = User();
     bool found = false;
     try
     {
-        getUser(username, user);
+        User user = getUser(username);
         found = true;
     }
     catch (NotFound)
