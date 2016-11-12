@@ -147,9 +147,15 @@ QVector<Season> JsonConnection::getSeasons(QJsonArray jsonSeasons)
 Season JsonConnection::getSeason(QJsonObject jsonSeason)
 {
     qDebug() << "seasonId:" << jsonSeason["seasonId"].toInt();
+    qDebug() << "seasonNumber:" << jsonSeason["seasonNumber"].toInt();
     qDebug() << "seasonName:" << jsonSeason["name"].toString();
 
-    return Season(jsonSeason["seasonId"].toInt(), jsonSeason["name"].toString(), getEpisodes(jsonSeason["episodes"].toArray()));
+    return Season(
+                jsonSeason["seasonId"].toInt(),
+                jsonSeason["seasonNumber"].toInt(),
+                jsonSeason["name"].toString(),
+                getEpisodes(jsonSeason["episodes"].toArray())
+            );
 }
 
 /**
@@ -179,9 +185,14 @@ QVector<Episode> JsonConnection::getEpisodes(QJsonArray jsonEpisodes)
 Episode JsonConnection::getEpisode(QJsonObject jsonEpisode)
 {
     qDebug() << "jsonEpisodeId:" << jsonEpisode["episodeId"].toInt();
+    qDebug() << "jsonEpisodeNumber:" << jsonEpisode["episodeNumber"].toInt();
     qDebug() << "jsonEpisodeName:" << jsonEpisode["name"].toString();
 
-    return Episode(jsonEpisode["episodeId"].toInt(), jsonEpisode["name"].toString());
+    return Episode(
+                jsonEpisode["episodeId"].toInt(),
+                jsonEpisode["episodeNumber"].toInt(),
+                jsonEpisode["name"].toString()
+            );
 }
 
 /**

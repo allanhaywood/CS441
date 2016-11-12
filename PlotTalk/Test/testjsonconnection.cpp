@@ -30,6 +30,7 @@ void TestJsonConnection::TestGetTvShow()
 
     QVERIFY(seasons.count() == 1);
     QCOMPARE(seasons[0].seasonId, 3627);
+    QCOMPARE(seasons[0].seasonNumber, 0);
     QCOMPARE(seasons[0].name, empty);
 
     QVector<Episode> episodes = seasons[0].inspectEpisodes();
@@ -38,6 +39,7 @@ void TestJsonConnection::TestGetTvShow()
 
     QVERIFY(episodes.count() == 1);
     QCOMPARE(episodes[0].episodeId, 63087);
+    QCOMPARE(episodes[0].episodeNumber, 0);
     QCOMPARE(episodes[0].name, expectedEpisodeName);
 }
 

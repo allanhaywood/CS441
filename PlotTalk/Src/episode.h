@@ -14,10 +14,11 @@ class Episode
 {
 public:
     int episodeId;
+    int episodeNumber;
     QString name;
 
     Episode();
-    Episode(int episodeId, QString name);
+    Episode(int episodeId, int episodeNumber, QString name);
 
     // Adding reactions later.
     //Episode(int episodeId, QString name, QVector<Review> reviews, QVector<Comment> comments);

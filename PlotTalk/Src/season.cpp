@@ -10,20 +10,23 @@
  */
 Season::Season()
 {
-    this->seasonId = 0;
-    this->name = "";
-    this->episodes = QVector<Episode>();
+    seasonId = 0;
+    seasonNumber = 0;
+    name = "";
+    episodes = QVector<Episode>();
 }
 
 /**
  * @brief Season::Season Constructs a season with the provided seasonId, name, and episodes.
  * @param seasonId The season ID as specified by the movie database.
+ * @param seasonNumber The season number as specified by the movie database.
  * @param name The name of the season as specified by the movie database.
  * @param episodes A vector of episodes to add to the season.
  */
-Season::Season(int seasonId, QString name, QVector<Episode> episodes)
+Season::Season(int seasonId, int seasonNumber, QString name, QVector<Episode> episodes)
 {
     this->seasonId = seasonId;
+    this->seasonNumber = seasonNumber;
     this->name = name;
     this->episodes = episodes;
 }

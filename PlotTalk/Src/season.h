@@ -13,10 +13,11 @@ class Season
 {
 public:
     int seasonId;
+    int seasonNumber;
     QString name;
 
     Season();
-    Season(int seasonId, QString name, QVector<Episode> episodes);
+    Season(int seasonId, int seasonNumber, QString name, QVector<Episode> episodes);
 
     const QVector<Episode>& inspectEpisodes();
     void addEpisode(Episode episode);

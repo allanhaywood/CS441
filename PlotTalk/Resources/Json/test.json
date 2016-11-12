@@ -10,11 +10,13 @@
             [
                 {
                     "seasonId":3627,
+                    "seasonNumber":0,
                     "name":"",
                     "episodes":
                     [
                         {
                             "episodeId":63087,
+                            "episodeNumber":0,
                             "name":"Inside Game Of Thrones"
                         }
                     ]
@@ -30,15 +32,18 @@
             [
                 {
                     "seasonId":66343,
+                    "seasonNumber":0,
                     "name":"season_0.0",
                     "episodes":
                     [
                         {
                             "episodeId":1200247,
+                            "episodeNumber":1,
                             "name":"Mr. Robot_dec0d3d.doc"
                         },
                         {
                             "episodeId":1203464,
+                            "episodeNumber":2,
                             "name":"Hacking Robot 101"
                         }
                     ]

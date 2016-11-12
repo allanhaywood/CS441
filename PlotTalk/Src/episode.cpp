@@ -9,17 +9,20 @@
  */
 Episode::Episode()
 {
-    this->episodeId = 0;
-    this->name = "";
+    episodeId = 0;
+    episodeNumber = 0;
+    name = "";
 }
 
 /**
  * @brief Episode::Episode Creates an episode with the provided episodeId and name.
  * @param episodeId The episode ID used by the movie database.
+ * @param episodeNumber The episode number used by the movie database.
  * @param name The name as used by the movie database.
  */
-Episode::Episode(int episodeId, QString name)
+Episode::Episode(int episodeId, int episodeNumber, QString name)
 {
     this->episodeId = episodeId;
+    this->episodeNumber = episodeNumber;
     this->name = name;
 }
