@@ -59,6 +59,10 @@ private:
     QString pathToJson;
 
     QJsonArray getTopLevelJsonArray(QString jsonArrayName);
+    QVector<Season> getSeasons(QJsonArray jsonSeasons);
+    Season getSeason(QJsonObject jsonSeason);
+    QVector<Episode> getEpisodes(QJsonArray jsonEpisodes);
+    Episode getEpisode(QJsonObject jsonEpisode);
 };
 
 #endif // JSONCONNECTION_H

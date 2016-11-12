@@ -1,16 +1,25 @@
+/* The episode class.
+ *
+ * @author Damien Brantley, Allan Haywood
+ */
 #include "episode.h"
 
-Episode::Episode() {
-
-episodeTitle=""; //All Placeholders
-mediaId=0;
-epSummary="";
+/**
+ * @brief Episode::Episode Creates an episode.
+ */
+Episode::Episode()
+{
+    this->episodeId = 0;
+    this->name = "";
 }
 
-
-Episode::Episode(int inMediaID, QString epsummary, QString Title){
-  this->mediaId=inMediaID;
-    this->epSummary=epsummary;
-    this->episodeTitle=Title;
+/**
+ * @brief Episode::Episode Creates an episode with the provided episodeId and name.
+ * @param episodeId The episode ID used by the movie database.
+ * @param name The name as used by the movie database.
+ */
+Episode::Episode(int episodeId, QString name)
+{
+    this->episodeId = episodeId;
+    this->name = name;
 }
-

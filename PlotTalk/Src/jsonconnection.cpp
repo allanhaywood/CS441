@@ -77,25 +77,30 @@ void JsonConnection::setPathToJson(QString newPathToJson)
  */
 TvShow JsonConnection::getTvShow(QString name)
 {
+    int jsonId = 0;
     QString jsonName = "";
     QString jsonTmdbLink = "";
     QString jsonGraphicLink = "";
+    QJsonArray jsonSeasons;
+
 
     QJsonArray tvshows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
 
     // Loops through each element in the TvShow array to try and find a match on the name.
-    QJsonObject obj;
+    QJsonObject tvShowJsonObject;
     bool found = false;
     foreach (const QJsonValue &value, tvshows)
     {
         // If there is a match on the tvname, extract all the elements needed to construct
         // the TvShow object.
-        obj = value.toObject();
-        if(QString::compare(obj["name"].toString(), name, Qt::CaseInsensitive)==0)
+        tvShowJsonObject = value.toObject();
+        if(QString::compare(tvShowJsonObject["name"].toString(), name, Qt::CaseInsensitive)==0)
         {
-            jsonName = obj["name"].toString();
-            jsonTmdbLink = obj["tmdbLink"].toString();
-            jsonGraphicLink = obj["graphicLink"].toString();
+            jsonId = tvShowJsonObject["showId"].toInt();
+            jsonName = tvShowJsonObject["name"].toString();
+            jsonTmdbLink = tvShowJsonObject["tmdbLink"].toString();
+            jsonGraphicLink = tvShowJsonObject["graphicLink"].toString();
+            jsonSeasons = tvShowJsonObject["seasons"].toArray();
             found = true;
             break;
         }
@@ -107,20 +112,77 @@ TvShow JsonConnection::getTvShow(QString name)
         throw NotFound{};
     }
 
+    qDebug() << "JsonSeasons:" << jsonSeasons;
+
+    QVector<Season> seasons = getSeasons(jsonSeasons);
+
     // Use the information found to construct and return a TvShow of the requested tvshow.
-    return TvShow(jsonName, jsonTmdbLink, jsonGraphicLink);
+    return TvShow(jsonId, jsonName, jsonTmdbLink, jsonGraphicLink, seasons);
 }
 
-/*
-void JsonConnection::addTvShow(TvShow tvShow)
+
+/**
+ * @brief JsonConnection::getSeasons Gets all the seasons for the specified tvShow
+ * @param tvShowName The name of the tvshow.
+ * @return A QVector of all the seasons.
+ */
+QVector<Season> JsonConnection::getSeasons(QJsonArray jsonSeasons)
 {
-    // Loads the json at the provided path.
-    QJsonObject jsonObject = loadJson(pathToJson);
+    QVector<Season> seasons = QVector<Season>();
 
+    foreach (const QJsonValue &value, jsonSeasons)
+    {
+        qDebug() << "jsonSeason:" << value;
+        seasons.append(getSeason(value.toObject()));
+    }
 
+    return seasons;
+}
 
-    jsonObject.
-}*/
+/**
+ * @brief JsonConnection::getSeason Converts provided season json to a Season object.
+ * @param jsonSeason The json that represents a season.
+ * @return The season object that represents the json season provided.
+ */
+Season JsonConnection::getSeason(QJsonObject jsonSeason)
+{
+    qDebug() << "seasonId:" << jsonSeason["seasonId"].toInt();
+    qDebug() << "seasonName:" << jsonSeason["name"].toString();
+
+    return Season(jsonSeason["seasonId"].toInt(), jsonSeason["name"].toString(), getEpisodes(jsonSeason["episodes"].toArray()));
+}
+
+/**
+ * @brief JsonConnection::getEpisodes Converts the provided json episodes into a vector of episodes.
+ * @param jsonEpisodes The json that represents the episodes to convert.
+ * @return A vector of episodes.
+ */
+QVector<Episode> JsonConnection::getEpisodes(QJsonArray jsonEpisodes)
+{
+    QVector<Episode> episodes = QVector<Episode>();
+
+    qDebug() << "jsonEpisodes:" << jsonEpisodes;
+
+    foreach (const QJsonValue &value, jsonEpisodes)
+    {
+        episodes.append(getEpisode(value.toObject()));
+    }
+
+    return episodes;
+}
+
+/**
+ * @brief JsonConnection::getEpisode Converst the provided json episdoe into an episode object.
+ * @param jsonEpisode The json representation of the episode.
+ * @return The episode object that was represented by the json provided.
+ */
+Episode JsonConnection::getEpisode(QJsonObject jsonEpisode)
+{
+    qDebug() << "jsonEpisodeId:" << jsonEpisode["episodeId"].toInt();
+    qDebug() << "jsonEpisodeName:" << jsonEpisode["name"].toString();
+
+    return Episode(jsonEpisode["episodeId"].toInt(), jsonEpisode["name"].toString());
+}
 
 /**
  * @brief JsonConnection::getUser Updates reference to the specified user.
@@ -476,5 +538,3 @@ QJsonArray JsonConnection::getTopLevelJsonArray(QString jsonArrayName)
     // This gets the TvShow elements.
     return json[jsonArrayName].toArray();
 }
-
-

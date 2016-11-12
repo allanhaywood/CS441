@@ -1,22 +1,49 @@
+/* The season class.
+ *
+ * @author Erick Heyl, Allan Haywood
+ */
+
 #include "season.h"
 
 /**
- * @brief Season:: a TvShow will have a list of Seasons, and each season will have a list of episodes
- * @param number of season
- * @param a list of episodes for that season
+ * @brief Season::Season Constructs an empty season.
  */
-Season::Season(QString seasonNumber, QList<int> episodes)
+Season::Season()
 {
-    this->seasonNumber = seasonNumber;
+    this->seasonId = 0;
+    this->name = "";
+    this->episodes = QVector<Episode>();
+}
+
+/**
+ * @brief Season::Season Constructs a season with the provided seasonId, name, and episodes.
+ * @param seasonId The season ID as specified by the movie database.
+ * @param name The name of the season as specified by the movie database.
+ * @param episodes A vector of episodes to add to the season.
+ */
+Season::Season(int seasonId, QString name, QVector<Episode> episodes)
+{
+    this->seasonId = seasonId;
+    this->name = name;
     this->episodes = episodes;
 }
-/**
- * @brief Season:: a TvShow will have a list of Seasons, and each season will have a list of episodes
- * @param number of season
- * @return int number of episodes in episdoes list
- */
-int Season::numberOfEpisodes()
-{
-    return episodes.size();
 
+/**
+ * @brief Season::inspectEpisodes Returns a reference to the vector of episodes.
+ * @return A reference to the vector of episode.
+ *
+ * NOTE: Any changes to episodes will not be reflected in the TvShow class.
+ */
+const QVector<Episode>& Season::inspectEpisodes()
+{
+    return episodes;
+}
+
+/**
+ * @brief Season::addEpisode Add an episode to this season.
+ * @param episode The episode to add.
+ */
+void Season::addEpisode(Episode episode)
+{
+    episodes.append(episode);
 }

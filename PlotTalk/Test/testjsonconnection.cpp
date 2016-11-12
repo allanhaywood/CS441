@@ -10,17 +10,35 @@
 void TestJsonConnection::TestGetTvShow()
 {
     // Set up strings to compare against.
-    QString name = "Game Of Thrones";
-    QString expectedTmdbLink = "https://www.themoviedb.org/tv/1399-game-of-thrones";
-    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jihl6mlt7ablhbhjgeoibiouvl1.jpg";
+    QString name = "Game of Thrones";
 
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
 
     TvShow tvShow = jsonConnection.getTvShow(name);
 
-    QCOMPARE(tvShow.name.toLower(), name.toLower());
-    QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
-    QCOMPARE(tvShow.graphicLink.toLower(), expectedGraphicLink.toLower());
+    QString expectedTmdbLink = "https://www.themoviedb.org/tv/1399-game-of-thrones";
+    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg";
+
+    QCOMPARE(tvShow.showId, 1399);
+    QCOMPARE(tvShow.name, name);
+    QCOMPARE(tvShow.tmdbLink, expectedTmdbLink);
+    QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
+
+    QVector<Season> seasons = tvShow.inspectSeasons();
+
+    QString empty = "";
+
+    QVERIFY(seasons.count() == 1);
+    QCOMPARE(seasons[0].seasonId, 3627);
+    QCOMPARE(seasons[0].name, empty);
+
+    QVector<Episode> episodes = seasons[0].inspectEpisodes();
+
+    QString expectedEpisodeName = "Inside Game Of Thrones";
+
+    QVERIFY(episodes.count() == 1);
+    QCOMPARE(episodes[0].episodeId, 63087);
+    QCOMPARE(episodes[0].name, expectedEpisodeName);
 }
 
 void TestJsonConnection::TestGetUser()
