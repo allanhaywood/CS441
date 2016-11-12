@@ -16,12 +16,18 @@ Dashboard::Dashboard(QWidget *parent) :
     //TODO: only show admin button if user account has admin rights
     ui->adminButton->setVisible(true);
 
-    //ui->splitter_popularPage->setSizes({500, 1}); // preset the splitter to make search side bigger initially
-    //ui->splitter_SearchResultsPage->setSizes({500, 1});
-   // ui->splitter_watchedMediaPage->setSizes({500, 1});
     AccountManager *userInfo= AccountManager::getInstance();
     User theUser=userInfo->getCurrentAccount();
-    ui->welcomeText->text()="Welcome to PlotTalk " + theUser.username + "!";
+    QString message="Welcome to PlotTalk " + theUser.username + "!";
+    ui->welcomeText->setText(message);
+
+    //ui->splitter_popularPage->setSizes({500, 1}); // preset the splitter to make search side bigger initially
+    //ui->splitter_SearchResultsPage->setSizes({500, 1});
+    //ui->splitter_watchedMediaPage->setSizes({500, 1});
+
+
+
+
 }
 
 Dashboard::~Dashboard()
