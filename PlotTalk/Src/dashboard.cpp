@@ -3,7 +3,7 @@
 #include "adminpage.h"
 #include "accountdetails.h"
 #include "about.h"
-
+#include "accountmanager.h"
 
 Dashboard::Dashboard(QWidget *parent) :
     QMainWindow(parent),
@@ -16,6 +16,9 @@ Dashboard::Dashboard(QWidget *parent) :
     ui->splitter_popularPage->setSizes({500, 1}); // preset the splitter to make search side bigger initially
     ui->splitter_SearchResultsPage->setSizes({500, 1});
     ui->splitter_watchedMediaPage->setSizes({500, 1});
+    AccountManager *userInfo= AccountManager::getInstance();
+    User theUser=userInfo->getCurrentAccount();
+    ui->welcomeText->text()="Welcome to PlotTalk " + theUser.username + "!";
 }
 
 Dashboard::~Dashboard()
@@ -26,8 +29,6 @@ Dashboard::~Dashboard()
 void Dashboard::on_myAccountButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
-    AccountDetails *accntDetails = new AccountDetails();
-	accntDetails->show();
 }
 
 void Dashboard::on_homeButton_clicked()

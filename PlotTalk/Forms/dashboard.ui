@@ -250,7 +250,7 @@ background-color: rgb(217, 217, 217)
       <item row="2" column="2" rowspan="8" colspan="7">
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="currentIndex">
-         <number>5</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="page">
          <widget class="QWidget" name="layoutWidget">

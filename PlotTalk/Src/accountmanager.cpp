@@ -112,6 +112,7 @@ bool AccountManager::checkEmailAndPassword(QString& email, QString& password, Us
             if(hold.passwordHash==password)
             {
                 user=hold;
+                thisGuy=user;
                 return true;
             }
             else
