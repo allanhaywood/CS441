@@ -2,6 +2,8 @@
 #define ACCOUNTMANAGER_C
 
 #include "accountmanager.h"
+
+
 #include <QRegExp>
 #include <QRegularExpressionValidator>
 
@@ -29,21 +31,21 @@ AccountManager::~AccountManager()//destructor
     instance=NULL;//removes dangling pointers
 }
 
+/**
+ * @brief
+ * @param
+ * @return
+ */
 
 bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
 {//places an account into the database, returns true if complete, false if email or handle are not unique
 
+   User thisPerson(handle, first, last,Email,password);//add Password Hash when possible
 
-   Person thisPerson;
-   thisPerson.firstName=first;
-   thisPerson.lastName=last;
-   thisPerson.email=Email;
-   thisPerson.handle=handle;
-   thisPerson.password=password;
-
-    if(!findPersonByEmail(Email) && !findPersonByHandle(handle))//very inefficient, may need to be fixed
+   DatabaseManager database;
+    if(!database.usernameExists(handle) && !database.emailExists(Email))//very inefficient, may need to be fixed
         {//checks to make sure email and handle are both unique
-            peopleList.append(thisPerson);
+            database.addUser(thisPerson);
             thisGuy=thisPerson;
             return true;//returns true that the account was created
         }
@@ -51,50 +53,24 @@ bool AccountManager::createAccount(QString &first, QString &last, QString &Email
     return false;//returns false, something went wrong
 }
 
-bool AccountManager::findPersonByHandle(QString &handleToCheck)
-{//finds an account by handle, passes back true and a person if found false if not.
+/**
+ * @brief
+ * @param
+ * @return
+ */
 
-    if(peopleList.size()==0)
-    {
-        return false;//person is not in list
-    }
-
-    for (int i =0; i<peopleList.size();i++)
-    {
-        if(peopleList[i].handle==handleToCheck)
-        {
-            return true;//person is in list
-        }
-    }
-
-    return false;//list is not empty but person is not in list
-}
-
-Person AccountManager::getCurrentAccount()
+User AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
 return thisGuy;//useful for getting info into various pages without searching the database
 }
 
-bool AccountManager::findPersonByEmail(QString &emailtoCheck)
-{//finds a person by email, saves data to a person class and returns true if found, returns false if not found
+/**
+ * @brief
+ * @param
+ * @return
+ */
 
-    if(peopleList.size()==0)
-    {
-        return false;//person is not in list
-    }
-
-    for (int i =0; i<peopleList.size();i++)
-    {
-        if(peopleList[i].email==emailtoCheck)
-        {
-            return true;//person is in list
-        }
-    }
-
-    return false;//list is not empty but person is not in list
-}
-
-int AccountManager::checkFields(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
+selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
 {
     QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
     QRegularExpression checkPassword("(?=^.{8,30}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
@@ -104,50 +80,56 @@ int AccountManager::checkFields(QString &fName, QString &lName, QString &handle,
 
 /*
 
-Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case letter At least 1 Capital letter At least 1 digit At least 1 special character Length should be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
+Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case
+letter At least 1 Capital letter At least 1 digit At least 1 special character Length should
+be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
 
 */
     int num=0;
-    if(validEmail->validate(email,num)==2)//valid email
-    {
-        if(validPwd->validate(password,num)==2)//valid password
+    DatabaseManager database;
+
+    if((fName.size()<=1)||(lName.size()<=1)||(handle.size()<=1))
+        return selectEnum::VALUES_MISSING;//need good names and handle
+    if(validEmail->validate(email,num)!=2)
+        return selectEnum::BAD_EMAIL;//email is bad format
+    if(database.emailExists(email))
+        return selectEnum::DUPLICATE_EMAIL;//email already exists
+    if(database.usernameExists(handle))
+        return selectEnum::USERNAME_TAKEN;//username is taken
+    if(validPwd->validate(password,num)!=2)
+        return selectEnum::BAD_PASSWORD;//password not correct format
+
+    createAccount(fName,lName,email,handle,password);
+    return selectEnum::ALLCLEAR;
+}
+
+
+/**
+ * @brief
+ * @param
+ * @return
+ */
+bool AccountManager::checkEmailAndPassword(QString& email, QString& password, User &user)
+{
+    DatabaseManager database;
+        if(database.emailExists(email))
         {
-            if(!findPersonByEmail(email))//email is unique
+            User hold=database.getUserByEmail(email);
+
+            if(hold.passwordHash==password)
             {
-                if(!findPersonByHandle(handle))//handle is unique
-                {
-                    if((fName.size()>0)&&(lName.size()>0))//person has a name
-                    {
-                        createAccount(fName,lName,email,handle,password);
-                        return 1;//all is go and account is created
-                    }
-                    else
-                    {
-                        return 6;//name is not acceptable
-                    }
-                }
-                else
-                {
-                    return 3;//handle is already used
-                }
+                user=hold;
+                return true;
             }
             else
             {
-                return 4;//email is already used
+                return false;
             }
         }
         else
         {
-            return 5;//password format is bad
+            return false;
         }
-    }
-    else
-    {
-        return 2;//email format is bad
-    }
-
-   return 7;
-
 }
 
 

@@ -24,6 +24,7 @@ int main(int argc, char** argv)
     testAccountManager testActMgr;
     testSeason testSeason;
 
+
     // Add references to each test class variable here, seperating with ||
     int result = QTest::qExec(&testTvShow, argc, argv) ||
                  QTest::qExec(&testReply, argc, argv) ||
