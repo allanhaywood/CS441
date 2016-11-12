@@ -9,11 +9,13 @@
  */
 TvShow::TvShow()
 {
+    showId=0;
     name = "";
-    tmdbLink = "";
     graphicLink = "";
-    //this->connection = connection;
+    tmdbLink="";
+
 }
+
 
 /**
  * @brief TvShow::TvShow Represents a tvshow in our application.
@@ -21,8 +23,10 @@ TvShow::TvShow()
  * @param tmdbLink The tmdbLink for this show.
  * @param graphicLink A link to a graphic to be used in our application.
  */
+
 TvShow::TvShow(QString name, QString tmdbLink, QString graphicLink)
 {
+    showId=0;
     this->name = name;
     this->tmdbLink = tmdbLink;
     this->graphicLink = graphicLink;

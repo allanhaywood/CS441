@@ -32,6 +32,7 @@ JsonConnection::JsonConnection()
     if(! dir.exists())
     {
         QFile::copy(":/json/Json/test.json", jsonPath);
+        QFile::setPermissions(jsonPath, QFile::WriteOther);
     }
 
     this->pathToJson = jsonPath;

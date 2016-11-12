@@ -17,7 +17,6 @@ HEADERS += \
     Src/addnewmedia.h \
     Src/adminpage.h \
     Src/accountdetails.h \
-    Src/person.h \
     Src/about.h \
     Src/jsonconnection.h \
     Src/databasemanager.h \
@@ -28,7 +27,9 @@ HEADERS += \
     Src/reaction.h \
     Src/reply.h \
     Src/review.h \
-    Src/comment.h
+    Src/comment.h \
+    Src/season.h \
+    Src/episode.h
 
 SOURCES += \
     Src/main.cpp \
@@ -41,7 +42,6 @@ SOURCES += \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
     Src/accountdetails.cpp \
-    Src/person.cpp \
     Src/about.cpp \
     Src/jsonconnection.cpp \
     Src/databasemanager.cpp \
@@ -49,7 +49,9 @@ SOURCES += \
     Src/reaction.cpp \
     Src/reply.cpp \
     Src/review.cpp \
-    Src/comment.cpp
+    Src/comment.cpp \
+    Src/season.cpp \
+    Src/episode.cpp
 
 FORMS += \
     Forms/mainwindow.ui \
@@ -80,7 +82,8 @@ test {
         Test/testdatabasemanager.h \
         Test/testaccountmanager.h \
         Test/testreply.h \
-        Test/testuser.h
+        Test/testuser.h \
+	Test/testseason.h
 
     SOURCES += \
         Test/testmain.cpp \
@@ -89,7 +92,8 @@ test {
         Test/testdatabasemanager.cpp \
         Test/testaccountmanager.cpp \
         Test/testreply.cpp \
-        Test/testuser.cpp
+        Test/testuser.cpp \
+        Test/testseason.cpp
 
 } else {
     message(Normal build)

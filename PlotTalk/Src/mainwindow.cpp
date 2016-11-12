@@ -4,6 +4,7 @@
 #include "dashboard.h"
 #include "forgotpassword.h"
 #include "accountmanager.h"
+#include "user.h"
 #include <string>
 #include <vector>
 #include <QFont>
@@ -49,25 +50,40 @@ void MainWindow::on_CreateAcctButton_clicked()
 
 void MainWindow::on_SignInButton_clicked()
 {
-    //TODO: add authentication logic
-    Dashboard *dash = new Dashboard();
-    dash->setWindowState(Qt::WindowMaximized);
-    AccountManager *accountManager = AccountManager::getInstance();
+    QString password=ui->PasswordEnter->text();
+    QString email=ui->EmailEnter->text();
 
-    bool isAdmin = accountManager->getCurrentAccount().isAdmin;
+    User toPass;
+    AccountManager *account= AccountManager::getInstance();
 
-    if (! isAdmin)
+    if(account->checkEmailAndPassword(email,password,toPass))
     {
-        qDebug() << "Hiding admin button.";
-        dash->hideAdminButton();
+        Dashboard *dash = new Dashboard();//needs to accept user object
+        dash->setWindowState(Qt::WindowMaximized);
+
+        bool isAdmin = account->getCurrentAccount().isAdmin();
+
+        // If the account is not an admin, hide the admin button.
+        if (! isAdmin)
+        {
+            qDebug() << "Hiding admin button.";
+            dash->hideAdminButton();
+        }
+        else
+        {
+            qDebug() << "Not hiding admin button.";
+        }
+
+        dash->show();
+        this->close();
     }
     else
     {
-        qDebug() << "Not hiding admin button.";
+        QMessageBox incorrect;
+        incorrect.setText("Incorrect email or password");
+        incorrect.exec();
+        ui->PasswordEnter->clear();
     }
-
-    dash->show();
-    this->close();
 }
 
 void MainWindow::on_ForgotPassButton_clicked()
