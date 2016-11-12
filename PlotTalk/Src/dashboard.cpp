@@ -3,7 +3,8 @@
 #include "adminpage.h"
 #include "about.h"
 #include "plottalkexceptions.h"
-#include<QList>
+#include "accountmanager.h"
+#include <QLIST>
 
 
 Dashboard::Dashboard(QWidget *parent) :
@@ -14,6 +15,13 @@ Dashboard::Dashboard(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(WELCOME); //set stacked widget to home screen at start
     //TODO: only show admin button if user account has admin rights
     ui->adminButton->setVisible(true);
+
+    //ui->splitter_popularPage->setSizes({500, 1}); // preset the splitter to make search side bigger initially
+    //ui->splitter_SearchResultsPage->setSizes({500, 1});
+   // ui->splitter_watchedMediaPage->setSizes({500, 1});
+    AccountManager *userInfo= AccountManager::getInstance();
+    User theUser=userInfo->getCurrentAccount();
+    ui->welcomeText->text()="Welcome to PlotTalk " + theUser.username + "!";
 }
 
 Dashboard::~Dashboard()
@@ -24,6 +32,7 @@ Dashboard::~Dashboard()
 void Dashboard::on_myAccountButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(ACCOUNT);
+
 }
 
 void Dashboard::on_homeButton_clicked()

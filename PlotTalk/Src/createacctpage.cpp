@@ -29,8 +29,6 @@ CreateAcctPage::~CreateAcctPage()
 
 void CreateAcctPage::on_CreateAcctButton_clicked()
 {
-
-
        QString firstName;
        QString lastName;
        QString handle;
@@ -43,12 +41,14 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        email=ui->emailBox->text();
        password=ui->PasswordBox1->text();
 
+
+         // enum select {ALLCLEAR, BAD_EMAIL, DUPLICATE_EMAIL, BAD_USERNAME, USERNAME_TAKEN, VALUES_MISSING};
        AccountManager *check= AccountManager::getInstance();
        if(ui->PasswordBox1->text()==ui->PasswordBox2->text())//must also check to see if password matches requirements
        {
-           switch(check->checkFields(firstName, lastName, handle, email, password))
+           switch(check->checkFieldsAndCreate(firstName, lastName, handle, email, password))
            {
-           case 1:
+           case selectEnum::ALLCLEAR:
            {
                this->close();
                QMessageBox congrats;
@@ -59,7 +59,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
            }
                break;
 
-           case 2:
+           case selectEnum::BAD_EMAIL:
            {
                QMessageBox badEmail;
                badEmail.setText(("The email format is not correct"));
@@ -67,7 +67,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
            }
                break;
 
-           case 3:
+           case selectEnum::USERNAME_TAKEN:
            {
                QMessageBox badHandle;
                badHandle.setText("That handle is already chosen, please try another");
@@ -76,7 +76,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
            }
                break;
 
-           case 4:
+           case selectEnum::DUPLICATE_EMAIL:
            {
                QMessageBox duplicateEmail;
                duplicateEmail.setText("That email address already exists in our system.\n Did you loose your password?");
@@ -85,7 +85,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
            }
                break;
 
-           case 5:
+           case selectEnum::BAD_PASSWORD:
            {
                QMessageBox InvalidPwd;
                InvalidPwd.setText("The password must have the following characteristics:\nIt must be more than 8 characters\nIt must contain both capital and lowercase letters\nIt must include at least one special symbol");
@@ -96,7 +96,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
            }
                break;
 
-           case 6:
+           case selectEnum::VALUES_MISSING:
            {
                QMessageBox BadName;
                BadName.setText("You must provide a first and last name.");
@@ -121,9 +121,9 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
 
 }
 
-void CreateAcctPage::on_PasswordBox2_textChanged(const QString &arg1)
+void CreateAcctPage::on_PasswordBox2_textChanged()
 {
-    QString why=arg1;
+    ui->incorrectPasswordLabel->hide();
     QString password=ui->PasswordBox1->text();
     if(password.size()>=SIZE)
     {
@@ -136,4 +136,11 @@ void CreateAcctPage::on_PasswordBox2_textChanged(const QString &arg1)
              ui->pwdMatch->hide();
         }
     }
+}
+
+void CreateAcctPage::on_GoBack_clicked()
+{
+    this->close();
+    MainWindow *openAgain=new MainWindow();
+    openAgain->show();
 }
