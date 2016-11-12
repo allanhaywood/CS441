@@ -1,9 +1,17 @@
 #ifndef DASHBOARD_H
 #define DASHBOARD_H
 
-#include <QMainWindow>
+#include<QMainWindow>
 #include<adminpage.h>
-#include <about.h>
+#include<about.h>
+#include<QTreeWidget>
+#include<QListWidgetItem>
+#include<QTreeWidgetItem>
+#include<tvshow.h>
+#include<episode.h>
+#include<season.h>
+#include<singleton.h>
+#include<databasemanager.h>
 
 namespace Ui {
 class Dashboard;
@@ -32,10 +40,24 @@ private slots:
 
     void on_AboutButton_clicked();
 
+    void on_leftList_itemClicked(QListWidgetItem *item);
+
+    void on_rightTree_itemClicked(QTreeWidgetItem *item, int column);
+
+    void on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int column);
+
 private:
+    void populateSeasonList(QTreeWidget *treeWidget);
+    void populateMediaItemPage();
+
     Ui::Dashboard *ui;
     AdminPage* adminWindow = NULL;
     About* AboutPage = NULL;
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+    enum Pages {WELCOME, NAVIGATION, ITEM, ACCOUNT}; //pages of the dashboard, ordered by their page number
+    TvShow selectedShow;
+    Season selectedSeason;
+    Episode selectedEpisode;
 };
 
 #endif // DASHBOARD_H

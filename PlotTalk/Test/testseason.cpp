@@ -3,12 +3,9 @@
 
 void testSeason::testSeasonConstructor()
 {
-    QString seasonNumber = "9";
-    QList<int> episodes;
+    int seasonNumber = 9;
 
-    Season season = Season(seasonNumber,episodes);
+    Season season = Season(seasonNumber);
     QCOMPARE(seasonNumber, season.seasonNumber);
-    QCOMPARE(episodes, season.episodes);
-
 
 }

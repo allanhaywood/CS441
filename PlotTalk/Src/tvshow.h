@@ -6,6 +6,7 @@
 #define TVSHOW_H
 #include <QString>
 #include <QVector>
+#include<season.h>
 
 class TvShow
 {
@@ -18,6 +19,7 @@ public:
     int showId; //Variable for TvShow Primary Key
     int seasonId; //Foreign Key For Seasons Class
     // TODO: Add Seasons once Season class is available.
+    QVector<Season> seasons;
     TvShow();
     TvShow(QString name, QString tmdbLink, QString graphicLink);
 
