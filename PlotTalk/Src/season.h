@@ -2,17 +2,17 @@
 #define SEASON_H
 #include <QString>
 #include <Qlist>
+#include<episode.h>
 
 
 class Season
 {
 public:
-    QString seasonNumber;
-    QList<int> episodes;
+    int seasonNumber = 0;
+    QList<Episode> episodes;
 
-    int numberOfEpisodes();
-
-    Season(QString seasonNumber,QList<int> episodes);
+    Season(int seasonNumber);
+    Season();
 };
 
 #endif // SEASON_H

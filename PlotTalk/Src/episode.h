@@ -1,8 +1,6 @@
 #ifndef EPISODE_H
 #define EPISODE_H
 
-#endif // EPISODE_H
-
 #include<QString>
 #include<QVector>
 #include<review.h>
@@ -31,3 +29,5 @@ public:
     void getEpisode(int EpKey); //Method of retreving all Episode Data from The Database based on the Key it is Given
     void getSeason(int seasonKey); //Get the Season based on which key is passed into this method
 };
+
+#endif //EPISODE_H

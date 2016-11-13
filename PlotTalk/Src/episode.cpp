@@ -14,3 +14,10 @@ Episode::Episode(int inMediaID, QString epsummary, QString Title){
     this->episodeTitle=Title;
 }
 
+/*
+ *  @brief destructor
+ */
+Episode::~Episode() {
+
+}
+

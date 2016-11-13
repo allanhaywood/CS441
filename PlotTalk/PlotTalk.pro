@@ -16,7 +16,6 @@ HEADERS += \
     Src/accountmanager.h \
     Src/addnewmedia.h \
     Src/adminpage.h \
-    Src/accountdetails.h \
     Src/about.h \
     Src/jsonconnection.h \
     Src/databasemanager.h \
@@ -41,7 +40,6 @@ SOURCES += \
     Src/accountmanager.cpp \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
-    Src/accountdetails.cpp \
     Src/about.cpp \
     Src/jsonconnection.cpp \
     Src/databasemanager.cpp \
