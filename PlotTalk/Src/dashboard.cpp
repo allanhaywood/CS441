@@ -39,7 +39,9 @@ void Dashboard::on_myAccountButton_clicked()
 {
 
     ui->usernameLabel->setText(theUser.username);
-    ui->lineEdit->setText(theUser.email);
+    ui->firstNameBox->setText(theUser.firstName);
+    ui->lastNameBox->setText(theUser.lastName);
+    ui->emailBox->setText(theUser.email);
     ui->stackedWidget->setCurrentIndex(ACCOUNT);
 
 
@@ -225,7 +227,7 @@ void Dashboard::on_saveButton_clicked()
     //if new password field isn't empty, show message if it doesn't match confirm password textbox
     //only update user password if new password field isn't empty and it matches confirm textbox
     QString newEmail;
-    newEmail=ui->emailBox>text();
+    newEmail=ui->emailBox->text();
     AccountManager *userInfo= AccountManager::getInstance();//gets the user information
 
     if(theUser.email!=newEmail && !(userInfo->EmailExists(newEmail)))
