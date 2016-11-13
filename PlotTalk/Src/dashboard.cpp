@@ -163,6 +163,12 @@ void Dashboard::populateMediaItemPage() {
     seasonText.append(QString::number(selectedSeason.seasonNumber));
     ui->seasonName->setText(seasonText);
     ui->episodeName->setText(selectedEpisode.episodeTitle);
+    //@TODO: if episode is in user's watched list:
+    //hide watched warning and checkbox
+    //show additional episode items (summary, comments, reviews)
+    //else:
+    ui->watchedWarning->setVisible(true);
+    ui->watchedConfirmButton->setVisible(true);
 }
 
 /**
@@ -184,4 +190,15 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
         //go to media item page
         populateMediaItemPage();
   }
+}
+
+/**
+ * @brief Dashboard::on_watchedButton_2_clicked triggered when user clicks "I've seen it!" button on media page
+ * @post unhides additional media details and adds this episode to the user's watched list
+ */
+void Dashboard::on_watchedConfirmButton_clicked()
+{
+    ui->watchedConfirmButton->setVisible(false);
+    ui->watchedWarning->setVisible(false);
+    //@TODO add episode to watched list once it has been added to user class
 }
