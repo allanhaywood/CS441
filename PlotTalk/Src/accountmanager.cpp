@@ -126,6 +126,13 @@ bool AccountManager::checkEmailAndPassword(QString& email, QString& password, Us
         }
 }
 
+bool AccountManager::EmailExists(QString email)//checks to see if an email exists for dashboard
+{
+    DatabaseManager database;
+
+    return database.emailExists(email);
+}
+
 
 
 #endif//accountManager

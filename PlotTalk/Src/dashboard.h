@@ -12,6 +12,7 @@
 #include<season.h>
 #include<singleton.h>
 #include<databasemanager.h>
+#include<user.h>
 
 namespace Ui {
 class Dashboard;
@@ -46,7 +47,10 @@ private slots:
 
     void on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int column);
 
+    void on_saveButton_clicked();
+
 private:
+    User theUser;
     void populateSeasonList(QTreeWidget *treeWidget);
     void populateMediaItemPage();
 

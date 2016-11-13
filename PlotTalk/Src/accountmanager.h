@@ -36,6 +36,7 @@ public:
     User getCurrentAccount();//done
     selectEnum checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password);
     bool checkEmailAndPassword(QString& email, QString& password, User &user);
+    bool EmailExists(QString email);
 };
 
 #endif // ACCOUNTMANAGER_H

@@ -5,7 +5,7 @@
 #include "plottalkexceptions.h"
 #include "accountmanager.h"
 #include <QLIST>
-
+#include <QMessageBox>
 
 Dashboard::Dashboard(QWidget *parent) :
     QMainWindow(parent),
@@ -16,10 +16,10 @@ Dashboard::Dashboard(QWidget *parent) :
     //TODO: only show admin button if user account has admin rights
     ui->adminButton->setVisible(true);
 
-    AccountManager *userInfo= AccountManager::getInstance();
-    User theUser=userInfo->getCurrentAccount();
-    QString message="Welcome to PlotTalk " + theUser.username + "!";
-    ui->welcomeText->setText(message);
+    AccountManager *userInfo= AccountManager::getInstance();//gets the user information
+    theUser=userInfo->getCurrentAccount();
+    ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
+
 
     //ui->splitter_popularPage->setSizes({500, 1}); // preset the splitter to make search side bigger initially
     //ui->splitter_SearchResultsPage->setSizes({500, 1});
@@ -37,7 +37,11 @@ Dashboard::~Dashboard()
 
 void Dashboard::on_myAccountButton_clicked()
 {
+
+    ui->usernameLabel->setText(theUser.username);
+    ui->lineEdit->setText(theUser.email);
     ui->stackedWidget->setCurrentIndex(ACCOUNT);
+
 
 }
 
@@ -199,4 +203,29 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
         //go to media item page
         populateMediaItemPage();
   }
+}
+
+void Dashboard::on_saveButton_clicked()
+{
+    QString newEmail;
+    newEmail=ui->lineEdit->text();
+    AccountManager *userInfo= AccountManager::getInstance();//gets the user information
+
+    if(theUser.email!=newEmail && !(userInfo->EmailExists(newEmail)))
+    {
+        theUser.email=newEmail;
+        DatabaseManager database;
+        database.removeUser(theUser.username);
+
+        userInfo->createAccount(theUser.firstName, theUser.lastName, theUser.email, theUser.username, theUser.passwordHash);
+
+        QMessageBox updated;
+        updated.setText("Your account has been updated");
+        updated.exec();
+    }
+
+
+
+    ui->stackedWidget->setCurrentIndex(WELCOME);
+
 }
