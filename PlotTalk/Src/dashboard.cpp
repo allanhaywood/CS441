@@ -162,11 +162,15 @@ void Dashboard::populateMediaItemPage() {
     QString seasonText = "Season ";
     seasonText.append(QString::number(selectedSeason.seasonNumber));
     ui->seasonName->setText(seasonText);
+    //@TODO: summary text is lorem ipsum for now - actual summary will need to be pulled in from DB for this episode
+    ui->episodeSummary->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar sem quam, sed dictum odio finibus in. Maecenas consectetur sapien id fermentum euismod. Nunc vitae egestas turpis. Curabitur nunc erat, varius eget aliquet id, viverra eget metus. Integer ipsum purus, viverra ut egestas sit amet, dapibus eget leo. Aliquam vel euismod metus, eget efficitur mi. Fusce dignissim blandit neque, sed porttitor augue lacinia sed. Sed laoreet nunc non porttitor imperdiet.");
     ui->episodeName->setText(selectedEpisode.episodeTitle);
-    //@TODO: if episode is in user's watched list:
+    //@TODO: only show spoiler alert if user hasn't watched episode
+    //if episode is in user's watched list:
     //hide watched warning and checkbox
-    //show additional episode items (summary, comments, reviews)
+    //don't hide additional episode items (summary, comments, reviews)
     //else:
+    ui->episodeSummary->setVisible(false);
     ui->watchedWarning->setVisible(true);
     ui->watchedConfirmButton->setVisible(true);
 }
@@ -198,7 +202,19 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
  */
 void Dashboard::on_watchedConfirmButton_clicked()
 {
+    ui->episodeSummary->setVisible(true);
     ui->watchedConfirmButton->setVisible(false);
     ui->watchedWarning->setVisible(false);
     //@TODO add episode to watched list once it has been added to user class
+}
+
+/**
+ * @brief Dashboard::on_saveButton_clicked saves the users account info when Save button is clicked
+ */
+void Dashboard::on_saveButton_clicked()
+{
+    //similar validation steps as create account page
+    //only populate username, email, and name fields. Do not populate password fields from DB.
+    //if new password field isn't empty, show message if it doesn't match confirm password textbox
+    //only update user password if new password field isn't empty and it matches confirm textbox
 }

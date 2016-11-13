@@ -48,6 +48,8 @@ private slots:
 
     void on_watchedConfirmButton_clicked();
 
+    void on_saveButton_clicked();
+
 private:
     void populateSeasonList(QTreeWidget *treeWidget);
     void populateMediaItemPage();
