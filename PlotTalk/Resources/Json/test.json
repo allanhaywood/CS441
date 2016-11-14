@@ -61,14 +61,24 @@
             "firstName":"Bob",
             "lastName":"Smith",
             "email":"bsmith@gmail.com",
-            "passwordHash":"badpasswordhash"
+            "passwordHash":"badpasswordhash",
+            "_isAdmin":false
         },
         {
             "username":"jsmith",
             "firstName":"John",
             "lastName":"Smith",
             "email":"jsmith@gmail.com",
-            "passwordHash":"badpasswordhash2"
+            "passwordHash":"badpasswordhash2",
+            "_isAdmin":false
+        },
+        {
+            "username":"admin",
+            "firstName":"admin",
+            "lastName":"admin",
+            "email":"admin@gmail.com",
+            "passwordHash":"plottalkadmin",
+            "_isAdmin":true
         }
     ]
 }

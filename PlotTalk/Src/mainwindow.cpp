@@ -3,6 +3,8 @@
 #include "createacctpage.h"
 #include "dashboard.h"
 #include "forgotpassword.h"
+#include "accountmanager.h"
+#include "user.h"
 #include <string>
 #include <vector>
 #include <QFont>
@@ -48,11 +50,40 @@ void MainWindow::on_CreateAcctButton_clicked()
 
 void MainWindow::on_SignInButton_clicked()
 {
-    //TODO: add authentication logic
-    Dashboard *dash = new Dashboard();
-    dash->setWindowState(Qt::WindowMaximized);
-    dash->show();
-    this->close();
+    QString password=ui->PasswordEnter->text();
+    QString email=ui->EmailEnter->text();
+
+    User toPass;
+    AccountManager *account= AccountManager::getInstance();
+
+    if(account->checkEmailAndPassword(email,password,toPass))
+    {
+        Dashboard *dash = new Dashboard();//needs to accept user object
+        dash->setWindowState(Qt::WindowMaximized);
+
+        bool isAdmin = account->getCurrentAccount().isAdmin();
+
+        // If the account is not an admin, hide the admin button.
+        if (! isAdmin)
+        {
+            qDebug() << "Hiding admin button.";
+            dash->hideAdminButton();
+        }
+        else
+        {
+            qDebug() << "Not hiding admin button.";
+        }
+
+        dash->show();
+        this->close();
+    }
+    else
+    {
+        QMessageBox incorrect;
+        incorrect.setText("Incorrect email or password");
+        incorrect.exec();
+        ui->PasswordEnter->clear();
+    }
 }
 
 void MainWindow::on_ForgotPassButton_clicked()

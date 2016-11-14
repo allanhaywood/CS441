@@ -186,12 +186,11 @@ color: rgb(20, 110, 255);
       <string>Email</string>
      </property>
     </widget>
-    <zorder>SignInButton</zorder>
     <zorder>CreateAcctButton</zorder>
     <zorder>ForgotPassButton</zorder>
     <zorder>PasswordEnter</zorder>
     <zorder>EmailEnter</zorder>
-    <zorder></zorder>
+    <zorder>SignInButton</zorder>
    </widget>
    <widget class="QLabel" name="LoginTitle">
     <property name="geometry">
@@ -247,6 +246,13 @@ color: rgb(20, 110, 255);
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>EmailEnter</tabstop>
+  <tabstop>PasswordEnter</tabstop>
+  <tabstop>ForgotPassButton</tabstop>
+  <tabstop>SignInButton</tabstop>
+  <tabstop>CreateAcctButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
