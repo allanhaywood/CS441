@@ -16,9 +16,10 @@ public:
     int episodeId;
     int episodeNumber;
     QString name;
+    QString summary;
 
     Episode();
-    Episode(int episodeId, int episodeNumber, QString name);
+    Episode(int episodeId, int episodeNumber, QString name, QString summary);
 
     // Adding reactions later.
     //Episode(int episodeId, QString name, QVector<Review> reviews, QVector<Comment> comments);

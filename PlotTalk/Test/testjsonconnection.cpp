@@ -7,7 +7,7 @@
 #include "plottalkexceptions.h"
 #include "testjsonconnection.h"
 
-void TestJsonConnection::TestGetTvShow()
+void TestJsonConnection::TestGetTvShow1()
 {
     // Set up strings to compare against.
     QString name = "Game of Thrones";
@@ -36,11 +36,51 @@ void TestJsonConnection::TestGetTvShow()
     QVector<Episode> episodes = seasons[0].inspectEpisodes();
 
     QString expectedEpisodeName = "Inside Game Of Thrones";
+    QString expectedEpisodeSummary = "A short look into the film-making process for the production Game of Thrones";
 
     QVERIFY(episodes.count() == 1);
     QCOMPARE(episodes[0].episodeId, 63087);
-    QCOMPARE(episodes[0].episodeNumber, 0);
+    QCOMPARE(episodes[0].episodeNumber, 1);
     QCOMPARE(episodes[0].name, expectedEpisodeName);
+    QCOMPARE(episodes[0].summary, expectedEpisodeSummary);
+}
+
+void TestJsonConnection::TestGetTvShow2()
+{
+    // Set up strings to compare against.
+    QString name = "Mr. Robot";
+
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    TvShow tvShow = jsonConnection.getTvShow(name);
+
+    QString expectedTmdbLink = "https://www.themoviedb.org/tv/62560-mr-robot";
+    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg";
+
+    QCOMPARE(tvShow.showId, 62560);
+    QCOMPARE(tvShow.name, name);
+    QCOMPARE(tvShow.tmdbLink, expectedTmdbLink);
+    QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
+
+    QVector<Season> seasons = tvShow.inspectSeasons();
+
+    QString expectedSeasonName = "season_0.0";
+
+    QVERIFY(seasons.count() == 1);
+    QCOMPARE(seasons[0].seasonId, 66343);
+    QCOMPARE(seasons[0].seasonNumber, 0);
+    QCOMPARE(seasons[0].name, expectedSeasonName);
+
+    QVector<Episode> episodes = seasons[0].inspectEpisodes();
+
+    QString expectedEpisodeName = "Hacking Robot 101";
+    QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";
+
+    QVERIFY(episodes.count() == 2);
+    QCOMPARE(episodes[1].episodeId, 1203464);
+    QCOMPARE(episodes[1].episodeNumber, 2);
+    QCOMPARE(episodes[1].name, expectedEpisodeName);
+    QCOMPARE(episodes[1].summary, expectedEpisodeSummary);
 }
 
 void TestJsonConnection::TestGetUser()

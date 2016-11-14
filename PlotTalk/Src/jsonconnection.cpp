@@ -187,11 +187,13 @@ Episode JsonConnection::getEpisode(QJsonObject jsonEpisode)
     qDebug() << "jsonEpisodeId:" << jsonEpisode["episodeId"].toInt();
     qDebug() << "jsonEpisodeNumber:" << jsonEpisode["episodeNumber"].toInt();
     qDebug() << "jsonEpisodeName:" << jsonEpisode["name"].toString();
+    qDebug() << "jsonEpisodeSummary:" << jsonEpisode["summary"].toString();
 
     return Episode(
                 jsonEpisode["episodeId"].toInt(),
                 jsonEpisode["episodeNumber"].toInt(),
-                jsonEpisode["name"].toString()
+                jsonEpisode["name"].toString(),
+                jsonEpisode["summary"].toString()
             );
 }
 
