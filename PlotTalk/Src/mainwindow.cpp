@@ -55,10 +55,25 @@ void MainWindow::on_SignInButton_clicked()
 
     User toPass;
     AccountManager *account= AccountManager::getInstance();
+
     if(account->checkEmailAndPassword(email,password,toPass))
     {
         Dashboard *dash = new Dashboard();//needs to accept user object
         dash->setWindowState(Qt::WindowMaximized);
+
+        bool isAdmin = account->getCurrentAccount().isAdmin();
+
+        // If the account is not an admin, hide the admin button.
+        if (! isAdmin)
+        {
+            qDebug() << "Hiding admin button.";
+            dash->hideAdminButton();
+        }
+        else
+        {
+            qDebug() << "Not hiding admin button.";
+        }
+
         dash->show();
         this->close();
     }
@@ -70,7 +85,6 @@ void MainWindow::on_SignInButton_clicked()
         ui->PasswordEnter->clear();
     }
 }
-
 
 void MainWindow::on_ForgotPassButton_clicked()
 {
