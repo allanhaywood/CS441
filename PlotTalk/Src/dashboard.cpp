@@ -4,6 +4,7 @@
 #include "about.h"
 #include "plottalkexceptions.h"
 #include "accountmanager.h"
+#include "mainwindow.h"
 #include <QLIST>
 #include <QMessageBox>
 
@@ -48,8 +49,6 @@ void Dashboard::on_myAccountButton_clicked()
     ui->lastNameBox->setText(theUser.lastName);
     ui->emailBox->setText(theUser.email);
     ui->stackedWidget->setCurrentIndex(ACCOUNT);
-
-
 }
 
 void Dashboard::on_homeButton_clicked()
@@ -262,4 +261,15 @@ void Dashboard::on_watchedConfirmButton_clicked()
     ui->watchedConfirmButton->setVisible(false);
     ui->watchedWarning->setVisible(false);
     //@TODO add episode to watched list once it has been added to user class
+}
+
+void Dashboard::on_logoutButton_clicked()
+{
+     AccountManager *userInfo= AccountManager::getInstance();
+     userInfo->ClearForLogout();//clears the user out of account manager
+     this->close();
+     MainWindow *openAgain=new MainWindow();
+     openAgain->show();
+
+
 }
