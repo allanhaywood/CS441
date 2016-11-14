@@ -9,7 +9,6 @@
 #include <QJsonParseError>
 #include <QDebug>
 #include <QDir>
-
 #include "jsonconnection.h"
 #include "plottalkexceptions.h"
 
@@ -136,12 +135,9 @@ void JsonConnection::getUser(QString username, User &user)
     QString jsonLastName;
     QString jsonEmail;
     QString jsonPasswordHash;
+    bool jsonIsAdmin;
 
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
-
-    qDebug() << "Looking for username:" << username;
-
-    qDebug() << "Users:" << users;
 
     // Loops through each element in the users array to try and find a match on the name.
     QJsonObject obj;
@@ -152,7 +148,6 @@ void JsonConnection::getUser(QString username, User &user)
         // the user object.
         obj = value.toObject();
 
-        qDebug() << "User:" << obj;
         if(QString::compare(obj["username"].toString(), username, Qt::CaseInsensitive)==0)
         {
             jsonUsername = obj["username"].toString();
@@ -160,6 +155,7 @@ void JsonConnection::getUser(QString username, User &user)
             jsonLastName = obj["lastName"].toString();
             jsonEmail = obj["email"].toString();
             jsonPasswordHash = obj["passwordHash"].toString();
+            jsonIsAdmin = obj["_isAdmin"].toBool();
             found = true;
             break;
         }
@@ -172,7 +168,7 @@ void JsonConnection::getUser(QString username, User &user)
     }
 
     // Use the information found to construct a user of the requested tvshow.
-    user = User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash);
+    user = User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash, jsonIsAdmin);
 }
 
 /**
@@ -188,10 +184,6 @@ QString JsonConnection::getUserNameByEmail(QString email)
 
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
 
-    qDebug() << "Looking for user email:" << email;
-
-    qDebug() << "Users:" << users;
-
     // Loops through each element in the users array to try and find a match on the name.
     QJsonObject obj;
     bool found = false;
@@ -201,7 +193,6 @@ QString JsonConnection::getUserNameByEmail(QString email)
         // the user object.
         obj = value.toObject();
 
-        qDebug() << "User:" << obj;
         if(QString::compare(obj["email"].toString(), email, Qt::CaseInsensitive)==0)
         {
             jsonUsername = obj["username"].toString();
@@ -228,8 +219,6 @@ QString JsonConnection::getUserNameByEmail(QString email)
 void JsonConnection::addUser(User user)
 {
     // First check if user already exists.
-    qDebug() << "json before:" << json;
-
     User testExistUser = User();
     try
     {
@@ -249,14 +238,11 @@ void JsonConnection::addUser(User user)
     jsonObject.insert("lastName", QJsonValue(user.lastName));
     jsonObject.insert("email", QJsonValue(user.email));
     jsonObject.insert("passwordHash", QJsonValue(user.passwordHash));
-
-    qDebug() << "jsonObject after insert:" << jsonObject;
+    jsonObject.insert("_isAdmin", QJsonValue(user.isAdmin()));
 
     users.append(jsonObject);
 
     json[JSON_USER_ARRAY_NAME] = users;
-
-    qDebug() << "json after:" << json;
 
     saveJson();
 }
@@ -268,8 +254,6 @@ void JsonConnection::addUser(User user)
 void JsonConnection::removeUser(QString username)
 {
     // First check if user already exists.
-    qDebug() << "json before:" << json;
-
     User testExistUser = User();
     try
     {
@@ -292,8 +276,6 @@ void JsonConnection::removeUser(QString username)
         // the user object.
         obj = value.toObject();
 
-        qDebug() << "User:" << obj;
-
         // If a match is found, its index is now known and can be removed.
         if(QString::compare(obj["username"].toString(), username, Qt::CaseInsensitive)==0)
         {
@@ -303,15 +285,9 @@ void JsonConnection::removeUser(QString username)
         count += 1;
     }
 
-    qDebug() << "Users before remove:" << users;
-
     users.removeAt(count);
 
-    qDebug() << "Users after remove:" << users;
-
     json[JSON_USER_ARRAY_NAME] = users;
-
-    qDebug() << "json after:" << json;
 
     saveJson();
 }
@@ -347,10 +323,6 @@ bool JsonConnection::emailExists(QString email)
 {
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
 
-    qDebug() << "Looking for email:" << email;
-
-    qDebug() << "Users:" << users;
-
     // Loops through each element in the users array to try and find a match on email.
     QJsonObject obj;
     bool found = false;
@@ -358,7 +330,6 @@ bool JsonConnection::emailExists(QString email)
     {
         obj = value.toObject();
 
-        qDebug() << "User:" << obj;
         if(QString::compare(obj["email"].toString(), email, Qt::CaseInsensitive)==0)
         {
             found = true;
@@ -397,8 +368,6 @@ void JsonConnection::loadJson()
     QFile file;
     QJsonDocument jsonDocument;
     file.setFileName(pathToJson);
-
-    qDebug() << "Loading json file:" << pathToJson;
 
     // Attempt to open the file, if it can be opened, attempt to parse it into a QJsonDocument.
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -446,10 +415,6 @@ void JsonConnection::saveJson()
         qDebug() << "Invalid Json, halting.";
         throw InvalidJsonFormat{};
     }
-
-    qDebug() << "Json Document:" << jsonDocument;
-
-    qDebug() << "Saving json file:" << pathToJson;
 
     file.setFileName(pathToJson);
 
