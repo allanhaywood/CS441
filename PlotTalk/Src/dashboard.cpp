@@ -39,7 +39,9 @@ void Dashboard::on_myAccountButton_clicked()
 {
 
     ui->usernameLabel->setText(theUser.username);
-    ui->lineEdit->setText(theUser.email);
+    ui->firstNameBox->setText(theUser.firstName);
+    ui->lastNameBox->setText(theUser.lastName);
+    ui->emailBox->setText(theUser.email);
     ui->stackedWidget->setCurrentIndex(ACCOUNT);
 
 
@@ -181,7 +183,17 @@ void Dashboard::populateMediaItemPage() {
     QString seasonText = "Season ";
     seasonText.append(QString::number(selectedSeason.seasonNumber));
     ui->seasonName->setText(seasonText);
+    //@TODO: summary text is lorem ipsum for now - actual summary will need to be pulled in from DB for this episode
+    ui->episodeSummary->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar sem quam, sed dictum odio finibus in. Maecenas consectetur sapien id fermentum euismod. Nunc vitae egestas turpis. Curabitur nunc erat, varius eget aliquet id, viverra eget metus. Integer ipsum purus, viverra ut egestas sit amet, dapibus eget leo. Aliquam vel euismod metus, eget efficitur mi. Fusce dignissim blandit neque, sed porttitor augue lacinia sed. Sed laoreet nunc non porttitor imperdiet.");
     ui->episodeName->setText(selectedEpisode.episodeTitle);
+    //@TODO: only show spoiler alert if user hasn't watched episode
+    //if episode is in user's watched list:
+    //hide watched warning and checkbox
+    //don't hide additional episode items (summary, comments, reviews)
+    //else:
+    ui->episodeSummary->setVisible(false);
+    ui->watchedWarning->setVisible(true);
+    ui->watchedConfirmButton->setVisible(true);
 }
 
 /**
@@ -205,10 +217,17 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
   }
 }
 
+/**
+ * @brief Dashboard::on_saveButton_clicked saves the users account info when Save button is clicked
+ */
 void Dashboard::on_saveButton_clicked()
 {
+    //similar validation steps as create account page
+    //only populate username, email, and name fields. Do not populate password fields from DB.
+    //if new password field isn't empty, show message if it doesn't match confirm password textbox
+    //only update user password if new password field isn't empty and it matches confirm textbox
     QString newEmail;
-    newEmail=ui->lineEdit->text();
+    newEmail=ui->emailBox->text();
     AccountManager *userInfo= AccountManager::getInstance();//gets the user information
 
     if(theUser.email!=newEmail && !(userInfo->EmailExists(newEmail)))
@@ -224,9 +243,18 @@ void Dashboard::on_saveButton_clicked()
         updated.setText("Your account has been updated");
         updated.exec();
     }
-
-
-
     ui->stackedWidget->setCurrentIndex(WELCOME);
 
+}
+
+/**
+ * @brief Dashboard::on_watchedButton_2_clicked triggered when user clicks "I've seen it!" button on media page
+ * @post unhides additional media details and adds this episode to the user's watched list
+ */
+void Dashboard::on_watchedConfirmButton_clicked()
+{
+    ui->episodeSummary->setVisible(true);
+    ui->watchedConfirmButton->setVisible(false);
+    ui->watchedWarning->setVisible(false);
+    //@TODO add episode to watched list once it has been added to user class
 }
