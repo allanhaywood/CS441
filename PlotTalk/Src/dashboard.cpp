@@ -214,8 +214,9 @@ void Dashboard::on_saveButton_clicked()
     if(theUser.email!=newEmail && !(userInfo->EmailExists(newEmail)))
     {
         theUser.email=newEmail;
-        DatabaseManager database;
-        database.removeUser(theUser.username);
+        DatabaseManagerSingleton::Instance().removeUser(theUser.username);
+        //DatabaseManager database;
+       // database.removeUser(theUser.username);
 
         userInfo->createAccount(theUser.firstName, theUser.lastName, theUser.email, theUser.username, theUser.passwordHash);
 
