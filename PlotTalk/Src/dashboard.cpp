@@ -119,7 +119,7 @@ void Dashboard::populateSeasonList(QTreeWidget *treeWidget) {
     //no need to delete tree items - parent tree destroys its children
     foreach(Season season, selectedShow.inspectSeasons()) {
         QTreeWidgetItem *seasonNode = new QTreeWidgetItem(treeWidget);
-        seasonNode->setText(0, "Season " + season.seasonNumber);
+        seasonNode->setText(0, "Season " + QString::number(season.seasonNumber));
         foreach(Episode episode, season.inspectEpisodes()) {
             QTreeWidgetItem *episodeNode = new QTreeWidgetItem(seasonNode);
             episodeNode->setText(0, episode.name);
