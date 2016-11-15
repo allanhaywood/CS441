@@ -4,6 +4,7 @@
  */
 
 #include "season.h"
+#include "plottalkexceptions.h"
 
 /**
  * @brief Season::Season Constructs an empty season.
@@ -49,4 +50,20 @@ const QVector<Episode>& Season::inspectEpisodes()
 void Season::addEpisode(Episode episode)
 {
     episodes.append(episode);
+}
+
+/**
+ * @brief Season::getEpisode Return episode with matching name in this season
+ * @param QString name
+ * @returns matching Episode
+ * @throws NotFound exception if no match found
+ */
+Episode Season::getEpisode(QString name)
+{
+    foreach (Episode episode, episodes) {
+        if (episode.name == name) {
+            return episode;
+        }
+    }
+    throw NotFound();
 }

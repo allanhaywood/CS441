@@ -15,8 +15,10 @@ private slots:
     void TestGetTvShow1();
     void TestGetTvShow2();
     void TestGetUser();
+    void TestGetAdminUser();
     void TestGetUserNameByEmail();
     void TestAddUser();
+    void TestAddAdminUser();
     void NegTestAddUser();
     void TestUserExists();
     void NegTestUserExists();
