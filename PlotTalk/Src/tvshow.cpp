@@ -3,6 +3,7 @@
  * @author Allan Haywood
  */
 #include "tvshow.h"
+#include "plottalkexceptions.h"
 
 /**
  * @brief TvShow::TvShow Default constructor.
@@ -82,4 +83,20 @@ const QVector<Season>& TvShow::inspectSeasons()
 void TvShow::addSeason(Season season)
 {
     seasons.append(season);
+}
+
+/**
+ * @brief TvShow::getSeason Return season with matching number in this TvShow
+ * @param int number
+ * @returns matching Season
+ * @throws NotFound exception if no match found
+ */
+Season TvShow::getSeason(int number)
+{
+    foreach (Season season, seasons) {
+        if (season.seasonNumber == number) {
+            return season;
+        }
+    }
+    throw NotFound();
 }
