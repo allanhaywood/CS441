@@ -3,7 +3,9 @@
 #include "adminpage.h"
 #include "about.h"
 #include "plottalkexceptions.h"
-#include<QList>
+#include "accountmanager.h"
+#include <QList>
+#include <QDebug>
 
 
 Dashboard::Dashboard(QWidget *parent) :
@@ -14,6 +16,9 @@ Dashboard::Dashboard(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(WELCOME); //set stacked widget to home screen at start
     //TODO: only show admin button if user account has admin rights
     ui->adminButton->setVisible(true);
+
+    AccountManager *userInfo= AccountManager::getInstance();//gets the user information
+    theUser = userInfo->getCurrentAccount();
 }
 
 Dashboard::~Dashboard()
@@ -154,6 +159,11 @@ void Dashboard::on_rightTree_itemClicked(QTreeWidgetItem *item, int)
  * @pre expects selectedShow, selectedSeason, and selectedEpisode to be set
  */
 void Dashboard::populateMediaItemPage() {
+    // clear out comments
+    ui->commentTable->clear();
+    ui->commentBox->clear();
+    ui->commentTable->setRowCount(0);
+
     ui->mediaItemSplitter->setSizes({1, 300});
     ui->showName->setText(selectedShow.name);
     QString seasonText = "Season ";
@@ -168,6 +178,7 @@ void Dashboard::populateMediaItemPage() {
     //don't hide additional episode items (summary, comments, reviews)
     //else:
     ui->episodeSummary->setVisible(false);
+    ui->commentTabWidget->setVisible(false);
     ui->watchedWarning->setVisible(true);
     ui->watchedConfirmButton->setVisible(true);
 }
@@ -198,6 +209,7 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
 void Dashboard::on_watchedConfirmButton_clicked()
 {
     ui->episodeSummary->setVisible(true);
+    ui->commentTabWidget->setVisible(true);
     ui->watchedConfirmButton->setVisible(false);
     ui->watchedWarning->setVisible(false);
     //@TODO add episode to watched list once it has been added to user class
@@ -212,4 +224,36 @@ void Dashboard::on_saveButton_clicked()
     //only populate username, email, and name fields. Do not populate password fields from DB.
     //if new password field isn't empty, show message if it doesn't match confirm password textbox
     //only update user password if new password field isn't empty and it matches confirm textbox
+}
+
+// @TODO: Need to add comments to episode be saved in episode class.
+void Dashboard::on_commentButton_clicked()
+{
+    // initialize columns for username/ comment
+    if (ui->commentTable->columnCount() == 0)
+    {
+        ui->commentTable->insertColumn(0);
+        ui->commentTable->insertColumn(1);
+        ui->commentTable->setColumnWidth(0, 125);
+        ui->commentTable->setColumnWidth(1, 330);
+    }
+    // hide labels on table
+    ui->commentTable->horizontalHeader()->setVisible(false);
+    ui->commentTable->verticalHeader()->setVisible(false);
+
+    // ensure wordwrapping is enabled
+    ui->commentTable->setWordWrap(true);
+
+    // add new row and new comment
+    int curRow = ui->commentTable->rowCount(); // current row of next comment
+    ui->commentTable->insertRow(curRow);
+    ui->commentTable->setRowHeight(curRow, 50);
+    ui->commentTable->setItem(curRow, 0, new QTableWidgetItem(theUser.username));
+    ui->commentTable->setItem(curRow, 1, new QTableWidgetItem(ui->commentBox->toPlainText()));
+    QTextEdit *commentText = new QTextEdit;
+    commentText->setText(ui->commentTable->item(curRow, 1)->text());
+    ui->commentTable->setCellWidget(curRow, 1, commentText);
+
+    // clear contents of comment box
+    ui->commentBox->clear();
 }

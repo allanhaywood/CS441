@@ -52,6 +52,8 @@ private slots:
 
     void on_saveButton_clicked();
 
+    void on_commentButton_clicked();
+
 private:
     void populateSeasonList(QTreeWidget *treeWidget);
     void populateMediaItemPage();
@@ -64,6 +66,7 @@ private:
     TvShow selectedShow;
     Season selectedSeason;
     Episode selectedEpisode;
+    User theUser;
 };
 
 #endif // DASHBOARD_H
