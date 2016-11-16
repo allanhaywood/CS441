@@ -59,7 +59,7 @@ void Dashboard::on_searchButton_clicked()
     QList<QString> shows = DatabaseManagerSingleton::Instance().getListOfAllTvShows();
     bool found = false;
     foreach(QString show, shows) {
-        if (QString::compare(show, ui->searchBar->text(), Qt::CaseInsensitive) == 0) {
+        if (show.contains(ui->searchBar->text(), Qt::CaseInsensitive)) {
             found = true;
             ui->leftList->addItem(show);
             ui->leftList->setDisabled(false);
