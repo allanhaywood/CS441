@@ -19,7 +19,7 @@ public:
     /**
      * @exception NotFound If specified tvshow is not found.
      */
-    virtual void getTvShow(QString name, TvShow &tvShow) = 0;
+    virtual TvShow getTvShow(QString name) = 0;
 
     /**
      * @exception AlreadyExists If specified tvshow is already added.
@@ -31,7 +31,7 @@ public:
     /**
      * @exception NotFound If specified user is not found.
      */
-    virtual void getUser(QString username, User &user) = 0;
+    virtual User getUser(QString username) = 0;
 
     /**
      * @exception NotFound If specified user is not found.

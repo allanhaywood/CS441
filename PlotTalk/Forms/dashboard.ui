@@ -535,16 +535,6 @@ p, li { white-space: pre-wrap; }
            <property name="autoFillBackground">
             <bool>false</bool>
            </property>
-           <item>
-            <property name="text">
-             <string>Game of Thrones</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mr. Robot</string>
-            </property>
-           </item>
           </widget>
           <widget class="QTreeWidget" name="rightTree">
            <property name="headerHidden">

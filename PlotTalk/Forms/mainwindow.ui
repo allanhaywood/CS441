@@ -113,6 +113,12 @@ color: rgb(20, 110, 255);
      <property name="text">
       <string>Sign In</string>
      </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>true</bool>
+     </property>
     </widget>
     <widget class="QPushButton" name="CreateAcctButton">
      <property name="geometry">
