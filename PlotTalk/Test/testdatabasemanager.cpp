@@ -13,9 +13,9 @@
 void TestDatabaseManager::TestGetTvShowDefaultConstructor()
 {
     // Set up strings to compare against.
-    QString name = "Game Of Thrones";
-    QString expectedTmdbLink = "https://www.themoviedb.org/tv/1399-game-of-thrones";
-    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jihl6mlt7ablhbhjgeoibiouvl1.jpg";
+    QString name = "Mr. Robot";
+    QString expectedTmdbLink = "https://www.themoviedb.org/tv/62560-mr-robot";
+    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg";
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
@@ -24,6 +24,32 @@ void TestDatabaseManager::TestGetTvShowDefaultConstructor()
     QCOMPARE(tvShow.name.toLower(), name.toLower());
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
     QCOMPARE(tvShow.graphicLink.toLower(), expectedGraphicLink.toLower());
+
+    QVector<Season> seasons = tvShow.inspectSeasons();
+
+    QCOMPARE(seasons.count(), 1);
+
+    Season season = seasons[0];
+
+    QString expectedSeasonName = "season_0.0";
+
+    QCOMPARE(season.name, expectedSeasonName);
+    QCOMPARE(season.seasonId, 66343);
+    QCOMPARE(season.seasonNumber, 0);
+
+    QVector<Episode> episodes = season.inspectEpisodes();
+
+    QCOMPARE(episodes.count(), 2);
+
+    Episode episode = episodes[1];
+
+    QString expectedEpisodeName = "Hacking Robot 101";
+    QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";
+
+    QCOMPARE(episode.episodeId, 1203464);
+    QCOMPARE(episode.episodeNumber, 2);
+    QCOMPARE(episode.name, expectedEpisodeName);
+    QCOMPARE(episode.summary, expectedEpisodeSummary);
 }
 
 /**

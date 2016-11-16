@@ -7,21 +7,80 @@
 #include "plottalkexceptions.h"
 #include "testjsonconnection.h"
 
-void TestJsonConnection::TestGetTvShow()
+void TestJsonConnection::TestGetTvShow1()
 {
     // Set up strings to compare against.
-    QString name = "Game Of Thrones";
-    QString expectedTmdbLink = "https://www.themoviedb.org/tv/1399-game-of-thrones";
-    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jihl6mlt7ablhbhjgeoibiouvl1.jpg";
+    QString name = "Game of Thrones";
 
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
 
-    TvShow tvShow = TvShow();
-    jsonConnection.getTvShow(name, tvShow);
+    TvShow tvShow = jsonConnection.getTvShow(name);
 
-    QCOMPARE(tvShow.name.toLower(), name.toLower());
-    QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
-    QCOMPARE(tvShow.graphicLink.toLower(), expectedGraphicLink.toLower());
+    QString expectedTmdbLink = "https://www.themoviedb.org/tv/1399-game-of-thrones";
+    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg";
+
+    QCOMPARE(tvShow.showId, 1399);
+    QCOMPARE(tvShow.name, name);
+    QCOMPARE(tvShow.tmdbLink, expectedTmdbLink);
+    QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
+
+    QVector<Season> seasons = tvShow.inspectSeasons();
+
+    QString empty = "";
+
+    QVERIFY(seasons.count() == 1);
+    QCOMPARE(seasons[0].seasonId, 3627);
+    QCOMPARE(seasons[0].seasonNumber, 0);
+    QCOMPARE(seasons[0].name, empty);
+
+    QVector<Episode> episodes = seasons[0].inspectEpisodes();
+
+    QString expectedEpisodeName = "Inside Game Of Thrones";
+    QString expectedEpisodeSummary = "A short look into the film-making process for the production Game of Thrones";
+
+    QVERIFY(episodes.count() == 1);
+    QCOMPARE(episodes[0].episodeId, 63087);
+    QCOMPARE(episodes[0].episodeNumber, 1);
+    QCOMPARE(episodes[0].name, expectedEpisodeName);
+    QCOMPARE(episodes[0].summary, expectedEpisodeSummary);
+}
+
+void TestJsonConnection::TestGetTvShow2()
+{
+    // Set up strings to compare against.
+    QString name = "Mr. Robot";
+
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    TvShow tvShow = jsonConnection.getTvShow(name);
+
+    QString expectedTmdbLink = "https://www.themoviedb.org/tv/62560-mr-robot";
+    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg";
+
+    QCOMPARE(tvShow.showId, 62560);
+    QCOMPARE(tvShow.name, name);
+    QCOMPARE(tvShow.tmdbLink, expectedTmdbLink);
+    QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
+
+    QVector<Season> seasons = tvShow.inspectSeasons();
+
+    QString expectedSeasonName = "season_0.0";
+
+    QVERIFY(seasons.count() == 1);
+    QCOMPARE(seasons[0].seasonId, 66343);
+    QCOMPARE(seasons[0].seasonNumber, 0);
+    QCOMPARE(seasons[0].name, expectedSeasonName);
+
+    QVector<Episode> episodes = seasons[0].inspectEpisodes();
+
+    QString expectedEpisodeName = "Hacking Robot 101";
+    QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";
+
+    QVERIFY(episodes.count() == 2);
+    QCOMPARE(episodes[1].episodeId, 1203464);
+    QCOMPARE(episodes[1].episodeNumber, 2);
+    QCOMPARE(episodes[1].name, expectedEpisodeName);
+    QCOMPARE(episodes[1].summary, expectedEpisodeSummary);
 }
 
 void TestJsonConnection::TestGetUser()
@@ -35,14 +94,35 @@ void TestJsonConnection::TestGetUser()
 
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
 
-    User user = User();
-    jsonConnection.getUser(username, user);
+    User user = jsonConnection.getUser(username);
 
     QCOMPARE(user.username, username);
     QCOMPARE(user.firstName, expectedFirstName);
     QCOMPARE(user.lastName, expectedLastName);
     QCOMPARE(user.email.toLower(), expectedEmail.toLower());
     QCOMPARE(user.passwordHash, expectedPasswordHash);
+}
+
+void TestJsonConnection::TestGetAdminUser()
+{
+    // Set up strings to compare against.
+    QString username = "admin";
+    QString expectedFirstName = "admin";
+    QString expectedLastName = "admin";
+    QString expectedEmail = "admin@gmail.com";
+    QString expectedPasswordHash = "plottalkadmin";
+    bool expectedIsAdmin = true;
+
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    User user = jsonConnection.getUser(username);
+
+    QCOMPARE(user.username, username);
+    QCOMPARE(user.firstName, expectedFirstName);
+    QCOMPARE(user.lastName, expectedLastName);
+    QCOMPARE(user.email.toLower(), expectedEmail.toLower());
+    QCOMPARE(user.passwordHash, expectedPasswordHash);
+    QCOMPARE(user.isAdmin(), expectedIsAdmin);
 }
 
 void TestJsonConnection::TestGetUserNameByEmail()
@@ -60,8 +140,10 @@ void TestJsonConnection::TestAddUser()
 {
     // Set up strings to compare against.
     QString username = "nuser";
-    QString expectedEmail = "nuser@gmail.com";
-    QString expectedPasswordHash = "newuser123";
+    QString firstName = "New";
+    QString lastName = "User";
+    QString email = "nuser@gmail.com";
+    QString passwordHash = "newuser123";
 
     // Get json from resources, but it isn't writeable so save to a different location.
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
@@ -73,20 +155,51 @@ void TestJsonConnection::TestAddUser()
 
     jsonConnection.setPathToJson(jsonPath);
 
-    User user = User();
-
-    user.username = username;
-    user.email = expectedEmail;
-    user.passwordHash = expectedPasswordHash;
+    User user = User(username, firstName, lastName, email, passwordHash);
 
     jsonConnection.addUser(user);
 
-    user = User();
-    jsonConnection.getUser(username, user);
+    user = jsonConnection.getUser(username);
 
-    QCOMPARE(user.username.toLower(), username.toLower());
-    QCOMPARE(user.email.toLower(), expectedEmail.toLower());
-    QCOMPARE(user.passwordHash, expectedPasswordHash);
+    QCOMPARE(user.username, username);
+    QCOMPARE(user.firstName, firstName);
+    QCOMPARE(user.lastName, lastName);
+    QCOMPARE(user.email, email);
+    QCOMPARE(user.passwordHash, passwordHash);
+    QCOMPARE(user.isAdmin(), false);
+}
+
+void TestJsonConnection::TestAddAdminUser()
+{
+    // Set up strings to compare against.
+    QString username = "nuser";
+    QString firstName = "New";
+    QString lastName = "User";
+    QString email = "nuser@gmail.com";
+    QString passwordHash = "newuser123";
+
+    // Get json from resources, but it isn't writeable so save to a different location.
+    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
+
+    // Create a test json file
+    QString currentPath = QDir::currentPath();
+    currentPath.append("/testJson.json");
+    QString jsonPath = QDir::cleanPath(currentPath);
+
+    jsonConnection.setPathToJson(jsonPath);
+
+    User user = User(username, firstName, lastName, email, passwordHash, true);
+
+    jsonConnection.addUser(user);
+
+    user = jsonConnection.getUser(username);
+
+    QCOMPARE(user.username, username);
+    QCOMPARE(user.firstName, firstName);
+    QCOMPARE(user.lastName, lastName);
+    QCOMPARE(user.email, email);
+    QCOMPARE(user.passwordHash, passwordHash);
+    QCOMPARE(user.isAdmin(), true);
 }
 
 void TestJsonConnection::NegTestAddUser()
@@ -96,8 +209,7 @@ void TestJsonConnection::NegTestAddUser()
 
     JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
 
-    User user = User();
-    jsonConnection.getUser(username, user);
+    User user = jsonConnection.getUser(username);
 
     QVERIFY_EXCEPTION_THROWN
             (
@@ -152,14 +264,10 @@ void TestJsonConnection::TestSaveJson()
 
     QJsonObject jsonObjectBefore = jsonConnection.json;
 
-    qDebug() << "Json object:" << jsonObjectBefore;
-
     // Create a test json file
     QString currentPath = QDir::currentPath();
     currentPath.append("/testJson.json");
     QString jsonPath = QDir::cleanPath(currentPath);
-
-    qDebug() << "Json save path:" << jsonPath;
 
     jsonConnection.setPathToJson(jsonPath);
 
@@ -168,8 +276,6 @@ void TestJsonConnection::TestSaveJson()
     jsonConnection.loadJson();
 
     QJsonObject jsonObjectAfter = jsonConnection.json;
-
-    qDebug() << "Json object:" << jsonObjectAfter;
 
     // Verify newly loaded json object is not empty.
     QVERIFY(! jsonObjectAfter.isEmpty());

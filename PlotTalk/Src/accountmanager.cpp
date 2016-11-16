@@ -61,7 +61,7 @@ bool AccountManager::createAccount(QString &first, QString &last, QString &Email
 
 User AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
-return thisGuy;//useful for getting info into various pages without searching the database
+    return thisGuy;//useful for getting info into various pages without searching the database
 }
 
 /**
@@ -119,6 +119,7 @@ bool AccountManager::checkEmailAndPassword(QString& email, QString& password, Us
             if(hold.passwordHash==password)
             {
                 user=hold;
+                thisGuy = user;
                 return true;
             }
             else

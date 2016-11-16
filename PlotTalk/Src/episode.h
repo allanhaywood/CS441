@@ -1,3 +1,7 @@
+/* The header for the episode class.
+ *
+ * @author Damien Brantley, Allan Haywood
+ */
 #ifndef EPISODE_H
 #define EPISODE_H
 
@@ -8,26 +12,28 @@
 
 class Episode
 {
-protected:
-     //constructor
-
-
 public:
+    int episodeId;
+    int episodeNumber;
+    QString name;
+    QString summary;
+
     Episode();
-    Episode(int inMediaID, QString epsummary, QString Title);
-    int mediaId; //Placeholder for Episode Unique Id
-    int seasonId; //For Season Unique Id
-    QString episodeTitle; //For Episode Title from Database
-    QString epSummary;
-    QVector<Review> reviews;
-    QVector<Comment> comments;
-    ~Episode();
+    Episode(int episodeId, int episodeNumber, QString name, QString summary);
 
-//Set connection Object
-//Placeholder for more methods
+    // Adding reactions later.
+    //Episode(int episodeId, QString name, QVector<Review> reviews, QVector<Comment> comments);
 
-    void getEpisode(int EpKey); //Method of retreving all Episode Data from The Database based on the Key it is Given
-    void getSeason(int seasonKey); //Get the Season based on which key is passed into this method
+    //QVector<Review> getReviews();
+    //QVector<Review> getComments();
+
+    //void addReview();
+    //QVector<Review> getComments();
+
+
+private:
+    //QVector<Review> reviews;
+    //QVector<Comment> comments;
 };
 
-#endif //EPISODE_H
+#endif // EPISODE_H

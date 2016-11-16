@@ -25,6 +25,8 @@ public:
     explicit Dashboard(QWidget *parent = 0);
     ~Dashboard();
 
+    void hideAdminButton();
+
 private slots:
     void on_myAccountButton_clicked();
 

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "TvShow": [
     {
       "showId": 1399,
@@ -3111,6 +3112,88 @@
               "summary": ""
             }
           ]
+=======
+    "TvShow":
+    [
+        {
+            "showId":1399,
+            "name":"Game of Thrones",
+            "tmdbLink":"https://www.themoviedb.org/tv/1399-game-of-thrones",
+            "graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg",
+            "seasons":
+            [
+                {
+                    "seasonId":3627,
+                    "seasonNumber":0,
+                    "name":"",
+                    "episodes":
+                    [
+                        {
+                            "episodeId":63087,
+                            "episodeNumber":1,
+                            "name":"Inside Game Of Thrones",
+                            "summary":"A short look into the film-making process for the production Game of Thrones"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "showId":62560,
+            "name":"Mr. Robot",
+            "tmdbLink":"https://www.themoviedb.org/tv/62560-mr-robot",
+            "graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg",
+            "seasons":
+            [
+                {
+                    "seasonId":66343,
+                    "seasonNumber":0,
+                    "name":"season_0.0",
+                    "episodes":
+                    [
+                        {
+                            "episodeId":1200247,
+                            "episodeNumber":1,
+                            "name":"Mr. Robot_dec0d3d.doc",
+                            "summary":"Mr. Robot Decoded explores the authenticity and societal impact of the award-winning series Mr. Robot. Through documentary-style interviews with the cast, creators of the show, along with high-profile experts, writers, journalists and filmmakers Mr. Robot Decoded will discuss and attempt to answer the question: Can hackers change the world? And, more important - should they?"
+                        },
+                        {
+                            "episodeId":1203464,
+                            "episodeNumber":2,
+                            "name":"Hacking Robot 101",
+                            "summary":"In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions."
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "User":
+    [
+        {
+            "username":"bsmith",
+            "firstName":"Bob",
+            "lastName":"Smith",
+            "email":"bsmith@gmail.com",
+            "passwordHash":"badpasswordhash",
+            "_isAdmin":false
+        },
+        {
+            "username":"jsmith",
+            "firstName":"John",
+            "lastName":"Smith",
+            "email":"jsmith@gmail.com",
+            "passwordHash":"badpasswordhash2",
+            "_isAdmin":false
+        },
+        {
+            "username":"admin",
+            "firstName":"admin",
+            "lastName":"admin",
+            "email":"admin@gmail.com",
+            "passwordHash":"plottalkadmin",
+            "_isAdmin":true
+>>>>>>> refs/remotes/origin/master
         }
       ]
     }
