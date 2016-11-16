@@ -22,12 +22,6 @@ Dashboard::Dashboard(QWidget *parent) :
     theUser=userInfo->getCurrentAccount();
     ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
 
-
-    //ui->splitter_popularPage->setSizes({500, 1}); // preset the splitter to make search side bigger initially
-    //ui->splitter_SearchResultsPage->setSizes({500, 1});
-    //ui->splitter_watchedMediaPage->setSizes({500, 1});
-
-
 }
 
 Dashboard::~Dashboard()
@@ -224,11 +218,16 @@ void Dashboard::on_saveButton_clicked()
     QString newEmail=ui->emailBox->text();
     QString newFirstName=ui->firstNameBox->text();
     QString newLastName=ui->lastNameBox->text();
-    QString newPassword="";
+    QString newPassword;
 
-    if(ui->newPasswordBox->text()==ui->confirmPasswordBox->text())
+
+    if(ui->newPasswordBox->text()==ui->confirmPasswordBox->text() && ui->confirmPasswordBox->text()!="")
     {
         newPassword = ui->newPasswordBox->text();
+    }
+    else if(ui->confirmPasswordBox->text()=="" && ui->newPasswordBox->text()=="")
+    {
+           newPassword=theUser.passwordHash;
     }
     else
     {
@@ -243,7 +242,7 @@ void Dashboard::on_saveButton_clicked()
 
     AccountManager *userInfo= AccountManager::getInstance();//gets the user information
 {
-    if(theUser.email!=newEmail || theUser.firstName!= newFirstName || theUser.lastName!=newLastName || newPassword!="")
+    if(theUser.email!=newEmail || theUser.firstName!= newFirstName || theUser.lastName!=newLastName || newPassword!=theUser.passwordHash)
     {//add check for each field to determine when it is changed, set back if not.
         QString message;
 
@@ -280,6 +279,8 @@ void Dashboard::on_saveButton_clicked()
           {
             message="Your account has been successfully updated!";
             ui->stackedWidget->setCurrentIndex(WELCOME);
+            theUser = userInfo->getCurrentAccount();
+            ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
           }
 
          }
@@ -291,16 +292,9 @@ void Dashboard::on_saveButton_clicked()
          }
          else
          {
-
-             //userInfo->createAccount(theUser.firstName, theUser.lastName, theUser.email, theUser.username, theUser.passwordHash);
-
-             QMessageBox updated;
-             updated.setText("Your account has been updated");
-             updated.exec();
+            ui->stackedWidget->setCurrentIndex(WELCOME);
          }
     }
-
-
 }
 
 /**
