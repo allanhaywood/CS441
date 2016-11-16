@@ -137,12 +137,8 @@ bool AccountManager::EmailExists(QString email)//checks to see if an email exist
 
 void AccountManager::ClearForLogout()
 {
-    thisGuy.email="";
-    thisGuy.firstName="";
-    thisGuy.lastName="";
-    thisGuy.passwordHash="";
-    thisGuy.username="";
-    thisGuy.isAdmin()=false;
+    User BlankMan;
+    thisGuy=BlankMan;
 }
 
 

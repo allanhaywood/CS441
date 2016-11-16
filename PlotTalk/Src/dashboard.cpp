@@ -230,24 +230,85 @@ void Dashboard::on_saveButton_clicked()
     //only populate username, email, and name fields. Do not populate password fields from DB.
     //if new password field isn't empty, show message if it doesn't match confirm password textbox
     //only update user password if new password field isn't empty and it matches confirm textbox
-    QString newEmail;
-    newEmail=ui->emailBox->text();
+    QString newEmail=ui->emailBox->text();
+    QString newFirstName=ui->firstNameBox->text();
+    QString newLastName=ui->lastNameBox->text();
+    QString newPassword="";
+
+    if(ui->newPasswordBox->text()==ui->confirmPasswordBox->text())
+    {
+        newPassword = ui->newPasswordBox->text();
+    }
+    else
+    {
+        QMessageBox noPassMatch;
+        noPassMatch.setText("The two password fields must match\n(Leave blank to avoid changing)");
+        noPassMatch.exec();
+
+        ui->newPasswordBox->clear();
+        ui->confirmPasswordBox->clear();
+        return;
+    }
+
     AccountManager *userInfo= AccountManager::getInstance();//gets the user information
 
-    if(theUser.email!=newEmail && !(userInfo->EmailExists(newEmail)))
-    {
-        theUser.email=newEmail;
+    if(theUser.email!=newEmail || theUser.firstName!= newFirstName || theUser.lastName!=newLastName || newPassword!="")
+    {//add check for each field to determine when it is changed, set back if not.
+        QString message;
+
         DatabaseManagerSingleton::Instance().removeUser(theUser.username);
-        //DatabaseManager database;
-       // database.removeUser(theUser.username);
+        selectEnum Problems=userInfo->checkFieldsAndCreate(newFirstName,newLastName,theUser.username,newEmail,newPassword);
 
-        userInfo->createAccount(theUser.firstName, theUser.lastName, theUser.email, theUser.username, theUser.passwordHash);
+        switch (Problems)
+        {
+        case selectEnum::BAD_EMAIL:
+          {
+            message="The email you entered was incorrectly formatted";
+            ui->emailBox->clear();
+          }
+            break;
+        case selectEnum::DUPLICATE_EMAIL:
+          {
+            message="That e-mail is already present in our system";
+            ui->emailBox->clear();
+          }
+            break;
+        case selectEnum::VALUES_MISSING:
+          {
+            message="You must enter a first and last name";
+          }
+            break;
+        case selectEnum::BAD_PASSWORD:
+          {
+            message="The password must have the following characteristics:\nIt must be more than 8 characters\nIt must contain both capital and lowercase letters\nIt must include at least one special symbol";
+            ui->newPasswordBox->clear();
+            ui->confirmPasswordBox->clear();
+          }
+            break;
+        case selectEnum::ALLCLEAR:
+          {
+            message="Your account has been successfully updated!";
+            ui->stackedWidget->setCurrentIndex(WELCOME);
+          }
 
-        QMessageBox updated;
-        updated.setText("Your account has been updated");
-        updated.exec();
+         }
+             QMessageBox emailExists;
+             emailExists.setText(message);
+             emailExists.exec();
+
+             return;
+         }
+         else
+         {
+
+             //userInfo->createAccount(theUser.firstName, theUser.lastName, theUser.email, theUser.username, theUser.passwordHash);
+
+             QMessageBox updated;
+             updated.setText("Your account has been updated");
+             updated.exec();
+         }
     }
-    ui->stackedWidget->setCurrentIndex(WELCOME);
+
 
 }
 
