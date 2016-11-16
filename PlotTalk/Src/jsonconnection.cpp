@@ -73,29 +73,35 @@ void JsonConnection::setPathToJson(QString newPathToJson)
  * @brief JsonConnection::getTvShow Returns the tvshow with the provided name.
  * @param The name of the tvshow to retrieve.
  * @return The Tvshow, if no match is found an empty TvShow is returned.
- * TODO: Change behavior for when a matching TvShow is not found, need to investigate best option.
+ *
+ * @todo: Change behavior for when a matching TvShow is not found, need to investigate best option.
  */
-void JsonConnection::getTvShow(QString name, TvShow &tvShow)
+TvShow JsonConnection::getTvShow(QString name)
 {
+    int jsonId = 0;
     QString jsonName = "";
     QString jsonTmdbLink = "";
     QString jsonGraphicLink = "";
+    QJsonArray jsonSeasons;
+
 
     QJsonArray tvshows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
 
     // Loops through each element in the TvShow array to try and find a match on the name.
-    QJsonObject obj;
+    QJsonObject tvShowJsonObject;
     bool found = false;
     foreach (const QJsonValue &value, tvshows)
     {
         // If there is a match on the tvname, extract all the elements needed to construct
         // the TvShow object.
-        obj = value.toObject();
-        if(QString::compare(obj["name"].toString(), name, Qt::CaseInsensitive)==0)
+        tvShowJsonObject = value.toObject();
+        if(QString::compare(tvShowJsonObject["name"].toString(), name, Qt::CaseInsensitive)==0)
         {
-            jsonName = obj["name"].toString();
-            jsonTmdbLink = obj["tmdbLink"].toString();
-            jsonGraphicLink = obj["graphicLink"].toString();
+            jsonId = tvShowJsonObject["showId"].toInt();
+            jsonName = tvShowJsonObject["name"].toString();
+            jsonTmdbLink = tvShowJsonObject["tmdbLink"].toString();
+            jsonGraphicLink = tvShowJsonObject["graphicLink"].toString();
+            jsonSeasons = tvShowJsonObject["seasons"].toArray();
             found = true;
             break;
         }
@@ -107,41 +113,108 @@ void JsonConnection::getTvShow(QString name, TvShow &tvShow)
         throw NotFound{};
     }
 
+    qDebug() << "JsonSeasons:" << jsonSeasons;
+
+    QVector<Season> seasons = getSeasons(jsonSeasons);
+
     // Use the information found to construct and return a TvShow of the requested tvshow.
-    tvShow = TvShow(jsonName, jsonTmdbLink, jsonGraphicLink);
+    return TvShow(jsonId, jsonName, jsonTmdbLink, jsonGraphicLink, seasons);
 }
 
-/*
-void JsonConnection::addTvShow(TvShow tvShow)
+
+/**
+ * @brief JsonConnection::getSeasons Gets all the seasons for the specified tvShow
+ * @param tvShowName The name of the tvshow.
+ * @return A QVector of all the seasons.
+ */
+QVector<Season> JsonConnection::getSeasons(QJsonArray jsonSeasons)
 {
-    // Loads the json at the provided path.
-    QJsonObject jsonObject = loadJson(pathToJson);
+    QVector<Season> seasons = QVector<Season>();
 
+    foreach (const QJsonValue &value, jsonSeasons)
+    {
+        qDebug() << "jsonSeason:" << value;
+        seasons.append(getSeason(value.toObject()));
+    }
 
+    return seasons;
+}
 
-    jsonObject.
-}*/
+/**
+ * @brief JsonConnection::getSeason Converts provided season json to a Season object.
+ * @param jsonSeason The json that represents a season.
+ * @return The season object that represents the json season provided.
+ */
+Season JsonConnection::getSeason(QJsonObject jsonSeason)
+{
+    qDebug() << "seasonId:" << jsonSeason["seasonId"].toInt();
+    qDebug() << "seasonNumber:" << jsonSeason["seasonNumber"].toInt();
+    qDebug() << "seasonName:" << jsonSeason["name"].toString();
+
+    return Season(
+                jsonSeason["seasonId"].toInt(),
+                jsonSeason["seasonNumber"].toInt(),
+                jsonSeason["name"].toString(),
+                getEpisodes(jsonSeason["episodes"].toArray())
+            );
+}
+
+/**
+ * @brief JsonConnection::getEpisodes Converts the provided json episodes into a vector of episodes.
+ * @param jsonEpisodes The json that represents the episodes to convert.
+ * @return A vector of episodes.
+ */
+QVector<Episode> JsonConnection::getEpisodes(QJsonArray jsonEpisodes)
+{
+    QVector<Episode> episodes = QVector<Episode>();
+
+    qDebug() << "jsonEpisodes:" << jsonEpisodes;
+
+    foreach (const QJsonValue &value, jsonEpisodes)
+    {
+        episodes.append(getEpisode(value.toObject()));
+    }
+
+    return episodes;
+}
+
+/**
+ * @brief JsonConnection::getEpisode Converst the provided json episdoe into an episode object.
+ * @param jsonEpisode The json representation of the episode.
+ * @return The episode object that was represented by the json provided.
+ */
+Episode JsonConnection::getEpisode(QJsonObject jsonEpisode)
+{
+    qDebug() << "jsonEpisodeId:" << jsonEpisode["episodeId"].toInt();
+    qDebug() << "jsonEpisodeNumber:" << jsonEpisode["episodeNumber"].toInt();
+    qDebug() << "jsonEpisodeName:" << jsonEpisode["name"].toString();
+    qDebug() << "jsonEpisodeSummary:" << jsonEpisode["summary"].toString();
+
+    return Episode(
+                jsonEpisode["episodeId"].toInt(),
+                jsonEpisode["episodeNumber"].toInt(),
+                jsonEpisode["name"].toString(),
+                jsonEpisode["summary"].toString()
+            );
+}
 
 /**
  * @brief JsonConnection::getUser Updates reference to the specified user.
  * @param username The username to retrieve.
- * @param user The user object to update.
+ * @return The user that matches.
  *
- * @throws NotFound if user is not found.
+ * * @throws NotFound if user is not found.
  */
-void JsonConnection::getUser(QString username, User &user)
+User JsonConnection::getUser(QString username)
 {
     QString jsonUsername;
     QString jsonFirstName;
     QString jsonLastName;
     QString jsonEmail;
     QString jsonPasswordHash;
+    bool jsonIsAdmin;
 
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
-
-    qDebug() << "Looking for username:" << username;
-
-    qDebug() << "Users:" << users;
 
     // Loops through each element in the users array to try and find a match on the name.
     QJsonObject obj;
@@ -160,6 +233,7 @@ void JsonConnection::getUser(QString username, User &user)
             jsonLastName = obj["lastName"].toString();
             jsonEmail = obj["email"].toString();
             jsonPasswordHash = obj["passwordHash"].toString();
+            jsonIsAdmin = obj["_isAdmin"].toBool();
             found = true;
             break;
         }
@@ -172,7 +246,7 @@ void JsonConnection::getUser(QString username, User &user)
     }
 
     // Use the information found to construct a user of the requested tvshow.
-    user = User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash);
+    return User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash, jsonIsAdmin);
 }
 
 /**
@@ -188,10 +262,6 @@ QString JsonConnection::getUserNameByEmail(QString email)
 
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
 
-    qDebug() << "Looking for user email:" << email;
-
-    qDebug() << "Users:" << users;
-
     // Loops through each element in the users array to try and find a match on the name.
     QJsonObject obj;
     bool found = false;
@@ -201,7 +271,6 @@ QString JsonConnection::getUserNameByEmail(QString email)
         // the user object.
         obj = value.toObject();
 
-        qDebug() << "User:" << obj;
         if(QString::compare(obj["email"].toString(), email, Qt::CaseInsensitive)==0)
         {
             jsonUsername = obj["username"].toString();
@@ -228,12 +297,9 @@ QString JsonConnection::getUserNameByEmail(QString email)
 void JsonConnection::addUser(User user)
 {
     // First check if user already exists.
-    qDebug() << "json before:" << json;
-
-    User testExistUser = User();
     try
     {
-        getUser(user.username, testExistUser);
+        User testExistUser = getUser(user.username);
         throw AlreadyExists{};
     }
     catch (NotFound)
@@ -249,14 +315,11 @@ void JsonConnection::addUser(User user)
     jsonObject.insert("lastName", QJsonValue(user.lastName));
     jsonObject.insert("email", QJsonValue(user.email));
     jsonObject.insert("passwordHash", QJsonValue(user.passwordHash));
-
-    qDebug() << "jsonObject after insert:" << jsonObject;
+    jsonObject.insert("_isAdmin", QJsonValue(user.isAdmin()));
 
     users.append(jsonObject);
 
     json[JSON_USER_ARRAY_NAME] = users;
-
-    qDebug() << "json after:" << json;
 
     saveJson();
 }
@@ -268,12 +331,9 @@ void JsonConnection::addUser(User user)
 void JsonConnection::removeUser(QString username)
 {
     // First check if user already exists.
-    qDebug() << "json before:" << json;
-
-    User testExistUser = User();
     try
     {
-        getUser(username, testExistUser);
+        User testExistUser = getUser(username);
     }
     catch (NotFound)
     {
@@ -292,8 +352,6 @@ void JsonConnection::removeUser(QString username)
         // the user object.
         obj = value.toObject();
 
-        qDebug() << "User:" << obj;
-
         // If a match is found, its index is now known and can be removed.
         if(QString::compare(obj["username"].toString(), username, Qt::CaseInsensitive)==0)
         {
@@ -303,15 +361,9 @@ void JsonConnection::removeUser(QString username)
         count += 1;
     }
 
-    qDebug() << "Users before remove:" << users;
-
     users.removeAt(count);
 
-    qDebug() << "Users after remove:" << users;
-
     json[JSON_USER_ARRAY_NAME] = users;
-
-    qDebug() << "json after:" << json;
 
     saveJson();
 }
@@ -323,11 +375,10 @@ void JsonConnection::removeUser(QString username)
  */
 bool JsonConnection::usernameExists(QString username)
 {
-    User user = User();
     bool found = false;
     try
     {
-        getUser(username, user);
+        User user = getUser(username);
         found = true;
     }
     catch (NotFound)
@@ -347,10 +398,6 @@ bool JsonConnection::emailExists(QString email)
 {
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
 
-    qDebug() << "Looking for email:" << email;
-
-    qDebug() << "Users:" << users;
-
     // Loops through each element in the users array to try and find a match on email.
     QJsonObject obj;
     bool found = false;
@@ -358,7 +405,6 @@ bool JsonConnection::emailExists(QString email)
     {
         obj = value.toObject();
 
-        qDebug() << "User:" << obj;
         if(QString::compare(obj["email"].toString(), email, Qt::CaseInsensitive)==0)
         {
             found = true;
@@ -397,8 +443,6 @@ void JsonConnection::loadJson()
     QFile file;
     QJsonDocument jsonDocument;
     file.setFileName(pathToJson);
-
-    qDebug() << "Loading json file:" << pathToJson;
 
     // Attempt to open the file, if it can be opened, attempt to parse it into a QJsonDocument.
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -447,10 +491,6 @@ void JsonConnection::saveJson()
         throw InvalidJsonFormat{};
     }
 
-    qDebug() << "Json Document:" << jsonDocument;
-
-    qDebug() << "Saving json file:" << pathToJson;
-
     file.setFileName(pathToJson);
 
     // Attempt to open the file, if it can be opened, attempt to parse it into a QJsonDocument.
@@ -479,5 +519,3 @@ QJsonArray JsonConnection::getTopLevelJsonArray(QString jsonArrayName)
     // This gets the TvShow elements.
     return json[jsonArrayName].toArray();
 }
-
-

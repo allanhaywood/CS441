@@ -3,12 +3,14 @@
 
 void testSeason::testSeasonConstructor()
 {
-    QString seasonNumber = "9";
-    QList<int> episodes;
+    int seasonId = 9;
+    int seasonNumber = 1;
+    QString name = "Test";
 
-    Season season = Season(seasonNumber,episodes);
-    QCOMPARE(seasonNumber, season.seasonNumber);
-    QCOMPARE(episodes, season.episodes);
+    QVector<Episode> episodes = QVector<Episode>();
 
-
+    Season season = Season(seasonId, seasonNumber, name, episodes);
+    QCOMPARE(season.seasonId, seasonId);
+    QCOMPARE(season.seasonNumber, seasonNumber);
+    QCOMPARE(season.name, name);
 }

@@ -16,7 +16,6 @@ HEADERS += \
     Src/accountmanager.h \
     Src/addnewmedia.h \
     Src/adminpage.h \
-    Src/accountdetails.h \
     Src/about.h \
     Src/jsonconnection.h \
     Src/databasemanager.h \
@@ -41,7 +40,6 @@ SOURCES += \
     Src/accountmanager.cpp \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
-    Src/accountdetails.cpp \
     Src/about.cpp \
     Src/jsonconnection.cpp \
     Src/databasemanager.cpp \
@@ -82,8 +80,8 @@ test {
         Test/testdatabasemanager.h \
         Test/testaccountmanager.h \
         Test/testreply.h \
-        Test/testseason.h
-
+        Test/testuser.h \
+	Test/testseason.h
 
     SOURCES += \
         Test/testmain.cpp \
@@ -92,6 +90,7 @@ test {
         Test/testdatabasemanager.cpp \
         Test/testaccountmanager.cpp \
         Test/testreply.cpp \
+        Test/testuser.cpp \
         Test/testseason.cpp
 
 } else {

@@ -4,6 +4,8 @@
  */
 #ifndef TVSHOW_H
 #define TVSHOW_H
+#include "season.h"
+
 #include <QString>
 #include <QVector>
 
@@ -11,16 +13,23 @@ class TvShow
 {
 
 public:
-
-    QString name; //Variable for TvShow Title
+    int showId;
+    QString name;
     QString tmdbLink;
     QString graphicLink;
-    int showId; //Variable for TvShow Primary Key
-    int seasonId; //Foreign Key For Seasons Class
-    // TODO: Add Seasons once Season class is available.
+
     TvShow();
     TvShow(QString name, QString tmdbLink, QString graphicLink);
+    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink);
+    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QVector<Season> seasons);
 
+    const QVector<Season>& inspectSeasons();
+    void addSeason(Season season);
+    //void removeSeason(int seasonId);
+    Season getSeason(int number);
+
+private:
+    QVector<Season> seasons;
 };
 
 #endif

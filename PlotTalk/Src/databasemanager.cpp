@@ -52,7 +52,7 @@ TvShow &DatabaseManager::getTvShow(QString name)
     // or at the very least, a single location to choose which one.
 
     // @todo Add caching so that it doesn't call getTvShow if it isn't needed.
-    connection.getTvShow(name, tvShowMap[name]);
+    tvShowMap[name] = connection.getTvShow(name);
 
     return tvShowMap[name];
 }
@@ -67,7 +67,7 @@ TvShow &DatabaseManager::getTvShow(QString name)
 User &DatabaseManager::getUser(QString username)
 {
     // @todo Add caching so that it doesn't call getUser if it isn't needed.
-    connection.getUser(username, userMap[username]);
+    userMap[username] = connection.getUser(username);
 
     return userMap[username];
 }
@@ -84,7 +84,7 @@ User &DatabaseManager::getUserByEmail(QString email)
     // @todo Add caching so that it doesn't call getUser if it isn't needed.
     QString username = connection.getUserNameByEmail(email);
 
-    connection.getUser(username, userMap[username]);
+    userMap[username] = connection.getUser(username);
 
     return userMap[username];
 }
