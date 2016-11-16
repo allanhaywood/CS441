@@ -159,7 +159,6 @@ void Dashboard::populateMediaItemPage() {
     QString seasonText = "Season ";
     seasonText.append(QString::number(selectedSeason.seasonNumber));
     ui->seasonName->setText(seasonText);
-    //@TODO: summary text is lorem ipsum for now - actual summary will need to be pulled in from DB for this episode
     ui->episodeSummary->setText(selectedEpisode.summary);
     ui->episodeName->setText(selectedEpisode.name);
     //@TODO: only show spoiler alert if user hasn't watched episode
