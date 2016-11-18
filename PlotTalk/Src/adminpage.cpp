@@ -1,6 +1,8 @@
 #include "adminpage.h"
 #include "ui_adminpage.h"
+#include "databasemanager.h"
 #include <QMessageBox>
+
 
 AdminPage::AdminPage(QWidget *parent) :
     QMainWindow(parent),
@@ -17,6 +19,15 @@ AdminPage::~AdminPage()
 
 void AdminPage::on_Users_clicked()
 {
+     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+     QList<User> allUsers = DatabaseManagerSingleton::Instance().getAllUsers;
+
+     for(int i = 0; i<allUsers.size(); i++)
+     {
+         allUsers[i].firstName;
+         allUsers[i].lastName;
+
+     }
 
 }
 

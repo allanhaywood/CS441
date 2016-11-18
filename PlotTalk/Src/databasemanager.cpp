@@ -21,9 +21,11 @@
 #include "databasemanager.h"
 #include "jsonconnection.h"
 #include "plottalkexceptions.h"
+#include "user.h"
 
 #include <QMap>
 #include <QDebug>
+#include <QList>
 
 /**
  * @brief DatabaseManager::DatabaseManager Default constructor, currently defaults to using Json connection.
@@ -182,4 +184,9 @@ void DatabaseManager::emptyCache()
 {
     tvShowMap.clear();
     userMap.clear();
+}
+
+QList<User> DatabaseManager::getAllUsers()//-----------------------------Easy to find marker---------------------------------------------
+{
+//This would be the best for me -Josh
 }

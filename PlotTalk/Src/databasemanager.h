@@ -7,6 +7,7 @@
 #include <QMap>
 #include <QList>
 
+#include "user.h"
 #include "singleton.h"
 #include "jsonconnection.h"
 
@@ -45,6 +46,8 @@ public:
 
     // Used for testing only.
     void emptyCache();
+
+    QList<User> getAllUsers();
 
 private:
     QMap<QString, TvShow> tvShowMap;
