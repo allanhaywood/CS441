@@ -79,15 +79,15 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
 
 */
     int num=0;
-    DatabaseManager database;
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     if((fName.size()<=1)||(lName.size()<=1)||(handle.size()<=1))
         return selectEnum::VALUES_MISSING;//need good names and handle
     if(validEmail->validate(email,num)!=2)
         return selectEnum::BAD_EMAIL;//email is bad format
-    if(database.emailExists(email))
+    if(DatabaseManagerSingleton::Instance().emailExists(email))
         return selectEnum::DUPLICATE_EMAIL;//email already exists
-    if(database.usernameExists(handle))
+    if(DatabaseManagerSingleton::Instance().usernameExists(handle))
         return selectEnum::USERNAME_TAKEN;//username is taken
     if(validPwd->validate(password,num)!=2)
         return selectEnum::BAD_PASSWORD;//password not correct format
