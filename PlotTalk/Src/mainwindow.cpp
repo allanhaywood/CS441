@@ -32,8 +32,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QFont comixLoud("Comix Loud", 28, QFont::Normal, false);
     ui->LoginTitle->setFont(comixLoud);
 
-    QFont bikinis("Bikinis Personal Use", 12, QFont::Normal, false);
-    ui->LoginTag->setFont(bikinis);
 }
 
 MainWindow::~MainWindow()
