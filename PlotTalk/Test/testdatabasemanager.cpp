@@ -307,4 +307,73 @@ void TestDatabaseManager::TestGetListOfCachedTvShows()
     QCOMPARE(cachedTvShows[0],tvShow0);
 }
 
+void TestDatabaseManager::TestModifyTvShow()
+{
+    // Set up strings to compare against.
+    QString name = "Mr. Robot";
+    QString expectedTmdbLink = "https://www.themoviedb.org/tv/62560-mr-robot";
+    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg";
 
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    TvShow &tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
+
+    QCOMPARE(tvShow.name.toLower(), name.toLower());
+    QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
+    QCOMPARE(tvShow.graphicLink.toLower(), expectedGraphicLink.toLower());
+
+    QMap<int, Season> &seasons = tvShow.getSeasons();
+
+    QCOMPARE(seasons.count(), 1);
+
+    Season &season = seasons[66343];
+
+    QString expectedSeasonName = "season_0.0";
+
+    QCOMPARE(season.name, expectedSeasonName);
+    QCOMPARE(season.seasonId, 66343);
+    QCOMPARE(season.seasonNumber, 0);
+
+    QMap<int, Episode> &episodes = season.getEpisodes();
+
+    QCOMPARE(episodes.count(), 2);
+
+    Episode &episode = episodes[1203464];
+
+    QString expectedEpisodeName = "Hacking Robot 101";
+    QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";
+
+    QCOMPARE(episode.episodeId, 1203464);
+    QCOMPARE(episode.episodeNumber, 2);
+    QCOMPARE(episode.name, expectedEpisodeName);
+    QCOMPARE(episode.summary, expectedEpisodeSummary);
+
+    // Modify top level tvshow, and verify change.
+    QString updatedTvShowName = "Updated TV name";
+    tvShow.name = updatedTvShowName;
+
+    // Modify, and get from cache to see if it udpated.
+    QString updatedEpisodeName = "Updated Ep name";
+    tvShow.getSeasons()[66343].getEpisodes()[1203464].name = updatedEpisodeName;
+
+    QCOMPARE(tvShow.getSeasons()[66343].getEpisodes()[1203464].name, updatedEpisodeName);
+
+    TvShow &tvShow2 = DatabaseManagerSingleton::Instance().getTvShow(name);
+    QCOMPARE(tvShow2.name, updatedTvShowName);
+    QCOMPARE(tvShow.getSeasons()[66343].getEpisodes()[1203464].name, updatedEpisodeName);
+
+    QMap<int, Season> &seasons2 = tvShow2.getSeasons();
+
+    Season &season2 = seasons2[0];
+
+    QMap<int, Episode> &episodes2 = season2.getEpisodes();
+
+    Episode &episode2 = episodes2[0];
+
+    QString updatedEpisode2Name = "Updated Ep2 name";
+
+    episode2.name = updatedEpisode2Name;
+
+    TvShow &tvShow3 = DatabaseManagerSingleton::Instance().getTvShow(name);
+    QCOMPARE(tvShow3.getSeasons()[0].getEpisodes()[0].name, updatedEpisode2Name);
+}

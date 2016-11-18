@@ -14,7 +14,7 @@ Season::Season()
     seasonId = 0;
     seasonNumber = 0;
     name = "";
-    episodes = QVector<Episode>();
+    episodes = QMap<int, Episode>();
 }
 
 /**
@@ -22,9 +22,9 @@ Season::Season()
  * @param seasonId The season ID as specified by the movie database.
  * @param seasonNumber The season number as specified by the movie database.
  * @param name The name of the season as specified by the movie database.
- * @param episodes A vector of episodes to add to the season.
+ * @param episodes A map of episodes to add to the season.
  */
-Season::Season(int seasonId, int seasonNumber, QString name, QVector<Episode> episodes)
+Season::Season(int seasonId, int seasonNumber, QString name, QMap<int, Episode> episodes)
 {
     this->seasonId = seasonId;
     this->seasonNumber = seasonNumber;
@@ -38,7 +38,12 @@ Season::Season(int seasonId, int seasonNumber, QString name, QVector<Episode> ep
  *
  * NOTE: Any changes to episodes will not be reflected in the TvShow class.
  */
-const QVector<Episode>& Season::inspectEpisodes()
+const QVector<Episode> Season::inspectEpisodes()
+{
+    return episodes.values().toVector();
+}
+
+QMap<int, Episode> &Season::getEpisodes()
 {
     return episodes;
 }
@@ -49,7 +54,7 @@ const QVector<Episode>& Season::inspectEpisodes()
  */
 void Season::addEpisode(Episode episode)
 {
-    episodes.append(episode);
+    episodes.insert(episode.episodeId, episode);
 }
 
 /**
@@ -60,10 +65,13 @@ void Season::addEpisode(Episode episode)
  */
 Episode Season::getEpisode(QString name)
 {
-    foreach (Episode episode, episodes) {
-        if (episode.name == name) {
+    foreach (Episode episode, episodes.values())
+    {
+        if (episode.name == name)
+        {
             return episode;
         }
     }
-    throw NotFound();
+
+    throw NotFound{};
 }

@@ -29,3 +29,32 @@ Episode::Episode(int episodeId, int episodeNumber, QString name, QString summary
     this->name = name;
     this->summary = summary;
 }
+
+void Episode::addReview(Review review)
+{
+    // Since there can be only a single review per user, this allows an existing
+    // review to be overwritten, but the same UUID is kept, so the backend won't end
+    // up with multiple reviews per user (as the UUID is a primary key)
+    if ( reviews.contains(review.username) )
+    {
+        review.postUuid = reviews[review.username].postUuid;
+    }
+
+    reviews[review.username] = review;
+}
+
+void Episode::addComment(Comment comment)
+{
+    comments.append(comment);
+}
+
+const QList<Review> Episode::inspectReviews()
+{
+    return reviews.values();
+}
+
+const QList<Comment> &Episode::getComments()
+{
+    return comments;
+}
+

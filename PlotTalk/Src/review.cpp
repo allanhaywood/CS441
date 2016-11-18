@@ -1,19 +1,31 @@
 #include "review.h"
 
-Review::Review()
+Review::Review() : Reaction()
 {
 
 }
 
-Review::Review(int inMediaID, int inUserID, QString inText, int inRating) : Reaction( inMediaID, inUserID, inText)
+Review::Review(QString username, QString text, int rating)
+    : Reaction(username, text)
 {
-    rating = inRating;
+    this->rating = rating;
 }
 
-/**
- * @brief Reaction::addReply Adds a Reply to this Review
- * @param reply The reply to be added
- */
-void Review::addReply(Reply reply) {
-    replies.push_back(reply);
+Review::Review(QUuid postUuid, QString username, QString text, QString dateTimePosted, int rating)
+    : Reaction(postUuid, username, text, dateTimePosted)
+{
+    this->rating = rating;
 }
+
+/*
+ * Not adding replies yet.
+void Review::addReply(Reply reply)
+{
+    replies.append(reply);
+}
+
+const QVector<Reply> &Review::inspectReplies()
+{
+    return replies;
+}
+*/

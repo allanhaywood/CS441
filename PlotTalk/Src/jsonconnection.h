@@ -7,6 +7,7 @@
 #define JSONCONNECTION_H
 #include <QString>
 #include <QJsonObject>
+#include <QMap>
 
 #include "iconnection.h"
 #include "tvshow.h"
@@ -46,6 +47,9 @@ public:
 
     QList<QString> getListOfAllTvShows();
 
+    void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
+    void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Review review);
+
     // Normally the loadJson and saveJson wouldn't be public, but they have been made public,
     // for easy access by QTest. TODO: Investigate alternative access. ex. Via Friendly classes.
     void loadJson();
@@ -59,9 +63,9 @@ private:
     QString pathToJson;
 
     QJsonArray getTopLevelJsonArray(QString jsonArrayName);
-    QVector<Season> getSeasons(QJsonArray jsonSeasons);
+    QMap<int, Season> getSeasons(QJsonArray jsonSeasons);
     Season getSeason(QJsonObject jsonSeason);
-    QVector<Episode> getEpisodes(QJsonArray jsonEpisodes);
+    QMap<int, Episode> getEpisodes(QJsonArray jsonEpisodes);
     Episode getEpisode(QJsonObject jsonEpisode);
 };
 

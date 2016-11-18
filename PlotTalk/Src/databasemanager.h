@@ -41,6 +41,11 @@ public:
 
     QList<QString> getListOfCachedTvShows();
 
+    QString getTvShowNameById(int tvShowId);
+
+    void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
+    void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
+
     //@todo Add get list of watched tvshows, once watched functionality is added.
 
     // Used for testing only.

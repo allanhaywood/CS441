@@ -7,6 +7,7 @@
 
 #include<QString>
 #include<QVector>
+#include<QMap>
 #include<review.h>
 #include<comment.h>
 
@@ -21,19 +22,17 @@ public:
     Episode();
     Episode(int episodeId, int episodeNumber, QString name, QString summary);
 
-    // Adding reactions later.
-    //Episode(int episodeId, QString name, QVector<Review> reviews, QVector<Comment> comments);
+    Episode(int episodeId, QString name, QVector<Review> reviews, QVector<Comment> comments);
 
-    //QVector<Review> getReviews();
-    //QVector<Review> getComments();
+    void addReview(Review review);
+    void addComment(Comment comment);
 
-    //void addReview();
-    //QVector<Review> getComments();
-
+    const QList<Review> inspectReviews();
+    const QList<Comment> &getComments();
 
 private:
-    //QVector<Review> reviews;
-    //QVector<Comment> comments;
+    QMap<QString, Review> reviews;
+    QList<Comment> comments;
 };
 
 #endif // EPISODE_H

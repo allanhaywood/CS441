@@ -28,7 +28,8 @@ HEADERS += \
     Src/review.h \
     Src/comment.h \
     Src/season.h \
-    Src/episode.h
+    Src/episode.h \
+    Src/common.h
 
 SOURCES += \
     Src/main.cpp \

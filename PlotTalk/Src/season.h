@@ -6,6 +6,7 @@
 #define SEASON_H
 #include <QString>
 #include <QVector>
+#include <QMap>
 
 #include "episode.h"
 
@@ -17,14 +18,16 @@ public:
     QString name;
 
     Season();
-    Season(int seasonId, int seasonNumber, QString name, QVector<Episode> episodes);
+    Season(int seasonId, int seasonNumber, QString name, QMap<int, Episode> episodes);
 
-    const QVector<Episode>& inspectEpisodes();
+    const QVector<Episode> inspectEpisodes();
+    QMap<int, Episode> &getEpisodes();
+
     void addEpisode(Episode episode);
     Episode getEpisode(QString name);
 
 private:
-    QVector<Episode> episodes;
+    QMap<int, Episode> episodes;
 };
 
 #endif // SEASON_H

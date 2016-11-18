@@ -117,10 +117,10 @@ void Dashboard::populateSeasonList(QTreeWidget *treeWidget) {
     treeWidget->clear();
     //using pointers to prevent objects from going out of scope
     //no need to delete tree items - parent tree destroys its children
-    foreach(Season season, selectedShow.inspectSeasons()) {
+    foreach(Season season, selectedShow.getSeasons()) {
         QTreeWidgetItem *seasonNode = new QTreeWidgetItem(treeWidget);
         seasonNode->setText(0, "Season " + QString::number(season.seasonNumber));
-        foreach(Episode episode, season.inspectEpisodes()) {
+        foreach(Episode episode, season.getEpisodes()) {
             QTreeWidgetItem *episodeNode = new QTreeWidgetItem(seasonNode);
             episodeNode->setText(0, episode.name);
         }
