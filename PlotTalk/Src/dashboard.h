@@ -54,6 +54,10 @@ private slots:
 
     void on_commentButton_clicked();
 
+    void on_ratingMeter_valueChanged(int value);
+
+    void on_reviewButton_clicked();
+
 private:
     void populateSeasonList(QTreeWidget *treeWidget);
     void populateMediaItemPage();

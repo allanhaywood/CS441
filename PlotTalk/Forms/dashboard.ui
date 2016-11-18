@@ -108,6 +108,78 @@ font: normal
 font-family: tahoma;
 font-size: 12px;
 font: normal
+}
+
+#ratingLabel {
+font: normal;
+font-size: 10px;
+}
+
+#overallRatingLabel {
+font: normal;
+}
+
+#episodeRatingNum {
+background-color: white;
+font-size: 20px;
+color: blue;
+border-style: solid;
+border-width: 1.5px;
+border-radius: 5px;
+border-color: black;
+}
+
+#ratingNumber {
+background-color: white;
+}
+
+QTableWidget {
+background:  rgb(231, 225, 255);
+gridline-color: gray;
+border-radius: 8px;
+}
+
+#talkTab {
+background-color:  rgb(60, 139, 212);
+border-top: 2px solid rgb(28, 70, 206);
+}
+
+#reviewTab {
+background-color:  rgb(60, 139, 212);
+border-top: 2px solid rgb(28, 70, 206);
+}
+
+#commentBox {
+border-radius: 8px;
+}
+
+#reviewCommentBox {
+border-radius: 8px;
+}
+
+QTabBar::tab {
+background: rgb(17, 224, 255);
+border: 1.5px solid black;
+border-top-left-radius: 8px;
+border-top-right-radius: 8px;
+min-width: 8ex;
+padding: 2px;
+font: bold;
+font-size: 10px;
+}
+
+QTabBar::tab:hover {
+    background: rgb(235, 247, 255)
+}
+
+QTabBar::tab:selected {
+   background: rgb(60, 139, 212);
+    border-color: black;
+    border-bottom-color: black;
+}
+
+QTabBar::tab:!selected {
+    margin-top: 2px;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -918,10 +990,15 @@ p, li { white-space: pre-wrap; }
             <property name="geometry">
              <rect>
               <x>6</x>
-              <y>249</y>
+              <y>239</y>
               <width>511</width>
-              <height>341</height>
+              <height>351</height>
              </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QTextEdit {
+background-color: white;
+}</string>
             </property>
             <property name="currentIndex">
              <number>0</number>
@@ -934,7 +1011,7 @@ p, li { white-space: pre-wrap; }
               <property name="geometry">
                <rect>
                 <x>10</x>
-                <y>200</y>
+                <y>210</y>
                 <width>481</width>
                 <height>71</height>
                </rect>
@@ -944,7 +1021,7 @@ p, li { white-space: pre-wrap; }
               <property name="geometry">
                <rect>
                 <x>210</x>
-                <y>280</y>
+                <y>290</y>
                 <width>101</width>
                 <height>31</height>
                </rect>
@@ -959,8 +1036,11 @@ p, li { white-space: pre-wrap; }
                 <x>10</x>
                 <y>10</y>
                 <width>481</width>
-                <height>181</height>
+                <height>191</height>
                </rect>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
               </property>
              </widget>
             </widget>
@@ -972,7 +1052,7 @@ p, li { white-space: pre-wrap; }
               <property name="geometry">
                <rect>
                 <x>200</x>
-                <y>280</y>
+                <y>290</y>
                 <width>111</width>
                 <height>31</height>
                </rect>
@@ -985,7 +1065,7 @@ p, li { white-space: pre-wrap; }
               <property name="geometry">
                <rect>
                 <x>13</x>
-                <y>210</y>
+                <y>220</y>
                 <width>481</width>
                 <height>61</height>
                </rect>
@@ -994,9 +1074,9 @@ p, li { white-space: pre-wrap; }
              <widget class="QSlider" name="ratingMeter">
               <property name="geometry">
                <rect>
-                <x>70</x>
-                <y>180</y>
-                <width>381</width>
+                <x>50</x>
+                <y>190</y>
+                <width>301</width>
                 <height>22</height>
                </rect>
               </property>
@@ -1013,8 +1093,131 @@ p, li { white-space: pre-wrap; }
                 <height>161</height>
                </rect>
               </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="thumbsUpIcon">
+              <property name="geometry">
+               <rect>
+                <x>360</x>
+                <y>180</y>
+                <width>31</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../Resources/resources.qrc">:/images/Images/thumbs_up.png</pixmap>
+              </property>
+             </widget>
+             <widget class="QLabel" name="ratingNumber">
+              <property name="geometry">
+               <rect>
+                <x>410</x>
+                <y>190</y>
+                <width>71</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::Box</enum>
+              </property>
+              <property name="text">
+               <string>50</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QLabel" name="thumbsDownIcon">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>180</y>
+                <width>31</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../Resources/resources.qrc">:/images/Images/thumbs_down.png</pixmap>
+              </property>
+             </widget>
+             <widget class="QLabel" name="ratingLabel">
+              <property name="geometry">
+               <rect>
+                <x>420</x>
+                <y>170</y>
+                <width>41</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>verdana</family>
+                <pointsize>-1</pointsize>
+                <weight>50</weight>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Rating:</string>
+              </property>
              </widget>
             </widget>
+           </widget>
+           <widget class="QLabel" name="overallRatingLabel">
+            <property name="geometry">
+             <rect>
+              <x>400</x>
+              <y>10</y>
+              <width>111</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>verdana</family>
+              <pointsize>-1</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="text">
+             <string>Overall Rating:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+           <widget class="QLabel" name="episodeRatingNum">
+            <property name="geometry">
+             <rect>
+              <x>400</x>
+              <y>30</y>
+              <width>111</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </widget>
          </widget>
@@ -1192,7 +1395,7 @@ p, li { white-space: pre-wrap; }
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>:/images/Images/plottalking_360_small.png</pixmap>
+         <pixmap resource="../Resources/resources.qrc">:/images/Images/plottalking_360_small.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -1302,7 +1505,7 @@ p, li { white-space: pre-wrap; }
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>:/images/Images/MoviesDBlogo.png</pixmap>
+         <pixmap resource="../Resources/resources.qrc">:/images/Images/MoviesDBlogo.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -1461,6 +1664,8 @@ p, li { white-space: pre-wrap; }
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
