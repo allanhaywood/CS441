@@ -18,7 +18,26 @@
                             "episodeId":63087,
                             "episodeNumber":1,
                             "name":"Inside Game Of Thrones",
-                            "summary":"A short look into the film-making process for the production Game of Thrones"
+                            "summary":"A short look into the film-making process for the production Game of Thrones",
+                            "reviews":
+                            [
+                                {
+                                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EE}",
+                                    "username":"plottalkadmin",
+                                    "text":"It is amazing how this show is made.",
+                                    "rating":5,
+                                    "dateTimePosted":"1997-07-16T19:20:30.45+00:00"
+                                }
+                            ],
+                            "comments":
+                            [
+                                {
+                                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EF}",
+                                    "username":"plottalkadmin",
+                                    "text":"It is amazing how this show is made.",
+                                    "dateTimePosted":"1997-07-16T19:20:30.46+00:00"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -41,13 +60,25 @@
                             "episodeId":1200247,
                             "episodeNumber":1,
                             "name":"Mr. Robot_dec0d3d.doc",
-                            "summary":"Mr. Robot Decoded explores the authenticity and societal impact of the award-winning series Mr. Robot. Through documentary-style interviews with the cast, creators of the show, along with high-profile experts, writers, journalists and filmmakers Mr. Robot Decoded will discuss and attempt to answer the question: Can hackers change the world? And, more important - should they?"
+                            "summary":"Mr. Robot Decoded explores the authenticity and societal impact of the award-winning series Mr. Robot. Through documentary-style interviews with the cast, creators of the show, along with high-profile experts, writers, journalists and filmmakers Mr. Robot Decoded will discuss and attempt to answer the question: Can hackers change the world? And, more important - should they?",
+                            "reviews":
+                            [
+                            ],
+                            "comments":
+                            [
+                            ]
                         },
                         {
                             "episodeId":1203464,
                             "episodeNumber":2,
                             "name":"Hacking Robot 101",
-                            "summary":"In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions."
+                            "summary":"In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.",
+                            "reviews":
+                            [
+                            ],
+                            "comments":
+                            [
+                            ]
                         }
                     ]
                 }

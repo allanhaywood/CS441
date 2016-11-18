@@ -13,6 +13,7 @@
 class Season
 {
 public:
+    friend class TvShow;
     int seasonId;
     int seasonNumber;
     QString name;

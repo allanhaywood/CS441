@@ -58,7 +58,7 @@ public:
 
     virtual void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review) = 0;
 
-    virtual void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Review review) = 0;
+    virtual void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment) = 0;
 };
 
 #endif // ICONNECTION_H

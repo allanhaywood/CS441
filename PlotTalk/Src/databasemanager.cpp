@@ -201,6 +201,13 @@ void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Revi
     connection.addEpisodeReview(episodeIdentifier, review);
 }
 
+void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
+{
+    QString tvShowName = getTvShowNameById(episodeIdentifier.episodeId);
+    tvShowMap[tvShowName].addEpisodeComment(episodeIdentifier, comment);
+    connection.addEpisodeComment(episodeIdentifier, comment);
+}
+
 /**
  * @brief DatabaseManager::emptyCache Used for testing only, to empty cache.
  */

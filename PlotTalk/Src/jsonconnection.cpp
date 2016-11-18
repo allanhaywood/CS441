@@ -9,6 +9,7 @@
 #include <QJsonParseError>
 #include <QDebug>
 #include <QDir>
+#include <QVariantMap>
 
 #include "jsonconnection.h"
 #include "plottalkexceptions.h"
@@ -192,8 +193,51 @@ Episode JsonConnection::getEpisode(QJsonObject jsonEpisode)
                 jsonEpisode["episodeId"].toInt(),
                 jsonEpisode["episodeNumber"].toInt(),
                 jsonEpisode["name"].toString(),
-                jsonEpisode["summary"].toString()
+                jsonEpisode["summary"].toString(),
+                getReviews(jsonEpisode["reviews"]),
+                getComments(jsonEpisode["comments"])
             );
+}
+
+QList<Comment> JsonConnection::getComments(QJsonValue jsonComments)
+{
+    QList<Comment> comments = QList<Comment>();
+
+    Comment comment;
+    QJsonObject jsonObject;
+    foreach (const QJsonValue &jsonComment, jsonComments.toArray())
+    {
+        jsonObject = jsonComment.toObject();
+        comment.postUuid = QUuid(jsonObject["postUuid"].toString());
+        comment.username = jsonObject["username"].toString();
+        comment.text = jsonObject["text"].toString();
+        comment.dateTimePosted = jsonObject["dateTimePosted"].toString();
+
+        comments.append(comment);
+    }
+
+    return comments;
+}
+
+QMap<QString, Review> JsonConnection::getReviews(QJsonValue jsonReviews)
+{
+    QMap<QString, Review> reviews = QMap<QString, Review>();
+
+    Review review;
+    QJsonObject jsonObject;
+    foreach (const QJsonValue &jsonReview, jsonReviews.toArray())
+    {
+        jsonObject = jsonReview.toObject();
+        review.postUuid = QUuid(jsonObject["postUuid"].toString());
+        review.username = jsonObject["username"].toString();
+        review.rating = jsonObject["rating"].toInt();
+        review.text = jsonObject["text"].toString();
+        review.dateTimePosted = jsonObject["dateTimePosted"].toString();
+
+        reviews.insert(review.username, review);
+    }
+
+    return reviews;
 }
 
 /**
@@ -434,12 +478,21 @@ QList<QString> JsonConnection::getListOfAllTvShows()
 
 void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
+    qDebug() << episodeIdentifier.tvShowId;
+    qDebug() << episodeIdentifier.seasonId;
+    qDebug() << episodeIdentifier.episodeId;
+    qDebug() << review.postUuid.toString();
+    qDebug() << review.username;
+    qDebug() << review.rating;
+    qDebug() << review.text;
+    qDebug() << review.dateTimePosted;
 
+    QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
 }
 
-void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Review review)
+void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
 {
-
+    throw NotImplemented{};
 }
 
 /**

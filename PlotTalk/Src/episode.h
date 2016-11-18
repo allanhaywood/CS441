@@ -14,6 +14,8 @@
 class Episode
 {
 public:
+    friend class TvShow;
+    friend class Season;
     int episodeId;
     int episodeNumber;
     QString name;
@@ -22,7 +24,7 @@ public:
     Episode();
     Episode(int episodeId, int episodeNumber, QString name, QString summary);
 
-    Episode(int episodeId, QString name, QVector<Review> reviews, QVector<Comment> comments);
+    Episode(int episodeId, int episodeNumber, QString name, QString summary, QMap<QString, Review> reviews, QList<Comment> comments);
 
     void addReview(Review review);
     void addComment(Comment comment);

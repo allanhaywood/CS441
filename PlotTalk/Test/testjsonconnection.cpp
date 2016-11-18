@@ -2,10 +2,12 @@
  *
  * @author Allan Haywood
  */
-#include <QtTest/QtTest>
-#include <QDir>
 #include "plottalkexceptions.h"
 #include "testjsonconnection.h"
+#include "common.h"
+
+#include <QtTest/QtTest>
+#include <QDir>
 
 void TestJsonConnection::TestGetTvShow1()
 {
@@ -43,6 +45,33 @@ void TestJsonConnection::TestGetTvShow1()
     QCOMPARE(episodes[0].episodeNumber, 1);
     QCOMPARE(episodes[0].name, expectedEpisodeName);
     QCOMPARE(episodes[0].summary, expectedEpisodeSummary);
+
+    QList<Review> reviews = episodes[0].inspectReviews();
+
+    QString expectedDateTimePosted = "1997-07-16T19:20:30.45+00:00";
+    QUuid expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EE}");
+    QString expectedText = "It is amazing how this show is made.";
+    QString expectedUsername = "plottalkadmin";
+
+    QVERIFY(reviews.count() == 1);
+
+    QCOMPARE(reviews[0].dateTimePosted, expectedDateTimePosted);
+    QCOMPARE(reviews[0].postUuid, expectedPostUuid);
+    QCOMPARE(reviews[0].rating, 5);
+    QCOMPARE(reviews[0].text, expectedText);
+    QCOMPARE(reviews[0].username, expectedUsername);
+
+    QList<Comment> comments = episodes[0].getComments();
+
+    expectedDateTimePosted = "1997-07-16T19:20:30.46+00:00";
+    expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EF}");
+
+    QVERIFY(comments.count() == 1);
+
+    QCOMPARE(comments[0].dateTimePosted, expectedDateTimePosted);
+    QCOMPARE(comments[0].postUuid, expectedPostUuid);
+    QCOMPARE(comments[0].text, expectedText);
+    QCOMPARE(comments[0].username, expectedUsername);
 }
 
 void TestJsonConnection::TestGetTvShow2()
@@ -293,3 +322,20 @@ void TestJsonConnection::TestGetListOfAllTvShows()
     QCOMPARE(allTvShows[0],tvShow0);
     QCOMPARE(allTvShows[1],tvShow1);
 }
+
+/*
+void TestJsonConnection::TestAddEpisodeReview()
+{
+    JsonConnection jsonConnection = JsonConnection();
+
+    EpisodeIdentifier episodeIdentifier;
+
+    episodeIdentifier.tvShowId = 1399;
+    episodeIdentifier.seasonId = 3627;
+    episodeIdentifier.episodeId = 63087;
+
+    Review review = Review("plottalkadmin", "This was really good.", 4);
+
+    jsonConnection.addEpisodeReview(episodeIdentifier, review);
+}
+*/

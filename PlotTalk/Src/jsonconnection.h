@@ -5,13 +5,15 @@
 
 #ifndef JSONCONNECTION_H
 #define JSONCONNECTION_H
+#include "iconnection.h"
+#include "tvshow.h"
+#include "user.h"
+
 #include <QString>
 #include <QJsonObject>
 #include <QMap>
 
-#include "iconnection.h"
-#include "tvshow.h"
-#include "user.h"
+
 
 class JsonConnection : public IConnection
 {
@@ -48,7 +50,7 @@ public:
     QList<QString> getListOfAllTvShows();
 
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
-    void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Review review);
+    void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
 
     // Normally the loadJson and saveJson wouldn't be public, but they have been made public,
     // for easy access by QTest. TODO: Investigate alternative access. ex. Via Friendly classes.
@@ -67,6 +69,8 @@ private:
     Season getSeason(QJsonObject jsonSeason);
     QMap<int, Episode> getEpisodes(QJsonArray jsonEpisodes);
     Episode getEpisode(QJsonObject jsonEpisode);
+    QMap<QString, Review> getReviews(QJsonValue jsonReviews);
+    QList<Comment> getComments(QJsonValue jsonComments);
 };
 
 #endif // JSONCONNECTION_H

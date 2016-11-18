@@ -110,10 +110,10 @@ Season TvShow::getSeason(int number)
 
 void TvShow::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
-    throw NotImplemented{};
+    seasons[episodeIdentifier.seasonId].episodes[episodeIdentifier.episodeId].addReview(review);
 }
 
 void TvShow::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
 {
-    throw NotImplemented{};
+    seasons[episodeIdentifier.seasonId].episodes[episodeIdentifier.episodeId].addComment(comment);
 }
