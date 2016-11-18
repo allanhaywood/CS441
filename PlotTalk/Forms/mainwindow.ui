@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>522</width>
-    <height>388</height>
+    <width>493</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -64,48 +64,23 @@ color: rgb(20, 110, 255);
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="LoginTag">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>60</y>
-      <width>441</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Monotype Corsiva</family>
-      <pointsize>22</pointsize>
-      <weight>50</weight>
-      <italic>true</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>All of the Talk, None of the Spoilers</string>
-    </property>
-    <property name="scaledContents">
-     <bool>false</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QWidget" name="LoginWidget" native="true">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-10</y>
-      <width>531</width>
-      <height>371</height>
+      <y>0</y>
+      <width>491</width>
+      <height>361</height>
      </rect>
     </property>
     <widget class="QPushButton" name="SignInButton">
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>240</y>
+       <y>270</y>
        <width>81</width>
        <height>31</height>
       </rect>
@@ -118,7 +93,7 @@ color: rgb(20, 110, 255);
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>280</y>
+       <y>310</y>
        <width>81</width>
        <height>32</height>
       </rect>
@@ -131,7 +106,7 @@ color: rgb(20, 110, 255);
      <property name="geometry">
       <rect>
        <x>190</x>
-       <y>210</y>
+       <y>240</y>
        <width>121</width>
        <height>31</height>
       </rect>
@@ -161,7 +136,7 @@ color: rgb(20, 110, 255);
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>180</y>
+       <y>210</y>
        <width>141</width>
        <height>31</height>
       </rect>
@@ -177,7 +152,7 @@ color: rgb(20, 110, 255);
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>140</y>
+       <y>170</y>
        <width>141</width>
        <height>31</height>
       </rect>
@@ -186,51 +161,52 @@ color: rgb(20, 110, 255);
       <string>Email</string>
      </property>
     </widget>
+    <widget class="QLabel" name="LoginTitle">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>20</y>
+       <width>201</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Mistral</family>
+       <pointsize>48</pointsize>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::AutoText</enum>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../Resources/resources.qrc">:/images/Images/plottalking_360.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
     <zorder>CreateAcctButton</zorder>
     <zorder>ForgotPassButton</zorder>
     <zorder>PasswordEnter</zorder>
     <zorder>EmailEnter</zorder>
     <zorder>SignInButton</zorder>
+    <zorder>LoginTitle</zorder>
    </widget>
-   <widget class="QLabel" name="LoginTitle">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>10</y>
-      <width>441</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Mistral</family>
-      <pointsize>48</pointsize>
-      <italic>true</italic>
-     </font>
-    </property>
-    <property name="text">
-     <string>PLOT TALK</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-    <property name="scaledContents">
-     <bool>false</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <zorder>LoginWidget</zorder>
-   <zorder>LoginTag</zorder>
-   <zorder>LoginTitle</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>522</width>
+     <width>493</width>
      <height>21</height>
     </rect>
    </property>
@@ -253,6 +229,8 @@ color: rgb(20, 110, 255);
   <tabstop>SignInButton</tabstop>
   <tabstop>CreateAcctButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../Resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
