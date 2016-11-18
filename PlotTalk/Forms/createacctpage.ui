@@ -139,10 +139,10 @@ font-family: verdana;
   <widget class="QLabel" name="CreateAcctHeader">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>371</width>
-     <height>81</height>
+     <x>20</x>
+     <y>0</y>
+     <width>361</width>
+     <height>131</height>
     </rect>
    </property>
    <property name="font">
@@ -153,10 +153,13 @@ font-family: verdana;
     </font>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PLOT TALK&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string/>
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../Resources/resources.qrc">:/images/Images/plottalking_360.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>false</bool>
@@ -405,6 +408,8 @@ font-family: verdana;
   <tabstop>PasswordBox2</tabstop>
   <tabstop>CreateAcctButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../Resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
