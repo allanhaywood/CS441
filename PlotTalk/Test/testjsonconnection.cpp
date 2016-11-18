@@ -26,19 +26,19 @@ void TestJsonConnection::TestGetTvShow1()
 
     QVector<Season> seasons = tvShow.inspectSeasons();
 
-    QString empty = "";
+    QString expectedSeasonName = "Season 0";
 
-    QVERIFY(seasons.count() == 1);
+    QCOMPARE(seasons.count(), 7);
     QCOMPARE(seasons[0].seasonId, 3627);
     QCOMPARE(seasons[0].seasonNumber, 0);
-    QCOMPARE(seasons[0].name, empty);
+    QCOMPARE(seasons[0].name, expectedSeasonName);
 
     QVector<Episode> episodes = seasons[0].inspectEpisodes();
 
-    QString expectedEpisodeName = "Inside Game Of Thrones";
+    QString expectedEpisodeName = "Inside Game of Thrones";
     QString expectedEpisodeSummary = "A short look into the film-making process for the production Game of Thrones";
 
-    QVERIFY(episodes.count() == 1);
+    QCOMPARE(episodes.count(), 11);
     QCOMPARE(episodes[0].episodeId, 63087);
     QCOMPARE(episodes[0].episodeNumber, 1);
     QCOMPARE(episodes[0].name, expectedEpisodeName);
@@ -66,8 +66,8 @@ void TestJsonConnection::TestGetTvShow2()
 
     QString expectedSeasonName = "season_0.0";
 
-    QVERIFY(seasons.count() == 1);
-    QCOMPARE(seasons[0].seasonId, 66343);
+    QCOMPARE(seasons.count(), 3);
+    QCOMPARE(seasons[0].seasonId, 77843);
     QCOMPARE(seasons[0].seasonNumber, 0);
     QCOMPARE(seasons[0].name, expectedSeasonName);
 
@@ -76,7 +76,7 @@ void TestJsonConnection::TestGetTvShow2()
     QString expectedEpisodeName = "Hacking Robot 101";
     QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";
 
-    QVERIFY(episodes.count() == 2);
+    QCOMPARE(episodes.count(), 3);
     QCOMPARE(episodes[1].episodeId, 1203464);
     QCOMPARE(episodes[1].episodeNumber, 2);
     QCOMPARE(episodes[1].name, expectedEpisodeName);

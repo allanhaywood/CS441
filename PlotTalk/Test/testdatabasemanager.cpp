@@ -27,19 +27,19 @@ void TestDatabaseManager::TestGetTvShowDefaultConstructor()
 
     QVector<Season> seasons = tvShow.inspectSeasons();
 
-    QCOMPARE(seasons.count(), 1);
+    QCOMPARE(seasons.count(), 3);
 
     Season season = seasons[0];
 
     QString expectedSeasonName = "season_0.0";
 
     QCOMPARE(season.name, expectedSeasonName);
-    QCOMPARE(season.seasonId, 66343);
+    QCOMPARE(season.seasonId, 77843);
     QCOMPARE(season.seasonNumber, 0);
 
     QVector<Episode> episodes = season.inspectEpisodes();
 
-    QCOMPARE(episodes.count(), 2);
+    QCOMPARE(episodes.count(), 3);
 
     Episode episode = episodes[1];
 
