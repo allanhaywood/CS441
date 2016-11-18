@@ -80,8 +80,6 @@ font-family: verdana;
     <font>
      <family>tahoma</family>
      <pointsize>-1</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
     </font>
    </property>
    <property name="text">
@@ -101,7 +99,7 @@ font-family: verdana;
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>80</y>
+     <y>90</y>
      <width>191</width>
      <height>51</height>
     </rect>
@@ -302,6 +300,25 @@ font-family: verdana;
    </property>
    <property name="text">
     <string>Got it</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="taglineLabel">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>80</y>
+     <width>211</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>verdana</family>
+     <italic>true</italic>
+    </font>
+   </property>
+   <property name="text">
+    <string>&quot;All of the Talk, None of the Spoilers&quot;</string>
    </property>
   </widget>
  </widget>
