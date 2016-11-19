@@ -91,12 +91,12 @@ void TvShow::addSeason(Season season)
  * @returns matching Season
  * @throws NotFound exception if no match found
  */
-Season TvShow::getSeason(int number)
+Season* TvShow::getSeason(int number)
 {
-    foreach (Season season, seasons) {
-        if (season.seasonNumber == number) {
-            return season;
+    for(int i = 0; i < seasons.size(); i++) {
+        if (seasons[i].seasonNumber == number) {
+            return &seasons[i];
         }
     }
-    throw NotFound();
+    throw NotFound("Unable to retrieve season number " + QString::number(number) + " from show " + name);
 }

@@ -51,8 +51,9 @@ TvShow &DatabaseManager::getTvShow(QString name)
     // @todo Determine how to decide to use either json or mysql connection at runtime,
     // or at the very least, a single location to choose which one.
 
-    // @todo Add caching so that it doesn't call getTvShow if it isn't needed.
-    tvShowMap[name] = connection.getTvShow(name);
+    if (!tvShowMap.contains(name)) { //if the show isn't in the tvShowMap, add it
+        tvShowMap[name] = connection.getTvShow(name);
+    }
 
     return tvShowMap[name];
 }
@@ -125,7 +126,7 @@ void DatabaseManager::updateUser(User user)
 {
     if (! connection.usernameExists(user.username))
     {
-        throw NotFound{};
+        throw NotFound("Unable to update user " + user.username + "; username not found");
     }
 
     userMap[user.username].firstName = user.firstName;

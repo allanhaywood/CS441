@@ -58,12 +58,12 @@ void Season::addEpisode(Episode episode)
  * @returns matching Episode
  * @throws NotFound exception if no match found
  */
-Episode Season::getEpisode(QString name)
+Episode* Season::getEpisode(QString name)
 {
-    foreach (Episode episode, episodes) {
-        if (episode.name == name) {
-            return episode;
+    for(int i = 0; i < episodes.size(); i++) {
+        if (episodes[i].name == name) {
+            return &episodes[i];
         }
     }
-    throw NotFound();
+    throw NotFound("Unable to retrieve episode " + name + " from season number " + seasonNumber);
 }

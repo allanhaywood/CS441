@@ -52,6 +52,8 @@ private slots:
 
     void on_saveButton_clicked();
 
+    void on_logoutButton_clicked();
+
 private:
     void populateSeasonList(QTreeWidget *treeWidget);
     void populateMediaItemPage();
@@ -61,9 +63,9 @@ private:
     About* AboutPage = NULL;
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
     enum Pages {WELCOME, NAVIGATION, ITEM, ACCOUNT}; //pages of the dashboard, ordered by their page number
-    TvShow selectedShow;
-    Season selectedSeason;
-    Episode selectedEpisode;
+    TvShow* selectedShow = NULL;
+    Season* selectedSeason = NULL;
+    Episode* selectedEpisode = NULL;
 };
 
 #endif // DASHBOARD_H

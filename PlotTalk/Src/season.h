@@ -21,7 +21,7 @@ public:
 
     const QVector<Episode>& inspectEpisodes();
     void addEpisode(Episode episode);
-    Episode getEpisode(QString name);
+    Episode *getEpisode(QString name);
 
 private:
     QVector<Episode> episodes;
