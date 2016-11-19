@@ -3,7 +3,10 @@
 #include "adminpage.h"
 #include "about.h"
 #include "plottalkexceptions.h"
-#include<QList>
+#include "accountmanager.h"
+#include "mainwindow.h"
+#include <QLIST>
+#include <QMessageBox>
 
 
 Dashboard::Dashboard(QWidget *parent) :
@@ -14,6 +17,11 @@ Dashboard::Dashboard(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(WELCOME); //set stacked widget to home screen at start
     //TODO: only show admin button if user account has admin rights
     ui->adminButton->setVisible(true);
+
+    AccountManager *userInfo= AccountManager::getInstance();//gets the user information
+    theUser=userInfo->getCurrentAccount();
+    ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
+
 }
 
 Dashboard::~Dashboard()
@@ -28,6 +36,13 @@ void Dashboard::hideAdminButton()
 
 void Dashboard::on_myAccountButton_clicked()
 {
+
+
+    ui->usernameLabel->setText(theUser.username);
+    ui->firstNameBox->setText(theUser.firstName);
+    ui->lastNameBox->setText(theUser.lastName);
+    ui->emailBox->setText(theUser.email);
+
     ui->stackedWidget->setCurrentIndex(ACCOUNT);
 }
 
@@ -191,6 +206,97 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
 }
 
 /**
+ * @brief Dashboard::on_saveButton_clicked saves the users account info when Save button is clicked
+ */
+void Dashboard::on_saveButton_clicked()
+{
+    //similar validation steps as create account page
+    //only populate username, email, and name fields. Do not populate password fields from DB.
+    //if new password field isn't empty, show message if it doesn't match confirm password textbox
+    //only update user password if new password field isn't empty and it matches confirm textbox
+    QString newEmail=ui->emailBox->text();
+    QString newFirstName=ui->firstNameBox->text();
+    QString newLastName=ui->lastNameBox->text();
+    QString newPassword;
+
+
+    if(ui->newPasswordBox->text()==ui->confirmPasswordBox->text() && ui->confirmPasswordBox->text()!="")
+    {
+        newPassword = ui->newPasswordBox->text();
+    }
+    else if(ui->confirmPasswordBox->text()=="" && ui->newPasswordBox->text()=="")
+    {
+           newPassword=theUser.passwordHash;
+    }
+    else
+    {
+        QMessageBox noPassMatch;
+        noPassMatch.setText("The two password fields must match\n(Leave blank to avoid changing)");
+        noPassMatch.exec();
+
+        ui->newPasswordBox->clear();
+        ui->confirmPasswordBox->clear();
+        return;
+    }
+
+    AccountManager *userInfo= AccountManager::getInstance();//gets the user information
+{
+    if(theUser.email!=newEmail || theUser.firstName!= newFirstName || theUser.lastName!=newLastName || newPassword!=theUser.passwordHash)
+    {//add check for each field to determine when it is changed, set back if not.
+        QString message;
+
+        DatabaseManagerSingleton::Instance().removeUser(theUser.username);
+        selectEnum Problems=userInfo->checkFieldsAndCreate(newFirstName,newLastName,theUser.username,newEmail,newPassword);
+
+        switch (Problems)
+        {
+        case selectEnum::BAD_EMAIL:
+          {
+            message="The email you entered was incorrectly formatted";
+            ui->emailBox->clear();
+          }
+            break;
+        case selectEnum::DUPLICATE_EMAIL:
+          {
+            message="That e-mail is already present in our system";
+            ui->emailBox->clear();
+          }
+            break;
+        case selectEnum::VALUES_MISSING:
+          {
+            message="You must enter a first and last name";
+          }
+            break;
+        case selectEnum::BAD_PASSWORD:
+          {
+            message="The password must have the following characteristics:\nIt must be more than 8 characters\nIt must contain both capital and lowercase letters\nIt must include at least one special symbol";
+            ui->newPasswordBox->clear();
+            ui->confirmPasswordBox->clear();
+          }
+            break;
+        case selectEnum::ALLCLEAR:
+          {
+            message="Your account has been successfully updated!";
+            ui->stackedWidget->setCurrentIndex(WELCOME);
+            theUser = userInfo->getCurrentAccount();
+            ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
+          }
+
+         }
+             QMessageBox emailExists;
+             emailExists.setText(message);
+             emailExists.exec();
+
+             return;
+         }
+         else
+         {
+            ui->stackedWidget->setCurrentIndex(WELCOME);
+         }
+    }
+}
+
+/**
  * @brief Dashboard::on_watchedButton_2_clicked triggered when user clicks "I've seen it!" button on media page
  * @post unhides additional media details and adds this episode to the user's watched list
  */
@@ -202,15 +308,15 @@ void Dashboard::on_watchedConfirmButton_clicked()
     //@TODO add episode to watched list once it has been added to user class
 }
 
-/**
- * @brief Dashboard::on_saveButton_clicked saves the users account info when Save button is clicked
- */
-void Dashboard::on_saveButton_clicked()
+void Dashboard::on_logoutButton_clicked()
 {
-    //similar validation steps as create account page
-    //only populate username, email, and name fields. Do not populate password fields from DB.
-    //if new password field isn't empty, show message if it doesn't match confirm password textbox
-    //only update user password if new password field isn't empty and it matches confirm textbox
+     AccountManager *userInfo= AccountManager::getInstance();
+     userInfo->ClearForLogout();//clears the user out of account manager
+     this->close();
+     MainWindow *openAgain=new MainWindow();
+     openAgain->show();
+
+
 }
 
 void Dashboard::on_logoutButton_clicked()
