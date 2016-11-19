@@ -39,9 +39,9 @@ AccountManager::~AccountManager()//destructor
 
 bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
 {
-   User thisUser(handle, first, last,Email,password);//add Password Hash when possible
-   DatabaseManager database;
-   database.addUser(thisUser);
+   User thisUser(handle, first, last, Email, password);//add Password Hash when possible
+   typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+   DatabaseManagerSingleton::Instance().addUser(thisUser);
    thisGuy=thisUser;
    return true;//reminant of previous code
 }
@@ -79,15 +79,15 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
 
 */
     int num=0;
-    DatabaseManager database;
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     if((fName.size()<=1)||(lName.size()<=1)||(handle.size()<=1))
         return selectEnum::VALUES_MISSING;//need good names and handle
     if(validEmail->validate(email,num)!=2)
         return selectEnum::BAD_EMAIL;//email is bad format
-    if(database.emailExists(email))
+    if(DatabaseManagerSingleton::Instance().emailExists(email))
         return selectEnum::DUPLICATE_EMAIL;//email already exists
-    if(database.usernameExists(handle))
+    if(DatabaseManagerSingleton::Instance().usernameExists(handle))
         return selectEnum::USERNAME_TAKEN;//username is taken
     if(validPwd->validate(password,num)!=2)
         return selectEnum::BAD_PASSWORD;//password not correct format
@@ -104,10 +104,11 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
  */
 bool AccountManager::checkEmailAndPassword(QString& email, QString& password, User &user)
 {
-    DatabaseManager database;
-        if(database.emailExists(email))
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    if(DatabaseManagerSingleton::Instance().emailExists(email))
         {
-            User hold=database.getUserByEmail(email);
+            User hold=DatabaseManagerSingleton::Instance().getUserByEmail(email);
 
             if(hold.passwordHash==password)
             {
@@ -126,6 +127,18 @@ bool AccountManager::checkEmailAndPassword(QString& email, QString& password, Us
         {
             return false;
         }
+}
+
+bool AccountManager::EmailExists(QString email)//checks to see if an email exists for dashboard
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+    return DatabaseManagerSingleton::Instance().emailExists(email);
+}
+
+void AccountManager::ClearForLogout()
+{
+    User BlankMan;
+    thisGuy=BlankMan;
 }
 
 
