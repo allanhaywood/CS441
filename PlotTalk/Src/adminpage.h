@@ -25,9 +25,15 @@ private slots:
 
     void on_GoBack_clicked();
 
+    void on_addUser_clicked();
+
+    void on_CreateUser_clicked();
+
+    void on_goBack2_clicked();
+
 private:
     Ui::AdminPage *ui;
-    enum AdminPages {USERS, SHOWS, NEXT, ANOTHER};
+    enum AdminPages {VIEWUSERS, ADDUSER, NEXT, ANOTHER};
 };
 
 #endif // ADMINPAGE_H
