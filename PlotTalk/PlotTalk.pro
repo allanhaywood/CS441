@@ -58,7 +58,6 @@ FORMS += \
     Forms/forgotpassword.ui \
     Forms/addnewmedia.ui \
     Forms/adminpage.ui \
-    Forms/accountdetails.ui \
     Forms/about.ui
 
 RESOURCES += \
