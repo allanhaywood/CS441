@@ -61,8 +61,9 @@ private slots:
 
     void on_logoutButton_clicked();
 
+    void on_ratingNumber_textEdited(const QString &arg1);
+
 private:
-    User theUser;
     void populateSeasonList(QTreeWidget *treeWidget);
     void populateMediaItemPage();
 

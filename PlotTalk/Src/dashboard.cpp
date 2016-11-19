@@ -172,6 +172,8 @@ void Dashboard::on_rightTree_itemClicked(QTreeWidgetItem *item, int)
  * @pre expects selectedShow, selectedSeason, and selectedEpisode to be set
  */
 void Dashboard::populateMediaItemPage() {
+    ui->mediaItemSplitter->setSizes({1, 300});
+
     // clear out comments and reviews
     ui->commentTable->clear();
     ui->commentBox->clear();
@@ -181,7 +183,18 @@ void Dashboard::populateMediaItemPage() {
     ui->reviewTable->setRowCount(0);
     ui->episodeRatingNum->setText(0); // @TODO: Replace this with episode's saved overall rating
 
-    ui->mediaItemSplitter->setSizes({1, 300});
+    // ensure first comment/review tab viewed is comment tab
+    ui->commentTabWidget->setCurrentIndex(0);
+
+    // set up initial review tab settings
+    ui->ratingMeter->setMinimum(0);
+    ui->ratingMeter->setMaximum(100);
+    ui->ratingMeter->setSliderPosition(50);
+
+    // ensure only integers can be entered for rating score
+    ui->ratingNumber->setValidator(new QIntValidator(0, 100, this));
+
+    // set show name, season, episode name
     ui->showName->setText(selectedShow.name);
     QString seasonText = "Season ";
     seasonText.append(QString::number(selectedSeason.seasonNumber));
@@ -193,6 +206,7 @@ void Dashboard::populateMediaItemPage() {
     //hide watched warning and checkbox
     //don't hide additional episode items (summary, comments, reviews)
     //else:
+    ui->episodeSummaryLabel->setVisible(false);
     ui->episodeSummary->setVisible(false);
     ui->commentTabWidget->setVisible(false);
     ui->episodeRatingNum->setVisible(false);
@@ -318,19 +332,12 @@ void Dashboard::on_saveButton_clicked()
 void Dashboard::on_watchedConfirmButton_clicked()
 {
     ui->episodeSummary->setVisible(true);
+    ui->episodeSummaryLabel->setVisible(true);
     ui->commentTabWidget->setVisible(true);
     ui->episodeRatingNum->setVisible(true);
     ui->overallRatingLabel->setVisible(true);
     ui->watchedConfirmButton->setVisible(false);
     ui->watchedWarning->setVisible(false);
-
-    // ensure first tab viewed is comment tab
-    ui->commentTabWidget->setCurrentIndex(0);
-
-    // set up initial review tab settings
-    ui->ratingMeter->setMinimum(0);
-    ui->ratingMeter->setMaximum(100);
-    ui->ratingMeter->setSliderPosition(50);
     //@TODO add episode to watched list once it has been added to user class
 }
 
@@ -450,4 +457,15 @@ void Dashboard::on_reviewButton_clicked()
     ui->reviewCommentBox->clear();
     ui->ratingMeter->setSliderPosition(50);
     ui->ratingNumber->setText("50");
+}
+
+/**
+ * @brief Dashboard::on_ratingNumber_textEdited(const QString &arg1) is triggered
+ * when user edits the rating number in the line edit on review tab.
+ * @param String argument that was entered in the line edit
+ */
+void Dashboard::on_ratingNumber_textEdited(const QString &arg1)
+{
+    int newRating = ui->ratingNumber->text().toInt();
+    ui->ratingMeter->setValue(newRating);
 }
