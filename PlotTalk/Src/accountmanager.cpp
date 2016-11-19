@@ -32,31 +32,24 @@ AccountManager::~AccountManager()//destructor
 }
 
 /**
- * @brief
- * @param
- * @return
+ * @brief places an account into the database
+ * @param accepts user information in QString format in the order: first,last,Email,userName,password
+ * @return true always as it will always call the database manager and insert the info
  */
 
 bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
-{//places an account into the database, returns true if complete, false if email or handle are not unique
-
-   User thisPerson(handle, first, last,Email,password);//add Password Hash when possible
-
-   DatabaseManager database;
-    if(!database.usernameExists(handle) && !database.emailExists(Email))//very inefficient, may need to be fixed
-        {//checks to make sure email and handle are both unique
-            database.addUser(thisPerson);
-            thisGuy=thisPerson;
-            return true;//returns true that the account was created
-        }
-
-    return false;//returns false, something went wrong
+{
+   User thisUser(handle, first, last, Email, password);//add Password Hash when possible
+   typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+   DatabaseManagerSingleton::Instance().addUser(thisUser);
+   thisGuy=thisUser;
+   return true;//reminant of previous code
 }
 
 /**
- * @brief
- * @param
- * @return
+ * @brief gets the current account that is stored as a private object in the persistant account manager
+ * @param none
+ * @return a user object
  */
 
 User AccountManager::getCurrentAccount()
@@ -65,9 +58,9 @@ User AccountManager::getCurrentAccount()
 }
 
 /**
- * @brief
- * @param
- * @return
+ * @brief checks that user information is not previously in the database or unacceptable
+ * @param Takes user information in string form (first name, last name, username, email, password)
+ * @return an enum value that tells the client the user has been added or what error the data contains
  */
 
 selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
@@ -86,15 +79,15 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
 
 */
     int num=0;
-    DatabaseManager database;
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     if((fName.size()<=1)||(lName.size()<=1)||(handle.size()<=1))
         return selectEnum::VALUES_MISSING;//need good names and handle
     if(validEmail->validate(email,num)!=2)
         return selectEnum::BAD_EMAIL;//email is bad format
-    if(database.emailExists(email))
+    if(DatabaseManagerSingleton::Instance().emailExists(email))
         return selectEnum::DUPLICATE_EMAIL;//email already exists
-    if(database.usernameExists(handle))
+    if(DatabaseManagerSingleton::Instance().usernameExists(handle))
         return selectEnum::USERNAME_TAKEN;//username is taken
     if(validPwd->validate(password,num)!=2)
         return selectEnum::BAD_PASSWORD;//password not correct format
@@ -105,21 +98,24 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
 
 
 /**
- * @brief
- * @param
- * @return
+ * @brief Used by login, this checks to ensure email and password are correct and matching in the system
+ * @param takes an email string, a password string, and a user object.
+ * @return true and fills passses back the found user by reference if user exists, false and no passback if not found.
  */
 bool AccountManager::checkEmailAndPassword(QString& email, QString& password, User &user)
 {
-    DatabaseManager database;
-        if(database.emailExists(email))
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    if(DatabaseManagerSingleton::Instance().emailExists(email))
         {
-            User hold=database.getUserByEmail(email);
+            User hold=DatabaseManagerSingleton::Instance().getUserByEmail(email);
 
             if(hold.passwordHash==password)
             {
                 user=hold;
+
                 thisGuy = user;
+
                 return true;
             }
             else
@@ -131,6 +127,18 @@ bool AccountManager::checkEmailAndPassword(QString& email, QString& password, Us
         {
             return false;
         }
+}
+
+bool AccountManager::EmailExists(QString email)//checks to see if an email exists for dashboard
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+    return DatabaseManagerSingleton::Instance().emailExists(email);
+}
+
+void AccountManager::ClearForLogout()
+{
+    User BlankMan;
+    thisGuy=BlankMan;
 }
 
 
