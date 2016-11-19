@@ -4,8 +4,11 @@
 #include "about.h"
 #include "plottalkexceptions.h"
 #include "accountmanager.h"
+#include <QList>
+#include <QDebug>
+#include <QColorDialog>
+#include <QDateTime>
 #include "mainwindow.h"
-#include <QLIST>
 #include <QMessageBox>
 
 
@@ -170,6 +173,28 @@ void Dashboard::on_rightTree_itemClicked(QTreeWidgetItem *item, int)
  */
 void Dashboard::populateMediaItemPage() {
     ui->mediaItemSplitter->setSizes({1, 300});
+
+    // clear out comments and reviews
+    ui->commentTable->clear();
+    ui->commentBox->clear();
+    ui->commentTable->setRowCount(0);
+    ui->reviewTable->clear();
+    ui->reviewCommentBox->clear();
+    ui->reviewTable->setRowCount(0);
+    ui->episodeRatingNum->setText(0); // @TODO: Replace this with episode's saved overall rating
+
+    // ensure first comment/review tab viewed is comment tab
+    ui->commentTabWidget->setCurrentIndex(0);
+
+    // set up initial review tab settings
+    ui->ratingMeter->setMinimum(0);
+    ui->ratingMeter->setMaximum(100);
+    ui->ratingMeter->setSliderPosition(50);
+
+    // ensure only integers can be entered for rating score
+    ui->ratingNumber->setValidator(new QIntValidator(0, 100, this));
+
+    // set show name, season, episode name
     ui->showName->setText(selectedShow.name);
     QString seasonText = "Season ";
     seasonText.append(QString::number(selectedSeason.seasonNumber));
@@ -181,7 +206,11 @@ void Dashboard::populateMediaItemPage() {
     //hide watched warning and checkbox
     //don't hide additional episode items (summary, comments, reviews)
     //else:
+    ui->episodeSummaryLabel->setVisible(false);
     ui->episodeSummary->setVisible(false);
+    ui->commentTabWidget->setVisible(false);
+    ui->episodeRatingNum->setVisible(false);
+    ui->overallRatingLabel->setVisible(false);
     ui->watchedWarning->setVisible(true);
     ui->watchedConfirmButton->setVisible(true);
 }
@@ -303,6 +332,10 @@ void Dashboard::on_saveButton_clicked()
 void Dashboard::on_watchedConfirmButton_clicked()
 {
     ui->episodeSummary->setVisible(true);
+    ui->episodeSummaryLabel->setVisible(true);
+    ui->commentTabWidget->setVisible(true);
+    ui->episodeRatingNum->setVisible(true);
+    ui->overallRatingLabel->setVisible(true);
     ui->watchedConfirmButton->setVisible(false);
     ui->watchedWarning->setVisible(false);
     //@TODO add episode to watched list once it has been added to user class
@@ -317,4 +350,122 @@ void Dashboard::on_logoutButton_clicked()
      openAgain->show();
 
 
+}
+
+/**
+ * @brief Dashboard::on_commentButton_clicked is triggered when the user clicks on the post reply button on comment tab.
+ * @post Adds new comment entered in text box to the table widget.
+ *
+ */
+// @TODO: Need to ensure comments added to an episode are saved in episode class using DBManager calls.
+// @TODO: Need to utilize reaction/reply/review classes.
+void Dashboard::on_commentButton_clicked()
+{
+    // initialize columns for username/ comment
+    if (ui->commentTable->columnCount() == 0)
+    {
+        ui->commentTable->insertColumn(0); // username column
+        ui->commentTable->insertColumn(1); // comment column
+        ui->commentTable->setColumnWidth(0, 125);
+        ui->commentTable->setColumnWidth(1, 330);
+    }
+    // hide labels on table
+    ui->commentTable->horizontalHeader()->setVisible(false);
+    ui->commentTable->verticalHeader()->setVisible(false);
+
+    // ensure wordwrapping is enabled
+    ui->commentTable->setWordWrap(true);
+
+    // add new row and new comment
+    int curRow = ui->commentTable->rowCount(); // current row of next comment
+    ui->commentTable->insertRow(curRow);
+    ui->commentTable->setRowHeight(curRow, 50);
+    // @TODO: Replace this explicit call to date to using date from reaction/review/reply class
+    QString userAndDate = theUser.username + "\n" + QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap");
+    ui->commentTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
+    ui->commentTable->setItem(curRow, 1, new QTableWidgetItem(ui->commentBox->toPlainText()));
+    QTextEdit *commentText = new QTextEdit;
+    commentText->setText(ui->commentTable->item(curRow, 1)->text());
+    commentText->setReadOnly(true);
+    ui->commentTable->setCellWidget(curRow, 1, commentText);
+    ui->commentTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
+
+    // clear contents of comment box
+    ui->commentBox->clear();
+}
+
+/**
+ * @brief Dashboard::on_ratingMeter_valueChanged(int value) is triggered when user moves episode rating slider.
+ * @param: value is the integer equivalent of where the slider was moved
+ * @post Updates the text box to display the rating the user will give the episode
+ */
+void Dashboard::on_ratingMeter_valueChanged(int value)
+{
+    ui->ratingNumber->setText(QString::number(value));
+}
+
+/**
+ * @brief Dashboard::on_reviewButton_clicked() is triggered when user clicks on post rating button.
+ * @post Adds users rating and review to the table widget
+ */
+void Dashboard::on_reviewButton_clicked()
+{
+    // initialize columns for username/ comment / rating
+    if (ui->reviewTable->columnCount() == 0)
+    {
+        ui->reviewTable->insertColumn(0); // username
+        ui->reviewTable->insertColumn(1); // rating
+        ui->reviewTable->insertColumn(2); // review
+        ui->reviewTable->setColumnWidth(0, 120);
+        ui->reviewTable->setColumnWidth(1, 30);
+        ui->reviewTable->setColumnWidth(2, 305);
+    }
+    // hide labels on table
+    ui->reviewTable->horizontalHeader()->setVisible(false);
+    ui->reviewTable->verticalHeader()->setVisible(false);
+
+    // ensure wordwrapping is enabled
+    ui->reviewTable->setWordWrap(true);
+
+    // add new row with new rating/review
+    int curRow = ui->reviewTable->rowCount(); // current row of next review
+    ui->reviewTable->insertRow(curRow);
+    ui->reviewTable->setRowHeight(curRow, 50);
+    // @TODO: Replace this explicit call to date to using date from reaction/review/reply class
+    QString userAndDate = theUser.username + "\n" + QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap");
+    ui->reviewTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
+    ui->reviewTable->setItem(curRow, 1, new QTableWidgetItem(ui->ratingNumber->text()));
+    ui->reviewTable->setItem(curRow, 2, new QTableWidgetItem(ui->reviewCommentBox->toPlainText()));
+    QTextEdit *reviewText = new QTextEdit;
+    reviewText->setText(ui->reviewTable->item(curRow, 2)->text());
+    reviewText->setReadOnly(true);
+    ui->reviewTable->setCellWidget(curRow, 2, reviewText);
+    ui->reviewTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
+    QColor lightBlue(194, 229, 255);
+    ui->reviewTable->item(curRow, 1)->setBackgroundColor(lightBlue);
+
+    // calculate new overall rating score
+    int totalRatings = 0;
+    for (int i = 0; i < ui->reviewTable->rowCount(); i++)
+    {
+        totalRatings += ui->reviewTable->item(i, 1)->text().toInt();
+    }
+    int newAverage = totalRatings / (curRow+1);
+    ui->episodeRatingNum->setText(QString::number(newAverage));
+
+    // clear contents of comment box
+    ui->reviewCommentBox->clear();
+    ui->ratingMeter->setSliderPosition(50);
+    ui->ratingNumber->setText("50");
+}
+
+/**
+ * @brief Dashboard::on_ratingNumber_textEdited(const QString &arg1) is triggered
+ * when user edits the rating number in the line edit on review tab.
+ * @param String argument that was entered in the line edit
+ */
+void Dashboard::on_ratingNumber_textEdited(const QString &arg1)
+{
+    int newRating = ui->ratingNumber->text().toInt();
+    ui->ratingMeter->setValue(newRating);
 }
