@@ -308,6 +308,9 @@ void Dashboard::on_watchedConfirmButton_clicked()
     //@TODO add episode to watched list once it has been added to user class
 }
 
+/**
+ * @brief Dashboard::on_logoutButton_clicked logs out the current user
+ */
 void Dashboard::on_logoutButton_clicked()
 {
      AccountManager *userInfo= AccountManager::getInstance();
@@ -317,9 +320,4 @@ void Dashboard::on_logoutButton_clicked()
      openAgain->show();
 
 
-}
-
-void Dashboard::on_logoutButton_clicked()
-{
-    selectedEpisode->name = "NEW NAME";
 }
