@@ -189,4 +189,6 @@ void DatabaseManager::emptyCache()
 QList<User> DatabaseManager::getAllUsers()//-----------------------------Easy to find marker---------------------------------------------
 {
 //This would be the best for me -Josh
+    QList<User> aList;
+    return aList;
 }

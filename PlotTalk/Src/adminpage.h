@@ -23,8 +23,11 @@ private slots:
 
     void on_edit_clicked();
 
+    void on_GoBack_clicked();
+
 private:
     Ui::AdminPage *ui;
+    enum AdminPages {USERS, SHOWS, NEXT, ANOTHER};
 };
 
 #endif // ADMINPAGE_H
