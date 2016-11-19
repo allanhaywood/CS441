@@ -39,6 +39,9 @@ void AdminPage::on_Users_clicked()
          UserString.append(allUsers[i].username);
 
          ui->UserList->addItem(UserString);
+         UserString="";
+
+
      }
 
 
