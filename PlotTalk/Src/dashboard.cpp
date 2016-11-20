@@ -468,6 +468,6 @@ void Dashboard::on_reviewButton_clicked()
  */
 void Dashboard::on_ratingNumber_textEdited(const QString &arg1)
 {
-    int newRating = ui->ratingNumber->text().toInt();
+    int newRating = arg1.toInt();
     ui->ratingMeter->setValue(newRating);
 }
