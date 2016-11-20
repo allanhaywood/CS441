@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>776</width>
-    <height>401</height>
+    <height>418</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,23 +39,6 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="edit">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>300</y>
-       <width>151</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Edit Comments</string>
-     </property>
-     <property name="icon">
-      <iconset resource="../Resources/resources.qrc">
-       <normaloff>:/images/Images/iu.png</normaloff>:/images/Images/iu.png</iconset>
-     </property>
-    </widget>
     <widget class="QPushButton" name="Users">
      <property name="geometry">
       <rect>
@@ -319,7 +302,7 @@
      <widget class="QPushButton" name="ViewShows">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>90</x>
         <y>300</y>
         <width>101</width>
         <height>23</height>
@@ -327,6 +310,19 @@
       </property>
       <property name="text">
        <string>View Users Shows</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="EditComments">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>300</y>
+        <width>101</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>View Comments</string>
       </property>
      </widget>
     </widget>

@@ -11,6 +11,7 @@ AdminPage::AdminPage(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->Options->hide();
+    ui->UserList->setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
 AdminPage::~AdminPage()
@@ -21,9 +22,11 @@ AdminPage::~AdminPage()
 
 void AdminPage::on_Users_clicked()
 {
-    ui->Options->show();
-    ui->Options->setCurrentIndex(VIEWUSERS);
-    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+     ui->Options->show();
+     ui->Options->setCurrentIndex(VIEWUSERS);
+     ui->UserList->clear();
+
+     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
      QList<User> allUsers = DatabaseManagerSingleton::Instance().getAllUsers();
 
      ui->UserList->addItem("First\tLast\tEmail\t\tHandle");
@@ -40,12 +43,7 @@ void AdminPage::on_Users_clicked()
 
          ui->UserList->addItem(UserString);
          UserString="";
-
-
      }
-
-
-
 }
 
 void AdminPage::on_media_clicked()
@@ -148,11 +146,12 @@ void AdminPage::on_CreateUser_clicked()
   }
       break;
   }
-
 }
 
 void AdminPage::on_goBack2_clicked()
 {
+
+
     ui->FirstNameBox->clear();
     ui->LastNameBox->clear();
     ui->emailBox->clear();
@@ -161,3 +160,44 @@ void AdminPage::on_goBack2_clicked()
 
     ui->Options->hide();
 }
+
+void AdminPage::on_delUser_clicked()//parses vector and string and removes username from the admin selected list
+{
+   QList<QListWidgetItem *> toDelete = ui->UserList->selectedItems();
+
+    int count;
+    bool EmailExtracted=false;
+    QString userName;
+    QString hold;
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    for(int i=0; i<toDelete.size(); i++)
+    {
+        count=TABSBEFOREUSERNAME;
+        hold = toDelete[i]->text();
+        EmailExtracted=false;
+
+        for(int j=0; ((j<hold.size()) && (EmailExtracted!=true)); j++)
+        {
+
+           if(count==0&&hold[j]=='\t')
+           {
+               EmailExtracted=true;
+           }
+           else if(count==0&&hold[j]!='\t')
+           {
+               userName.append(hold[j]);
+           }
+
+           else if(hold[j]=='\t')
+           {
+               count--;
+           }
+        }
+
+        DatabaseManagerSingleton::Instance().removeUser(userName);
+        userName="";
+    }
+}
+

@@ -31,8 +31,11 @@ private slots:
 
     void on_goBack2_clicked();
 
+    void on_delUser_clicked();
+
 private:
     Ui::AdminPage *ui;
+    const int TABSBEFOREUSERNAME=3;
     enum AdminPages {VIEWUSERS, ADDUSER, NEXT, ANOTHER};
 };
 
