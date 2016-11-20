@@ -22,7 +22,8 @@ AccountManager* AccountManager::getInstance()//returns a new instance or the sam
 
 AccountManager::AccountManager()//constructor
 {
-    //nothing constructed except the singleton
+    User BlankMan;
+    referenceTodatabaseUser=BlankMan;
 }
 
 AccountManager::~AccountManager()//destructor
@@ -40,9 +41,8 @@ AccountManager::~AccountManager()//destructor
 bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
 {
    User thisUser(handle, first, last, Email, password);//add Password Hash when possible
-   typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
    DatabaseManagerSingleton::Instance().addUser(thisUser);
-   thisGuy=thisUser;
+   referenceTodatabaseUser = DatabaseManagerSingleton::Instance().getUser(handle);
    return true;//reminant of previous code
 }
 
@@ -54,7 +54,7 @@ bool AccountManager::createAccount(QString &first, QString &last, QString &Email
 
 User AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
-    return thisGuy;//useful for getting info into various pages without searching the database
+    return referenceTodatabaseUser;//useful for getting info into various pages without searching the database
 }
 
 /**
@@ -104,7 +104,7 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
  */
 bool AccountManager::checkEmailAndPassword(QString& email, QString& password, User &user)
 {
-    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
 
     if(DatabaseManagerSingleton::Instance().emailExists(email))
         {
@@ -114,7 +114,7 @@ bool AccountManager::checkEmailAndPassword(QString& email, QString& password, Us
             {
                 user=hold;
 
-                thisGuy = user;
+                referenceTodatabaseUser = user;
 
                 return true;
             }
@@ -131,14 +131,13 @@ bool AccountManager::checkEmailAndPassword(QString& email, QString& password, Us
 
 bool AccountManager::EmailExists(QString email)//checks to see if an email exists for dashboard
 {
-    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
     return DatabaseManagerSingleton::Instance().emailExists(email);
 }
 
 void AccountManager::ClearForLogout()
 {
     User BlankMan;
-    thisGuy=BlankMan;
+    referenceTodatabaseUser=BlankMan;
 }
 
 
