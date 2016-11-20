@@ -22,7 +22,9 @@ User::User(QString username, QString firstName, QString lastName, QString email,
     this->email = email;
     this->passwordHash = passwordhash;
     _isAdmin = false;
+    userWatched=QList<EpisodeIdentifier>();
 }
+
 
 User::User(QString username, QString firstName, QString lastName, QString email, QString passwordhash, bool isAdmin)
 {
@@ -37,4 +39,50 @@ User::User(QString username, QString firstName, QString lastName, QString email,
 bool User::isAdmin()
 {
     return _isAdmin;
+}
+
+bool User::addWatchedEpisode(EpisodeIdentifier episode)//adds an episode to the users watched list
+{
+    int dummy;
+    if(episodeWatchedByUser(episode, dummy))
+    {
+        return false;
+    }
+    else
+    {
+        userWatched.append(episode);
+        return true;
+    }
+
+}
+
+bool User::removeWatchedEpisode(EpisodeIdentifier episode)//removes an episode from the users watched list
+{
+    int location;
+    if(episodeWatchedByUser(episode,location))
+    {
+        userWatched.removeAt(location);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool User::episodeWatchedByUser(EpisodeIdentifier episode, int &location)//private, checks to see if an episode is in the users watched list
+{
+    int i;
+    for(i=0; i<userWatched.size(); i++)
+    {
+        if(userWatched[i].episodeId==episode.episodeId && userWatched[i].seasonId==episode.seasonId && userWatched[i].tvShowId==episode.tvShowId)
+        {
+            location=i;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

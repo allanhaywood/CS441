@@ -26,10 +26,11 @@ private:
     static AccountManager* instance;//creates the static instance
     AccountManager();//constructor
     ~AccountManager();//destructor
-    User thisGuy;
+    User &referenceTodatabaseUser;
 
 public:
 
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     static AccountManager* getInstance();
     bool createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password);//done
