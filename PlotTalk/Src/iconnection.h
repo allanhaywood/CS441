@@ -8,10 +8,12 @@
 
 #ifndef ICONNECTION_H
 #define ICONNECTION_H
-#include <QList>
-
 #include "tvshow.h"
 #include "user.h"
+#include "common.h"
+
+#include <QList>
+
 
 class IConnection
 {
@@ -53,7 +55,10 @@ public:
     virtual bool emailExists(QString email) = 0;
 
     virtual QList<QString> getListOfAllTvShows() = 0;
-private:
+
+    virtual void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review) = 0;
+
+    virtual void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment) = 0;
 };
 
 #endif // ICONNECTION_H

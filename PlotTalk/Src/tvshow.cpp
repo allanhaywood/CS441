@@ -14,7 +14,7 @@ TvShow::TvShow()
     name = "";
     tmdbLink = "";
     graphicLink = "";
-    seasons = QVector<Season>();
+    seasons = QMap<int, Season>();
 }
 
 /**
@@ -29,7 +29,7 @@ TvShow::TvShow(QString name, QString tmdbLink, QString graphicLink)
     this->name = name;
     this->tmdbLink = tmdbLink;
     this->graphicLink = graphicLink;
-    seasons = QVector<Season>();
+    seasons = QMap<int, Season>();
 }
 
 /**
@@ -45,7 +45,7 @@ TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink)
     this->name = name;
     this->tmdbLink = tmdbLink;
     this->graphicLink = graphicLink;
-    seasons = QVector<Season>();
+    seasons = QMap<int, Season>();
 }
 
 /**
@@ -54,9 +54,9 @@ TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink)
  * @param name The name of the tvshow.
  * @param tmdbLink The URL to the show on the moviedb website.
  * @param graphicLink A URL to a graphic for the show.
- * @param seasons A vector of seasons to add to the tvshow.
+ * @param seasons A map of seasons to add to the tvshow.
  */
-TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QVector<Season> seasons)
+TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QMap<int, Season> seasons)
 {
     this->showId = showId;
     this->name = name;
@@ -71,7 +71,12 @@ TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, 
  *
  * NOTE: Any changes made to seasons will not be reflected in the TvShow class.
  */
-const QVector<Season>& TvShow::inspectSeasons()
+const QVector<Season> TvShow::inspectSeasons()
+{
+    return seasons.values().toVector();
+}
+
+QMap<int, Season> &TvShow::getSeasons()
 {
     return seasons;
 }
@@ -82,7 +87,7 @@ const QVector<Season>& TvShow::inspectSeasons()
  */
 void TvShow::addSeason(Season season)
 {
-    seasons.append(season);
+    seasons.insert(season.seasonId, season);
 }
 
 /**
@@ -93,10 +98,22 @@ void TvShow::addSeason(Season season)
  */
 Season TvShow::getSeason(int number)
 {
-    foreach (Season season, seasons) {
-        if (season.seasonNumber == number) {
+    foreach (Season season, seasons.values())
+    {
+        if (season.seasonNumber == number)
+        {
             return season;
         }
     }
-    throw NotFound();
+    throw NotFound{};
+}
+
+void TvShow::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
+{
+    seasons[episodeIdentifier.seasonId].episodes[episodeIdentifier.episodeId].addReview(review);
+}
+
+void TvShow::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
+{
+    seasons[episodeIdentifier.seasonId].episodes[episodeIdentifier.episodeId].addComment(comment);
 }

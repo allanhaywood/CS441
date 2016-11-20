@@ -160,6 +160,7 @@
                          <b>{7b70fd60-6679-4108-8c85-89f2502bb64b}</b>
                         </DRelation>
                        </base-DRelation>
+                       <direction>1</direction>
                       </DDependency>
                      </instance>
                     </item>
@@ -199,6 +200,7 @@
                          <b>{43f3d675-c535-44f8-bc29-e6dd497dd648}</b>
                         </DRelation>
                        </base-DRelation>
+                       <direction>1</direction>
                       </DDependency>
                      </instance>
                     </item>
@@ -238,6 +240,7 @@
                          <b>{3080505e-5201-409c-8db4-3b0c5a7702dc}</b>
                         </DRelation>
                        </base-DRelation>
+                       <direction>1</direction>
                       </DDependency>
                      </instance>
                     </item>
@@ -464,6 +467,7 @@ ideally things that can be shared are implemented here</text>
                          <b>{994c68ba-0e94-4709-a010-a1f84e45887d}</b>
                         </DRelation>
                        </base-DRelation>
+                       <direction>1</direction>
                       </DDependency>
                      </instance>
                     </item>
@@ -482,6 +486,7 @@ ideally things that can be shared are implemented here</text>
                          <b>{980a9a0a-78ad-49dc-8866-20f442301962}</b>
                         </DRelation>
                        </base-DRelation>
+                       <direction>1</direction>
                       </DDependency>
                      </instance>
                     </item>
@@ -624,6 +629,7 @@ ideally things that can be shared are implemented here</text>
                              <b>{7fa5a772-8bfc-4549-9aeb-54978eb2e221}</b>
                             </MRelation>
                            </base-MRelation>
+                           <direction>1</direction>
                           </MDependency>
                          </instance>
                         </target>
@@ -646,6 +652,7 @@ ideally things that can be shared are implemented here</text>
                              <b>{e6e599fd-6c9c-4e19-a37c-fd06dc0c748b}</b>
                             </MRelation>
                            </base-MRelation>
+                           <direction>1</direction>
                           </MDependency>
                          </instance>
                         </target>
@@ -668,6 +675,7 @@ ideally things that can be shared are implemented here</text>
                              <b>{c1338012-887d-40f1-b7f2-c83ff9132c06}</b>
                             </MRelation>
                            </base-MRelation>
+                           <direction>1</direction>
                           </MDependency>
                          </instance>
                         </target>
@@ -1048,6 +1056,7 @@ ideally things that can be shared are implemented here</text>
                              <b>{37c2168b-3d2a-4e03-94ff-99f9650d457e}</b>
                             </MRelation>
                            </base-MRelation>
+                           <direction>1</direction>
                           </MDependency>
                          </instance>
                         </target>
@@ -1070,6 +1079,7 @@ ideally things that can be shared are implemented here</text>
                              <b>{9d8f7e25-8599-4e80-9ad1-5820fdeb70f7}</b>
                             </MRelation>
                            </base-MRelation>
+                           <direction>1</direction>
                           </MDependency>
                          </instance>
                         </target>

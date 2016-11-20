@@ -53,8 +53,14 @@ TvShow &DatabaseManager::getTvShow(QString name)
     // @todo Determine how to decide to use either json or mysql connection at runtime,
     // or at the very least, a single location to choose which one.
 
-    // @todo Add caching so that it doesn't call getTvShow if it isn't needed.
-    tvShowMap[name] = connection.getTvShow(name);
+    if ( tvShowMap.contains(name) )
+    {
+        return tvShowMap[name];
+    }
+    else
+    {
+        tvShowMap[name] = connection.getTvShow(name);
+    }
 
     return tvShowMap[name];
 }
@@ -175,6 +181,33 @@ QList<QString> DatabaseManager::getListOfAllTvShows()
 QList<QString> DatabaseManager::getListOfCachedTvShows()
 {
     return tvShowMap.keys();
+}
+
+QString DatabaseManager::getTvShowNameById(int tvShowId)
+{
+    foreach (TvShow tvShow, tvShowMap.values())
+    {
+        if (tvShow.showId == tvShowId)
+        {
+            return tvShow.name;
+        }
+    }
+
+    throw NotFound{};
+}
+
+void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
+{
+    QString tvShowName = getTvShowNameById(episodeIdentifier.episodeId);
+    tvShowMap[tvShowName].addEpisodeReview(episodeIdentifier, review);
+    connection.addEpisodeReview(episodeIdentifier, review);
+}
+
+void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
+{
+    QString tvShowName = getTvShowNameById(episodeIdentifier.episodeId);
+    tvShowMap[tvShowName].addEpisodeComment(episodeIdentifier, comment);
+    connection.addEpisodeComment(episodeIdentifier, comment);
 }
 
 /**

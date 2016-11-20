@@ -9,6 +9,7 @@
 #include <QJsonParseError>
 #include <QDebug>
 #include <QDir>
+#include <QVariantMap>
 
 #include "jsonconnection.h"
 #include "plottalkexceptions.h"
@@ -84,7 +85,6 @@ TvShow JsonConnection::getTvShow(QString name)
     QString jsonGraphicLink = "";
     QJsonArray jsonSeasons;
 
-
     QJsonArray tvshows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
 
     // Loops through each element in the TvShow array to try and find a match on the name.
@@ -115,10 +115,8 @@ TvShow JsonConnection::getTvShow(QString name)
 
     qDebug() << "JsonSeasons:" << jsonSeasons;
 
-    QVector<Season> seasons = getSeasons(jsonSeasons);
-
     // Use the information found to construct and return a TvShow of the requested tvshow.
-    return TvShow(jsonId, jsonName, jsonTmdbLink, jsonGraphicLink, seasons);
+    return TvShow(jsonId, jsonName, jsonTmdbLink, jsonGraphicLink, getSeasons(jsonSeasons));
 }
 
 
@@ -127,14 +125,15 @@ TvShow JsonConnection::getTvShow(QString name)
  * @param tvShowName The name of the tvshow.
  * @return A QVector of all the seasons.
  */
-QVector<Season> JsonConnection::getSeasons(QJsonArray jsonSeasons)
+QMap<int, Season> JsonConnection::getSeasons(QJsonArray jsonSeasons)
 {
-    QVector<Season> seasons = QVector<Season>();
+    QMap<int, Season> seasons = QMap<int, Season>();
 
+    Season tempSeason;
     foreach (const QJsonValue &value, jsonSeasons)
     {
-        qDebug() << "jsonSeason:" << value;
-        seasons.append(getSeason(value.toObject()));
+        tempSeason = getSeason(value.toObject());
+        seasons.insert(tempSeason.seasonId, tempSeason);
     }
 
     return seasons;
@@ -164,15 +163,15 @@ Season JsonConnection::getSeason(QJsonObject jsonSeason)
  * @param jsonEpisodes The json that represents the episodes to convert.
  * @return A vector of episodes.
  */
-QVector<Episode> JsonConnection::getEpisodes(QJsonArray jsonEpisodes)
+QMap<int, Episode> JsonConnection::getEpisodes(QJsonArray jsonEpisodes)
 {
-    QVector<Episode> episodes = QVector<Episode>();
+    QMap<int, Episode> episodes = QMap<int, Episode>();
 
-    qDebug() << "jsonEpisodes:" << jsonEpisodes;
-
+    Episode tempEpisode;
     foreach (const QJsonValue &value, jsonEpisodes)
     {
-        episodes.append(getEpisode(value.toObject()));
+        tempEpisode = getEpisode(value.toObject());
+        episodes.insert(tempEpisode.episodeId, tempEpisode);
     }
 
     return episodes;
@@ -194,8 +193,51 @@ Episode JsonConnection::getEpisode(QJsonObject jsonEpisode)
                 jsonEpisode["episodeId"].toInt(),
                 jsonEpisode["episodeNumber"].toInt(),
                 jsonEpisode["name"].toString(),
-                jsonEpisode["summary"].toString()
+                jsonEpisode["summary"].toString(),
+                getReviews(jsonEpisode["reviews"]),
+                getComments(jsonEpisode["comments"])
             );
+}
+
+QList<Comment> JsonConnection::getComments(QJsonValue jsonComments)
+{
+    QList<Comment> comments = QList<Comment>();
+
+    Comment comment;
+    QJsonObject jsonObject;
+    foreach (const QJsonValue &jsonComment, jsonComments.toArray())
+    {
+        jsonObject = jsonComment.toObject();
+        comment.postUuid = QUuid(jsonObject["postUuid"].toString());
+        comment.username = jsonObject["username"].toString();
+        comment.text = jsonObject["text"].toString();
+        comment.dateTimePosted = jsonObject["dateTimePosted"].toString();
+
+        comments.append(comment);
+    }
+
+    return comments;
+}
+
+QMap<QString, Review> JsonConnection::getReviews(QJsonValue jsonReviews)
+{
+    QMap<QString, Review> reviews = QMap<QString, Review>();
+
+    Review review;
+    QJsonObject jsonObject;
+    foreach (const QJsonValue &jsonReview, jsonReviews.toArray())
+    {
+        jsonObject = jsonReview.toObject();
+        review.postUuid = QUuid(jsonObject["postUuid"].toString());
+        review.username = jsonObject["username"].toString();
+        review.rating = jsonObject["rating"].toInt();
+        review.text = jsonObject["text"].toString();
+        review.dateTimePosted = jsonObject["dateTimePosted"].toString();
+
+        reviews.insert(review.username, review);
+    }
+
+    return reviews;
 }
 
 /**
@@ -434,6 +476,25 @@ QList<QString> JsonConnection::getListOfAllTvShows()
     return tvShows;
 }
 
+void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
+{
+    qDebug() << episodeIdentifier.tvShowId;
+    qDebug() << episodeIdentifier.seasonId;
+    qDebug() << episodeIdentifier.episodeId;
+    qDebug() << review.postUuid.toString();
+    qDebug() << review.username;
+    qDebug() << review.rating;
+    qDebug() << review.text;
+    qDebug() << review.dateTimePosted;
+
+    QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
+}
+
+void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
+{
+    throw NotImplemented{};
+}
+
 /**
  * @brief JsonConnection::loadJson Reads the specified json from file and returns a QJsonObject.
  * @param pathToJson The path to the Json file, it can be either in resources, or on the filesystem.
@@ -459,7 +520,7 @@ void JsonConnection::loadJson()
         if(jerror.error != QJsonParseError::NoError)
         {
             qDebug() << "Error parsing json!";
-            throw InvalidJsonFormat();
+            throw InvalidJsonFormat{};
         }
     }
 
