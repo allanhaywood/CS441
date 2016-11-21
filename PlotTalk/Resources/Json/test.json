@@ -1,115 +1,3225 @@
 {
-    "TvShow":
-    [
+  "TvShow": [
+    {
+      "showId": 1399,
+      "name": "Game of Thrones",
+      "tmdbLink": "https://www.themoviedb.org/tv/1399-game-of-thrones",
+      "graphicLink": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg",
+      "seasons": [
         {
-            "showId":1399,
-            "name":"Game of Thrones",
-            "tmdbLink":"https://www.themoviedb.org/tv/1399-game-of-thrones",
-            "graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg",
-            "seasons":
-            [
+          "seasonId": 3627,
+          "seasonNumber": 0,
+          "name": "Season 0",
+          "episodes": [
+            {
+              "episodeId": 63087,
+              "episodeNumber": 1,
+              "name": "Inside Game of Thrones",
+              "summary": "A short look into the film-making process for the production Game of Thrones",
+              "reviews":
+              [
                 {
-                    "seasonId":3627,
-                    "seasonNumber":0,
-                    "name":"",
-                    "episodes":
-                    [
-                        {
-                            "episodeId":63087,
-                            "episodeNumber":1,
-                            "name":"Inside Game Of Thrones",
-                            "summary":"A short look into the film-making process for the production Game of Thrones",
-                            "reviews":
-                            [
-                                {
-                                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EE}",
-                                    "username":"plottalkadmin",
-                                    "text":"It is amazing how this show is made.",
-                                    "rating":5,
-                                    "dateTimePosted":"1997-07-16T19:20:30.45+00:00"
-                                }
-                            ],
-                            "comments":
-                            [
-                                {
-                                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EF}",
-                                    "username":"plottalkadmin",
-                                    "text":"It is amazing how this show is made.",
-                                    "dateTimePosted":"1997-07-16T19:20:30.46+00:00"
-                                }
-                            ]
-                        }
-                    ]
+                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EE}",
+                    "username":"plottalkadmin",
+                    "text":"It is amazing how this show is made.",
+                    "rating":5,
+                    "dateTimePosted":"1997-07-16T19:20:30.45+00:00"
                 }
-            ]
-        },
-        {
-            "showId":62560,
-            "name":"Mr. Robot",
-            "tmdbLink":"https://www.themoviedb.org/tv/62560-mr-robot",
-            "graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg",
-            "seasons":
-            [
+              ],
+              "comments":
+              [
                 {
-                    "seasonId":66343,
-                    "seasonNumber":0,
-                    "name":"season_0.0",
-                    "episodes":
-                    [
-                        {
-                            "episodeId":1200247,
-                            "episodeNumber":1,
-                            "name":"Mr. Robot_dec0d3d.doc",
-                            "summary":"Mr. Robot Decoded explores the authenticity and societal impact of the award-winning series Mr. Robot. Through documentary-style interviews with the cast, creators of the show, along with high-profile experts, writers, journalists and filmmakers Mr. Robot Decoded will discuss and attempt to answer the question: Can hackers change the world? And, more important - should they?",
-                            "reviews":
-                            [
-                            ],
-                            "comments":
-                            [
-                            ]
-                        },
-                        {
-                            "episodeId":1203464,
-                            "episodeNumber":2,
-                            "name":"Hacking Robot 101",
-                            "summary":"In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.",
-                            "reviews":
-                            [
-                            ],
-                            "comments":
-                            [
-                            ]
-                        }
-                    ]
+                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EF}",
+                    "username":"plottalkadmin",
+                    "text":"It is amazing how this show is made.",
+                    "dateTimePosted":"1997-07-16T19:20:30.46+00:00"
                 }
-            ]
-        }
-    ],
-    "User":
-    [
-        {
-            "username":"bsmith",
-            "firstName":"Bob",
-            "lastName":"Smith",
-            "email":"bsmith@gmail.com",
-            "passwordHash":"badpasswordhash",
-            "_isAdmin":false
+              ]
+            },
+            {
+              "episodeId": 63086,
+              "episodeNumber": 2,
+              "name": "15-Minute Preview",
+              "summary": "An approximately 15-minute preview of the first episode of Game of Thrones."
+            },
+            {
+              "episodeId": 63088,
+              "episodeNumber": 3,
+              "name": "Making Game of Thrones",
+              "summary": "An exclusive 30-minute feature including never-before-seen footage from the set and interviews from the cast and crew"
+            },
+            {
+              "episodeId": 63089,
+              "episodeNumber": 4,
+              "name": "El Juego Comienza",
+              "summary": "A spanish \"Canal +`\" production with interviews to some famous spanish movie directors like Alex de La Iglesia and extracts from last special \"Making Game Of Thrones\""
+            },
+            {
+              "episodeId": 63090,
+              "episodeNumber": 5,
+              "name": "2011 Comic Con Panel",
+              "summary": ""
+            },
+            {
+              "episodeId": 63091,
+              "episodeNumber": 6,
+              "name": "You Win or You Die",
+              "summary": "A prequel to Game of Thrones Season 2 which recaps on the first season and gives insight into what's to come."
+            },
+            {
+              "episodeId": 63092,
+              "episodeNumber": 7,
+              "name": "A Gathering Storm",
+              "summary": "A prequel to Game of Thrones Season 3 which recaps on the first and second season and gives insight into what's to come."
+            },
+            {
+              "episodeId": 63093,
+              "episodeNumber": 8,
+              "name": "Politics of Marriage",
+              "summary": "Love and marriage? They don't go together so well in 'Game of Thrones' where the concept of matrimony is all about making power plays and political alliances. Cast and crew members along with author George R.R. Martin take a fascinating look at this ancient institution and its place in the hit HBO series."
+            },
+            {
+              "episodeId": 974558,
+              "episodeNumber": 9,
+              "name": "Ice and Fire: A Foreshadowing",
+              "summary": "Take a look back and a look forward to the fourth season of the hit HBO series, the show features clips from upcoming episodes, behind the scenes footage, interviews with talent, and cast members' answers to questions posed by fans."
+            },
+            {
+              "episodeId": 974559,
+              "episodeNumber": 10,
+              "name": "The Politics of Power: A Look Back at Season 3",
+              "summary": "Relive every thrilling, dramatic and tragic highlight from Season 3 of \"Making Game Of Thrones\" in this comprehensive featurette. From Daenerys building a slave army to the infamous Red Wedding, not a detail is missed as recalled by the stars of the hit HBO series."
+            },
+            {
+              "episodeId": 1041057,
+              "episodeNumber": 11,
+              "name": "A Day in the Life",
+              "summary": "The 30-minute special documents one epic day of production as tackled by hundreds of crew members across three countries. In addition to a behind-the-scenes look at the action in Dubrovnik, Croatia, Belfast, Northern Ireland and Seville, Spain, the preview includes several never-before-seen features."
+            }
+          ]
         },
         {
-            "username":"jsmith",
-            "firstName":"John",
-            "lastName":"Smith",
-            "email":"jsmith@gmail.com",
-            "passwordHash":"badpasswordhash2",
-            "_isAdmin":false
+          "seasonId": 3624,
+          "seasonNumber": 1,
+          "name": "Season 1",
+          "episodes": [
+            {
+              "episodeId": 63056,
+              "episodeNumber": 1,
+              "name": "Winter Is Coming",
+              "summary": "Jon Arryn, the Hand of the King, is dead. King Robert Baratheon plans to ask his oldest friend, Eddard Stark, to take Jon's place. Across the sea, Viserys Targaryen plans to wed his sister to a nomadic warlord in exchange for an army."
+            },
+            {
+              "episodeId": 63057,
+              "episodeNumber": 2,
+              "name": "The Kingsroad",
+              "summary": "While Bran recovers from his fall, Ned takes only his daughters to Kings Landing. Jon Snow goes with his uncle Benjen to The Wall. Tyrion joins them."
+            },
+            {
+              "episodeId": 63058,
+              "episodeNumber": 3,
+              "name": "Lord Snow",
+              "summary": "Lord Stark and his daughters arrive at King's Landing to discover the intrigues of the king's realm."
+            },
+            {
+              "episodeId": 63059,
+              "episodeNumber": 4,
+              "name": "Cripples, Bastards, and Broken Things",
+              "summary": "Eddard investigates Jon Arryn's murder. Jon befriends Samwell Tarly, a coward who has come to join the Night's Watch."
+            },
+            {
+              "episodeId": 63060,
+              "episodeNumber": 5,
+              "name": "The Wolf of the Lion",
+              "summary": "Catelyn has captured Tyrion and plans to bring him to her sister, Lysa Arryn, at The Vale, to be tried for his, supposed, crimes against Bran. Robert plans to have Daenerys killed, but Eddard refuses to be a part of it and quits."
+            },
+            {
+              "episodeId": 63061,
+              "episodeNumber": 6,
+              "name": "A Golden Crown",
+              "summary": "While recovering from his battle with Jamie, Eddard is forced to run the kingdom while Robert goes hunting. Tyrion demands a trial by combat for his freedom. Viserys is losing his patience with Drogo."
+            },
+            {
+              "episodeId": 63062,
+              "episodeNumber": 7,
+              "name": "You Win or You Die",
+              "summary": "Robert has been injured while hunting and is dying. Jon and the others finally take their vows to the Night's Watch. A man, sent by Robert, is captured for trying to poison Daenerys. Furious, Drogo vows to attack the Seven Kingdoms."
+            },
+            {
+              "episodeId": 63063,
+              "episodeNumber": 8,
+              "name": "The Pointy End",
+              "summary": "Eddard and his men are betrayed and captured by the Lannisters. When word reaches Robb, he plans to go to war to rescue them. The White Walkers attack The Wall. Tyrion returns to his father with some new friends."
+            },
+            {
+              "episodeId": 63064,
+              "episodeNumber": 9,
+              "name": "Baelor",
+              "summary": "Robb goes to war against the Lannisters. Jon finds himself struggling on deciding if his place is with Robb or the Night's Watch. Drogo has fallen ill from a fresh battle wound. Daenerys is desperate to save him."
+            },
+            {
+              "episodeId": 63065,
+              "episodeNumber": 10,
+              "name": "Fire and Blood",
+              "summary": "With Ned dead, Robb vows to get revenge on the Lannisters. Jon must officially decide if his place is with Robb or the Night's Watch. Daenerys says her final goodbye to Drogo."
+            }
+          ]
         },
         {
-            "username":"admin",
-            "firstName":"admin",
-            "lastName":"admin",
-            "email":"admin@gmail.com",
-            "passwordHash":"plottalkadmin",
-            "_isAdmin":true
+          "seasonId": 3625,
+          "seasonNumber": 2,
+          "name": "Season 2",
+          "episodes": [
+            {
+              "episodeId": 63066,
+              "episodeNumber": 1,
+              "name": "The North Remembers",
+              "summary": "As Robb Stark and his northern army continue the war against the Lannisters, Tyrion arrives in King’s Landing to counsel Joffrey and temper the young king’s excesses. On the island of Dragonstone, Stannis Baratheon plots an invasion to claim his late brother’s throne, allying himself with the fiery Melisandre, a strange priestess of a stranger god. Across the sea, Daenerys, her three young dragons, and the khalasar trek through the Red Waste in search of allies, or water. In the North, Bran presides over a threadbare Winterfell, while beyond the Wall, Jon Snow and the Night’s Watch must shelter with a devious wildling."
+            },
+            {
+              "episodeId": 974430,
+              "episodeNumber": 2,
+              "name": "The Night Lands",
+              "summary": "In the wake of a bloody purge in the capital, Tyrion chastens Cersei for alienating the king’s subjects. On the road north, Arya shares a secret with Gendry, a Night’s Watch recruit. With supplies dwindling, one of Dany’s scouts returns with news of their position. After nine years as a Stark ward, Theon Greyjoy reunites with his father Balon, who wants to restore the ancient Kingdom of the Iron Islands. Davos enlists Salladhor Saan, a pirate, to join forces with Stannis and Melisandre for a naval invasion of King’s Landing."
+            },
+            {
+              "episodeId": 63068,
+              "episodeNumber": 3,
+              "name": "What is Dead May Never Die",
+              "summary": "At the Red Keep, Tyrion plots three alliances through the promise of marriage. Catelyn arrives in the Stormlands to forge an alliance of her own, but King Renly, his new wife Margaery, and her brother Loras Tyrell have other plans. At Winterfell, Luwin tries to decipher Bran’s dreams."
+            },
+            {
+              "episodeId": 63069,
+              "episodeNumber": 4,
+              "name": "Garden Of Bones",
+              "summary": "Joffrey punishes Sansa for Robb’s victories, and Tyrion scrambles to temper the king’s cruelty. Catelyn entreats Stannis and Renly to unite against the Lannisters. Dany and her khalasar arrive at the prosperous city of Qarth. Tyrion coerces a relative into being his eyes and ears. Arya and Gendry are taken to Harrenhal, where their lives are in the hands of Ser Gregor Clegane. Stannis orders Davos to smuggle Melisandre into a secret cove."
+            },
+            {
+              "episodeId": 63070,
+              "episodeNumber": 5,
+              "name": "The Ghost of Harrenhal",
+              "summary": "The Baratheon rivalry ends, driving Catelyn to flee and Littlefinger to act. At King’s Landing, Tyrion’s source alerts him to Joffrey’s defense plan - and a mysterious secret weapon. Theon sails to the Stony Shore to prove he’s worthy to be called Ironborn. At Harrenhal, Arya receives a promise from Jaqen H’ghar, one of the prisoners she saved from the Gold Cloaks. The Night’s Watch arrive at the Fist of the First Men, an ancient ringfort where they hope to stem the wildings' advance."
+            },
+            {
+              "episodeId": 63071,
+              "episodeNumber": 6,
+              "name": "The Old Gods and the New",
+              "summary": "Theon completes his master stroke. In King's Landing, the Lannisters send Myrcella off to be married. Arya comes face to face with a surprise visitor. Dany vows to take what is hers. Robb and Catelyn receive crucial news. Qhorin gives Jon a chance to prove himself."
+            },
+            {
+              "episodeId": 63073,
+              "episodeNumber": 7,
+              "name": "A Man Without Honor",
+              "summary": "Jamie meets a distant relative. Daenerys receives an invitation to the House of the Undying. Theon leads a search party. Jon loses his way in the wilderness. Cersei counsels Sansa."
+            },
+            {
+              "episodeId": 63074,
+              "episodeNumber": 8,
+              "name": "The Prince of Winterfell",
+              "summary": "Theon receives a visitor. Arya asks her third and last death from Jaqen. While Stannis' army is reaching its destination, Davos is offered a reward. Betrayal befalls Robb."
+            },
+            {
+              "episodeId": 63072,
+              "episodeNumber": 9,
+              "name": "Blackwater",
+              "summary": "Tyrion and the Lannisters fight for their lives as Stannis’ fleet assaults King’s Landing."
+            },
+            {
+              "episodeId": 63075,
+              "episodeNumber": 10,
+              "name": "Valar Morghulis",
+              "summary": "Tyrion awakens to a changed situation. King Joffrey doles out rewards to his subjects. As Theon stirs his men to action, Luwin offers some final advice. Brienne silences Jaime. Arya receives a gift from Jaqen. Dany goes to a strange place. Jon proves himself to Qhorin."
+            }
+          ]
+        },
+        {
+          "seasonId": 3626,
+          "seasonNumber": 3,
+          "name": "Season 3",
+          "episodes": [
+            {
+              "episodeId": 63077,
+              "episodeNumber": 1,
+              "name": "Valar Dohaeris",
+              "summary": "Jon meets the King-Beyond-the-Wall while his Night Watch Brothers flee south. In King's Landing, Tyrion wants a reward, Margaery shows her charitable nature, Cersei arranges a dinner party, and Littlefinger offers to help Sansa. Across the Narrow Sea, Daenerys starts her journey west."
+            },
+            {
+              "episodeId": 63076,
+              "episodeNumber": 2,
+              "name": "Dark Wings, Dark Words",
+              "summary": "Sansa says too much. Shae asks Tyrion for a favor. Jaime finds a way to pass the time, while Arya encounters the Brotherhood Without Banners."
+            },
+            {
+              "episodeId": 63078,
+              "episodeNumber": 3,
+              "name": "Walk of Punishment",
+              "summary": "Tyrion shoulders new responsibilities. Jon is taken to the Fist of the First Men. Daenerys meets with the slavers. Jaime strikes a deal with his captors."
+            },
+            {
+              "episodeId": 63082,
+              "episodeNumber": 4,
+              "name": "And Now His Watch Is Ended",
+              "summary": "Trouble brews among the Night's Watch at Craster's. Margaery takes Joffrey out of his comfort zone. Arya meets the leader of the Brotherhood. Varys plots revenge on an old foe. Theon mournfully recalls his missteps. Daenerys deftly orchestrates her exit from Astapor."
+            },
+            {
+              "episodeId": 63083,
+              "episodeNumber": 5,
+              "name": "Kissed by Fire",
+              "summary": "The Hound is judged by the gods. Jaime is judged by men. Jon proves himself. Robb is betrayed. Tyrion learns the cost of weddings."
+            },
+            {
+              "episodeId": 63084,
+              "episodeNumber": 6,
+              "name": "The Climb",
+              "summary": "Tywin plans strategic unions for the Lannisters. Melisandre pays a visit to the Riverlands. Robb weighs a compromise to repair his alliance with House Frey. Roose Bolton decides what to do with Jaime Lannister. Jon, Ygritte, and the Wildlings face a daunting climb."
+            },
+            {
+              "episodeId": 63081,
+              "episodeNumber": 7,
+              "name": "The Bear and the Maiden Fair",
+              "summary": "Daenerys exchanges gifts with a slave lord outside of Yunkai. As Sansa frets about her prospects, Shae chafes at Tyrion’s new situation. Tywin counsels the king, and Melisandre reveals a secret to Gendry. Brienne faces a formidable foe in Harrenhal."
+            },
+            {
+              "episodeId": 63085,
+              "episodeNumber": 8,
+              "name": "Second Sons",
+              "summary": "King’s Landing hosts a wedding, and Tyrion and Sansa spend the night together. Daenerys meets the Titan’s Bastard. Davos demands proof from Melisandre. Sam and Gilly meet an older gentleman."
+            },
+            {
+              "episodeId": 63080,
+              "episodeNumber": 9,
+              "name": "The Rains of Castamere",
+              "summary": "Robb presents himself to Walder Frey, and Edmure meets his bride. Jon faces his harshest test yet. Bran discovers a new gift. Daario and Jorah debate how to take Yunkai. House Frey joins with House Tully."
+            },
+            {
+              "episodeId": 63079,
+              "episodeNumber": 10,
+              "name": "Mhysa",
+              "summary": "Joffrey challenges Tywin. Bran tells a ghost story. In Dragonstone, mercy comes from strange quarters. Daenerys waits to see if she is a conqueror or a liberator."
+            }
+          ]
+        },
+        {
+          "seasonId": 3628,
+          "seasonNumber": 4,
+          "name": "Season 4",
+          "episodes": [
+            {
+              "episodeId": 973190,
+              "episodeNumber": 1,
+              "name": "Two Swords",
+              "summary": "Tyrion welcomes a guest to King’s Landing. At Castle Black, Jon Snow finds himself unwelcome. Dany is pointed to Meereen, the mother of all slave cities. Arya runs into an old friend."
+            },
+            {
+              "episodeId": 973219,
+              "episodeNumber": 2,
+              "name": "The Lion and the Rose",
+              "summary": "Tyrion lends Jaime a hand. Joffrey and Margaery host a breakfast. At Dragonstone, Stannis loses patience with Davos. Ramsay finds a purpose for his pet. North of the Wall, Bran sees where they must go."
+            },
+            {
+              "episodeId": 63096,
+              "episodeNumber": 3,
+              "name": "Breaker of Chains",
+              "summary": "Tyrion ponders his options. Tywin extends an olive branch. Sam realizes Castle Black isn’t safe, and Jon proposes a bold plan. The Hound teaches Arya the way things are. Dany chooses her champion."
+            },
+            {
+              "episodeId": 63097,
+              "episodeNumber": 4,
+              "name": "Oathkeeper",
+              "summary": ""
+            },
+            {
+              "episodeId": 63098,
+              "episodeNumber": 5,
+              "name": "First of His Name",
+              "summary": "Dany balances justice and mercy. Jaime tasks Brienne with his honor. Jon secures volunteers while Bran, Jojen, Meera and Hodor stumble on shelter."
+            },
+            {
+              "episodeId": 63099,
+              "episodeNumber": 6,
+              "name": "The Laws of Gods and Men",
+              "summary": "Cersei and Tywin plan the Crown's next move; Dany discusses future plans; Jon Snow begins a new mission."
+            },
+            {
+              "episodeId": 63100,
+              "episodeNumber": 7,
+              "name": "Mockingbird",
+              "summary": "Tyrion gains an unlikely ally; Daario asks Dany to allow him to do what he does best; Jon's warnings about the vulnerability of the Wall are ignored; Brienne follows a new lead."
+            },
+            {
+              "episodeId": 63101,
+              "episodeNumber": 8,
+              "name": "The Mountain and the Viper",
+              "summary": "Unexpected visitors arrive in Mole's Town. Littlefinger's motives are questioned. Ramsay tries to prove himself to his father. Tyrion's fate is decided."
+            },
+            {
+              "episodeId": 63102,
+              "episodeNumber": 9,
+              "name": "The Watchers on the Wall",
+              "summary": "Jon Snow and the Night's Watch face a big challenge."
+            },
+            {
+              "episodeId": 63103,
+              "episodeNumber": 10,
+              "name": "The Children",
+              "summary": "Circumstances change after an unexpected arrival from north of the Wall. Dany must face harsh realities. Bran learns more about his destiny. Tyrion sees the truth about his situation."
+            }
+          ]
+        },
+        {
+          "seasonId": 62090,
+          "seasonNumber": 5,
+          "name": "Season 5",
+          "episodes": [
+            {
+              "episodeId": 1043618,
+              "episodeNumber": 1,
+              "name": "The Wars to Come",
+              "summary": "Cersei and Jaime adjust to a world without Tywin. Varys reveals a conspiracy to Tyrion. Dany faces a new threat to her rule. Jon is caught between two kings."
+            },
+            {
+              "episodeId": 1045551,
+              "episodeNumber": 2,
+              "name": "The House of Black and White",
+              "summary": "Arya arrives in Braavos. Podrick and Brienne run into trouble on the road. Cersei fears for her daughter's safety in Dorne as Ellaria Sand seeks revenge for Oberyn's death. Stannis tempts Jon. An adviser tempts Daenerys."
+            },
+            {
+              "episodeId": 1045552,
+              "episodeNumber": 3,
+              "name": "High Sparrow",
+              "summary": "In Braavos, Arya sees the Many-Faced God. In King's Landing, Queen Margaery enjoys her new husband. Tyrion and Varys walk the Long Bridge of Volantis."
+            },
+            {
+              "episodeId": 1045553,
+              "episodeNumber": 4,
+              "name": "Sons of the Harpy",
+              "summary": "The Faith Militant grow increasingly aggressive. Jaime and Bronn head south. Ellaria and the Sand Snakes vow vengeance."
+            },
+            {
+              "episodeId": 1051286,
+              "episodeNumber": 5,
+              "name": "Kill the Boy",
+              "summary": "Dany makes a difficult decision in Meereen. Jon recruits the help of an unexpected ally. Brienne searches for Sansa. Theon remains under Ramsay's control."
+            },
+            {
+              "episodeId": 1051287,
+              "episodeNumber": 6,
+              "name": "Unbowed, Unbent, Unbroken",
+              "summary": "Arya trains. Jorah and Tyrion run into slavers. Trystane and Myrcella make plans. Jaime and Bronn reach their destination. The Sand Snakes attack."
+            },
+            {
+              "episodeId": 1051288,
+              "episodeNumber": 7,
+              "name": "The Gift",
+              "summary": "Jon prepares for conflict. Sansa tries to talk to Theon. Brienne waits for a sign. Stannis remains stubborn. Jaime attempts to reconnect with family."
+            },
+            {
+              "episodeId": 1070282,
+              "episodeNumber": 8,
+              "name": "Hardhome",
+              "summary": "Arya makes progress in her training. Sansa confronts an old friend. Cersei struggles. Jon travels."
+            },
+            {
+              "episodeId": 1054979,
+              "episodeNumber": 9,
+              "name": "The Dance of Dragons",
+              "summary": "Stannis confronts a troubling decision. Jon returns to The Wall. Mace visits the Iron Bank. Arya encounters someone from her past. Dany reluctantly oversees a traditional celebration of athleticism."
+            },
+            {
+              "episodeId": 1159054,
+              "episodeNumber": 10,
+              "name": "Mother's Mercy",
+              "summary": "Stannis marches. Dany is surrounded by strangers. Cersei seeks forgiveness. Jon is challenged."
+            }
+          ]
+        },
+        {
+          "seasonId": 71881,
+          "seasonNumber": 6,
+          "name": "Season 6",
+          "episodes": [
+            {
+              "episodeId": 1156503,
+              "episodeNumber": 1,
+              "name": "The Red Woman",
+              "summary": "The fate of Jon Snow is revealed. Daenerys meets a strong man. Cersei sees her daughter once again."
+            },
+            {
+              "episodeId": 1187406,
+              "episodeNumber": 2,
+              "name": "Home",
+              "summary": "Bran trains with the Three-Eyed Raven. In King’s Landing, Jaime advises Tommen. Tyrion demands good news, but has to make his own. At Castle Black, the Night’s Watch stands behind Thorne. Ramsay Bolton proposes a plan, and Balon Greyjoy entertains other proposals."
+            },
+            {
+              "episodeId": 1186952,
+              "episodeNumber": 3,
+              "name": "Oathbreaker",
+              "summary": "Daenerys meets her future. Bran meets the past. Tommen confronts the High Sparrow. Arya trains to be No One. Varys finds an answer. Ramsay gets a gift."
+            },
+            {
+              "episodeId": 1186953,
+              "episodeNumber": 4,
+              "name": "Book of the Stranger",
+              "summary": "Tyrion strikes a deal. Jorah and Daario undertake a difficult task. Jaime and Cersei try to improve their situation."
+            },
+            {
+              "episodeId": 1186954,
+              "episodeNumber": 5,
+              "name": "The Door",
+              "summary": "Tyrion seeks a strange ally. Bran learns a great deal. Brienne goes on a mission. Arya is given a chance to prove herself."
+            },
+            {
+              "episodeId": 1186955,
+              "episodeNumber": 6,
+              "name": "Blood of My Blood",
+              "summary": "An old foe comes back into the picture. Gilly meets Sam’s family. Arya faces a difficult choice. Jaime faces off against the High Sparrow."
+            },
+            {
+              "episodeId": 1186956,
+              "episodeNumber": 7,
+              "name": "The Broken Man",
+              "summary": "The High Sparrow eyes another target. Jaime confronts a hero. Arya makes a plan. The North is reminded."
+            },
+            {
+              "episodeId": 1187403,
+              "episodeNumber": 8,
+              "name": "No One",
+              "summary": "While Jaime weighs his options, Cersei answers a request. Tyrion's plans bear fruit. Arya faces a new test."
+            },
+            {
+              "episodeId": 1187404,
+              "episodeNumber": 9,
+              "name": "Battle of the Bastards",
+              "summary": "As the Starks prepare to fight, Davos loses something dear. Ramsay plays a game. Daenerys faces a choice."
+            },
+            {
+              "episodeId": 1187405,
+              "episodeNumber": 10,
+              "name": "The Winds of Winter",
+              "summary": "Tyrion counsels Daenerys on the upcoming campaign. Jon and Sansa discuss their future. Trials begin in King's Landing."
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "showId": 62560,
+      "name": "Mr. Robot",
+      "tmdbLink": "https://www.themoviedb.org/tv/62560-mr-robot",
+      "graphicLink": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg",
+      "seasons": [
+        {
+          "seasonId": 77843,
+          "seasonNumber": 0,
+          "name": "season_0.0",
+          "episodes": [
+            {
+              "episodeId": 1200247,
+              "episodeNumber": 1,
+              "name": "Mr. Robot_dec0d3d.doc",
+              "summary": ""
+            },
+            {
+              "episodeId": 1203464,
+              "episodeNumber": 2,
+              "name": "Hacking Robot 101",
+              "summary": "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions."
+            },
+            {
+              "episodeId": 1231354,
+              "episodeNumber": 3,
+              "name": "Hacking Robot 102",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 66343,
+          "seasonNumber": 1,
+          "name": "season_1.0",
+          "episodes": [
+            {
+              "episodeId": 1057663,
+              "episodeNumber": 1,
+              "name": "eps1.0_hellofriend.mov",
+              "summary": ""
+            },
+            {
+              "episodeId": 1071733,
+              "episodeNumber": 2,
+              "name": "eps1.1_ones-and-zer0es.mpeg",
+              "summary": ""
+            },
+            {
+              "episodeId": 1073094,
+              "episodeNumber": 3,
+              "name": "eps1.2_d3bug.mkv",
+              "summary": ""
+            },
+            {
+              "episodeId": 1073095,
+              "episodeNumber": 4,
+              "name": "eps1.3_da3m0ns.mp4",
+              "summary": ""
+            },
+            {
+              "episodeId": 1073096,
+              "episodeNumber": 5,
+              "name": "eps1.4_3xpl0its.wmv",
+              "summary": ""
+            },
+            {
+              "episodeId": 1073097,
+              "episodeNumber": 6,
+              "name": "eps1.5_br4ve-trave1er.asf",
+              "summary": ""
+            },
+            {
+              "episodeId": 1073098,
+              "episodeNumber": 7,
+              "name": "eps1.6_v1ew-s0urce.flv",
+              "summary": ""
+            },
+            {
+              "episodeId": 1073099,
+              "episodeNumber": 8,
+              "name": "eps1.7_wh1ter0se.m4v",
+              "summary": ""
+            },
+            {
+              "episodeId": 1073100,
+              "episodeNumber": 9,
+              "name": "eps1.8_m1rr0r1ng.qt",
+              "summary": ""
+            },
+            {
+              "episodeId": 1078805,
+              "episodeNumber": 10,
+              "name": "eps1.9_zer0-day.avi",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 75658,
+          "seasonNumber": 2,
+          "name": "season_2.0",
+          "episodes": [
+            {
+              "episodeId": 1187600,
+              "episodeNumber": 1,
+              "name": "eps2.0_unm4sk-pt1.tc",
+              "summary": ""
+            },
+            {
+              "episodeId": 1195316,
+              "episodeNumber": 2,
+              "name": "eps2.0_unm4sk-pt2.tc",
+              "summary": ""
+            },
+            {
+              "episodeId": 1195317,
+              "episodeNumber": 3,
+              "name": "eps2.1_k3rnel-pan1c.ksd",
+              "summary": ""
+            },
+            {
+              "episodeId": 1195318,
+              "episodeNumber": 4,
+              "name": "eps2.2_init_1.asec",
+              "summary": ""
+            },
+            {
+              "episodeId": 1195319,
+              "episodeNumber": 5,
+              "name": "eps2.3_logic-b0mb.hc",
+              "summary": ""
+            },
+            {
+              "episodeId": 1195320,
+              "episodeNumber": 6,
+              "name": "eps2.4_m4ster-s1ave.aes",
+              "summary": ""
+            },
+            {
+              "episodeId": 1195321,
+              "episodeNumber": 7,
+              "name": "eps2.5_h4ndshake.sme",
+              "summary": ""
+            },
+            {
+              "episodeId": 1195322,
+              "episodeNumber": 8,
+              "name": "eps2.6_succ3ss0r.p12",
+              "summary": ""
+            },
+            {
+              "episodeId": 1195323,
+              "episodeNumber": 9,
+              "name": "eps2.7_init_5.fve",
+              "summary": ""
+            },
+            {
+              "episodeId": 1195324,
+              "episodeNumber": 10,
+              "name": "eps2.8_h1dden-pr0cess.axx",
+              "summary": ""
+            },
+            {
+              "episodeId": 1204470,
+              "episodeNumber": 11,
+              "name": "eps2.9_pyth0n-pt1.p7z",
+              "summary": ""
+            },
+            {
+              "episodeId": 1204471,
+              "episodeNumber": 12,
+              "name": "eps2.9_pyth0n-pt2.p7z",
+              "summary": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "showId": 1396,
+      "name": "Breaking Bad",
+      "tmdbLink": "https://www.themoviedb.org/tv/1396-breaking-bad",
+      "graphicLink": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg",
+      "seasons": [
+        {
+          "seasonId": 3577,
+          "seasonNumber": 0,
+          "name": "Season 0",
+          "episodes": [
+            {
+              "episodeId": 62131,
+              "episodeNumber": 1,
+              "name": "Good Cop Bad Cop",
+              "summary": ""
+            },
+            {
+              "episodeId": 62133,
+              "episodeNumber": 2,
+              "name": "Wedding Day",
+              "summary": ""
+            },
+            {
+              "episodeId": 62132,
+              "episodeNumber": 3,
+              "name": "TwaughtHammer",
+              "summary": ""
+            },
+            {
+              "episodeId": 62135,
+              "episodeNumber": 4,
+              "name": "Marie's Confession",
+              "summary": ""
+            },
+            {
+              "episodeId": 62134,
+              "episodeNumber": 5,
+              "name": "The Break-In",
+              "summary": ""
+            },
+            {
+              "episodeId": 62136,
+              "episodeNumber": 6,
+              "name": "Season 4 Sneak Peak",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3572,
+          "seasonNumber": 1,
+          "name": "Season 1",
+          "episodes": [
+            {
+              "episodeId": 62085,
+              "episodeNumber": 1,
+              "name": "Pilot",
+              "summary": ""
+            },
+            {
+              "episodeId": 62086,
+              "episodeNumber": 2,
+              "name": "The Cat's in the Bag",
+              "summary": ""
+            },
+            {
+              "episodeId": 62087,
+              "episodeNumber": 3,
+              "name": "...and the Bag's in the River",
+              "summary": ""
+            },
+            {
+              "episodeId": 62088,
+              "episodeNumber": 4,
+              "name": "Cancer Man",
+              "summary": ""
+            },
+            {
+              "episodeId": 62089,
+              "episodeNumber": 5,
+              "name": "Gray Matter",
+              "summary": ""
+            },
+            {
+              "episodeId": 62090,
+              "episodeNumber": 6,
+              "name": "Crazy Handful of Nothin'",
+              "summary": ""
+            },
+            {
+              "episodeId": 62091,
+              "episodeNumber": 7,
+              "name": "A No-Rough-Stuff Type Deal",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3573,
+          "seasonNumber": 2,
+          "name": "Season 2",
+          "episodes": [
+            {
+              "episodeId": 972873,
+              "episodeNumber": 1,
+              "name": "Seven Thirty-Seven",
+              "summary": ""
+            },
+            {
+              "episodeId": 972874,
+              "episodeNumber": 2,
+              "name": "Grilled",
+              "summary": ""
+            },
+            {
+              "episodeId": 62094,
+              "episodeNumber": 3,
+              "name": "Bit By a Dead Bee",
+              "summary": ""
+            },
+            {
+              "episodeId": 62095,
+              "episodeNumber": 4,
+              "name": "Down",
+              "summary": ""
+            },
+            {
+              "episodeId": 62096,
+              "episodeNumber": 5,
+              "name": "Breakage",
+              "summary": ""
+            },
+            {
+              "episodeId": 62097,
+              "episodeNumber": 6,
+              "name": "Peekaboo",
+              "summary": ""
+            },
+            {
+              "episodeId": 62098,
+              "episodeNumber": 7,
+              "name": "Negro Y Azul",
+              "summary": ""
+            },
+            {
+              "episodeId": 62099,
+              "episodeNumber": 8,
+              "name": "Better Call Saul",
+              "summary": ""
+            },
+            {
+              "episodeId": 62100,
+              "episodeNumber": 9,
+              "name": "4 Days Out",
+              "summary": ""
+            },
+            {
+              "episodeId": 62101,
+              "episodeNumber": 10,
+              "name": "Over",
+              "summary": ""
+            },
+            {
+              "episodeId": 62102,
+              "episodeNumber": 11,
+              "name": "Mandala",
+              "summary": ""
+            },
+            {
+              "episodeId": 62103,
+              "episodeNumber": 12,
+              "name": "Phoenix",
+              "summary": ""
+            },
+            {
+              "episodeId": 62104,
+              "episodeNumber": 13,
+              "name": "ABQ",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3575,
+          "seasonNumber": 3,
+          "name": "Season 3",
+          "episodes": [
+            {
+              "episodeId": 62105,
+              "episodeNumber": 1,
+              "name": "No Mas",
+              "summary": ""
+            },
+            {
+              "episodeId": 62106,
+              "episodeNumber": 2,
+              "name": "Caballo Sin Nombre",
+              "summary": ""
+            },
+            {
+              "episodeId": 62107,
+              "episodeNumber": 3,
+              "name": "I.F.T.",
+              "summary": ""
+            },
+            {
+              "episodeId": 62108,
+              "episodeNumber": 4,
+              "name": "Green Light",
+              "summary": ""
+            },
+            {
+              "episodeId": 62109,
+              "episodeNumber": 5,
+              "name": "Mas",
+              "summary": ""
+            },
+            {
+              "episodeId": 62110,
+              "episodeNumber": 6,
+              "name": "Sunset",
+              "summary": ""
+            },
+            {
+              "episodeId": 62111,
+              "episodeNumber": 7,
+              "name": "One Minute",
+              "summary": ""
+            },
+            {
+              "episodeId": 62112,
+              "episodeNumber": 8,
+              "name": "I See You",
+              "summary": ""
+            },
+            {
+              "episodeId": 62113,
+              "episodeNumber": 9,
+              "name": "Kafkaesque",
+              "summary": ""
+            },
+            {
+              "episodeId": 62114,
+              "episodeNumber": 10,
+              "name": "Fly",
+              "summary": ""
+            },
+            {
+              "episodeId": 62115,
+              "episodeNumber": 11,
+              "name": "Abiquiu",
+              "summary": ""
+            },
+            {
+              "episodeId": 3575,
+              "episodeNumber": 12,
+              "name": "Half Measures",
+              "summary": ""
+            },
+            {
+              "episodeId": 3575,
+              "episodeNumber": 13,
+              "name": "Full Measure",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3576,
+          "seasonNumber": 4,
+          "name": "Season 4",
+          "episodes": [
+            {
+              "episodeId": 62118,
+              "episodeNumber": 1,
+              "name": "Box Cutter",
+              "summary": ""
+            },
+            {
+              "episodeId": 62119,
+              "episodeNumber": 2,
+              "name": "Thirty-Enight Snub",
+              "summary": ""
+            },
+            {
+              "episodeId": 62120,
+              "episodeNumber": 3,
+              "name": "Open House",
+              "summary": ""
+            },
+            {
+              "episodeId": 62122,
+              "episodeNumber": 4,
+              "name": "Bullet Points",
+              "summary": ""
+            },
+            {
+              "episodeId": 62123,
+              "episodeNumber": 5,
+              "name": "Shotgun",
+              "summary": ""
+            },
+            {
+              "episodeId": 62124,
+              "episodeNumber": 6,
+              "name": "Cornered",
+              "summary": ""
+            },
+            {
+              "episodeId": 62121,
+              "episodeNumber": 7,
+              "name": "Problem Dog",
+              "summary": ""
+            },
+            {
+              "episodeId": 62127,
+              "episodeNumber": 8,
+              "name": "Hermanos",
+              "summary": ""
+            },
+            {
+              "episodeId": 62125,
+              "episodeNumber": 9,
+              "name": "Bug",
+              "summary": ""
+            },
+            {
+              "episodeId": 62126,
+              "episodeNumber": 10,
+              "name": "Salud",
+              "summary": ""
+            },
+            {
+              "episodeId": 62129,
+              "episodeNumber": 11,
+              "name": "Crawl Space",
+              "summary": ""
+            },
+            {
+              "episodeId": 62128,
+              "episodeNumber": 12,
+              "name": "End Times",
+              "summary": ""
+            },
+            {
+              "episodeId": 62130,
+              "episodeNumber": 13,
+              "name": "Face Off",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3578,
+          "seasonNumber": 5,
+          "name": "Season 5",
+          "episodes": [
+            {
+              "episodeId": 62147,
+              "episodeNumber": 1,
+              "name": "Live Free or Die",
+              "summary": ""
+            },
+            {
+              "episodeId": 62148,
+              "episodeNumber": 2,
+              "name": "Madrigal",
+              "summary": ""
+            },
+            {
+              "episodeId": 62149,
+              "episodeNumber": 3,
+              "name": "Hazard Pay",
+              "summary": ""
+            },
+            {
+              "episodeId": 62150,
+              "episodeNumber": 4,
+              "name": "Fifty-One",
+              "summary": ""
+            },
+            {
+              "episodeId": 62151,
+              "episodeNumber": 5,
+              "name": "Dead Freight",
+              "summary": ""
+            },
+            {
+              "episodeId": 62152,
+              "episodeNumber": 6,
+              "name": "Buyout",
+              "summary": ""
+            },
+            {
+              "episodeId": 62153,
+              "episodeNumber": 7,
+              "name": "Say My Name",
+              "summary": ""
+            },
+            {
+              "episodeId": 62154,
+              "episodeNumber": 8,
+              "name": "Gliding Over All",
+              "summary": ""
+            },
+            {
+              "episodeId": 62155,
+              "episodeNumber": 9,
+              "name": "Blood Money",
+              "summary": ""
+            },
+            {
+              "episodeId": 62156,
+              "episodeNumber": 10,
+              "name": "Buried",
+              "summary": ""
+            },
+            {
+              "episodeId": 62159,
+              "episodeNumber": 11,
+              "name": "Confessions",
+              "summary": ""
+            },
+            {
+              "episodeId": 62158,
+              "episodeNumber": 12,
+              "name": "Rabid Dog",
+              "summary": ""
+            },
+            {
+              "episodeId": 62157,
+              "episodeNumber": 13,
+              "name": "To'hajiilee",
+              "summary": ""
+            },
+            {
+              "episodeId": 62162,
+              "episodeNumber": 14,
+              "name": "Ozymandias",
+              "summary": ""
+            },
+            {
+              "episodeId": 62160,
+              "episodeNumber": 15,
+              "name": "Granite State",
+              "summary": ""
+            },
+            {
+              "episodeId": 62161,
+              "episodeNumber": 16,
+              "name": "Felina",
+              "summary": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "showId": 63926,
+      "name": "One-Punch Man",
+      "tmdbLink": "https://www.themoviedb.org/tv/63926",
+      "graphicLink": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/iXcaYJZlK2uDnLiTt5HlY2a0vuL.jpg",
+      "seasons": [
+        {
+          "seasonId": 74239,
+          "seasonNumber": 0,
+          "name": "Season Specials",
+          "episodes": [
+            {
+              "episodeId": 1188302,
+              "episodeNumber": 1,
+              "name": "Road to Hero",
+              "summary": ""
+            },
+            {
+              "episodeId": 1162633,
+              "episodeNumber": 2,
+              "name": "The Shadow That Snuck Up Too Close",
+              "summary": ""
+            },
+            {
+              "episodeId": 1161846,
+              "episodeNumber": 3,
+              "name": "The Pupil Who Is an Extremely Poor Talker",
+              "summary": ""
+            },
+            {
+              "episodeId": 1172909,
+              "episodeNumber": 4,
+              "name": "The Ninja Who Is Too Complicated",
+              "summary": ""
+            },
+            {
+              "episodeId": 1178845,
+              "episodeNumber": 5,
+              "name": "Bang, Who Is Too Overbearing",
+              "summary": ""
+            },
+            {
+              "episodeId": 1162631,
+              "episodeNumber": 6,
+              "name": "The Sisters Who Have Too Many Things Happening",
+              "summary": ""
+            },
+            {
+              "episodeId": 1188301,
+              "episodeNumber": 7,
+              "name": "The Murder Case That Is Too Impossible",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 70631,
+          "seasonNumber": 1,
+          "name": "Season 1",
+          "episodes": [
+            {
+              "episodeId": 1106679,
+              "episodeNumber": 1,
+              "name": "The Strongest Man",
+              "summary": ""
+            },
+            {
+              "episodeId": 1132654,
+              "episodeNumber": 1,
+              "name": "The Lone Cyborg",
+              "summary": ""
+            },
+            {
+              "episodeId": 1132655,
+              "episodeNumber": 1,
+              "name": "The Obsessive Scientist",
+              "summary": ""
+            },
+            {
+              "episodeId": 1132653,
+              "episodeNumber": 1,
+              "name": "The Modern Ninja",
+              "summary": ""
+            },
+            {
+              "episodeId": 1145017,
+              "episodeNumber": 1,
+              "name": "The Ultimate Master",
+              "summary": ""
+            },
+            {
+              "episodeId": 1145690,
+              "episodeNumber": 1,
+              "name": "The Terrifying City",
+              "summary": ""
+            },
+            {
+              "episodeId": 1145689,
+              "episodeNumber": 1,
+              "name": "The Supreme Pupil",
+              "summary": ""
+            },
+            {
+              "episodeId": 1145688,
+              "episodeNumber": 1,
+              "name": "The Deep Sea King",
+              "summary": ""
+            },
+            {
+              "episodeId": 1145687,
+              "episodeNumber": 1,
+              "name": "Unyielding Justice",
+              "summary": ""
+            },
+            {
+              "episodeId": 1145019,
+              "episodeNumber": 1,
+              "name": "Unparalleled Peril",
+              "summary": ""
+            },
+            {
+              "episodeId": 1145018,
+              "episodeNumber": 1,
+              "name": "The Dominator of the Universe",
+              "summary": ""
+            },
+            {
+              "episodeId": 1147231,
+              "episodeNumber": 1,
+              "name": "The Strongest Hero",
+              "summary": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "showId": 60573,
+      "name": "Silicon Valley",
+      "tmdbLink": "https://www.themoviedb.org/tv/60573-silicon-valley",
+      "graphicLink": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/elsmbLZDFYF37r4VYT0RMRPO03n.jpg",
+      "seasons": [
+        {
+          "seasonId": 59905,
+          "seasonNumber": 1,
+          "name": "Season 1",
+          "episodes": [
+            {
+              "episodeId": 972002,
+              "episodeNumber": 1,
+              "name": "Minimum Viable Product",
+              "summary": ""
+            },
+            {
+              "episodeId": 973803,
+              "episodeNumber": 2,
+              "name": "The Cap Table",
+              "summary": ""
+            },
+            {
+              "episodeId": 973804,
+              "episodeNumber": 3,
+              "name": "Articles of Incorporation",
+              "summary": ""
+            },
+            {
+              "episodeId": 973805,
+              "episodeNumber": 4,
+              "name": "Fiduciary Duties",
+              "summary": ""
+            },
+            {
+              "episodeId": 975373,
+              "episodeNumber": 5,
+              "name": " Signaling Risk",
+              "summary": ""
+            },
+            {
+              "episodeId": 975433,
+              "episodeNumber": 6,
+              "name": "Third Party Insourcing",
+              "summary": ""
+            },
+            {
+              "episodeId": 975434,
+              "episodeNumber": 7,
+              "name": "Proof of Concept",
+              "summary": ""
+            },
+            {
+              "episodeId": 976647,
+              "episodeNumber": 8,
+              "name": "Optimal Tip-To-Top Efficiency",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 64396,
+          "seasonNumber": 2,
+          "name": "Season 2",
+          "episodes": [
+            {
+              "episodeId": 1033916,
+              "episodeNumber": 1,
+              "name": "Sand Hill Shuffle",
+              "summary": ""
+            },
+            {
+              "episodeId": 1047147,
+              "episodeNumber": 2,
+              "name": "Runaway Devaluation",
+              "summary": ""
+            },
+            {
+              "episodeId": 1047148,
+              "episodeNumber": 3,
+              "name": "Bad Money",
+              "summary": ""
+            },
+            {
+              "episodeId": 1047149,
+              "episodeNumber": 4,
+              "name": "The Lady",
+              "summary": ""
+            },
+            {
+              "episodeId": 1056829,
+              "episodeNumber": 5,
+              "name": "Server Space",
+              "summary": ""
+            },
+            {
+              "episodeId": 1056830,
+              "episodeNumber": 6,
+              "name": "Homicide",
+              "summary": ""
+            },
+            {
+              "episodeId": 1056831,
+              "episodeNumber": 7,
+              "name": "Adult Content",
+              "summary": ""
+            },
+            {
+              "episodeId": 1056832,
+              "episodeNumber": 8,
+              "name": "White Hat/Black Hat",
+              "summary": ""
+            },
+            {
+              "episodeId": 1056833,
+              "episodeNumber": 9,
+              "name": "Binding Arbitration",
+              "summary": ""
+            },
+            {
+              "episodeId": 1056834,
+              "episodeNumber": 10,
+              "name": "Two Days of the Condor",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 74544,
+          "seasonNumber": 3,
+          "name": "Season 3",
+          "episodes": [
+            {
+              "episodeId": 1165531,
+              "episodeNumber": 1,
+              "name": "Founder Friendly",
+              "summary": ""
+            },
+            {
+              "episodeId": 1184996,
+              "episodeNumber": 2,
+              "name": "Two in the Box",
+              "summary": ""
+            },
+            {
+              "episodeId": 1184997,
+              "episodeNumber": 3,
+              "name": "Meinertzhagen's Haversack",
+              "summary": ""
+            },
+            {
+              "episodeId": 1184998,
+              "episodeNumber": 4,
+              "name": "Maleant Data Systems Solutions",
+              "summary": ""
+            },
+            {
+              "episodeId": 1184999,
+              "episodeNumber": 5,
+              "name": "The Empty Chair",
+              "summary": ""
+            },
+            {
+              "episodeId": 1185000,
+              "episodeNumber": 6,
+              "name": "Bachmanity Insanity",
+              "summary": ""
+            },
+            {
+              "episodeId": 1191839,
+              "episodeNumber": 7,
+              "name": "To Build A Better Beta",
+              "summary": ""
+            },
+            {
+              "episodeId": 1191840,
+              "episodeNumber": 8,
+              "name": "Bachman's Earning's Over-Ride",
+              "summary": ""
+            },
+            {
+              "episodeId": 1191841,
+              "episodeNumber": 9,
+              "name": "Daily Active Users",
+              "summary": ""
+            },
+            {
+              "episodeId": 1191842,
+              "episodeNumber": 10,
+              "name": "The Uptick",
+              "summary": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "showId": 1408,
+      "name": "House",
+      "tmdbLink": "https://www.themoviedb.org/tv/1408-house",
+      "graphicLink": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/lxSzRZ49NXwsiyHuvMsd19QxduC.jpg",
+      "seasons": [
+        {
+          "seasonId": 3682,
+          "seasonNumber": 0,
+          "name": "Season 0",
+          "episodes": [
+            {
+              "episodeId": 63915,
+              "episodeNumber": 1,
+              "name": "Unaired Pilot",
+              "summary": ""
+            },
+            {
+              "episodeId": 63916,
+              "episodeNumber": 2,
+              "name": "An Evening With House",
+              "summary": ""
+            },
+            {
+              "episodeId": 63917,
+              "episodeNumber": 3,
+              "name": "An Insider's Guide",
+              "summary": ""
+            },
+            {
+              "episodeId": 63918,
+              "episodeNumber": 4,
+              "name": "Get Happy",
+              "summary": ""
+            },
+            {
+              "episodeId": 63919,
+              "episodeNumber": 5,
+              "name": " Swan Song",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3674,
+          "seasonNumber": 1,
+          "name": "Season 1",
+          "episodes": [
+            {
+              "episodeId": 63738,
+              "episodeNumber": 1,
+              "name": "Pilot",
+              "summary": ""
+            },
+            {
+              "episodeId": 63739,
+              "episodeNumber": 2,
+              "name": "Paternity",
+              "summary": ""
+            },
+            {
+              "episodeId": 63740,
+              "episodeNumber": 3,
+              "name": "Occam's Razor",
+              "summary": ""
+            },
+            {
+              "episodeId": 63741,
+              "episodeNumber": 4,
+              "name": "Maternity",
+              "summary": ""
+            },
+            {
+              "episodeId": 63742,
+              "episodeNumber": 5,
+              "name": "Damned If You Do",
+              "summary": ""
+            },
+            {
+              "episodeId": 63743,
+              "episodeNumber": 6,
+              "name": "The Socratic Method",
+              "summary": ""
+            },
+            {
+              "episodeId": 63744,
+              "episodeNumber": 7,
+              "name": "Fidelity",
+              "summary": ""
+            },
+            {
+              "episodeId": 63745,
+              "episodeNumber": 8,
+              "name": "Poison",
+              "summary": ""
+            },
+            {
+              "episodeId": 63746,
+              "episodeNumber": 9,
+              "name": "DNR",
+              "summary": ""
+            },
+            {
+              "episodeId": 63747,
+              "episodeNumber": 10,
+              "name": "Histories",
+              "summary": ""
+            },
+            {
+              "episodeId": 63748,
+              "episodeNumber": 11,
+              "name": "Detox",
+              "summary": ""
+            },
+            {
+              "episodeId": 63749,
+              "episodeNumber": 12,
+              "name": "Sports Medicine",
+              "summary": ""
+            },
+            {
+              "episodeId": 63750,
+              "episodeNumber": 13,
+              "name": "Cursed",
+              "summary": ""
+            },
+            {
+              "episodeId": 63751,
+              "episodeNumber": 14,
+              "name": "Control",
+              "summary": ""
+            },
+            {
+              "episodeId": 63752,
+              "episodeNumber": 15,
+              "name": "Mob Rules",
+              "summary": ""
+            },
+            {
+              "episodeId": 63753,
+              "episodeNumber": 16,
+              "name": "Heavy",
+              "summary": ""
+            },
+            {
+              "episodeId": 63754,
+              "episodeNumber": 17,
+              "name": "Role Model",
+              "summary": ""
+            },
+            {
+              "episodeId": 63755,
+              "episodeNumber": 18,
+              "name": "Babies & Bathwater",
+              "summary": ""
+            },
+            {
+              "episodeId": 63756,
+              "episodeNumber": 19,
+              "name": "Kids",
+              "summary": ""
+            },
+            {
+              "episodeId": 63757,
+              "episodeNumber": 20,
+              "name": "Love Hurts",
+              "summary": ""
+            },
+            {
+              "episodeId": 63758,
+              "episodeNumber": 21,
+              "name": "Three Stories",
+              "summary": ""
+            },
+            {
+              "episodeId": 63759,
+              "episodeNumber": 22,
+              "name": "Honeymoon",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3675,
+          "seasonNumber": 2,
+          "name": "Season 2",
+          "episodes": [
+            {
+              "episodeId": 63760,
+              "episodeNumber": 1,
+              "name": "Acceptance",
+              "summary": ""
+            },
+            {
+              "episodeId": 63761,
+              "episodeNumber": 2,
+              "name": "Autopsy",
+              "summary": ""
+            },
+            {
+              "episodeId": 63762,
+              "episodeNumber": 3,
+              "name": "Humpty Dumpty",
+              "summary": ""
+            },
+            {
+              "episodeId": 63763,
+              "episodeNumber": 4,
+              "name": "TB or Not TB",
+              "summary": ""
+            },
+            {
+              "episodeId": 63764,
+              "episodeNumber": 5,
+              "name": "Daddy's Boy",
+              "summary": ""
+            },
+            {
+              "episodeId": 63765,
+              "episodeNumber": 6,
+              "name": "Spin",
+              "summary": ""
+            },
+            {
+              "episodeId": 63766,
+              "episodeNumber": 7,
+              "name": "Hunting",
+              "summary": ""
+            },
+            {
+              "episodeId": 63767,
+              "episodeNumber": 8,
+              "name": "The Mistake",
+              "summary": ""
+            },
+            {
+              "episodeId": 63768,
+              "episodeNumber": 9,
+              "name": "Deception",
+              "summary": ""
+            },
+            {
+              "episodeId": 63769,
+              "episodeNumber": 10,
+              "name": "Failure to Communicate",
+              "summary": ""
+            },
+            {
+              "episodeId": 63770,
+              "episodeNumber": 11,
+              "name": "Need to Know",
+              "summary": ""
+            },
+            {
+              "episodeId": 63771,
+              "episodeNumber": 12,
+              "name": "Distractions",
+              "summary": ""
+            },
+            {
+              "episodeId": 63772,
+              "episodeNumber": 13,
+              "name": "Skin Deep",
+              "summary": ""
+            },
+            {
+              "episodeId": 63773,
+              "episodeNumber": 14,
+              "name": "Sex Kills",
+              "summary": ""
+            },
+            {
+              "episodeId": 63774,
+              "episodeNumber": 15,
+              "name": "Clueless",
+              "summary": ""
+            },
+            {
+              "episodeId": 63775,
+              "episodeNumber": 16,
+              "name": "Safe",
+              "summary": ""
+            },
+            {
+              "episodeId": 63776,
+              "episodeNumber": 17,
+              "name": "All In",
+              "summary": ""
+            },
+            {
+              "episodeId": 63777,
+              "episodeNumber": 18,
+              "name": "Sleeping Dogs Lie",
+              "summary": ""
+            },
+            {
+              "episodeId": 63778,
+              "episodeNumber": 19,
+              "name": "House vs. God",
+              "summary": ""
+            },
+            {
+              "episodeId": 63779,
+              "episodeNumber": 20,
+              "name": "Euphoria (1)",
+              "summary": ""
+            },
+            {
+              "episodeId": 63780,
+              "episodeNumber": 21,
+              "name": "Euphoria (2)",
+              "summary": ""
+            },
+            {
+              "episodeId": 63781,
+              "episodeNumber": 22,
+              "name": "Forever",
+              "summary": ""
+            },
+            {
+              "episodeId": 63782,
+              "episodeNumber": 23,
+              "name": "Who's Your Daddy?",
+              "summary": ""
+            },
+            {
+              "episodeId": 63783,
+              "episodeNumber": 24,
+              "name": "No Reason",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3679,
+          "seasonNumber": 3,
+          "name": "Season 3",
+          "episodes": [
+            {
+              "episodeId": 63845,
+              "episodeNumber": 1,
+              "name": "Meaning",
+              "summary": ""
+            },
+            {
+              "episodeId": 63846,
+              "episodeNumber": 2,
+              "name": "Cane & Able",
+              "summary": ""
+            },
+            {
+              "episodeId": 63847,
+              "episodeNumber": 3,
+              "name": "Informed Consent",
+              "summary": ""
+            },
+            {
+              "episodeId": 63848,
+              "episodeNumber": 4,
+              "name": "Lines in the Sand",
+              "summary": ""
+            },
+            {
+              "episodeId": 63849,
+              "episodeNumber": 5,
+              "name": "Fools for Love",
+              "summary": ""
+            },
+            {
+              "episodeId": 63850,
+              "episodeNumber": 6,
+              "name": "Que Será Será",
+              "summary": ""
+            },
+            {
+              "episodeId": 63851,
+              "episodeNumber": 7,
+              "name": "Son of Coma Guy",
+              "summary": ""
+            },
+            {
+              "episodeId": 63852,
+              "episodeNumber": 8,
+              "name": "Whac-A-Mole",
+              "summary": ""
+            },
+            {
+              "episodeId": 63853,
+              "episodeNumber": 9,
+              "name": "Finding Judas",
+              "summary": ""
+            },
+            {
+              "episodeId": 63854,
+              "episodeNumber": 10,
+              "name": "Merry Little Christmas",
+              "summary": ""
+            },
+            {
+              "episodeId": 63855,
+              "episodeNumber": 11,
+              "name": "Words and Deeds",
+              "summary": ""
+            },
+            {
+              "episodeId": 63856,
+              "episodeNumber": 12,
+              "name": "One Day, One Room",
+              "summary": ""
+            },
+            {
+              "episodeId": 63857,
+              "episodeNumber": 13,
+              "name": "Needle in a Haystack",
+              "summary": ""
+            },
+            {
+              "episodeId": 63858,
+              "episodeNumber": 14,
+              "name": "Insensitive",
+              "summary": ""
+            },
+            {
+              "episodeId": 63859,
+              "episodeNumber": 15,
+              "name": "Half-Wit",
+              "summary": ""
+            },
+            {
+              "episodeId": 63860,
+              "episodeNumber": 16,
+              "name": "Top Secret",
+              "summary": ""
+            },
+            {
+              "episodeId": 63861,
+              "episodeNumber": 17,
+              "name": "Fetal Position",
+              "summary": ""
+            },
+            {
+              "episodeId": 63862,
+              "episodeNumber": 18,
+              "name": "Airborne",
+              "summary": ""
+            },
+            {
+              "episodeId": 63863,
+              "episodeNumber": 19,
+              "name": "Act Your Age",
+              "summary": ""
+            },
+            {
+              "episodeId": 63864,
+              "episodeNumber": 20,
+              "name": "House Training",
+              "summary": ""
+            },
+            {
+              "episodeId": 63865,
+              "episodeNumber": 21,
+              "name": "Family",
+              "summary": ""
+            },
+            {
+              "episodeId": 63866,
+              "episodeNumber": 22,
+              "name": "Resignation",
+              "summary": ""
+            },
+            {
+              "episodeId": 63867,
+              "episodeNumber": 23,
+              "name": "The Jerk",
+              "summary": ""
+            },
+            {
+              "episodeId": 63868,
+              "episodeNumber": 24,
+              "name": "Human Error",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3678,
+          "seasonNumber": 4,
+          "name": "Season 4",
+          "episodes": [
+            {
+              "episodeId": 63829,
+              "episodeNumber": 1,
+              "name": "Alone",
+              "summary": ""
+            },
+            {
+              "episodeId": 63830,
+              "episodeNumber": 2,
+              "name": "The Right Stuff",
+              "summary": ""
+            },
+            {
+              "episodeId": 63831,
+              "episodeNumber": 3,
+              "name": "97 Seconds",
+              "summary": ""
+            },
+            {
+              "episodeId": 63832,
+              "episodeNumber": 4,
+              "name": "Guardian Angels",
+              "summary": ""
+            },
+            {
+              "episodeId": 63833,
+              "episodeNumber": 5,
+              "name": "Mirror Mirror",
+              "summary": ""
+            },
+            {
+              "episodeId": 63834,
+              "episodeNumber": 6,
+              "name": "Whatever It Takes",
+              "summary": ""
+            },
+            {
+              "episodeId": 63835,
+              "episodeNumber": 7,
+              "name": "Ugly",
+              "summary": ""
+            },
+            {
+              "episodeId": 63836,
+              "episodeNumber": 8,
+              "name": "You Don't Want to Know",
+              "summary": ""
+            },
+            {
+              "episodeId": 63837,
+              "episodeNumber": 9,
+              "name": "Games",
+              "summary": ""
+            },
+            {
+              "episodeId": 63838,
+              "episodeNumber": 10,
+              "name": "It's a Wonderful Lie",
+              "summary": ""
+            },
+            {
+              "episodeId": 63839,
+              "episodeNumber": 11,
+              "name": "Frozen",
+              "summary": ""
+            },
+            {
+              "episodeId": 63840,
+              "episodeNumber": 12,
+              "name": "Don't Ever Change",
+              "summary": ""
+            },
+            {
+              "episodeId": 63841,
+              "episodeNumber": 13,
+              "name": "No More Mr. Nice Guy",
+              "summary": ""
+            },
+            {
+              "episodeId": 63842,
+              "episodeNumber": 14,
+              "name": "Living the Dream",
+              "summary": ""
+            },
+            {
+              "episodeId": 63843,
+              "episodeNumber": 15,
+              "name": "House's Head",
+              "summary": ""
+            },
+            {
+              "episodeId": 63844,
+              "episodeNumber": 16,
+              "name": "Wilson's Heart",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3676,
+          "seasonNumber": 5,
+          "name": "Season 5",
+          "episodes": [
+            {
+              "episodeId": 63784,
+              "episodeNumber": 1,
+              "name": "Dying Changes Everything",
+              "summary": ""
+            },
+            {
+              "episodeId": 63785,
+              "episodeNumber": 2,
+              "name": "Not Cancer",
+              "summary": ""
+            },
+            {
+              "episodeId": 63786,
+              "episodeNumber": 3,
+              "name": "Adverse Events",
+              "summary": ""
+            },
+            {
+              "episodeId": 63787,
+              "episodeNumber": 4,
+              "name": "Birthmarks",
+              "summary": ""
+            },
+            {
+              "episodeId": 63788,
+              "episodeNumber": 5,
+              "name": "Lucky Thirteen",
+              "summary": ""
+            },
+            {
+              "episodeId": 63789,
+              "episodeNumber": 6,
+              "name": "Joy",
+              "summary": ""
+            },
+            {
+              "episodeId": 63790,
+              "episodeNumber": 7,
+              "name": "The Itch",
+              "summary": ""
+            },
+            {
+              "episodeId": 63791,
+              "episodeNumber": 8,
+              "name": "Emancipation",
+              "summary": ""
+            },
+            {
+              "episodeId": 63792,
+              "episodeNumber": 9,
+              "name": "Last Resort",
+              "summary": ""
+            },
+            {
+              "episodeId": 63793,
+              "episodeNumber": 10,
+              "name": "Let Them Eat Cake",
+              "summary": ""
+            },
+            {
+              "episodeId": 63794,
+              "episodeNumber": 11,
+              "name": "Joy to the World",
+              "summary": ""
+            },
+            {
+              "episodeId": 63795,
+              "episodeNumber": 12,
+              "name": "Painless",
+              "summary": ""
+            },
+            {
+              "episodeId": 63796,
+              "episodeNumber": 13,
+              "name": "Big Baby",
+              "summary": ""
+            },
+            {
+              "episodeId": 63797,
+              "episodeNumber": 14,
+              "name": "The Greater Good",
+              "summary": ""
+            },
+            {
+              "episodeId": 63798,
+              "episodeNumber": 15,
+              "name": "Unfaithful",
+              "summary": ""
+            },
+            {
+              "episodeId": 63799,
+              "episodeNumber": 16,
+              "name": "The Softer Side",
+              "summary": ""
+            },
+            {
+              "episodeId": 63800,
+              "episodeNumber": 17,
+              "name": "The Social Contract",
+              "summary": ""
+            },
+            {
+              "episodeId": 63801,
+              "episodeNumber": 18,
+              "name": "Here Kitty",
+              "summary": ""
+            },
+            {
+              "episodeId": 63802,
+              "episodeNumber": 19,
+              "name": "Locked In",
+              "summary": ""
+            },
+            {
+              "episodeId": 63807,
+              "episodeNumber": 20,
+              "name": "Simple Explanation",
+              "summary": ""
+            },
+            {
+              "episodeId": 63803,
+              "episodeNumber": 21,
+              "name": "Saviors",
+              "summary": ""
+            },
+            {
+              "episodeId": 63804,
+              "episodeNumber": 22,
+              "name": "House Divided",
+              "summary": ""
+            },
+            {
+              "episodeId": 63805,
+              "episodeNumber": 23,
+              "name": "Under My Skin",
+              "summary": ""
+            },
+            {
+              "episodeId": 63806,
+              "episodeNumber": 24,
+              "name": "Both Sides Now",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3677,
+          "seasonNumber": 6,
+          "name": "Season 6",
+          "episodes": [
+            {
+              "episodeId": 63828,
+              "episodeNumber": 1,
+              "name": "Broken (Part 1)",
+              "summary": ""
+            },
+            {
+              "episodeId": 1150262,
+              "episodeNumber": 2,
+              "name": "Broken (Part 2)",
+              "summary": ""
+            },
+            {
+              "episodeId": 63808,
+              "episodeNumber": 3,
+              "name": "Epic Fail",
+              "summary": ""
+            },
+            {
+              "episodeId": 63809,
+              "episodeNumber": 4,
+              "name": "The Tyrant",
+              "summary": ""
+            },
+            {
+              "episodeId": 63810,
+              "episodeNumber": 5,
+              "name": "Instant Karma",
+              "summary": ""
+            },
+            {
+              "episodeId": 63811,
+              "episodeNumber": 6,
+              "name": "Brave Heart",
+              "summary": ""
+            },
+            {
+              "episodeId": 63812,
+              "episodeNumber": 7,
+              "name": "Known Unknowns",
+              "summary": ""
+            },
+            {
+              "episodeId": 63813,
+              "episodeNumber": 8,
+              "name": "Teamwork",
+              "summary": ""
+            },
+            {
+              "episodeId": 63814,
+              "episodeNumber": 9,
+              "name": "Ignorance is Bliss",
+              "summary": ""
+            },
+            {
+              "episodeId": 63815,
+              "episodeNumber": 10,
+              "name": "Wilson",
+              "summary": ""
+            },
+            {
+              "episodeId": 63824,
+              "episodeNumber": 11,
+              "name": "The Down Low",
+              "summary": ""
+            },
+            {
+              "episodeId": 63816,
+              "episodeNumber": 12,
+              "name": "Remorse",
+              "summary": ""
+            },
+            {
+              "episodeId": 63823,
+              "episodeNumber": 13,
+              "name": "Moving the Chains",
+              "summary": ""
+            },
+            {
+              "episodeId": 63827,
+              "episodeNumber": 14,
+              "name": "5 to 9",
+              "summary": ""
+            },
+            {
+              "episodeId": 63826,
+              "episodeNumber": 15,
+              "name": "Private Lives",
+              "summary": ""
+            },
+            {
+              "episodeId": 63817,
+              "episodeNumber": 16,
+              "name": "Black Hole",
+              "summary": ""
+            },
+            {
+              "episodeId": 63825,
+              "episodeNumber": 17,
+              "name": "Lockdown",
+              "summary": ""
+            },
+            {
+              "episodeId": 63822,
+              "episodeNumber": 18,
+              "name": "Knight Fall",
+              "summary": ""
+            },
+            {
+              "episodeId": 63818,
+              "episodeNumber": 19,
+              "name": "Open and Shut",
+              "summary": ""
+            },
+            {
+              "episodeId": 63819,
+              "episodeNumber": 20,
+              "name": "The Choice",
+              "summary": ""
+            },
+            {
+              "episodeId": 63820,
+              "episodeNumber": 21,
+              "name": "Baggage",
+              "summary": ""
+            },
+            {
+              "episodeId": 63821,
+              "episodeNumber": 22,
+              "name": "Help Me",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3680,
+          "seasonNumber": 7,
+          "name": "Season 7",
+          "episodes": [
+            {
+              "episodeId": 63891,
+              "episodeNumber": 1,
+              "name": "Now What?",
+              "summary": ""
+            },
+            {
+              "episodeId": 63870,
+              "episodeNumber": 2,
+              "name": "Selfish",
+              "summary": ""
+            },
+            {
+              "episodeId": 63871,
+              "episodeNumber": 3,
+              "name": "Unwritten",
+              "summary": ""
+            },
+            {
+              "episodeId": 63872,
+              "episodeNumber": 4,
+              "name": "Massage Therapy",
+              "summary": ""
+            },
+            {
+              "episodeId": 63869,
+              "episodeNumber": 5,
+              "name": "Unplanned Parenthood",
+              "summary": ""
+            },
+            {
+              "episodeId": 63874,
+              "episodeNumber": 6,
+              "name": "Office Politics",
+              "summary": ""
+            },
+            {
+              "episodeId": 63873,
+              "episodeNumber": 7,
+              "name": "A Pox on Our House",
+              "summary": ""
+            },
+            {
+              "episodeId": 63875,
+              "episodeNumber": 8,
+              "name": "Small Sacrifices",
+              "summary": ""
+            },
+            {
+              "episodeId": 63876,
+              "episodeNumber": 9,
+              "name": "Larger Than Life",
+              "summary": ""
+            },
+            {
+              "episodeId": 63878,
+              "episodeNumber": 10,
+              "name": "Carrot or Stick",
+              "summary": ""
+            },
+            {
+              "episodeId": 63879,
+              "episodeNumber": 11,
+              "name": "Family Practice",
+              "summary": ""
+            },
+            {
+              "episodeId": 63877,
+              "episodeNumber": 12,
+              "name": "You Must Remember This",
+              "summary": ""
+            },
+            {
+              "episodeId": 63880,
+              "episodeNumber": 13,
+              "name": "Two Stories",
+              "summary": ""
+            },
+            {
+              "episodeId": 63883,
+              "episodeNumber": 14,
+              "name": "Recession Proof",
+              "summary": ""
+            },
+            {
+              "episodeId": 63881,
+              "episodeNumber": 15,
+              "name": "Bombshells",
+              "summary": ""
+            },
+            {
+              "episodeId": 63884,
+              "episodeNumber": 16,
+              "name": "Out of the Chute",
+              "summary": ""
+            },
+            {
+              "episodeId": 63882,
+              "episodeNumber": 17,
+              "name": "Fall from Grace",
+              "summary": ""
+            },
+            {
+              "episodeId": 63885,
+              "episodeNumber": 18,
+              "name": "The Dig",
+              "summary": ""
+            },
+            {
+              "episodeId": 63886,
+              "episodeNumber": 19,
+              "name": "Last Temptation",
+              "summary": ""
+            },
+            {
+              "episodeId": 63889,
+              "episodeNumber": 20,
+              "name": "Changes"
+            },
+            {
+              "episodeId": 63887,
+              "episodeNumber": 21,
+              "name": "The Fix",
+              "summary": ""
+            },
+            {
+              "episodeId": 63888,
+              "episodeNumber": 22,
+              "name": "After Hours",
+              "summary": ""
+            },
+            {
+              "episodeId": 63890,
+              "episodeNumber": 23,
+              "name": "Moving On",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 3681,
+          "seasonNumber": 8,
+          "name": "Season 8",
+          "episodes": [
+            {
+              "episodeId": 63892,
+              "episodeNumber": 1,
+              "name": "Twenty Vicodin?",
+              "summary": ""
+            },
+            {
+              "episodeId": 63893,
+              "episodeNumber": 2,
+              "name": "Transplant",
+              "summary": ""
+            },
+            {
+              "episodeId": 63894,
+              "episodeNumber": 3,
+              "name": "Charity Case",
+              "summary": ""
+            },
+            {
+              "episodeId": 63895,
+              "episodeNumber": 4,
+              "name": "Risky Business",
+              "summary": ""
+            },
+            {
+              "episodeId": 63896,
+              "episodeNumber": 5,
+              "name": "The Confession",
+              "summary": ""
+            },
+            {
+              "episodeId": 63897,
+              "episodeNumber": 6,
+              "name": "Parents",
+              "summary": ""
+            },
+            {
+              "episodeId": 63898,
+              "episodeNumber": 7,
+              "name": "Dead & Buried",
+              "summary": ""
+            },
+            {
+              "episodeId": 63899,
+              "episodeNumber": 8,
+              "name": "Perils of Paranoia",
+              "summary": ""
+            },
+            {
+              "episodeId": 63900,
+              "episodeNumber": 9,
+              "name": "Better Half",
+              "summary": ""
+            },
+            {
+              "episodeId": 63901,
+              "episodeNumber": 10,
+              "name": "Runaways",
+              "summary": ""
+            },
+            {
+              "episodeId": 63903,
+              "episodeNumber": 11,
+              "name": "Nobody's Fault",
+              "summary": ""
+            },
+            {
+              "episodeId": 63902,
+              "episodeNumber": 12,
+              "name": "Chase",
+              "summary": ""
+            },
+            {
+              "episodeId": 63905,
+              "episodeNumber": 13,
+              "name": "Man of the House",
+              "summary": ""
+            },
+            {
+              "episodeId": 63914,
+              "episodeNumber": 14,
+              "name": "Love Is Blind",
+              "summary": ""
+            },
+            {
+              "episodeId": 63904,
+              "episodeNumber": 15,
+              "name": "Blowing the Whistle",
+              "summary": ""
+            },
+            {
+              "episodeId": 63907,
+              "episodeNumber": 16,
+              "name": "Gut Check",
+              "summary": ""
+            },
+            {
+              "episodeId": 63906,
+              "episodeNumber": 17,
+              "name": "We Need the Eggs",
+              "summary": ""
+            },
+            {
+              "episodeId": 63908,
+              "episodeNumber": 18,
+              "name": "Body and Soul",
+              "summary": ""
+            },
+            {
+              "episodeId": 63909,
+              "episodeNumber": 19,
+              "name": "The C Word",
+              "summary": ""
+            },
+            {
+              "episodeId": 63910,
+              "episodeNumber": 20,
+              "name": "Post Mortem",
+              "summary": ""
+            },
+            {
+              "episodeId": 971522,
+              "episodeNumber": 21,
+              "name": "Holding On",
+              "summary": ""
+            },
+            {
+              "episodeId": 63912,
+              "episodeNumber": 22,
+              "name": "Everybody Dies",
+              "summary": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "showId": 48891,
+      "name": "Brooklyn Nine-Nine ",
+      "tmdbLink": "https://www.themoviedb.org/tv/48891-brooklyn-nine-nine",
+      "graphicLink": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/o40Wv2cCxbUUpBoDa7imlLE05mB.jpg",
+      "seasons": [
+        {
+          "seasonId": 55216,
+          "seasonNumber": 0,
+          "name": "Season 0",
+          "episodes": [
+            {
+              "episodeId": 915556,
+              "episodeNumber": 1,
+              "name": "Six Minute Preview",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 55215,
+          "seasonNumber": 1,
+          "name": "Season 1",
+          "episodes": [
+            {
+              "episodeId": 915551,
+              "episodeNumber": 1,
+              "name": "Pilot",
+              "summary": ""
+            },
+            {
+              "episodeId": 915553,
+              "episodeNumber": 2,
+              "name": "The Tagger",
+              "summary": ""
+            },
+            {
+              "episodeId": 915554,
+              "episodeNumber": 3,
+              "name": "The Slump",
+              "summary": ""
+            },
+            {
+              "episodeId": 915552,
+              "episodeNumber": 4,
+              "name": "M.E. Time",
+              "summary": ""
+            },
+            {
+              "episodeId": 915555,
+              "episodeNumber": 5,
+              "name": "The Vulture",
+              "summary": ""
+            },
+            {
+              "episodeId": 968146,
+              "episodeNumber": 6,
+              "name": "Halloween",
+              "summary": ""
+            },
+            {
+              "episodeId": 967877,
+              "episodeNumber": 7,
+              "name": "48 Hours",
+              "summary": ""
+            },
+            {
+              "episodeId": 967880,
+              "episodeNumber": 8,
+              "name": "Old School",
+              "summary": ""
+            },
+            {
+              "episodeId": 967879,
+              "episodeNumber": 9,
+              "name": "Sal's Pizza",
+              "summary": ""
+            },
+            {
+              "episodeId": 968723,
+              "episodeNumber": 10,
+              "name": "Thanksgiving",
+              "summary": ""
+            },
+            {
+              "episodeId": 968799,
+              "episodeNumber": 11,
+              "name": "Christmas",
+              "summary": ""
+            },
+            {
+              "episodeId": 970251,
+              "episodeNumber": 12,
+              "name": "Pontiac Bandit",
+              "summary": ""
+            },
+            {
+              "episodeId": 970379,
+              "episodeNumber": 13,
+              "name": "The Bet",
+              "summary": ""
+            },
+            {
+              "episodeId": 970643,
+              "episodeNumber": 14,
+              "name": "The Ebony Falcon",
+              "summary": ""
+            },
+            {
+              "episodeId": 970922,
+              "episodeNumber": 15,
+              "name": "Operation: Broken Feather",
+              "summary": ""
+            },
+            {
+              "episodeId": 971284,
+              "episodeNumber": 16,
+              "name": "The Party",
+              "summary": ""
+            },
+            {
+              "episodeId": 971479,
+              "episodeNumber": 17,
+              "name": "Full Boyle",
+              "summary": ""
+            },
+            {
+              "episodeId": 972004,
+              "episodeNumber": 18,
+              "name": "The Apartment",
+              "summary": ""
+            },
+            {
+              "episodeId": 972341,
+              "episodeNumber": 19,
+              "name": "Tactical Village",
+              "summary": ""
+            },
+            {
+              "episodeId": 972691,
+              "episodeNumber": 20,
+              "name": "Fancy Brugdom",
+              "summary": ""
+            },
+            {
+              "episodeId": 973086,
+              "episodeNumber": 21,
+              "name": "Unsolvable",
+              "summary": ""
+            },
+            {
+              "episodeId": 973302,
+              "episodeNumber": 22,
+              "name": "Charges and Specs",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 62379,
+          "seasonNumber": 2,
+          "name": "Season 2",
+          "episodes": [
+            {
+              "episodeId": 1004769,
+              "episodeNumber": 1,
+              "name": "Undercover",
+              "summary": ""
+            },
+            {
+              "episodeId": 1004770,
+              "episodeNumber": 2,
+              "name": "Chocolate Milk",
+              "summary": ""
+            },
+            {
+              "episodeId": 1009811,
+              "episodeNumber": 3,
+              "name": "The Jimmy Jab Games",
+              "summary": ""
+            },
+            {
+              "episodeId": 1010284,
+              "episodeNumber": 4,
+              "name": "Halloween II",
+              "summary": ""
+            },
+            {
+              "episodeId": 1012043,
+              "episodeNumber": 5,
+              "name": "The Mole",
+              "summary": ""
+            },
+            {
+              "episodeId": 1011853,
+              "episodeNumber": 6,
+              "name": "Jake and Sophia",
+              "summary": ""
+            },
+            {
+              "episodeId": 1012950,
+              "episodeNumber": 7,
+              "name": "Lockdown",
+              "summary": ""
+            },
+            {
+              "episodeId": 1014440,
+              "episodeNumber": 8,
+              "name": "USPIS",
+              "summary": ""
+            },
+            {
+              "episodeId": 1016956,
+              "episodeNumber": 9,
+              "name": "The Road Trip",
+              "summary": ""
+            },
+            {
+              "episodeId": 1018187,
+              "episodeNumber": 10,
+              "name": "The Pontiac Bandit Returns",
+              "summary": ""
+            },
+            {
+              "episodeId": 1022916,
+              "episodeNumber": 11,
+              "name": "Stakeout",
+              "summary": ""
+            },
+            {
+              "episodeId": 1022917,
+              "episodeNumber": 12,
+              "name": "Beach House",
+              "summary": ""
+            },
+            {
+              "episodeId": 1022918,
+              "episodeNumber": 13,
+              "name": "Payback",
+              "summary": ""
+            },
+            {
+              "episodeId": 1032003,
+              "episodeNumber": 14,
+              "name": "Defense Rests",
+              "summary": ""
+            },
+            {
+              "episodeId": 1037113,
+              "episodeNumber": 15,
+              "name": "Windbreaker City",
+              "summary": ""
+            },
+            {
+              "episodeId": 1038357,
+              "episodeNumber": 16,
+              "name": "The Wednesday Incident",
+              "summary": ""
+            },
+            {
+              "episodeId": 1041361,
+              "episodeNumber": 17,
+              "name": "Boyle-Linetti Wedding",
+              "summary": ""
+            },
+            {
+              "episodeId": 1042433,
+              "episodeNumber": 18,
+              "name": "Captain Peralta",
+              "summary": ""
+            },
+            {
+              "episodeId": 1043567,
+              "episodeNumber": 19,
+              "name": "Sabatoge",
+              "summary": ""
+            },
+            {
+              "episodeId": 1050494,
+              "episodeNumber": 20,
+              "name": "AC/DC",
+              "summary": ""
+            },
+            {
+              "episodeId": 1052898,
+              "episodeNumber": 21,
+              "name": "Det. Dave Majors",
+              "summary": ""
+            },
+            {
+              "episodeId": 1053440,
+              "episodeNumber": 22,
+              "name": "The Chopper",
+              "summary": ""
+            },
+            {
+              "episodeId": 1054900,
+              "episodeNumber": 23,
+              "name": "Johnny and Dora",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 69590,
+          "seasonNumber": 3,
+          "name": "Season 3",
+          "episodes": [
+            {
+              "episodeId": 1097832,
+              "episodeNumber": 1,
+              "name": "New Captain",
+              "summary": ""
+            },
+            {
+              "episodeId": 1097833,
+              "episodeNumber": 2,
+              "name": "The Funeral",
+              "summary": ""
+            },
+            {
+              "episodeId": 1107199,
+              "episodeNumber": 3,
+              "name": "Boyle's Hunch",
+              "summary": ""
+            },
+            {
+              "episodeId": 1110048,
+              "episodeNumber": 4,
+              "name": "The Oolong Slayer",
+              "summary": ""
+            },
+            {
+              "episodeId": 1131714,
+              "episodeNumber": 5,
+              "name": "Halloween III",
+              "summary": ""
+            },
+            {
+              "episodeId": 1131715,
+              "episodeNumber": 6,
+              "name": "Into the Woods",
+              "summary": ""
+            },
+            {
+              "episodeId": 1131716,
+              "episodeNumber": 7,
+              "name": "The Mattress",
+              "summary": ""
+            },
+            {
+              "episodeId": 1136866,
+              "episodeNumber": 8,
+              "name": "Ava",
+              "summary": ""
+            },
+            {
+              "episodeId": 1136867,
+              "episodeNumber": 9,
+              "name": "The Swedes",
+              "summary": ""
+            },
+            {
+              "episodeId": 1138484,
+              "episodeNumber": 10,
+              "name": "Yippie Kayak",
+              "summary": ""
+            },
+            {
+              "episodeId": 1152278,
+              "episodeNumber": 11,
+              "name": "Hostage Situation",
+              "summary": ""
+            },
+            {
+              "episodeId": 1152279,
+              "episodeNumber": 12,
+              "name": "9 Days",
+              "summary": ""
+            },
+            {
+              "episodeId": 1161355,
+              "episodeNumber": 13,
+              "name": "The Cruise",
+              "summary": ""
+            },
+            {
+              "episodeId": 1161404,
+              "episodeNumber": 14,
+              "name": "Karen Peralta",
+              "summary": ""
+            },
+            {
+              "episodeId": 1161405,
+              "episodeNumber": 15,
+              "name": "The 9-8",
+              "summary": ""
+            },
+            {
+              "episodeId": 1163062,
+              "episodeNumber": 16,
+              "name": "House Mouses",
+              "summary": ""
+            },
+            {
+              "episodeId": 1166940,
+              "episodeNumber": 17,
+              "name": "Adrian Pimento",
+              "summary": ""
+            },
+            {
+              "episodeId": 1166941,
+              "episodeNumber": 18,
+              "name": "Cheddar",
+              "summary": ""
+            },
+            {
+              "episodeId": 1172728,
+              "episodeNumber": 19,
+              "name": "Terry Kitties",
+              "summary": ""
+            },
+            {
+              "episodeId": 1174511,
+              "episodeNumber": 20,
+              "name": "Paranoia",
+              "summary": ""
+            },
+            {
+              "episodeId": 1181840,
+              "episodeNumber": 21,
+              "name": "Maximum Security",
+              "summary": ""
+            },
+            {
+              "episodeId": 1181841,
+              "episodeNumber": 22,
+              "name": "Bureau",
+              "summary": ""
+            },
+            {
+              "episodeId": 1181842,
+              "episodeNumber": 23,
+              "name": "Greg and Larry",
+              "summary": ""
+            }
+          ]
+        },
+        {
+          "seasonId": 78513,
+          "seasonNumber": 4,
+          "name": "Season 4",
+          "episodes": [
+            {
+              "episodeId": 1206222,
+              "episodeNumber": 1,
+              "name": "Coral Palms, Part 1",
+              "summary": ""
+            },
+            {
+              "episodeId": 1223128,
+              "episodeNumber": 2,
+              "name": "Coral Palms, Part 2",
+              "summary": ""
+            },
+            {
+              "episodeId": 1223833,
+              "episodeNumber": 3,
+              "name": "Coral Palms, Part 3",
+              "summary": ""
+            },
+            {
+              "episodeId": 1225523,
+              "episodeNumber": 4,
+              "name": "The Night Shift (1)",
+              "summary": ""
+            },
+            {
+              "episodeId": 1228347,
+              "episodeNumber": 5,
+              "name": "Halloween IV",
+              "summary": ""
+            },
+            {
+              "episodeId": 1236045,
+              "episodeNumber": 6,
+              "name": "Monster in the Closet",
+              "summary": ""
+            },
+            {
+              "episodeId": 1236798,
+              "episodeNumber": 7,
+              "name": "Mr. Santiago",
+              "summary": ""
+            },
+            {
+              "episodeId": 1231128,
+              "episodeNumber": 8,
+              "name": "Skyfire Cycle",
+              "summary": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "User": [
+    {
+      "username": "bsmith",
+      "firstName": "Bob",
+      "lastName": "Smith",
+      "email": "bsmith@gmail.com",
+      "passwordHash": "badpasswordhash",
+      "_isAdmin": false
+    },
+    {
+      "username": "jsmith",
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "jsmith@gmail.com",
+      "passwordHash": "badpasswordhash2",
+      "_isAdmin": false
+    },
+    {
+      "username": "omariwest",
+      "firstName": "Kanye",
+      "lastName": "West",
+      "email": "coolfool@gmail.com",
+      "passwordHash": "badpasswordhash",
+      "_isAdmin": false
+    },
+    {
+      "username": "michaelg",
+      "firstName": "Michael",
+      "lastName": "Scott",
+      "email": "michaelscott@gmail.com",
+      "passwordHash": "badpasswordhash",
+      "_isAdmin": false
+    },
+    {
+      "username": "kevinMcCalli",
+      "firstName": "Kevin",
+      "lastName": "McCallister",
+      "email": "KevinMcCallister@gmail.com",
+      "passwordHash": "badpasswordhash",
+      "_isAdmin": false
+    },
+    {
+      "username": "ravenB",
+      "firstName": "Raven",
+      "lastName": "Baxter",
+      "email": "ravenbaxter@gmail.com",
+      "passwordHash": "badpasswordhash",
+      "_isAdmin": false
+    },
+    {
+      "username": "srogers",
+      "firstName": "Steve",
+      "lastName": "Rogers",
+      "email": "steverogers@gmail.com",
+      "passwordHash": "badpasswordhash",
+      "_isAdmin": false
+    },
+    {
+      "username": "dorawonders",
+      "firstName": "Dora",
+      "lastName": "Explorer",
+      "email": "theexplorer@gmail.com",
+      "passwordHash": "badpasswordhash",
+      "_isAdmin": false
+    },
+    {
+      "username": "natashaR",
+      "firstName": "Natasha",
+      "lastName": "Romanova",
+      "email": "nataliaromanova@gmail.com",
+      "passwordHash": "badpasswordhash",
+      "_isAdmin": false
+    },
+    {
+      "username": "admin",
+      "firstName": "admin",
+      "lastName": "admin",
+      "email": "admin@gmail.com",
+      "passwordHash": "plottalkadmin",
+      "_isAdmin": true
+    }
+  ]
 }

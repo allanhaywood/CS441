@@ -63,9 +63,9 @@ void Season::addEpisode(Episode episode)
  * @returns matching Episode
  * @throws NotFound exception if no match found
  */
-Episode Season::getEpisode(QString name)
+Episode &Season::getEpisode(QString name)
 {
-    foreach (Episode episode, episodes.values())
+    for (auto &episode : episodes)
     {
         if (episode.name == name)
         {
@@ -74,4 +74,27 @@ Episode Season::getEpisode(QString name)
     }
 
     throw NotFound{};
+}
+
+Episode &Season::getEpisode(int number)
+{
+    for (auto &episode : episodes)
+    {
+        if (episode.episodeNumber == number)
+        {
+            return episode;
+        }
+    }
+
+    throw NotFound{};
+}
+
+Episode Season::inspectEpisode(QString name)
+{
+    return getEpisode(name);
+}
+
+Episode Season::inspectEpisode(int number)
+{
+    return getEpisode(number);
 }

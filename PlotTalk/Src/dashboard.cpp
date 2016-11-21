@@ -3,7 +3,13 @@
 #include "adminpage.h"
 #include "about.h"
 #include "plottalkexceptions.h"
-#include<QList>
+#include "accountmanager.h"
+#include <QList>
+#include <QDebug>
+#include <QColorDialog>
+#include <QDateTime>
+#include "mainwindow.h"
+#include <QMessageBox>
 
 
 Dashboard::Dashboard(QWidget *parent) :
@@ -14,6 +20,11 @@ Dashboard::Dashboard(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(WELCOME); //set stacked widget to home screen at start
     //TODO: only show admin button if user account has admin rights
     ui->adminButton->setVisible(true);
+
+    AccountManager *userInfo= AccountManager::getInstance();//gets the user information
+    theUser=userInfo->getCurrentAccount();
+    ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
+
 }
 
 Dashboard::~Dashboard()
@@ -28,6 +39,13 @@ void Dashboard::hideAdminButton()
 
 void Dashboard::on_myAccountButton_clicked()
 {
+
+
+    ui->usernameLabel->setText(theUser.username);
+    ui->firstNameBox->setText(theUser.firstName);
+    ui->lastNameBox->setText(theUser.lastName);
+    ui->emailBox->setText(theUser.email);
+
     ui->stackedWidget->setCurrentIndex(ACCOUNT);
 }
 
@@ -155,19 +173,44 @@ void Dashboard::on_rightTree_itemClicked(QTreeWidgetItem *item, int)
  */
 void Dashboard::populateMediaItemPage() {
     ui->mediaItemSplitter->setSizes({1, 300});
+
+    // clear out comments and reviews
+    ui->commentTable->clear();
+    ui->commentBox->clear();
+    ui->commentTable->setRowCount(0);
+    ui->reviewTable->clear();
+    ui->reviewCommentBox->clear();
+    ui->reviewTable->setRowCount(0);
+    ui->episodeRatingNum->setText(0); // @TODO: Replace this with episode's saved overall rating
+
+    // ensure first comment/review tab viewed is comment tab
+    ui->commentTabWidget->setCurrentIndex(0);
+
+    // set up initial review tab settings
+    ui->ratingMeter->setMinimum(0);
+    ui->ratingMeter->setMaximum(100);
+    ui->ratingMeter->setSliderPosition(50);
+
+    // ensure only integers can be entered for rating score
+    ui->ratingNumber->setValidator(new QIntValidator(0, 100, this));
+
+    // set show name, season, episode name
     ui->showName->setText(selectedShow.name);
     QString seasonText = "Season ";
     seasonText.append(QString::number(selectedSeason.seasonNumber));
     ui->seasonName->setText(seasonText);
-    //@TODO: summary text is lorem ipsum for now - actual summary will need to be pulled in from DB for this episode
-    ui->episodeSummary->setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pulvinar sem quam, sed dictum odio finibus in. Maecenas consectetur sapien id fermentum euismod. Nunc vitae egestas turpis. Curabitur nunc erat, varius eget aliquet id, viverra eget metus. Integer ipsum purus, viverra ut egestas sit amet, dapibus eget leo. Aliquam vel euismod metus, eget efficitur mi. Fusce dignissim blandit neque, sed porttitor augue lacinia sed. Sed laoreet nunc non porttitor imperdiet.");
+    ui->episodeSummary->setText(selectedEpisode.summary);
     ui->episodeName->setText(selectedEpisode.name);
     //@TODO: only show spoiler alert if user hasn't watched episode
     //if episode is in user's watched list:
     //hide watched warning and checkbox
     //don't hide additional episode items (summary, comments, reviews)
     //else:
+    ui->episodeSummaryLabel->setVisible(false);
     ui->episodeSummary->setVisible(false);
+    ui->commentTabWidget->setVisible(false);
+    ui->episodeRatingNum->setVisible(false);
+    ui->overallRatingLabel->setVisible(false);
     ui->watchedWarning->setVisible(true);
     ui->watchedConfirmButton->setVisible(true);
 }
@@ -192,18 +235,6 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
 }
 
 /**
- * @brief Dashboard::on_watchedButton_2_clicked triggered when user clicks "I've seen it!" button on media page
- * @post unhides additional media details and adds this episode to the user's watched list
- */
-void Dashboard::on_watchedConfirmButton_clicked()
-{
-    ui->episodeSummary->setVisible(true);
-    ui->watchedConfirmButton->setVisible(false);
-    ui->watchedWarning->setVisible(false);
-    //@TODO add episode to watched list once it has been added to user class
-}
-
-/**
  * @brief Dashboard::on_saveButton_clicked saves the users account info when Save button is clicked
  */
 void Dashboard::on_saveButton_clicked()
@@ -212,4 +243,229 @@ void Dashboard::on_saveButton_clicked()
     //only populate username, email, and name fields. Do not populate password fields from DB.
     //if new password field isn't empty, show message if it doesn't match confirm password textbox
     //only update user password if new password field isn't empty and it matches confirm textbox
+    QString newEmail=ui->emailBox->text();
+    QString newFirstName=ui->firstNameBox->text();
+    QString newLastName=ui->lastNameBox->text();
+    QString newPassword;
+
+
+    if(ui->newPasswordBox->text()==ui->confirmPasswordBox->text() && ui->confirmPasswordBox->text()!="")
+    {
+        newPassword = ui->newPasswordBox->text();
+    }
+    else if(ui->confirmPasswordBox->text()=="" && ui->newPasswordBox->text()=="")
+    {
+           newPassword=theUser.passwordHash;
+    }
+    else
+    {
+        QMessageBox noPassMatch;
+        noPassMatch.setText("The two password fields must match\n(Leave blank to avoid changing)");
+        noPassMatch.exec();
+
+        ui->newPasswordBox->clear();
+        ui->confirmPasswordBox->clear();
+        return;
+    }
+
+    AccountManager *userInfo= AccountManager::getInstance();//gets the user information
+{
+    if(theUser.email!=newEmail || theUser.firstName!= newFirstName || theUser.lastName!=newLastName || newPassword!=theUser.passwordHash)
+    {//add check for each field to determine when it is changed, set back if not.
+        QString message;
+
+        DatabaseManagerSingleton::Instance().removeUser(theUser.username);
+        selectEnum Problems=userInfo->checkFieldsAndCreate(newFirstName,newLastName,theUser.username,newEmail,newPassword);
+
+        switch (Problems)
+        {
+        case selectEnum::BAD_EMAIL:
+          {
+            message="The email you entered was incorrectly formatted";
+            ui->emailBox->clear();
+          }
+            break;
+        case selectEnum::DUPLICATE_EMAIL:
+          {
+            message="That e-mail is already present in our system";
+            ui->emailBox->clear();
+          }
+            break;
+        case selectEnum::VALUES_MISSING:
+          {
+            message="You must enter a first and last name";
+          }
+            break;
+        case selectEnum::BAD_PASSWORD:
+          {
+            message="The password must have the following characteristics:\nIt must be more than 8 characters\nIt must contain both capital and lowercase letters\nIt must include at least one special symbol";
+            ui->newPasswordBox->clear();
+            ui->confirmPasswordBox->clear();
+          }
+            break;
+        case selectEnum::ALLCLEAR:
+          {
+            message="Your account has been successfully updated!";
+            ui->stackedWidget->setCurrentIndex(WELCOME);
+            theUser = userInfo->getCurrentAccount();
+            ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
+          }
+
+         }
+             QMessageBox emailExists;
+             emailExists.setText(message);
+             emailExists.exec();
+
+             return;
+         }
+         else
+         {
+            ui->stackedWidget->setCurrentIndex(WELCOME);
+         }
+    }
+}
+
+/**
+ * @brief Dashboard::on_watchedButton_2_clicked triggered when user clicks "I've seen it!" button on media page
+ * @post unhides additional media details and adds this episode to the user's watched list
+ */
+void Dashboard::on_watchedConfirmButton_clicked()
+{
+    ui->episodeSummary->setVisible(true);
+    ui->episodeSummaryLabel->setVisible(true);
+    ui->commentTabWidget->setVisible(true);
+    ui->episodeRatingNum->setVisible(true);
+    ui->overallRatingLabel->setVisible(true);
+    ui->watchedConfirmButton->setVisible(false);
+    ui->watchedWarning->setVisible(false);
+    //@TODO add episode to watched list once it has been added to user class
+}
+
+void Dashboard::on_logoutButton_clicked()
+{
+     AccountManager *userInfo= AccountManager::getInstance();
+     userInfo->ClearForLogout();//clears the user out of account manager
+     this->close();
+     MainWindow *openAgain=new MainWindow();
+     openAgain->show();
+
+
+}
+
+/**
+ * @brief Dashboard::on_commentButton_clicked is triggered when the user clicks on the post reply button on comment tab.
+ * @post Adds new comment entered in text box to the table widget.
+ *
+ */
+// @TODO: Need to ensure comments added to an episode are saved in episode class using DBManager calls.
+// @TODO: Need to utilize reaction/reply/review classes.
+void Dashboard::on_commentButton_clicked()
+{
+    // initialize columns for username/ comment
+    if (ui->commentTable->columnCount() == 0)
+    {
+        ui->commentTable->insertColumn(0); // username column
+        ui->commentTable->insertColumn(1); // comment column
+        ui->commentTable->setColumnWidth(0, 125);
+        ui->commentTable->setColumnWidth(1, 330);
+    }
+    // hide labels on table
+    ui->commentTable->horizontalHeader()->setVisible(false);
+    ui->commentTable->verticalHeader()->setVisible(false);
+
+    // ensure wordwrapping is enabled
+    ui->commentTable->setWordWrap(true);
+
+    // add new row and new comment
+    int curRow = ui->commentTable->rowCount(); // current row of next comment
+    ui->commentTable->insertRow(curRow);
+    ui->commentTable->setRowHeight(curRow, 50);
+    // @TODO: Replace this explicit call to date to using date from reaction/review/reply class
+    QString userAndDate = theUser.username + "\n" + QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap");
+    ui->commentTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
+    ui->commentTable->setItem(curRow, 1, new QTableWidgetItem(ui->commentBox->toPlainText()));
+    QTextEdit *commentText = new QTextEdit;
+    commentText->setText(ui->commentTable->item(curRow, 1)->text());
+    commentText->setReadOnly(true);
+    ui->commentTable->setCellWidget(curRow, 1, commentText);
+    ui->commentTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
+
+    // clear contents of comment box
+    ui->commentBox->clear();
+}
+
+/**
+ * @brief Dashboard::on_ratingMeter_valueChanged(int value) is triggered when user moves episode rating slider.
+ * @param: value is the integer equivalent of where the slider was moved
+ * @post Updates the text box to display the rating the user will give the episode
+ */
+void Dashboard::on_ratingMeter_valueChanged(int value)
+{
+    ui->ratingNumber->setText(QString::number(value));
+}
+
+/**
+ * @brief Dashboard::on_reviewButton_clicked() is triggered when user clicks on post rating button.
+ * @post Adds users rating and review to the table widget
+ */
+void Dashboard::on_reviewButton_clicked()
+{
+    // initialize columns for username/ comment / rating
+    if (ui->reviewTable->columnCount() == 0)
+    {
+        ui->reviewTable->insertColumn(0); // username
+        ui->reviewTable->insertColumn(1); // rating
+        ui->reviewTable->insertColumn(2); // review
+        ui->reviewTable->setColumnWidth(0, 120);
+        ui->reviewTable->setColumnWidth(1, 30);
+        ui->reviewTable->setColumnWidth(2, 305);
+    }
+    // hide labels on table
+    ui->reviewTable->horizontalHeader()->setVisible(false);
+    ui->reviewTable->verticalHeader()->setVisible(false);
+
+    // ensure wordwrapping is enabled
+    ui->reviewTable->setWordWrap(true);
+
+    // add new row with new rating/review
+    int curRow = ui->reviewTable->rowCount(); // current row of next review
+    ui->reviewTable->insertRow(curRow);
+    ui->reviewTable->setRowHeight(curRow, 50);
+    // @TODO: Replace this explicit call to date to using date from reaction/review/reply class
+    QString userAndDate = theUser.username + "\n" + QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap");
+    ui->reviewTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
+    ui->reviewTable->setItem(curRow, 1, new QTableWidgetItem(ui->ratingNumber->text()));
+    ui->reviewTable->setItem(curRow, 2, new QTableWidgetItem(ui->reviewCommentBox->toPlainText()));
+    QTextEdit *reviewText = new QTextEdit;
+    reviewText->setText(ui->reviewTable->item(curRow, 2)->text());
+    reviewText->setReadOnly(true);
+    ui->reviewTable->setCellWidget(curRow, 2, reviewText);
+    ui->reviewTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
+    QColor lightBlue(194, 229, 255);
+    ui->reviewTable->item(curRow, 1)->setBackgroundColor(lightBlue);
+
+    // calculate new overall rating score
+    int totalRatings = 0;
+    for (int i = 0; i < ui->reviewTable->rowCount(); i++)
+    {
+        totalRatings += ui->reviewTable->item(i, 1)->text().toInt();
+    }
+    int newAverage = totalRatings / (curRow+1);
+    ui->episodeRatingNum->setText(QString::number(newAverage));
+
+    // clear contents of comment box
+    ui->reviewCommentBox->clear();
+    ui->ratingMeter->setSliderPosition(50);
+    ui->ratingNumber->setText("50");
+}
+
+/**
+ * @brief Dashboard::on_ratingNumber_textEdited(const QString &arg1) is triggered
+ * when user edits the rating number in the line edit on review tab.
+ * @param String argument that was entered in the line edit
+ */
+void Dashboard::on_ratingNumber_textEdited(const QString &arg1)
+{
+    int newRating = ui->ratingNumber->text().toInt();
+    ui->ratingMeter->setValue(newRating);
 }

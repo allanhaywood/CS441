@@ -27,33 +27,35 @@ void TestJsonConnection::TestGetTvShow1()
     QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
 
     QVector<Season> seasons = tvShow.inspectSeasons();
+    QCOMPARE(seasons.count(), 7);
 
-    QString empty = "";
+    Season &season = tvShow.inspectSeason(0);
+    QString expectedSeasonName = "Season 0";
 
-    QVERIFY(seasons.count() == 1);
-    QCOMPARE(seasons[0].seasonId, 3627);
-    QCOMPARE(seasons[0].seasonNumber, 0);
-    QCOMPARE(seasons[0].name, empty);
+    QCOMPARE(season.seasonId, 3627);
+    QCOMPARE(season.seasonNumber, 0);
+    QCOMPARE(season.name, expectedSeasonName);
 
-    QVector<Episode> episodes = seasons[0].inspectEpisodes();
+    QVector<Episode> episodes = season.inspectEpisodes();
+    QCOMPARE(episodes.count(), 11);
 
-    QString expectedEpisodeName = "Inside Game Of Thrones";
+    Episode &episode = season.inspectEpisode(1);
+
+    QString expectedEpisodeName = "Inside Game of Thrones";
     QString expectedEpisodeSummary = "A short look into the film-making process for the production Game of Thrones";
+    QCOMPARE(episode.episodeId, 63087);
+    QCOMPARE(episode.episodeNumber, 1);
+    QCOMPARE(episode.name, expectedEpisodeName);
+    QCOMPARE(episode.summary, expectedEpisodeSummary);
 
-    QVERIFY(episodes.count() == 1);
-    QCOMPARE(episodes[0].episodeId, 63087);
-    QCOMPARE(episodes[0].episodeNumber, 1);
-    QCOMPARE(episodes[0].name, expectedEpisodeName);
-    QCOMPARE(episodes[0].summary, expectedEpisodeSummary);
-
-    QList<Review> reviews = episodes[0].inspectReviews();
+    QList<Review> reviews = episode.inspectReviews();
+    QCOMPARE(reviews.count(), 1);
 
     QString expectedDateTimePosted = "1997-07-16T19:20:30.45+00:00";
     QUuid expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EE}");
     QString expectedText = "It is amazing how this show is made.";
     QString expectedUsername = "plottalkadmin";
 
-    QVERIFY(reviews.count() == 1);
 
     QCOMPARE(reviews[0].dateTimePosted, expectedDateTimePosted);
     QCOMPARE(reviews[0].postUuid, expectedPostUuid);
@@ -61,12 +63,11 @@ void TestJsonConnection::TestGetTvShow1()
     QCOMPARE(reviews[0].text, expectedText);
     QCOMPARE(reviews[0].username, expectedUsername);
 
-    QList<Comment> comments = episodes[0].getComments();
+    QList<Comment> comments = episode.inspectComments();
+    QVERIFY(comments.count() == 1);
 
     expectedDateTimePosted = "1997-07-16T19:20:30.46+00:00";
     expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EF}");
-
-    QVERIFY(comments.count() == 1);
 
     QCOMPARE(comments[0].dateTimePosted, expectedDateTimePosted);
     QCOMPARE(comments[0].postUuid, expectedPostUuid);
@@ -92,24 +93,27 @@ void TestJsonConnection::TestGetTvShow2()
     QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
 
     QVector<Season> seasons = tvShow.inspectSeasons();
+    QCOMPARE(seasons.count(), 3);
 
+    Season &season = tvShow.inspectSeason(0);
     QString expectedSeasonName = "season_0.0";
 
-    QVERIFY(seasons.count() == 1);
-    QCOMPARE(seasons[0].seasonId, 66343);
-    QCOMPARE(seasons[0].seasonNumber, 0);
-    QCOMPARE(seasons[0].name, expectedSeasonName);
+    QCOMPARE(season.seasonId, 77843);
+    QCOMPARE(season.seasonNumber, 0);
+    QCOMPARE(season.name, expectedSeasonName);
 
-    QVector<Episode> episodes = seasons[0].inspectEpisodes();
+    QVector<Episode> episodes = season.inspectEpisodes();
+    QCOMPARE(episodes.count(), 3);
+
+    Episode &episode = season.inspectEpisode(2);
 
     QString expectedEpisodeName = "Hacking Robot 101";
     QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";
 
-    QVERIFY(episodes.count() == 2);
-    QCOMPARE(episodes[1].episodeId, 1203464);
-    QCOMPARE(episodes[1].episodeNumber, 2);
-    QCOMPARE(episodes[1].name, expectedEpisodeName);
-    QCOMPARE(episodes[1].summary, expectedEpisodeSummary);
+    QCOMPARE(episode.episodeId, 1203464);
+    QCOMPARE(episode.episodeNumber, 2);
+    QCOMPARE(episode.name, expectedEpisodeName);
+    QCOMPARE(episode.summary, expectedEpisodeSummary);
 }
 
 void TestJsonConnection::TestGetUser()

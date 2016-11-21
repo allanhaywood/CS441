@@ -12,6 +12,7 @@
 #include<season.h>
 #include<singleton.h>
 #include<databasemanager.h>
+#include<user.h>
 
 namespace Ui {
 class Dashboard;
@@ -52,6 +53,16 @@ private slots:
 
     void on_saveButton_clicked();
 
+    void on_commentButton_clicked();
+
+    void on_ratingMeter_valueChanged(int value);
+
+    void on_reviewButton_clicked();
+
+    void on_logoutButton_clicked();
+
+    void on_ratingNumber_textEdited(const QString &arg1);
+
 private:
     void populateSeasonList(QTreeWidget *treeWidget);
     void populateMediaItemPage();
@@ -64,6 +75,7 @@ private:
     TvShow selectedShow;
     Season selectedSeason;
     Episode selectedEpisode;
+    User theUser;
 };
 
 #endif // DASHBOARD_H

@@ -66,3 +66,8 @@ const QList<Comment> &Episode::getComments()
     return comments;
 }
 
+const QList<Comment> Episode::inspectComments()
+{
+    return getComments();
+}
+

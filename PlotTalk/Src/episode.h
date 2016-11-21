@@ -31,6 +31,7 @@ public:
 
     const QList<Review> inspectReviews();
     const QList<Comment> &getComments();
+    const QList<Comment> inspectComments();
 
 private:
     QMap<QString, Review> reviews;

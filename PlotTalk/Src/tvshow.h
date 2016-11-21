@@ -31,7 +31,8 @@ public:
     QMap<int, Season> &getSeasons();
 
     void addSeason(Season season);
-    Season getSeason(int number);
+    Season &getSeason(int number);
+    Season inspectSeason(int number);
 
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);

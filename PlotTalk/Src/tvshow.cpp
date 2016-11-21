@@ -96,16 +96,22 @@ void TvShow::addSeason(Season season)
  * @returns matching Season
  * @throws NotFound exception if no match found
  */
-Season TvShow::getSeason(int number)
+Season &TvShow::getSeason(int number)
 {
-    foreach (Season season, seasons.values())
+    for (auto &season : seasons)
     {
-        if (season.seasonNumber == number)
+        if ( season.seasonNumber == number )
         {
             return season;
         }
     }
+
     throw NotFound{};
+}
+
+Season TvShow::inspectSeason(int number)
+{
+    return getSeason(number);
 }
 
 void TvShow::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
