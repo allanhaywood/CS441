@@ -25,10 +25,13 @@ public:
     QMap<int, Episode> &getEpisodes();
 
     void addEpisode(Episode episode);
+
+    // @throws NotFound
     Episode &getEpisode(QString name);
+
+    // @throws NotFound
     Episode &getEpisode(int number);
 
-    Episode inspectEpisode(QString name);
     Episode inspectEpisode(int number);
 
 private:

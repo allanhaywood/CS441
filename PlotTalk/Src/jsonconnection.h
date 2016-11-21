@@ -30,6 +30,7 @@ public:
     // @throws NotFound when TvShow is not found.
     TvShow getTvShow(QString name);
 
+    // @throws AlreadyExists when TvShow already exists.
     void addTvShow(TvShow tvShow);
 
     // @throws NotFound when user is not found.

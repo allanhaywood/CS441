@@ -63,6 +63,11 @@ TvShow &DatabaseManager::getTvShow(QString name)
     return tvShowHash[name];
 }
 
+/**
+ * @brief DatabaseManager::getTvShowById Retrieves a reference to a tvshow by Id instead of name.
+ * @param tvShowId The tvshow id to find.
+ * @return A reference to the tvshow.
+ */
 TvShow &DatabaseManager::getTvShowById(int tvShowId)
 {
     return getTvShow(connection.getTvShowNameById(tvShowId));
@@ -207,12 +212,24 @@ QList<QString> DatabaseManager::getListOfCachedUsers()
     return userHash.keys();
 }
 
+/**
+ * @brief DatabaseManager::addEpisodeReview Adds the specified review to the specified episode.
+ * @param episodeIdentifier The specific episode to add the review to.
+ * @param review The review to add.
+ *
+ * Adds the review to the local cache, and the datastore.
+ */
 void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
     getTvShowById(episodeIdentifier.tvShowId).addEpisodeReview(episodeIdentifier, review);
     connection.addEpisodeReview(episodeIdentifier, review);
 }
 
+/**
+ * @brief DatabaseManager::addEpisodeComment Adds the speciifed comment to the specified episode.
+ * @param episodeIdentifier The specific episode to add the reivew to.
+ * @param comment The comment to add.
+ */
 void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
 {
     getTvShowById(episodeIdentifier.tvShowId).addEpisodeComment(episodeIdentifier, comment);

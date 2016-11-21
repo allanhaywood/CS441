@@ -1,3 +1,9 @@
+/* The reply class
+ *
+ * @author Joey Freeman
+ *
+ * @note: Not currently used.
+ */
 #include "reply.h"
 
 Reply::Reply() : Reaction()

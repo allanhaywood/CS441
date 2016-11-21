@@ -119,6 +119,12 @@ TvShow JsonConnection::getTvShow(QString name)
     return TvShow(jsonId, jsonName, jsonTmdbLink, jsonGraphicLink, getSeasons(jsonSeasons));
 }
 
+/**
+ * @brief JsonConnection::addTvShow Adds the specified tv show.
+ * @param tvShow The tvshow to add.
+ *
+ * @throws AlreadyExists
+ */
 void JsonConnection::addTvShow(TvShow tvShow)
 {
     // First check if the tvShow already exists.
@@ -141,6 +147,11 @@ void JsonConnection::addTvShow(TvShow tvShow)
     saveJson();
 }
 
+/**
+ * @brief JsonConnection::tvShowToJsonObject Converts the provided tvshow into a json object.
+ * @param tvShow The tvshow to convert to a json object.
+ * @return The json object representation of the tvshow.
+ */
 QJsonObject JsonConnection::tvShowToJsonObject(TvShow tvShow)
 {
     QJsonObject jsonObject;
@@ -154,6 +165,11 @@ QJsonObject JsonConnection::tvShowToJsonObject(TvShow tvShow)
     return jsonObject;
 }
 
+/**
+ * @brief JsonConnection::seasonsToJsonArray Converts the vector of seaons into a jsonarray of seasons.
+ * @param seasons The QVector of seasons to convert to json.
+ * @return A QJsonArray of seasons.
+ */
 QJsonArray JsonConnection::seasonsToJsonArray(QVector<Season> seasons)
 {
     QJsonArray seasonsArray;
@@ -166,6 +182,11 @@ QJsonArray JsonConnection::seasonsToJsonArray(QVector<Season> seasons)
     return seasonsArray;
 }
 
+/**
+ * @brief JsonConnection::seasonToJsonValue Converts a season to a json value of that season.
+ * @param season The season to convert to a json value.
+ * @return A QJsonValue of the provided season.
+ */
 QJsonValue JsonConnection::seasonToJsonValue(Season season)
 {
     QJsonObject jsonObject;
@@ -178,6 +199,11 @@ QJsonValue JsonConnection::seasonToJsonValue(Season season)
     return QJsonValue(jsonObject);
 }
 
+/**
+ * @brief JsonConnection::episodesToJsonArray Converts a vector of episodes into a json array.
+ * @param episodes The Vector of seasons to convert.
+ * @return A QJsonArray of episodes.
+ */
 QJsonArray JsonConnection::episodesToJsonArray(QVector<Episode> episodes)
 {
     QJsonArray episodesArray;
@@ -190,6 +216,11 @@ QJsonArray JsonConnection::episodesToJsonArray(QVector<Episode> episodes)
     return episodesArray;
 }
 
+/**
+ * @brief JsonConnection::episodeToJsonValue Converst an episdoe into a json value of that episode.
+ * @param episode The episode to convert to json.
+ * @return A QJsonValue of the provided episdoe.
+ */
 QJsonValue JsonConnection::episodeToJsonValue(Episode episode)
 {
     QJsonObject jsonObject;
@@ -204,6 +235,11 @@ QJsonValue JsonConnection::episodeToJsonValue(Episode episode)
     return QJsonValue(jsonObject);
 }
 
+/**
+ * @brief JsonConnection::reviewsToJsonArray Converts a list of reviews into a json array of reviews.
+ * @param reviews The reviews to convert.
+ * @return A QJsonArray of the provided reviews.
+ */
 QJsonArray JsonConnection::reviewsToJsonArray(QList<Review> reviews)
 {
     QJsonArray reviewsArray;
@@ -216,6 +252,11 @@ QJsonArray JsonConnection::reviewsToJsonArray(QList<Review> reviews)
     return reviewsArray;
 }
 
+/**
+ * @brief JsonConnection::commentsToJsonArray Converts a list of comments into a json array of comments.
+ * @param comments The comments to convert.
+ * @return A QJsonArray of the provided comments.
+ */
 QJsonArray JsonConnection::commentsToJsonArray(QList<Comment> comments)
 {
     QJsonArray commentsArray;
@@ -228,6 +269,11 @@ QJsonArray JsonConnection::commentsToJsonArray(QList<Comment> comments)
     return commentsArray;
 }
 
+/**
+ * @brief JsonConnection::reviewToJsonValue Converts the provided review to its QJsonValue representation.
+ * @param review The review to convert.
+ * @return A QJsonValue representation of the provided review.
+ */
 QJsonValue JsonConnection::reviewToJsonValue(Review review)
 {
     QJsonObject jsonObject;
@@ -241,6 +287,11 @@ QJsonValue JsonConnection::reviewToJsonValue(Review review)
     return QJsonValue(jsonObject);
 }
 
+/**
+ * @brief JsonConnection::commentToJsonValue Converts the provided comment into its qjsonvalue.
+ * @param comment The comment to convert.
+ * @return A QJsonValue representation of the provided comment.
+ */
 QJsonValue JsonConnection::commentToJsonValue(Comment comment)
 {
     QJsonObject jsonObject;
@@ -333,6 +384,11 @@ Episode JsonConnection::getEpisode(QJsonObject jsonEpisode)
             );
 }
 
+/**
+ * @brief JsonConnection::getComments Converts json comments into a QList of comments.
+ * @param jsonComments The json comments to convert.
+ * @return A QList comment representation of the provided json comments.
+ */
 QList<Comment> JsonConnection::getComments(QJsonValue jsonComments)
 {
     QList<Comment> comments = QList<Comment>();
@@ -353,6 +409,11 @@ QList<Comment> JsonConnection::getComments(QJsonValue jsonComments)
     return comments;
 }
 
+/**
+ * @brief JsonConnection::getReviews Converts provided json reviews into a qmap of reviews.
+ * @param jsonReviews The json reviews to convert.
+ * @return A QMap of reviews represented by the json reviews, the username is used as the key.
+ */
 QMap<QString, Review> JsonConnection::getReviews(QJsonValue jsonReviews)
 {
     QMap<QString, Review> reviews = QMap<QString, Review>();
@@ -532,6 +593,11 @@ void JsonConnection::addUser(User user)
     saveJson();
 }
 
+/**
+ * @brief JsonConnection::userToJsonObject Converts provided user into a QJsonObject.
+ * @param user The user to convert.
+ * @return The QJsonObject representation of the provided user.
+ */
 QJsonObject JsonConnection::userToJsonObject(User user)
 {
     QJsonObject jsonObject = QJsonObject();
@@ -656,6 +722,10 @@ QList<QString> JsonConnection::getListOfAllTvShows()
     return tvShows;
 }
 
+/**
+ * @brief JsonConnection::getListOfAllUsers Gets a list of all known users in the database.
+ * @return A list of all users in the database.
+ */
 QList<QString> JsonConnection::getListOfAllUsers()
 {
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
@@ -671,6 +741,11 @@ QList<QString> JsonConnection::getListOfAllUsers()
     return usernames;
 }
 
+/**
+ * @brief JsonConnection::addEpisodeReview Adds the specified review to the specified episode.
+ * @param episodeIdentifier The specific episode to add the review to.
+ * @param review The review to add.
+ */
 void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
     QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
@@ -707,6 +782,11 @@ void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Revie
     saveJson();
 }
 
+/**
+ * @brief JsonConnection::addEpisodeComment Adds the provided comment to the specified episode.
+ * @param episodeIdentifier The episode to add the comment to.
+ * @param comment The comment to add.
+ */
 void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
 {
     QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);

@@ -38,6 +38,13 @@ Episode::Episode(int episodeId, int episodeNumber, QString name, QString summary
     this->comments = comments;
 }
 
+/**
+ * @brief Episode::addReview Adds the provided review to this episode.
+ * @param review The review to add.
+ *
+ * If a review is already posted by this user, it will be updated with this review.
+ * The original UUID will be kept, to keep in sync with the backend.
+ */
 void Episode::addReview(Review review)
 {
     // Since there can be only a single review per user, this allows an existing
@@ -52,23 +59,38 @@ void Episode::addReview(Review review)
     reviews[review.username] = review;
 }
 
+/**
+ * @brief Episode::addComment Adds the provided comment to add to this episode.
+ * @param comment The comment to add.
+ */
 void Episode::addComment(Comment comment)
 {
     comments.append(comment);
 }
 
+/**
+ * @brief Episode::inspectReviews Returns a read only list of reviews.
+ * @return A read only list of reviews.
+ */
 const QList<Review> Episode::inspectReviews()
 {
     return reviews.values();
 }
 
+/**
+ * @brief Episode::getComments Returns a reference to the comments.
+ * @return A reference to the comments for this episode.
+ */
 const QList<Comment> &Episode::getComments()
 {
     return comments;
 }
 
+/**
+ * @brief Episode::inspectComments Returns a read only list of comments.
+ * @return A read only list of comments on this episode.
+ */
 const QList<Comment> Episode::inspectComments()
 {
     return getComments();
 }
-

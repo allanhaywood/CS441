@@ -1,3 +1,7 @@
+/* The header for the comment class.
+ *
+ * @author Joey Freeman, Allan Haywood
+ */
 #ifndef COMMENT_H
 #define COMMENT_H
 #include "reaction.h"
@@ -21,4 +25,4 @@ private:
     //QVector<Reply> replies;
 };
 
-#endif // COMME_H
+#endif // COMMENT_H
