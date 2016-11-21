@@ -80,8 +80,8 @@ test {
         Test/testaccountmanager.h \
         Test/testreply.h \
         Test/testuser.h \
-		Test/testseason.h \
-		Test/testexceptions.h
+        Test/testseason.h \
+        Test/testexceptions.h
 
     SOURCES += \
         Test/testmain.cpp \
@@ -92,7 +92,7 @@ test {
         Test/testreply.cpp \
         Test/testuser.cpp \
         Test/testseason.cpp \
-		Test/testexceptions.cpp
+        Test/testexceptions.cpp
 
 } else {
     message(Normal build)
