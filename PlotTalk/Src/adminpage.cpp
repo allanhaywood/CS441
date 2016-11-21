@@ -1,6 +1,5 @@
 #include "adminpage.h"
 #include "ui_adminpage.h"
-#include "databasemanager.h"
 #include "accountmanager.h"
 #include <QMessageBox>
 
@@ -11,7 +10,7 @@ AdminPage::AdminPage(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->Options->hide();
-    ui->UserList->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    ui->UserList->setSelectionMode(QAbstractItemView::ExtendedSelection);//allows more than one object to be selected in this list
 }
 
 AdminPage::~AdminPage()
@@ -24,14 +23,20 @@ void AdminPage::on_Users_clicked()
 {
      ui->Options->show();
      ui->Options->setCurrentIndex(VIEWUSERS);
-     ui->UserList->clear();
+     ui->UserList->clear();//opens up the box showing all users
 
-     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
-     QList<User> allUsers = DatabaseManagerSingleton::Instance().getAllUsers();
+     QList<QString> allUserNames = DatabaseManagerSingleton::Instance().getListOfAllUsers();//gets lists of all usernames
+
+     QList<User> allUsers=QList<User>();//generates a new list of Users
+
+     for(int i=0; i<allUserNames.size(); i++)
+     {
+        allUsers.append(DatabaseManagerSingleton::Instance().getUser(allUserNames[i]));
+     }//populates a list of users from the usernames
 
      ui->UserList->addItem("First\tLast\tEmail\t\tHandle");
      QString UserString;
-     for(int i = 0; i<allUsers.size(); i++)
+     for(int i = 0; i<allUsers.size(); i++)//genrates a string to put in the listbox
      {
          UserString.append(allUsers[i].firstName);
          UserString.append("\t");
@@ -42,7 +47,7 @@ void AdminPage::on_Users_clicked()
          UserString.append(allUsers[i].username);
 
          ui->UserList->addItem(UserString);
-         UserString="";
+         UserString="";//resets the string to blank for the next string to populate
      }
 }
 
@@ -58,13 +63,13 @@ void AdminPage::on_edit_clicked()
 
 void AdminPage::on_GoBack_clicked()
 {
-    ui->UserList->clear();
+    ui->UserList->clear();//clears the UserLists and hides the options object
     ui->Options->hide();
 }
 
 void AdminPage::on_addUser_clicked()
 {
-    ui->Options->show();
+    ui->Options->show();//navigates to the addUsers page
     ui->Options->setCurrentIndex(ADDUSER);
 }
 
@@ -73,11 +78,10 @@ void AdminPage::on_CreateUser_clicked()
   AccountManager *addingUser= AccountManager::getInstance();
   User holdAdmin=addingUser->getCurrentAccount();
 
-
-  selectEnum Choice= addingUser->checkFieldsAndCreate(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->handleBox->text(),ui->emailBox->text(),ui->PasswordBox1->text());
-  switch(Choice)
+  selectEnum Choice = addingUser->checkFieldsAndCreate(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->handleBox->text(),ui->emailBox->text(),ui->PasswordBox1->text(), ui->AdminButton->isChecked());
+  switch(Choice)//attempts to create the user from the values supplied in the boxes on the UI
   {
-  case selectEnum::ALLCLEAR:
+  case selectEnum::ALLCLEAR://creates the user
   {
       QMessageBox UserCreated;
       UserCreated.setText("The account was created successfully");
@@ -86,7 +90,7 @@ void AdminPage::on_CreateUser_clicked()
   }
       break;
 
-  case selectEnum::BAD_EMAIL:
+  case selectEnum::BAD_EMAIL://bad email format
   {
       QMessageBox badEmail;
       badEmail.setText(("The email format is not correct"));
@@ -94,7 +98,7 @@ void AdminPage::on_CreateUser_clicked()
   }
       break;
 
-  case selectEnum::USERNAME_TAKEN:
+  case selectEnum::USERNAME_TAKEN://duplicate username
   {
       QMessageBox badHandle;
       badHandle.setText("That handle is already chosen");
@@ -102,7 +106,7 @@ void AdminPage::on_CreateUser_clicked()
   }
       break;
 
-  case selectEnum::DUPLICATE_EMAIL:
+  case selectEnum::DUPLICATE_EMAIL://duplicate email
   {
       QMessageBox duplicateEmail;
       duplicateEmail.setText("That email address already exists");
@@ -110,30 +114,32 @@ void AdminPage::on_CreateUser_clicked()
   }
       break;
 
-  case selectEnum::BAD_PASSWORD:
+  case selectEnum::BAD_PASSWORD://bad password, option to override this criteria
   {
         QMessageBox::StandardButton InvalidPwd;
         InvalidPwd = QMessageBox::question(this, "","The password does not meet security critera, override?",QMessageBox::Yes|QMessageBox::No);
         if (InvalidPwd == QMessageBox::Yes)
         {
-          addingUser->createAccount(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->handleBox->text(),ui->emailBox->text(),ui->PasswordBox1->text());
+          addingUser->createAccount(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->emailBox->text(),ui->handleBox->text(),ui->PasswordBox1->text(),ui->AdminButton->isChecked());
           QMessageBox UserCreated;
           UserCreated.setText("The account was created successfully");
           UserCreated.exec();
+          addingUser->checkEmailAndPassword(holdAdmin.email, holdAdmin.passwordHash, holdAdmin);//returns account manager to Admin account settings
         }
   }
       break;
 
-  case selectEnum::VALUES_MISSING:
+  case selectEnum::VALUES_MISSING://name fields may be missing, options to overide
   {
       QMessageBox::StandardButton MissingVals;
       MissingVals = QMessageBox::question(this, "","There are values missing, override?",QMessageBox::Yes|QMessageBox::No);
       if (MissingVals == QMessageBox::Yes)
       {
-        addingUser->createAccount(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->handleBox->text(),ui->emailBox->text(),ui->PasswordBox1->text());
+        addingUser->createAccount(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->emailBox->text(),ui->handleBox->text(),ui->PasswordBox1->text(),ui->AdminButton->isChecked());
         QMessageBox UserCreated;
         UserCreated.setText("The account was created successfully");
         UserCreated.exec();
+        addingUser->checkEmailAndPassword(holdAdmin.email, holdAdmin.passwordHash, holdAdmin);//returns account manager to Admin account settings
       }
   }
       break;
@@ -163,24 +169,21 @@ void AdminPage::on_goBack2_clicked()
 
 void AdminPage::on_delUser_clicked()//parses vector and string and removes username from the admin selected list
 {
-   QList<QListWidgetItem *> toDelete = ui->UserList->selectedItems();
+   QList<QListWidgetItem *> toDelete = ui->UserList->selectedItems();//gets a list of the entries that are selected by the user
 
     int count;
     bool EmailExtracted=false;
     QString userName;
     QString hold;
 
-    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
-
     for(int i=0; i<toDelete.size(); i++)
     {
-        count=TABSBEFOREUSERNAME;
+        count=TABSBEFOREUSERNAME;//how many tabs are present before the username is found
         hold = toDelete[i]->text();
         EmailExtracted=false;
 
-        for(int j=0; ((j<hold.size()) && (EmailExtracted!=true)); j++)
+        for(int j=0; ((j<hold.size()) && (EmailExtracted!=true)); j++)//removes username letter by letter
         {
-
            if(count==0&&hold[j]=='\t')
            {
                EmailExtracted=true;
@@ -197,7 +200,7 @@ void AdminPage::on_delUser_clicked()//parses vector and string and removes usern
         }
 
         DatabaseManagerSingleton::Instance().removeUser(userName);
-        userName="";
+        userName="";//removes the user and the userName string to blank for the next string if needed
     }
 }
 

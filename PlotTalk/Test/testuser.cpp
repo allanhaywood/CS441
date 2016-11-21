@@ -4,9 +4,9 @@
  */
 #include <QtTest/QtTest>
 #include "testuser.h"
-
 void TestUser::TestUserDefaultConstructor1()
 {
+
     User user = User();
     QVERIFY(user.username.isEmpty());
     QVERIFY(user.firstName.isEmpty());
@@ -76,6 +76,11 @@ void TestUser::TestsForWatchedList()
     episode3.tvShowId=2;
     int location;
 
+    QList<EpisodeIdentifier> episodeGroup;
+    episodeGroup.append(episode1);
+    episodeGroup.append(episode2);
+    episodeGroup.append(episode3);
+
     User user = User(username, firstName, lastName, email, passwordHash);
     QCOMPARE(user.HasTheUserWatchedAnything(), false);//the user has not watched any shows
     QCOMPARE(user.addWatchedEpisode(episode1), true);//adding an episode
@@ -86,6 +91,7 @@ void TestUser::TestsForWatchedList()
     QCOMPARE(user.addWatchedEpisode(episode3), true);//adding a third episode
     QCOMPARE(user.HasUserWatchedThisEpisode(episode2,location),true);
     QCOMPARE(location,1);
+    QCOMPARE(user.AddWatchedEpisodeList(episodeGroup),false);//one or more episodes already exist
     QCOMPARE(user.HasUserWatchedThisEpisode(episode3,location),true);
     QCOMPARE(location,2);
     QCOMPARE(user.removeWatchedEpisode(episode1), true);//removing the first episode
@@ -96,6 +102,11 @@ void TestUser::TestsForWatchedList()
     QCOMPARE(user.removeWatchedEpisode(episode3), true);//remove third episode
     QCOMPARE(user.removeWatchedEpisode(episode3), false);//episode already removed
     QCOMPARE(user.HasTheUserWatchedAnything(),false);//the user has watched no shows now
-
+    QCOMPARE(user.AddWatchedEpisodeList(episodeGroup), true);//adds a list of episode ids to the user
+    QCOMPARE(user.AddWatchedEpisodeList(episodeGroup),false);//list already addedadded episodes to list
+    QCOMPARE(user.removeWatchedEpisode(episode1), true);
+    QCOMPARE(user.removeWatchedEpisode(episode2), true);
+    QCOMPARE(user.removeWatchedEpisode(episode3), true);//successfully remove all the episodes
+    QCOMPARE(user.removeWatchedEpisode(episode3), false);//cannot remove an episode that isn't in the user
 }
 

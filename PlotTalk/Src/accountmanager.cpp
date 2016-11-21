@@ -38,11 +38,16 @@ AccountManager::~AccountManager()//destructor
  */
 
 bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
+{\
+return createAccount(first, last, Email, handle, password, false);
+}
+
+bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password, bool isAdmin)
 {
-   User thisUser(handle, first, last, Email, password);//add Password Hash when possible
-   DatabaseManagerSingleton::Instance().addUser(thisUser);
-   referenceTodatabaseUser = DatabaseManagerSingleton::Instance().getUser(handle);
-   return true;//reminant of previous code
+        User thisUser = User(handle, first, last, Email, password, isAdmin);//add Password Hash when possibl
+        DatabaseManagerSingleton::Instance().addUser(thisUser);
+        referenceTodatabaseUser = DatabaseManagerSingleton::Instance().getUser(handle);
+        return true;//reminant of previous code
 }
 
 bool AccountManager::createAccount(User user)
@@ -70,7 +75,7 @@ User &AccountManager::getCurrentAccount()
  * @return an enum value that tells the client the user has been added or what error the data contains
  */
 
-selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
+selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password, bool isAdmin)
 {
     QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
     QRegularExpression checkPassword("(?=^.{8,30}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
@@ -78,13 +83,12 @@ selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, 
     QValidator *validEmail=new QRegularExpressionValidator(checkEmail, 0);
     QValidator *validPwd = new QRegularExpressionValidator(checkPassword,0);
 
-/*
+    /*
+    Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case
+    letter At least 1 Capital letter At least 1 digit At least 1 special character Length should
+    be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
+    */
 
-Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case
-letter At least 1 Capital letter At least 1 digit At least 1 special character Length should
-be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
-
-*/
     int num=0;
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
@@ -99,7 +103,7 @@ be between 8-30 characters. Spaces allowed The sequence of the characters is not
     if(validPwd->validate(password,num)!=2)
         return selectEnum::BAD_PASSWORD;//password not correct format
 
-    createAccount(fName,lName,email,handle,password);
+    createAccount(fName, lName, email, handle, password, isAdmin);
     return selectEnum::ALLCLEAR;
 }
 

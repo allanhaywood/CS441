@@ -1,3 +1,7 @@
+/* The header for the review class.
+ *
+ * @author Joey Freeman, Allan Haywood
+ */
 #ifndef REVIEW_H
 #define REVIEW_H
 #include "reaction.h"

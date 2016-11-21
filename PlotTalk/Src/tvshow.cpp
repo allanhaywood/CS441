@@ -96,23 +96,44 @@ void TvShow::addSeason(Season season)
  * @returns matching Season
  * @throws NotFound exception if no match found
  */
-Season TvShow::getSeason(int number)
+Season &TvShow::getSeason(int number)
 {
-    foreach (Season season, seasons.values())
+    for (auto &season : seasons)
     {
-        if (season.seasonNumber == number)
+        if ( season.seasonNumber == number )
         {
             return season;
         }
     }
+
     throw NotFound{};
 }
 
+/**
+ * @brief TvShow::inspectSeason Returns a copy of the specified season.
+ * @param number The number of the season to return.
+ * @return The season with the specified number.
+ */
+Season TvShow::inspectSeason(int number)
+{
+    return getSeason(number);
+}
+
+/**
+ * @brief TvShow::addEpisodeReview Adds the specified review to the specified episode.
+ * @param episodeIdentifier The specific episode to add the review to.
+ * @param review The review to add.
+ */
 void TvShow::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
     seasons[episodeIdentifier.seasonId].episodes[episodeIdentifier.episodeId].addReview(review);
 }
 
+/**
+ * @brief TvShow::addEpisodeComment Adds the specified comment to the specified episode.
+ * @param episodeIdentifier The specific episode to add the comment to.
+ * @param comment The comment to add.
+ */
 void TvShow::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
 {
     seasons[episodeIdentifier.seasonId].episodes[episodeIdentifier.episodeId].addComment(comment);

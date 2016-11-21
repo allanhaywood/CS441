@@ -11,9 +11,8 @@
 
 #include <QString>
 #include <QJsonObject>
+#include <QJsonValue>
 #include <QMap>
-
-
 
 class JsonConnection : public IConnection
 {
@@ -31,13 +30,16 @@ public:
     // @throws NotFound when TvShow is not found.
     TvShow getTvShow(QString name);
 
-    //void addTvShow(TvShow tvShow);
+    // @throws AlreadyExists when TvShow already exists.
+    void addTvShow(TvShow tvShow);
 
     // @throws NotFound when user is not found.
     User getUser(QString username);
 
     // @throws NotFound when user is not found.
     QString getUserNameByEmail(QString email);
+
+    QString getTvShowNameById(int id);
 
     void addUser(User user);
 
@@ -48,6 +50,8 @@ public:
     bool emailExists(QString email);
 
     QList<QString> getListOfAllTvShows();
+
+    QList<QString> getListOfAllUsers();
 
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
@@ -71,6 +75,22 @@ private:
     Episode getEpisode(QJsonObject jsonEpisode);
     QMap<QString, Review> getReviews(QJsonValue jsonReviews);
     QList<Comment> getComments(QJsonValue jsonComments);
+
+    QJsonObject tvShowToJsonObject(TvShow tvShow);
+
+    QJsonArray seasonsToJsonArray(QVector<Season> seasons);
+    QJsonValue seasonToJsonValue(Season season);
+
+    QJsonArray episodesToJsonArray(QVector<Episode> episodes);
+    QJsonValue episodeToJsonValue(Episode episode);
+
+    QJsonArray reviewsToJsonArray(QList<Review> reviews);
+    QJsonValue reviewToJsonValue(Review review);
+
+    QJsonArray commentsToJsonArray(QList<Comment> comments);
+    QJsonValue commentToJsonValue(Comment comment);
+
+    QJsonObject userToJsonObject(User user);
 };
 
 #endif // JSONCONNECTION_H

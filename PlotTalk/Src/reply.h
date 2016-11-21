@@ -1,3 +1,10 @@
+/* The reply header.
+ *
+ * @author Joey Freeman
+ *
+ * @note: Not currently used.
+ */
+
 #ifndef REPLY_H
 #define REPLY_H
 #include "reaction.h"

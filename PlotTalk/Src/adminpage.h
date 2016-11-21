@@ -1,6 +1,8 @@
 #ifndef ADMINPAGE_H
 #define ADMINPAGE_H
 
+#include "databasemanager.h"
+
 #include <QMainWindow>
 
 namespace Ui {
@@ -14,6 +16,7 @@ class AdminPage : public QMainWindow
 public:
     explicit AdminPage(QWidget *parent = 0);
     ~AdminPage();
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
 private slots:
 

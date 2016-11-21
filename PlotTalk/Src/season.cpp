@@ -43,6 +43,12 @@ const QVector<Episode> Season::inspectEpisodes()
     return episodes.values().toVector();
 }
 
+/**
+ * @brief Season::getEpisodes Returns a reference to the map of episodes.
+ * @return A reference to the map of episodes.
+ *
+ * @note The episodeId is the key.
+ */
 QMap<int, Episode> &Season::getEpisodes()
 {
     return episodes;
@@ -63,9 +69,9 @@ void Season::addEpisode(Episode episode)
  * @returns matching Episode
  * @throws NotFound exception if no match found
  */
-Episode Season::getEpisode(QString name)
+Episode &Season::getEpisode(QString name)
 {
-    foreach (Episode episode, episodes.values())
+    for (auto &episode : episodes)
     {
         if (episode.name == name)
         {
@@ -74,4 +80,32 @@ Episode Season::getEpisode(QString name)
     }
 
     throw NotFound{};
+}
+
+/**
+ * @brief Season::getEpisode Returns a reference to the episode with the indicated number.
+ * @param number The episodeNumber
+ * @return A reference to an episode with the provided number.
+ */
+Episode &Season::getEpisode(int number)
+{
+    for (auto &episode : episodes)
+    {
+        if (episode.episodeNumber == number)
+        {
+            return episode;
+        }
+    }
+
+    throw NotFound{};
+}
+
+/**
+ * @brief Season::inspectEpisode Returns a copy of the episode with the specified number.
+ * @param number The episode number.
+ * @return A copy of the episode with the specified number.
+ */
+Episode Season::inspectEpisode(int number)
+{
+    return getEpisode(number);
 }

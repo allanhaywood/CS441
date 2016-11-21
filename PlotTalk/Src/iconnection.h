@@ -26,7 +26,7 @@ public:
     /**
      * @exception AlreadyExists If specified tvshow is already added.
      */
-    //virtual void addTvShow(TvShow tvShow) = 0;
+    virtual void addTvShow(TvShow tvShow) = 0;
 
     //virtual void saveTvShow(TvShow tvShow) = 0;
 
@@ -39,6 +39,11 @@ public:
      * @exception NotFound If specified user is not found.
      */
     virtual QString getUserNameByEmail(QString email) = 0;
+
+    /**
+     * @exception NotFound If specified user is not found.
+     */
+    virtual QString getTvShowNameById(int id) = 0;
 
     /**
      * @exception AlreadyExists if specified user is already added.
@@ -55,6 +60,8 @@ public:
     virtual bool emailExists(QString email) = 0;
 
     virtual QList<QString> getListOfAllTvShows() = 0;
+
+    virtual QList<QString> getListOfAllUsers() = 0;
 
     virtual void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review) = 0;
 

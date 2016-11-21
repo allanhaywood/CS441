@@ -3,6 +3,9 @@
  * @author Allan Haywood
  */
 #include "user.h"
+#include "common.h"
+
+#include<QList>
 
 User::User()
 {
@@ -34,6 +37,20 @@ User::User(QString username, QString firstName, QString lastName, QString email,
     this->email = email;
     this->passwordHash = passwordhash;
     _isAdmin = isAdmin;
+    userWatched=QList<EpisodeIdentifier>();
+}
+
+User::User(QString username, QString firstName, QString lastName, QString email, QString passwordhash, bool isAdmin, QList<EpisodeIdentifier> episodeList)
+{
+    this->username = username;
+    this->firstName = firstName;
+    this->lastName = lastName;
+    this->email = email;
+    this->passwordHash = passwordhash;
+    _isAdmin = isAdmin;
+
+    AddWatchedEpisodeList(episodeList);
+
 }
 
 bool User::isAdmin()
@@ -100,4 +117,30 @@ bool User::HasTheUserWatchedAnything()
         return false;
     else
         return true;
+}
+
+
+bool User::AddWatchedEpisodeList(QList<EpisodeIdentifier> episodeList)
+{
+    if(episodeList.size()!=0)
+    {
+        int dummy=0;
+        for (int i=0; i<episodeList.size(); i++)
+        {
+          if(!HasUserWatchedThisEpisode(episodeList[i], dummy))
+          {
+              return false;
+          }
+        }
+        for (int i=0; i<episodeList.size(); i++)
+        {
+              if(!addWatchedEpisode(episodeList[i]));
+          {
+              return false;
+          }
+        }
+        return true;
+    }
+    else
+        return false;
 }
