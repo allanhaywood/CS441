@@ -43,6 +43,7 @@ void Episode::addReview(Review review)
     // Since there can be only a single review per user, this allows an existing
     // review to be overwritten, but the same UUID is kept, so the backend won't end
     // up with multiple reviews per user (as the UUID is a primary key)
+    // Basically it treats it like a review edit.
     if ( reviews.contains(review.username) )
     {
         review.postUuid = reviews[review.username].postUuid;

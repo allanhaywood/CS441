@@ -462,10 +462,9 @@ void TestDatabaseManager::TestAddEpisodeReview()
     bool found = false;
     foreach (const Review &thisReview, reviews)
     {
-        if ( QString::compare(thisReview.postUuid.toString(), Uuid) == 0 )
+        if ( QString::compare(thisReview.username, userName) == 0 )
         {
             found = true;
-            QCOMPARE(thisReview.username, userName);
             QCOMPARE(thisReview.text, text);
             QCOMPARE(thisReview.rating, rating);
         }
