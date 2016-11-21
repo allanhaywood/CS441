@@ -28,11 +28,13 @@ public:
     bool isAdmin();
     bool addWatchedEpisode(EpisodeIdentifier episode);
     bool removeWatchedEpisode(EpisodeIdentifier episode);
-
+    bool HasTheUserWatchedAnything();
+    bool HasUserWatchedThisEpisode(EpisodeIdentifier episode, int &location);
 
 private:
     bool _isAdmin;
-    bool episodeWatchedByUser(EpisodeIdentifier episode, int &location);
+
+
 };
 
 #endif // USER_H

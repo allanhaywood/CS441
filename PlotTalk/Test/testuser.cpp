@@ -51,3 +51,51 @@ void TestUser::TestUserConstructor3()
     QCOMPARE(passwordHash, user.passwordHash);
     QVERIFY(true == user.isAdmin());
 }
+
+void TestUser::TestsForWatchedList()
+{
+    QString username = "bsmith";
+    QString firstName = "Bob";
+    QString lastName = "Smith";
+    QString email = "bsmith@gmail.com";
+    QString passwordHash = "badpasswordhash";
+
+    EpisodeIdentifier episode1;
+    episode1.episodeId=1;
+    episode1.seasonId=2;
+    episode1.tvShowId=3;
+
+    EpisodeIdentifier episode2;
+    episode2.episodeId=2;
+    episode2.seasonId=3;
+    episode2.tvShowId=4;
+
+    EpisodeIdentifier episode3;
+    episode3.episodeId=3;
+    episode3.seasonId=4;
+    episode3.tvShowId=2;
+    int location;
+
+    User user = User(username, firstName, lastName, email, passwordHash);
+    QCOMPARE(user.HasTheUserWatchedAnything(), false);//the user has not watched any shows
+    QCOMPARE(user.addWatchedEpisode(episode1), true);//adding an episode
+    QCOMPARE(user.HasUserWatchedThisEpisode(episode1,location),true);
+    QCOMPARE(location,0);
+    QCOMPARE(user.HasTheUserWatchedAnything(), true);//now the user has watched a show
+    QCOMPARE(user.addWatchedEpisode(episode2), true);//adding a second episode
+    QCOMPARE(user.addWatchedEpisode(episode3), true);//adding a third episode
+    QCOMPARE(user.HasUserWatchedThisEpisode(episode2,location),true);
+    QCOMPARE(location,1);
+    QCOMPARE(user.HasUserWatchedThisEpisode(episode3,location),true);
+    QCOMPARE(location,2);
+    QCOMPARE(user.removeWatchedEpisode(episode1), true);//removing the first episode
+    QCOMPARE(user.removeWatchedEpisode(episode1), false);//episode already removed
+    QCOMPARE(user.HasTheUserWatchedAnything(), true);//the user has watched shows
+    QCOMPARE(user.addWatchedEpisode(episode2), false);//episode already added
+    QCOMPARE(user.removeWatchedEpisode(episode2), true);//remove second episode
+    QCOMPARE(user.removeWatchedEpisode(episode3), true);//remove third episode
+    QCOMPARE(user.removeWatchedEpisode(episode3), false);//episode already removed
+    QCOMPARE(user.HasTheUserWatchedAnything(),false);//the user has watched no shows now
+
+}
+

@@ -44,7 +44,7 @@ bool User::isAdmin()
 bool User::addWatchedEpisode(EpisodeIdentifier episode)//adds an episode to the users watched list
 {
     int dummy;
-    if(episodeWatchedByUser(episode, dummy))
+    if(HasUserWatchedThisEpisode(episode, dummy))
     {
         return false;
     }
@@ -58,26 +58,13 @@ bool User::addWatchedEpisode(EpisodeIdentifier episode)//adds an episode to the 
 
 bool User::removeWatchedEpisode(EpisodeIdentifier episode)//removes an episode from the users watched list
 {
-    int location;
-    if(episodeWatchedByUser(episode,location))
+    if(HasTheUserWatchedAnything())
     {
-        userWatched.removeAt(location);
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
+        int location;
 
-bool User::episodeWatchedByUser(EpisodeIdentifier episode, int &location)//private, checks to see if an episode is in the users watched list
-{
-    int i;
-    for(i=0; i<userWatched.size(); i++)
-    {
-        if(userWatched[i].episodeId==episode.episodeId && userWatched[i].seasonId==episode.seasonId && userWatched[i].tvShowId==episode.tvShowId)
+        if(HasUserWatchedThisEpisode(episode,location))
         {
-            location=i;
+            userWatched.removeAt(location);
             return true;
         }
         else
@@ -85,6 +72,32 @@ bool User::episodeWatchedByUser(EpisodeIdentifier episode, int &location)//priva
             return false;
         }
     }
+        return false;
+}
 
+bool User::HasUserWatchedThisEpisode(EpisodeIdentifier episode, int &location)//private, checks to see if an episode is in the users watched list
+{
+    if(HasTheUserWatchedAnything())
+    {
+        int i;
+        for(i=0; i < userWatched.size(); i++)
+        {
+            if(userWatched[i].episodeId == episode.episodeId &&
+               userWatched[i].seasonId == episode.seasonId &&
+               userWatched[i].tvShowId == episode.tvShowId)
+            {
+                location=i;
+                return true;
+            }
+        }
+    }
     return false;
+}
+
+bool User::HasTheUserWatchedAnything()
+{
+    if(userWatched.size()==0)
+        return false;
+    else
+        return true;
 }
