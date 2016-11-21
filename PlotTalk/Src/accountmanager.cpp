@@ -22,8 +22,7 @@ AccountManager* AccountManager::getInstance()//returns a new instance or the sam
 
 AccountManager::AccountManager()//constructor
 {
-    User BlankMan;
-    referenceTodatabaseUser=BlankMan;
+
 }
 
 AccountManager::~AccountManager()//destructor
@@ -46,13 +45,21 @@ bool AccountManager::createAccount(QString &first, QString &last, QString &Email
    return true;//reminant of previous code
 }
 
+bool AccountManager::createAccount(User user)
+{
+    DatabaseManagerSingleton::Instance().addUser(user);
+    referenceTodatabaseUser = DatabaseManagerSingleton::Instance().getUser(user.email);
+    return true;
+}
+
+
 /**
  * @brief gets the current account that is stored as a private object in the persistant account manager
  * @param none
  * @return a user object
  */
 
-User AccountManager::getCurrentAccount()
+User &AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
     return referenceTodatabaseUser;//useful for getting info into various pages without searching the database
 }

@@ -85,4 +85,6 @@ bool User::episodeWatchedByUser(EpisodeIdentifier episode, int &location)//priva
             return false;
         }
     }
+
+    return false;
 }
