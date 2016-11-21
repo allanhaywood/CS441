@@ -4,7 +4,7 @@
  */
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
-#include <QMap>
+#include <QHash>
 #include <QList>
 
 #include "singleton.h"
@@ -39,6 +39,8 @@ public:
 
     QList<QString> getListOfAllTvShows();
 
+    QList<User> getAllUsers();
+
     QList<QString> getListOfCachedTvShows();
 
     QString getTvShowNameById(int tvShowId);
@@ -52,8 +54,8 @@ public:
     void emptyCache();
 
 private:
-    QMap<QString, TvShow> tvShowMap;
-    QMap<QString, User> userMap;
+    QHash<QString, TvShow> tvShowHash;
+    QHash<QString, User> userHash;
 
     DatabaseManager(DatabaseManager const&);    // copy constructor hidden
     //DatabaseManager& operator=(DatabaseManager const&);  // assign op hidden

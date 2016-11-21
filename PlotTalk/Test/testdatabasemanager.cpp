@@ -120,7 +120,7 @@ void TestDatabaseManager::TestGetUserByEmail()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    User& user = DatabaseManagerSingleton::Instance().getUserByEmail(email);
+    User &user = DatabaseManagerSingleton::Instance().getUserByEmail(email);
 
     QCOMPARE(user.username, expectedUsername);
     QCOMPARE(user.firstName, expectedFirstName);

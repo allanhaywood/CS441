@@ -11,9 +11,8 @@
 
 #include <QString>
 #include <QJsonObject>
+#include <QJsonValue>
 #include <QMap>
-
-
 
 class JsonConnection : public IConnection
 {
@@ -31,7 +30,7 @@ public:
     // @throws NotFound when TvShow is not found.
     TvShow getTvShow(QString name);
 
-    //void addTvShow(TvShow tvShow);
+    void addTvShow(TvShow tvShow);
 
     // @throws NotFound when user is not found.
     User getUser(QString username);
@@ -71,6 +70,22 @@ private:
     Episode getEpisode(QJsonObject jsonEpisode);
     QMap<QString, Review> getReviews(QJsonValue jsonReviews);
     QList<Comment> getComments(QJsonValue jsonComments);
+
+    QJsonObject tvShowToJsonObject(TvShow tvShow);
+
+    QJsonArray seasonsToJsonArray(QVector<Season> seasons);
+    QJsonValue seasonToJsonValue(Season season);
+
+    QJsonArray episodesToJsonArray(QVector<Episode> episodes);
+    QJsonValue episodeToJsonValue(Episode episode);
+
+    QJsonArray reviewsToJsonArray(QList<Review> reviews);
+    QJsonValue reviewToJsonValue(Review review);
+
+    QJsonArray commentsToJsonArray(QList<Comment> comments);
+    QJsonValue commentToJsonValue(Comment comment);
+
+    QJsonObject userToJsonObject(User user);
 };
 
 #endif // JSONCONNECTION_H

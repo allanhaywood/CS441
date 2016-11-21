@@ -26,7 +26,7 @@ public:
     /**
      * @exception AlreadyExists If specified tvshow is already added.
      */
-    //virtual void addTvShow(TvShow tvShow) = 0;
+    virtual void addTvShow(TvShow tvShow) = 0;
 
     //virtual void saveTvShow(TvShow tvShow) = 0;
 

@@ -2,6 +2,10 @@
  *
  * @author Allan Haywood
  */
+#include "jsonconnection.h"
+#include "plottalkexceptions.h"
+#include "common.h"
+
 #include <QString>
 #include <QFile>
 #include <QJsonDocument>
@@ -10,9 +14,6 @@
 #include <QDebug>
 #include <QDir>
 #include <QVariantMap>
-
-#include "jsonconnection.h"
-#include "plottalkexceptions.h"
 
 /**
  * @brief JsonConnection::JsonConnection construcs Json connection.
@@ -85,12 +86,12 @@ TvShow JsonConnection::getTvShow(QString name)
     QString jsonGraphicLink = "";
     QJsonArray jsonSeasons;
 
-    QJsonArray tvshows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
+    QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
 
     // Loops through each element in the TvShow array to try and find a match on the name.
     QJsonObject tvShowJsonObject;
     bool found = false;
-    foreach (const QJsonValue &value, tvshows)
+    foreach (const QJsonValue &value, tvShows)
     {
         // If there is a match on the tvname, extract all the elements needed to construct
         // the TvShow object.
@@ -117,6 +118,140 @@ TvShow JsonConnection::getTvShow(QString name)
 
     // Use the information found to construct and return a TvShow of the requested tvshow.
     return TvShow(jsonId, jsonName, jsonTmdbLink, jsonGraphicLink, getSeasons(jsonSeasons));
+}
+
+void JsonConnection::addTvShow(TvShow tvShow)
+{
+    // First check if the tvShow already exists.
+    try
+    {
+        TvShow testExistTvShow = getTvShow(tvShow.name);
+        throw AlreadyExists{};
+    }
+    catch (NotFound)
+    {
+        qDebug() << "Tvshow not found, we can continue.";
+    }
+
+    QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
+
+    tvShows.append(tvShowToJsonObject(tvShow));
+
+    json[JSON_TVSHOW_ARRAY_NAME] = tvShows;
+
+    saveJson();
+}
+
+QJsonObject JsonConnection::tvShowToJsonObject(TvShow tvShow)
+{
+    QJsonObject jsonObject;
+
+    jsonObject.insert("showId", QJsonValue(tvShow.showId));
+    jsonObject.insert("name", QJsonValue(tvShow.name));
+    jsonObject.insert("tmbdLink", QJsonValue(tvShow.tmdbLink));
+    jsonObject.insert("graphicLink", QJsonValue(tvShow.graphicLink));
+    jsonObject.insert("seasons", seasonsToJsonArray(tvShow.inspectSeasons()));
+
+    return jsonObject;
+}
+
+QJsonArray JsonConnection::seasonsToJsonArray(QVector<Season> seasons)
+{
+    QJsonArray seasonsArray;
+
+    foreach (const Season &season, seasons)
+    {
+        seasonsArray.append(seasonToJsonValue(season));
+    }
+
+    return seasonsArray;
+}
+
+QJsonValue JsonConnection::seasonToJsonValue(Season season)
+{
+    QJsonObject jsonObject;
+
+    jsonObject.insert("seasonId", QJsonValue(season.seasonId));
+    jsonObject.insert("seasonNumber", QJsonValue(season.seasonNumber));
+    jsonObject.insert("name", QJsonValue(season.name));
+    jsonObject.insert("episodes", episodesToJsonArray(season.inspectEpisodes()));
+
+    return QJsonValue(jsonObject);
+}
+
+QJsonArray JsonConnection::episodesToJsonArray(QVector<Episode> episodes)
+{
+    QJsonArray episodesArray;
+
+    foreach (const Episode &episode, episodes)
+    {
+        episodesArray.append(episodeToJsonValue(episode));
+    }
+
+    return episodesArray;
+}
+
+QJsonValue JsonConnection::episodeToJsonValue(Episode episode)
+{
+    QJsonObject jsonObject;
+
+    jsonObject.insert("episodeId", QJsonValue(episode.episodeId));
+    jsonObject.insert("episodeNumber", QJsonValue(episode.episodeNumber));
+    jsonObject.insert("name", QJsonValue(episode.name));
+    jsonObject.insert("summary", QJsonValue(episode.summary));
+    jsonObject.insert("reviews", reviewsToJsonArray(episode.inspectReviews()));
+    jsonObject.insert("comments", commentsToJsonArray(episode.getComments()));
+
+    return QJsonValue(jsonObject);
+}
+
+QJsonArray JsonConnection::reviewsToJsonArray(QList<Review> reviews)
+{
+    QJsonArray reviewsArray;
+
+    foreach (const Review &review, reviews)
+    {
+        reviewsArray.append(reviewToJsonValue(review));
+    }
+
+    return reviewsArray;
+}
+
+QJsonArray JsonConnection::commentsToJsonArray(QList<Comment> comments)
+{
+    QJsonArray commentsArray;
+
+    foreach (const Comment &comment, comments)
+    {
+        commentsArray.append(commentToJsonValue(comment));
+    }
+
+    return commentsArray;
+}
+
+QJsonValue JsonConnection::reviewToJsonValue(Review review)
+{
+    QJsonObject jsonObject;
+
+    jsonObject.insert("postUuid", QJsonValue(review.postUuid.toString()));
+    jsonObject.insert("username", QJsonValue(review.username));
+    jsonObject.insert("text", QJsonValue(review.text));
+    jsonObject.insert("rating", QJsonValue(review.rating));
+    jsonObject.insert("dateTimePosted", QJsonValue(review.dateTimePosted));
+
+    return QJsonValue(jsonObject);
+}
+
+QJsonValue JsonConnection::commentToJsonValue(Comment comment)
+{
+    QJsonObject jsonObject;
+
+    jsonObject.insert("postUuid", QJsonValue(comment.postUuid.toString()));
+    jsonObject.insert("username", QJsonValue(comment.username));
+    jsonObject.insert("text", QJsonValue(comment.text));
+    jsonObject.insert("dateTimePosted", QJsonValue(comment.dateTimePosted));
+
+    return QJsonValue(jsonObject);
 }
 
 
@@ -350,6 +485,16 @@ void JsonConnection::addUser(User user)
     }
 
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
+
+    users.append(userToJsonObject(user));
+
+    json[JSON_USER_ARRAY_NAME] = users;
+
+    saveJson();
+}
+
+QJsonObject JsonConnection::userToJsonObject(User user)
+{
     QJsonObject jsonObject = QJsonObject();
 
     jsonObject.insert("username", QJsonValue(user.username));
@@ -359,11 +504,7 @@ void JsonConnection::addUser(User user)
     jsonObject.insert("passwordHash", QJsonValue(user.passwordHash));
     jsonObject.insert("_isAdmin", QJsonValue(user.isAdmin()));
 
-    users.append(jsonObject);
-
-    json[JSON_USER_ARRAY_NAME] = users;
-
-    saveJson();
+    return jsonObject;
 }
 
 /**
@@ -478,21 +619,70 @@ QList<QString> JsonConnection::getListOfAllTvShows()
 
 void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
-    qDebug() << episodeIdentifier.tvShowId;
-    qDebug() << episodeIdentifier.seasonId;
-    qDebug() << episodeIdentifier.episodeId;
-    qDebug() << review.postUuid.toString();
-    qDebug() << review.username;
-    qDebug() << review.rating;
-    qDebug() << review.text;
-    qDebug() << review.dateTimePosted;
-
     QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
+    TvShow tvShow;
+
+    QJsonObject obj;
+
+    int index = 0;
+    bool found = false;
+    foreach (const QJsonValue &value, tvShows)
+    {
+        obj = value.toObject();
+        if ( obj["showId"] == episodeIdentifier.tvShowId )
+        {
+            tvShow = getTvShow(obj["name"].toString());
+            found = true;
+            break;
+        }
+
+        ++index;
+    }
+
+    if ( ! found )
+    {
+        throw NotFound{};
+    }
+
+    tvShow.addEpisodeReview(episodeIdentifier, review);
+
+    tvShows.replace(index, tvShowToJsonObject(tvShow));
+
+    saveJson();
 }
 
 void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
 {
-    throw NotImplemented{};
+    QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
+    TvShow tvShow;
+
+    QJsonObject obj;
+
+    int index = 0;
+    bool found = false;
+    foreach (const QJsonValue &value, tvShows)
+    {
+        obj = value.toObject();
+        if ( obj["showId"] == episodeIdentifier.tvShowId )
+        {
+            tvShow = getTvShow(obj["name"].toString());
+            found = true;
+            break;
+        }
+
+        ++index;
+    }
+
+    if ( ! found )
+    {
+        throw NotFound{};
+    }
+
+    tvShow.addEpisodeComment(episodeIdentifier, comment);
+
+    tvShows.replace(index, tvShowToJsonObject(tvShow));
+
+    saveJson();
 }
 
 /**
@@ -576,7 +766,5 @@ void JsonConnection::saveJson()
  */
 QJsonArray JsonConnection::getTopLevelJsonArray(QString jsonArrayName)
 {
-    // The json object can contain many arrays, TvShow, Users, Seasons, etc.
-    // This gets the TvShow elements.
     return json[jsonArrayName].toArray();
 }
