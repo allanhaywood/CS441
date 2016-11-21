@@ -65,5 +65,5 @@ Episode* Season::getEpisode(QString name)
             return &episodes[i];
         }
     }
-    throw NotFound("Unable to retrieve episode " + name + " from season number " + seasonNumber);
+    throw NotFound("Unable to retrieve episode " + name + " from season number " + QString::number(seasonNumber));
 }
