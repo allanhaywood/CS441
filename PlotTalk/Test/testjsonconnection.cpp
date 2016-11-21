@@ -29,7 +29,7 @@ void TestJsonConnection::TestGetTvShow1()
     QVector<Season> seasons = tvShow.inspectSeasons();
     QCOMPARE(seasons.count(), 7);
 
-    Season &season = tvShow.inspectSeason(0);
+    Season season = tvShow.inspectSeason(0);
     QString expectedSeasonName = "Season 0";
 
     QCOMPARE(season.seasonId, 3627);
@@ -39,7 +39,7 @@ void TestJsonConnection::TestGetTvShow1()
     QVector<Episode> episodes = season.inspectEpisodes();
     QCOMPARE(episodes.count(), 11);
 
-    Episode &episode = season.inspectEpisode(1);
+    Episode episode = season.inspectEpisode(1);
 
     QString expectedEpisodeName = "Inside Game of Thrones";
     QString expectedEpisodeSummary = "A short look into the film-making process for the production Game of Thrones";
@@ -55,7 +55,6 @@ void TestJsonConnection::TestGetTvShow1()
     QUuid expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EE}");
     QString expectedText = "It is amazing how this show is made.";
     QString expectedUsername = "plottalkadmin";
-
 
     QCOMPARE(reviews[0].dateTimePosted, expectedDateTimePosted);
     QCOMPARE(reviews[0].postUuid, expectedPostUuid);
@@ -92,20 +91,20 @@ void TestJsonConnection::TestGetTvShow2()
     QCOMPARE(tvShow.tmdbLink, expectedTmdbLink);
     QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
 
-    QVector<Season> seasons = tvShow.inspectSeasons();
+    QMap<int, Season> &seasons = tvShow.getSeasons();
     QCOMPARE(seasons.count(), 3);
 
-    Season &season = tvShow.inspectSeason(0);
+    Season &season = tvShow.getSeason(0);
     QString expectedSeasonName = "season_0.0";
 
     QCOMPARE(season.seasonId, 77843);
     QCOMPARE(season.seasonNumber, 0);
     QCOMPARE(season.name, expectedSeasonName);
 
-    QVector<Episode> episodes = season.inspectEpisodes();
+    QMap<int, Episode> &episodes = season.getEpisodes();
     QCOMPARE(episodes.count(), 3);
 
-    Episode &episode = season.inspectEpisode(2);
+    Episode &episode = season.getEpisode(2);
 
     QString expectedEpisodeName = "Hacking Robot 101";
     QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";
