@@ -177,17 +177,12 @@ void TestJsonConnection::TestAddUser()
     QString email = "nuser@gmail.com";
     QString passwordHash = "newuser123";
 
-    // Get json from resources, but it isn't writeable so save to a different location.
-    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
-
-    // Create a test json file
-    QString currentPath = QDir::currentPath();
-    currentPath.append("/testJson.json");
-    QString jsonPath = QDir::cleanPath(currentPath);
-
-    jsonConnection.setPathToJson(jsonPath);
+    JsonConnection jsonConnection = JsonConnection();
 
     User user = User(username, firstName, lastName, email, passwordHash);
+
+    // Remove user if it already exists.
+    jsonConnection.removeUser(username);
 
     jsonConnection.addUser(user);
 
@@ -199,6 +194,9 @@ void TestJsonConnection::TestAddUser()
     QCOMPARE(user.email, email);
     QCOMPARE(user.passwordHash, passwordHash);
     QCOMPARE(user.isAdmin(), false);
+
+    // Remove user when done.
+    jsonConnection.removeUser(username);
 }
 
 void TestJsonConnection::TestAddAdminUser()
@@ -210,17 +208,12 @@ void TestJsonConnection::TestAddAdminUser()
     QString email = "nuser@gmail.com";
     QString passwordHash = "newuser123";
 
-    // Get json from resources, but it isn't writeable so save to a different location.
-    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
-
-    // Create a test json file
-    QString currentPath = QDir::currentPath();
-    currentPath.append("/testJson.json");
-    QString jsonPath = QDir::cleanPath(currentPath);
-
-    jsonConnection.setPathToJson(jsonPath);
+    JsonConnection jsonConnection = JsonConnection();
 
     User user = User(username, firstName, lastName, email, passwordHash, true);
+
+    // Remove user if it already exists.
+    jsonConnection.removeUser(username);
 
     jsonConnection.addUser(user);
 
@@ -232,6 +225,9 @@ void TestJsonConnection::TestAddAdminUser()
     QCOMPARE(user.email, email);
     QCOMPARE(user.passwordHash, passwordHash);
     QCOMPARE(user.isAdmin(), true);
+
+    // Remove user when done.
+    jsonConnection.removeUser(username);
 }
 
 void TestJsonConnection::NegTestAddUser()
@@ -325,20 +321,3 @@ void TestJsonConnection::TestGetListOfAllTvShows()
     QCOMPARE(allTvShows[0],tvShow0);
     QCOMPARE(allTvShows[1],tvShow1);
 }
-
-/*
-void TestJsonConnection::TestAddEpisodeReview()
-{
-    JsonConnection jsonConnection = JsonConnection();
-
-    EpisodeIdentifier episodeIdentifier;
-
-    episodeIdentifier.tvShowId = 1399;
-    episodeIdentifier.seasonId = 3627;
-    episodeIdentifier.episodeId = 63087;
-
-    Review review = Review("plottalkadmin", "This was really good.", 4);
-
-    jsonConnection.addEpisodeReview(episodeIdentifier, review);
-}
-*/

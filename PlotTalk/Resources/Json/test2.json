@@ -73,5 +73,87 @@
 
             ]
         }
-    ]
+    ],
+      "User": [
+        {
+          "username": "bsmith",
+          "firstName": "Bob",
+          "lastName": "Smith",
+          "email": "bsmith@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "jsmith",
+          "firstName": "John",
+          "lastName": "Smith",
+          "email": "jsmith@gmail.com",
+          "passwordHash": "badpasswordhash2",
+          "_isAdmin": false
+        },
+        {
+          "username": "omariwest",
+          "firstName": "Kanye",
+          "lastName": "West",
+          "email": "coolfool@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "michaelg",
+          "firstName": "Michael",
+          "lastName": "Scott",
+          "email": "michaelscott@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "kevinMcCalli",
+          "firstName": "Kevin",
+          "lastName": "McCallister",
+          "email": "KevinMcCallister@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "ravenB",
+          "firstName": "Raven",
+          "lastName": "Baxter",
+          "email": "ravenbaxter@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "srogers",
+          "firstName": "Steve",
+          "lastName": "Rogers",
+          "email": "steverogers@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "dorawonders",
+          "firstName": "Dora",
+          "lastName": "Explorer",
+          "email": "theexplorer@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "natashaR",
+          "firstName": "Natasha",
+          "lastName": "Romanova",
+          "email": "nataliaromanova@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "admin",
+          "firstName": "admin",
+          "lastName": "admin",
+          "email": "admin@gmail.com",
+          "passwordHash": "plottalkadmin",
+          "_isAdmin": true
+        }
+      ]
 }

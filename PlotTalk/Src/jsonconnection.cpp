@@ -18,16 +18,15 @@
 /**
  * @brief JsonConnection::JsonConnection construcs Json connection.
  *
- * Since no path is being provided, it will attempt to find a json file at the default location,
- * QDir::currentPath/testJson.json
+ * Since no path is being provided, it will attempt to find a json file in system temp.
  * If there is no file there, it will copy test.json out of the resources. *
  */
 JsonConnection::JsonConnection()
 {
     // Create a test json file
-    QString currentPath = QDir::currentPath();
-    currentPath.append("/testJson.json");
-    QString jsonPath = QDir::cleanPath(currentPath);
+    QString tempPath = QDir::tempPath();
+    tempPath.append("/testJson.json");
+    QString jsonPath = QDir::cleanPath(tempPath);
 
     // Check if a file already exists at that location.
     // If it doesn't, the one from the resources will be used.
@@ -393,10 +392,12 @@ User JsonConnection::getUser(QString username)
 
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
 
+    qDebug() << "Users count:" << users.count();
+
     // Loops through each element in the users array to try and find a match on the name.
     QJsonObject obj;
     bool found = false;
-    foreach (const QJsonValue &value, users)
+    for (auto value : users)
     {
         // If there is a match on the user name, extract all the elements needed to construct
         // the user object.
@@ -422,7 +423,7 @@ User JsonConnection::getUser(QString username)
         throw NotFound{};
     }
 
-    // Use the information found to construct a user of the requested tvshow.
+    // Use the information found to construct a user of the requested User.
     return User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash, jsonIsAdmin);
 }
 
@@ -463,6 +464,44 @@ QString JsonConnection::getUserNameByEmail(QString email)
     }
 
     return jsonUsername;
+}
+
+/**
+ * @brief JsonConnection::getTvShowNameById Gets the tvshow name by Id.
+ * @param id The Id to search for.
+ * @return The tvshow name that matches the id
+ *
+ * @throws NotFound
+ */
+QString JsonConnection::getTvShowNameById(int id)
+{
+    QString jsonName;
+
+    QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
+
+    // Loops through each element in the tvshow array to try and find a match on the name.
+    QJsonObject obj;
+    bool found = false;
+    foreach (const QJsonValue &tvShow, tvShows)
+    {
+        // If there is a match on the user name, extract all the elements needed to construct
+        // the user object.
+        obj = tvShow.toObject();
+        if( obj["showId"].toInt() == id )
+        {
+            jsonName = obj["name"].toString();
+            found = true;
+            break;
+        }
+    }
+
+    if (! found)
+    {
+        qDebug() << "No match found for:" << id;
+        throw NotFound{};
+    }
+
+    return jsonName;
 }
 
 /**
@@ -617,6 +656,21 @@ QList<QString> JsonConnection::getListOfAllTvShows()
     return tvShows;
 }
 
+QList<QString> JsonConnection::getListOfAllUsers()
+{
+    QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
+
+    QJsonObject obj;
+    QList<QString> usernames;
+    foreach (const QJsonValue &value, users)
+    {
+        obj = value.toObject();
+        usernames.append(obj["username"].toString());
+    }
+
+    return usernames;
+}
+
 void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
     QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
@@ -647,6 +701,8 @@ void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Revie
     tvShow.addEpisodeReview(episodeIdentifier, review);
 
     tvShows.replace(index, tvShowToJsonObject(tvShow));
+
+    json[JSON_TVSHOW_ARRAY_NAME] = tvShows;
 
     saveJson();
 }
@@ -682,13 +738,14 @@ void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comm
 
     tvShows.replace(index, tvShowToJsonObject(tvShow));
 
+    json[JSON_TVSHOW_ARRAY_NAME] = tvShows;
+
     saveJson();
 }
 
 /**
- * @brief JsonConnection::loadJson Reads the specified json from file and returns a QJsonObject.
- * @param pathToJson The path to the Json file, it can be either in resources, or on the filesystem.
- */
+ * @brief JsonConnection::loadJson Reads the specified json from file.
+  */
 void JsonConnection::loadJson()
 {
     QFile file;
@@ -722,7 +779,7 @@ void JsonConnection::loadJson()
 
     QJsonObject jsonObject = jsonDocument.object();
 
-    this->json = jsonObject;
+    json = jsonObject;
 }
 
 /**

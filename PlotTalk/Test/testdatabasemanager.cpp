@@ -86,7 +86,7 @@ void TestDatabaseManager::NegTestGetTvShowJsonPathConstructor()
     );
 }
 
-void TestDatabaseManager::TestGetUserDefaultConstructor()
+void TestDatabaseManager::TestGetUser()
 {
     // Set up strings to compare against.
     QString username = "bsmith";
@@ -97,7 +97,7 @@ void TestDatabaseManager::TestGetUserDefaultConstructor()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    User& user = DatabaseManagerSingleton::Instance().getUser(username);
+    User &user = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getUser(username);
 
     QCOMPARE(user.username, username);
     QCOMPARE(user.firstName, expectedFirstName);
@@ -117,7 +117,7 @@ void TestDatabaseManager::TestGetUserByEmail()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    User &user = DatabaseManagerSingleton::Instance().getUserByEmail(email);
+    User &user = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getUserByEmail(email);
 
     QCOMPARE(user.username, expectedUsername);
     QCOMPARE(user.firstName, expectedFirstName);
@@ -137,6 +137,9 @@ void TestDatabaseManager::TestAddUser()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
+    qDebug() << "Removing user before attempting to add.";
+    DatabaseManagerSingleton::Instance().removeUser(username);
+
     User userBefore = User(username, expectedFirstName, expectedLastName, expectedEmail, expectedPasswordHash);
     DatabaseManagerSingleton::Instance().addUser(userBefore);
 
@@ -147,6 +150,9 @@ void TestDatabaseManager::TestAddUser()
     QCOMPARE(userAfter.lastName, expectedLastName);
     QCOMPARE(userAfter.email, expectedEmail);
     QCOMPARE(userAfter.passwordHash, expectedPasswordHash);
+
+    qDebug() << "Removing user after test.";
+    DatabaseManagerSingleton::Instance().removeUser(username);
 }
 
 void TestDatabaseManager::NegTestAddUser()
@@ -174,6 +180,9 @@ void TestDatabaseManager::NegTestAddUser()
         DatabaseManagerSingleton::Instance().addUser(user),
         AlreadyExists
     );
+
+    qDebug() << "Removing user after test.";
+    DatabaseManagerSingleton::Instance().removeUser(username);
 }
 
 void TestDatabaseManager::TestUserExists()
@@ -183,7 +192,7 @@ void TestDatabaseManager::TestUserExists()
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     // Validate that true is returned.
-    QVERIFY(DatabaseManagerSingleton::Instance().usernameExists(username));
+    QVERIFY(DatabaseManagerSingleton::Instance(":/json/Json/test.json").usernameExists(username));
 }
 
 void TestDatabaseManager::NegTestUserExists()
@@ -193,7 +202,7 @@ void TestDatabaseManager::NegTestUserExists()
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     // Validate that false is returned.
-    QVERIFY(! DatabaseManagerSingleton::Instance().usernameExists(username));
+    QVERIFY(! DatabaseManagerSingleton::Instance(":/json/Json/test.json").usernameExists(username));
 }
 
 void TestDatabaseManager::TestEmailExists()
@@ -203,7 +212,7 @@ void TestDatabaseManager::TestEmailExists()
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     // Validate that true is returned.
-    QVERIFY(DatabaseManagerSingleton::Instance().emailExists(email));
+    QVERIFY(DatabaseManagerSingleton::Instance(":/json/Json/test.json").emailExists(email));
 }
 
 void TestDatabaseManager::NegTestEmailExists()
@@ -213,42 +222,56 @@ void TestDatabaseManager::NegTestEmailExists()
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     // Validate that false is returned.
-    QVERIFY(! DatabaseManagerSingleton::Instance().emailExists(email));
+    QVERIFY(! DatabaseManagerSingleton::Instance(":/json/Json/test.json").emailExists(email));
 }
 
 void TestDatabaseManager::TestUpdateUser()
 {
     // Set up strings to compare against.
-    QString username = "bsmith";
-    QString expectedFirstName = "Barry";
-    QString expectedLastName = "Smithers";
-    QString expectedEmail = "bsmithers@gmail.com";
+    QString username = "tsmith";
+    QString expectedFirstName = "Temp";
+    QString expectedLastName = "Smith";
+    QString expectedEmail = "tsmith@gmail.com";
     QString expectedPasswordHash = "badpasswordhash3";
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    User user = DatabaseManagerSingleton::Instance().getUser("bsmith");
+    // Make sure temp user doesn't yet exist.
+    DatabaseManagerSingleton::Instance().removeUser(username);
 
-    user.firstName = expectedFirstName;
-    user.lastName = expectedLastName;
-    user.email = expectedEmail;
-    user.passwordHash = expectedPasswordHash;
+    // Add temp user to test with.
+    User user = User(username, expectedFirstName, expectedLastName, expectedEmail, expectedPasswordHash);
+    DatabaseManagerSingleton::Instance().addUser(user);
 
-    DatabaseManagerSingleton::Instance().updateUser(user);
-
-    QCOMPARE(user.username, username);
-    QCOMPARE(user.firstName, expectedFirstName);
-    QCOMPARE(user.lastName, expectedLastName);
-    QCOMPARE(user.email, expectedEmail);
-    QCOMPARE(user.passwordHash, expectedPasswordHash);
-
-    User user2 = DatabaseManagerSingleton::Instance().getUser("bsmith");
+    // Validate state of user.
+    User user2 = DatabaseManagerSingleton::Instance().getUser(username);
 
     QCOMPARE(user2.username, username);
     QCOMPARE(user2.firstName, expectedFirstName);
     QCOMPARE(user2.lastName, expectedLastName);
     QCOMPARE(user2.email, expectedEmail);
     QCOMPARE(user2.passwordHash, expectedPasswordHash);
+
+    // Modify user before updating it.
+    QString newFirstName = "Temp2";
+    QString newLastName = "Smith2";
+    QString newEmail = "tsmith2@gmail.com";
+    QString newPasswordHash = "badpasswordhash4";
+
+    User user3 = User(username, newFirstName, newLastName, newEmail, newPasswordHash);
+
+    DatabaseManagerSingleton::Instance().updateUser(user3);
+
+    User user4 = DatabaseManagerSingleton::Instance().getUser(username);
+
+    QCOMPARE(user4.username, username);
+    QCOMPARE(user4.firstName, newFirstName);
+    QCOMPARE(user4.lastName, newLastName);
+    QCOMPARE(user4.email, newEmail);
+    QCOMPARE(user4.passwordHash, newPasswordHash);
+
+    // Remove temp user when done.
+    DatabaseManagerSingleton::Instance().removeUser(username);
 }
 
 void TestDatabaseManager::NegUpdateUser()
@@ -269,15 +292,13 @@ void TestDatabaseManager::NegUpdateUser()
         DatabaseManagerSingleton::Instance().updateUser(user),
         NotFound
     );
-
-
 }
 
 void TestDatabaseManager::TestGetListOfAllTvShows()
 {
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    QList<QString> allTvShows = DatabaseManagerSingleton::Instance().getListOfAllTvShows();
+    QList<QString> allTvShows = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getListOfAllTvShows();
 
     QString tvShow0 = "Game of Thrones";
     QString tvShow1 = "Mr. Robot";
@@ -290,11 +311,11 @@ void TestDatabaseManager::TestGetListOfCachedTvShows()
 {
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    DatabaseManagerSingleton::Instance().emptyCache();
+    DatabaseManagerSingleton::Instance(":/json/Json/test.json").emptyCache();
 
-    TvShow tvShow = DatabaseManagerSingleton::Instance().getTvShow("Mr. Robot");
+    TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getTvShow("Mr. Robot");
 
-    QList<QString> cachedTvShows = DatabaseManagerSingleton::Instance().getListOfCachedTvShows();
+    QList<QString> cachedTvShows = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getListOfCachedTvShows();
 
     QString tvShow0 = "Mr. Robot";
 
@@ -373,4 +394,136 @@ void TestDatabaseManager::TestModifyTvShow()
 
     TvShow &tvShow3 = DatabaseManagerSingleton::Instance().getTvShow(name);
     QCOMPARE(tvShow3.getSeasons()[0].getEpisodes()[0].name, updatedEpisode2Name);
+}
+
+void TestDatabaseManager::TestGetAllUsers()
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    QList<QString> allUsers = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getListOfAllUsers();
+
+    QCOMPARE(allUsers.count(), 10);
+
+    // @todo, add more validation.
+}
+
+void TestDatabaseManager::TestGetAllCachedUsers()
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    QList<QString> allUsers = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getListOfCachedUsers();
+
+    QCOMPARE(allUsers.count(), 0);
+
+    User testUser = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getUser("admin");
+
+    allUsers = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getListOfCachedUsers();
+
+    // Cached users should now be one, now that one has been retrieved.
+    QCOMPARE(allUsers.count(), 1);
+
+    // @todo, add more validation.
+}
+
+void TestDatabaseManager::TestGetTvShowById()
+{
+    // Set up strings to compare against.
+    QString name = "Breaking Bad";
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShowById(1396);
+
+    QCOMPARE(tvShow.name, name);
+}
+
+void TestDatabaseManager::TestAddEpisodeReview()
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    QString userName = "testUser";
+    QString text = "This episode was amazing";
+    int rating = 98;
+    Review review = Review(userName, text, rating);
+    QString Uuid = review.postUuid.toString();
+
+    EpisodeIdentifier episodeIdentifider;
+    episodeIdentifider.tvShowId = 1399;
+    episodeIdentifider.seasonId = 3627;
+    episodeIdentifider.episodeId = 63087;
+
+    DatabaseManagerSingleton::Instance().addEpisodeReview(episodeIdentifider, review);
+
+    QString name = "Game of Thrones";
+    TvShow &tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
+
+    QList<Review> reviews = tvShow.getSeason(0).getEpisode(1).inspectReviews();
+
+    bool found = false;
+    foreach (const Review &thisReview, reviews)
+    {
+        if ( QString::compare(thisReview.postUuid.toString(), Uuid) == 0 )
+        {
+            found = true;
+            QCOMPARE(thisReview.username, userName);
+            QCOMPARE(thisReview.text, text);
+            QCOMPARE(thisReview.rating, rating);
+        }
+    }
+
+    QCOMPARE(found, true);
+}
+
+void TestDatabaseManager::TestAddEpisodeComment()
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    QString userName = "testUser";
+    QString text = "This episode was pretty cool";
+    Comment comment = Comment(userName, text);
+    QString Uuid = comment.postUuid.toString();
+
+    EpisodeIdentifier episodeIdentifider;
+    episodeIdentifider.tvShowId = 1399;
+    episodeIdentifider.seasonId = 3627;
+    episodeIdentifider.episodeId = 63087;
+
+    DatabaseManagerSingleton::Instance().addEpisodeComment(episodeIdentifider, comment);
+
+    QString name = "Game of Thrones";
+    TvShow &tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
+
+    QList<Comment> comments = tvShow.getSeason(0).getEpisode(1).getComments();
+
+    bool found = false;
+    foreach (const Comment &thisComment, comments)
+    {
+        if ( QString::compare(thisComment.postUuid.toString(), Uuid) == 0 )
+        {
+            found = true;
+            QCOMPARE(thisComment.username, userName);
+            QCOMPARE(thisComment.text, text);
+        }
+    }
+
+    QCOMPARE(found, true);
+}
+
+bool TestDatabaseManager::deleteTempJson()
+{
+    // Delete temporary json file for testing.
+    QString tempPath = QDir::tempPath();
+    tempPath.append("/testJson.json");
+    QString jsonPath = QDir::cleanPath(tempPath);
+
+    // Check if a file already exists at that location.
+    // If it doesn't, the one from the resources will be used.
+    QDir dir(jsonPath);
+    if(dir.exists())
+    {
+        QFile::setPermissions(jsonPath, QFile::WriteOther);
+        return dir.remove(jsonPath);
+    }
+
+    return true;
 }

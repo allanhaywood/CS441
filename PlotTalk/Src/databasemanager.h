@@ -18,13 +18,15 @@ public:
 
     // IConnection equivalents, method names are the same, but no need to provide a reference,
     // in addition, instead of return void, it returns a reference of the object.
-    TvShow& getTvShow(QString name);
+    TvShow &getTvShow(QString name);
+
+    TvShow &getTvShowById(int tvShowId);
 
     // @throws NotFound when user does not exist.
-    User& getUser(QString username);
+    User &getUser(QString username);
 
     // @throws NotFound when user does not exist.
-    User& getUserByEmail(QString email);
+    User &getUserByEmail(QString email);
 
     void addUser(User user);
 
@@ -39,11 +41,12 @@ public:
 
     QList<QString> getListOfAllTvShows();
 
-    QList<User> getAllUsers();
+    QList<QString> getListOfAllUsers();
 
     QList<QString> getListOfCachedTvShows();
 
-    QString getTvShowNameById(int tvShowId);
+    QList<QString> getListOfCachedUsers();
+
 
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);

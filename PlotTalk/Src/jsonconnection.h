@@ -38,6 +38,8 @@ public:
     // @throws NotFound when user is not found.
     QString getUserNameByEmail(QString email);
 
+    QString getTvShowNameById(int id);
+
     void addUser(User user);
 
     void removeUser(QString username);
@@ -47,6 +49,8 @@ public:
     bool emailExists(QString email);
 
     QList<QString> getListOfAllTvShows();
+
+    QList<QString> getListOfAllUsers();
 
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);

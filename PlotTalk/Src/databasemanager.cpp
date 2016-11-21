@@ -63,6 +63,11 @@ TvShow &DatabaseManager::getTvShow(QString name)
     return tvShowHash[name];
 }
 
+TvShow &DatabaseManager::getTvShowById(int tvShowId)
+{
+    return getTvShow(connection.getTvShowNameById(tvShowId));
+}
+
 /**
  * @brief DatabaseManager::getUser Returns the specified user.
  * @param username The username of the user to return.
@@ -72,8 +77,6 @@ TvShow &DatabaseManager::getTvShow(QString name)
  */
 User &DatabaseManager::getUser(QString username)
 {
-    // @todo Add caching so that it doesn't call getUser if it isn't needed.
-
     if ( userHash.contains(username) )
     {
         return userHash[username];
@@ -95,7 +98,6 @@ User &DatabaseManager::getUser(QString username)
  */
 User &DatabaseManager::getUserByEmail(QString email)
 {
-    // @todo Add caching so that it doesn't call getUser if it isn't needed.
     QString username = connection.getUserNameByEmail(email);
 
     return getUser(username);
@@ -182,9 +184,9 @@ QList<QString> DatabaseManager::getListOfAllTvShows()
  * @brief DatabaseManager::getListOfAllUsers Returns a list of all users recorded at the current connection.
  * @return List of user objects.
  */
-QList<User> DatabaseManager::getAllUsers()
+QList<QString> DatabaseManager::getListOfAllUsers()
 {
-    return userHash.values();
+    return connection.getListOfAllUsers();
 }
 
 /**
@@ -196,30 +198,24 @@ QList<QString> DatabaseManager::getListOfCachedTvShows()
     return tvShowHash.keys();
 }
 
-QString DatabaseManager::getTvShowNameById(int tvShowId)
+/**
+ * @brief DatabaseManager::getListOfCachedUsers Returns a list of all the locally cached users.
+ * @return List of user names.
+ */
+QList<QString> DatabaseManager::getListOfCachedUsers()
 {
-    foreach (TvShow tvShow, tvShowHash.values())
-    {
-        if (tvShow.showId == tvShowId)
-        {
-            return tvShow.name;
-        }
-    }
-
-    throw NotFound{};
+    return userHash.keys();
 }
 
 void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
-    QString tvShowName = getTvShowNameById(episodeIdentifier.episodeId);
-    tvShowHash[tvShowName].addEpisodeReview(episodeIdentifier, review);
+    getTvShowById(episodeIdentifier.tvShowId).addEpisodeReview(episodeIdentifier, review);
     connection.addEpisodeReview(episodeIdentifier, review);
 }
 
 void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
 {
-    QString tvShowName = getTvShowNameById(episodeIdentifier.episodeId);
-    tvShowHash[tvShowName].addEpisodeComment(episodeIdentifier, comment);
+    getTvShowById(episodeIdentifier.tvShowId).addEpisodeComment(episodeIdentifier, comment);
     connection.addEpisodeComment(episodeIdentifier, comment);
 }
 
