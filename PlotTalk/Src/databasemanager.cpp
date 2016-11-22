@@ -21,6 +21,7 @@
 #include "databasemanager.h"
 #include "jsonconnection.h"
 #include "plottalkexceptions.h"
+#include "common.h"
 
 #include <QDebug>
 
@@ -45,7 +46,7 @@ DatabaseManager::DatabaseManager(QString jsonPath) : connection(jsonPath)
  * @param name The name of the tvshow to fetch.
  * @return A reference to the TvShow object.
  */
-TvShow &DatabaseManager::getTvShow(QString name)
+const TvShow DatabaseManager::inspectTvShow(QString name)
 {
     // @todo Determine how to decide to use either json or mysql connection at runtime,
     // or at the very least, a single location to choose which one.
@@ -67,9 +68,9 @@ TvShow &DatabaseManager::getTvShow(QString name)
  * @param tvShowId The tvshow id to find.
  * @return A reference to the tvshow.
  */
-TvShow &DatabaseManager::getTvShowById(int tvShowId)
+const TvShow DatabaseManager::inspectTvShowById(int tvShowId)
 {
-    return getTvShow(connection.getTvShowNameById(tvShowId));
+    return inspectTvShow(connection.getTvShowNameById(tvShowId));
 }
 
 /**
@@ -79,7 +80,7 @@ TvShow &DatabaseManager::getTvShowById(int tvShowId)
  *
  * @throws NotFound if user is not found.
  */
-User &DatabaseManager::getUser(QString username)
+const User DatabaseManager::inspectUser(QString username)
 {
     if ( userHash.contains(username) )
     {
@@ -100,11 +101,11 @@ User &DatabaseManager::getUser(QString username)
  *
  * @throws NotFound if user is not found.
  */
-User &DatabaseManager::getUserByEmail(QString email)
+const User DatabaseManager::inspectUserByEmail(QString email)
 {
     QString username = connection.getUserNameByEmail(email);
 
-    return getUser(username);
+    return inspectUser(username);
 }
 
 /**
@@ -139,6 +140,7 @@ void DatabaseManager::removeUser(QString username)
  *
  * @throws NotFound if the specified user is not found.
  */
+/*
 void DatabaseManager::updateUser(User user)
 {
     if (! connection.usernameExists(user.username))
@@ -154,6 +156,7 @@ void DatabaseManager::updateUser(User user)
     connection.removeUser(user.username);
     connection.addUser(user);
 }
+*/
 
 /**
  * @brief DatabaseManager::usernameExists Checks if the specified user already exists.
@@ -211,6 +214,23 @@ QList<QString> DatabaseManager::getListOfCachedUsers()
     return userHash.keys();
 }
 
+
+QString DatabaseManager::getTvShowNameById(int showId)
+{
+    qDebug() << "Looking for show id:" << showId;
+
+    // Look in cache first.
+    foreach (const TvShow &tvShow, tvShowHash.values())
+    {
+        if ( tvShow.showId == showId )
+        {
+            return tvShow.name;
+        }
+    }
+
+    return connection.getTvShowNameById(showId);
+}
+
 /**
  * @brief DatabaseManager::addEpisodeReview Adds the specified review to the specified episode.
  * @param episodeIdentifier The specific episode to add the review to.
@@ -220,7 +240,8 @@ QList<QString> DatabaseManager::getListOfCachedUsers()
  */
 void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
-    getTvShowById(episodeIdentifier.tvShowId).addEpisodeReview(episodeIdentifier, review);
+    QString tvShowName = inspectTvShowById(episodeIdentifier.tvShowId).name;
+    tvShowHash[tvShowName].addEpisodeReview(episodeIdentifier, review);
     connection.addEpisodeReview(episodeIdentifier, review);
 }
 
@@ -231,7 +252,8 @@ void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Revi
  */
 void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
 {
-    getTvShowById(episodeIdentifier.tvShowId).addEpisodeComment(episodeIdentifier, comment);
+    QString tvShowName = inspectTvShowById(episodeIdentifier.tvShowId).name;
+    tvShowHash[tvShowName].addEpisodeComment(episodeIdentifier, comment);
     connection.addEpisodeComment(episodeIdentifier, comment);
 }
 

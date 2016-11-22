@@ -38,7 +38,7 @@ Season::Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode>
  *
  * NOTE: Any changes to episodes will not be reflected in the TvShow class.
  */
-const QVector<Episode> Season::inspectEpisodes()
+QVector<Episode> Season::inspectEpisodes()
 {
     return episodes.values().toVector();
 }
@@ -69,7 +69,7 @@ void Season::addEpisode(Episode episode)
  * @returns matching Episode
  * @throws NotFound exception if no match found
  */
-Episode &Season::getEpisode(QString name)
+const Episode &Season::getEpisode(QString name)
 {
     for (auto &episode : episodes)
     {
@@ -87,7 +87,7 @@ Episode &Season::getEpisode(QString name)
  * @param number The episodeNumber
  * @return A reference to an episode with the provided number.
  */
-Episode &Season::getEpisode(int number)
+const Episode &Season::getEpisode(int number)
 {
     for (auto &episode : episodes)
     {
@@ -107,4 +107,9 @@ Episode &Season::getEpisode(int number)
 Episode Season::inspectEpisode(int number)
 {
     return getEpisode(number);
+}
+
+Episode Season::inspectEpisode(QString name)
+{
+    return getEpisode(name);
 }

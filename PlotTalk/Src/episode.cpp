@@ -72,7 +72,7 @@ void Episode::addComment(Comment comment)
  * @brief Episode::inspectReviews Returns a read only list of reviews.
  * @return A read only list of reviews.
  */
-const QList<Review> Episode::inspectReviews()
+QList<Review> Episode::inspectReviews()
 {
     return reviews.values();
 }
@@ -90,7 +90,7 @@ const QList<Comment> &Episode::getComments()
  * @brief Episode::inspectComments Returns a read only list of comments.
  * @return A read only list of comments on this episode.
  */
-const QList<Comment> Episode::inspectComments()
+QList<Comment> Episode::inspectComments()
 {
     return getComments();
 }

@@ -109,7 +109,7 @@ bool AccountManager::checkEmailAndPassword(QString& email, QString& password, Us
 
     if(DatabaseManagerSingleton::Instance().emailExists(email))
         {
-            User hold=DatabaseManagerSingleton::Instance().getUserByEmail(email);
+            User hold=DatabaseManagerSingleton::Instance().inspectUserByEmail(email);
 
             if(hold.passwordHash==password)
             {

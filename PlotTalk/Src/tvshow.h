@@ -26,12 +26,10 @@ public:
     TvShow(int showId, QString name, QString tmdbLink, QString graphicLink);
     TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QHash<int, Season> seasons);
 
-    const QVector<Season> inspectSeasons();
-    QHash<int, Season> &getSeasons();
+    QVector<Season> inspectSeasons();
+    Season inspectSeason(int number);
 
     void addSeason(Season season);
-    Season &getSeason(int number);
-    Season inspectSeason(int number);
 
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
@@ -41,6 +39,9 @@ public:
 
 private:
     QHash<int, Season> seasons;
+
+    const QHash<int, Season> &getSeasons();
+    const Season &getSeason(int number);
 };
 
 #endif

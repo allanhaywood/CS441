@@ -26,16 +26,18 @@ public:
 
     Episode(int episodeId, int episodeNumber, QString name, QString summary, QHash<QString, Review> reviews, QList<Comment> comments);
 
+    QList<Review> inspectReviews();
+    QList<Comment> inspectComments();
+
     void addReview(Review review);
     void addComment(Comment comment);
 
-    const QList<Review> inspectReviews();
-    const QList<Comment> &getComments();
-    const QList<Comment> inspectComments();
 
 private:
     QHash<QString, Review> reviews;
     QList<Comment> comments;
+
+    const QList<Comment> &getComments();
 };
 
 #endif // EPISODE_H

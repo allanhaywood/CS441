@@ -230,7 +230,7 @@ QJsonValue JsonConnection::episodeToJsonValue(Episode episode)
     jsonObject.insert("name", QJsonValue(episode.name));
     jsonObject.insert("summary", QJsonValue(episode.summary));
     jsonObject.insert("reviews", reviewsToJsonArray(episode.inspectReviews()));
-    jsonObject.insert("comments", commentsToJsonArray(episode.getComments()));
+    jsonObject.insert("comments", commentsToJsonArray(episode.inspectComments()));
 
     return QJsonValue(jsonObject);
 }
