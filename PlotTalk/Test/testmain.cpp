@@ -12,6 +12,7 @@
 #include "testaccountmanager.h"
 #include "testuser.h"
 #include "testseason.h"
+#include "testexceptions.h"
 
 int main(int argc, char** argv)
 {
@@ -25,6 +26,7 @@ int main(int argc, char** argv)
     testAccountManager testActMgr;
     TestUser testUser;
 	testSeason testSeason;
+    testExceptions testExceptions;
 
     // Add references to each test class variable here, seperating with ||
     int result = QTest::qExec(&testTvShow, argc, argv) ||
@@ -33,7 +35,8 @@ int main(int argc, char** argv)
                  QTest::qExec(&testJsonConnection, argc, argv) ||
                  QTest::qExec(&testDatabaseManager, argc, argv) ||
                  QTest::qExec(&testActMgr,argc,argv) ||
-                 QTest::qExec(&testSeason, argc, argv);
+                 QTest::qExec(&testSeason, argc, argv) ||
+                 QTest::qExec(&testExceptions, argc, argv);
 
     //make the overall result of the tests more obvious
     if (result == 0) {

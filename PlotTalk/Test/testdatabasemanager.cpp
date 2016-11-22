@@ -340,7 +340,7 @@ void TestDatabaseManager::TestModifyTvShow()
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
     QCOMPARE(tvShow.graphicLink.toLower(), expectedGraphicLink.toLower());
 
-    QMap<int, Season> &seasons = tvShow.getSeasons();
+    QHash<int, Season> &seasons = tvShow.getSeasons();
 
     QCOMPARE(seasons.count(), 3);
 
@@ -352,7 +352,7 @@ void TestDatabaseManager::TestModifyTvShow()
     QCOMPARE(season.seasonId, 77843);
     QCOMPARE(season.seasonNumber, 0);
 
-    QMap<int, Episode> &episodes = season.getEpisodes();
+    QHash<int, Episode> &episodes = season.getEpisodes();
 
     QCOMPARE(episodes.count(), 3);
 
@@ -380,11 +380,11 @@ void TestDatabaseManager::TestModifyTvShow()
     QCOMPARE(tvShow2.name, updatedTvShowName);
     QCOMPARE(tvShow.getSeasons()[66343].getEpisodes()[1203464].name, updatedEpisodeName);
 
-    QMap<int, Season> &seasons2 = tvShow2.getSeasons();
+    QHash<int, Season> &seasons2 = tvShow2.getSeasons();
 
     Season &season2 = seasons2[0];
 
-    QMap<int, Episode> &episodes2 = season2.getEpisodes();
+    QHash<int, Episode> &episodes2 = season2.getEpisodes();
 
     Episode &episode2 = episodes2[0];
 

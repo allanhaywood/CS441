@@ -110,7 +110,7 @@ TvShow JsonConnection::getTvShow(QString name)
     if (! found)
     {
         qDebug() << "No match found for:" << name;
-        throw NotFound{};
+        throw NotFound("Unable to find show: " + name);
     }
 
     qDebug() << "JsonSeasons:" << jsonSeasons;
@@ -131,7 +131,7 @@ void JsonConnection::addTvShow(TvShow tvShow)
     try
     {
         TvShow testExistTvShow = getTvShow(tvShow.name);
-        throw AlreadyExists{};
+        throw AlreadyExists("Tv show already exists:" + tvShow.name);
     }
     catch (NotFound)
     {
@@ -310,9 +310,9 @@ QJsonValue JsonConnection::commentToJsonValue(Comment comment)
  * @param tvShowName The name of the tvshow.
  * @return A QVector of all the seasons.
  */
-QMap<int, Season> JsonConnection::getSeasons(QJsonArray jsonSeasons)
+QHash<int, Season> JsonConnection::getSeasons(QJsonArray jsonSeasons)
 {
-    QMap<int, Season> seasons = QMap<int, Season>();
+    QHash<int, Season> seasons = QHash<int, Season>();
 
     Season tempSeason;
     foreach (const QJsonValue &value, jsonSeasons)
@@ -348,9 +348,9 @@ Season JsonConnection::getSeason(QJsonObject jsonSeason)
  * @param jsonEpisodes The json that represents the episodes to convert.
  * @return A vector of episodes.
  */
-QMap<int, Episode> JsonConnection::getEpisodes(QJsonArray jsonEpisodes)
+QHash<int, Episode> JsonConnection::getEpisodes(QJsonArray jsonEpisodes)
 {
-    QMap<int, Episode> episodes = QMap<int, Episode>();
+    QHash<int, Episode> episodes = QHash<int, Episode>();
 
     Episode tempEpisode;
     foreach (const QJsonValue &value, jsonEpisodes)
@@ -410,13 +410,13 @@ QList<Comment> JsonConnection::getComments(QJsonValue jsonComments)
 }
 
 /**
- * @brief JsonConnection::getReviews Converts provided json reviews into a qmap of reviews.
+ * @brief JsonConnection::getReviews Converts provided json reviews into a qhash of reviews.
  * @param jsonReviews The json reviews to convert.
- * @return A QMap of reviews represented by the json reviews, the username is used as the key.
+ * @return A QHash of reviews represented by the json reviews, the username is used as the key.
  */
-QMap<QString, Review> JsonConnection::getReviews(QJsonValue jsonReviews)
+QHash<QString, Review> JsonConnection::getReviews(QJsonValue jsonReviews)
 {
-    QMap<QString, Review> reviews = QMap<QString, Review>();
+    QHash<QString, Review> reviews = QHash<QString, Review>();
 
     Review review;
     QJsonObject jsonObject;
@@ -481,7 +481,7 @@ User JsonConnection::getUser(QString username)
     if (! found)
     {
         qDebug() << "No match found for:" << username;
-        throw NotFound{};
+        throw NotFound("Unable to find user " + username + " in JSON");
     }
 
     // Use the information found to construct a user of the requested User.
@@ -521,7 +521,7 @@ QString JsonConnection::getUserNameByEmail(QString email)
     if (! found)
     {
         qDebug() << "No match found for:" << email;
-        throw NotFound{};
+        throw NotFound("Unable to find user with email " + email + " in JSON");
     }
 
     return jsonUsername;
@@ -559,7 +559,7 @@ QString JsonConnection::getTvShowNameById(int id)
     if (! found)
     {
         qDebug() << "No match found for:" << id;
-        throw NotFound{};
+        throw NotFound("No match found for:" + id);
     }
 
     return jsonName;
@@ -577,7 +577,7 @@ void JsonConnection::addUser(User user)
     try
     {
         User testExistUser = getUser(user.username);
-        throw AlreadyExists{};
+        throw AlreadyExists("Unable to add user " + user.username + "; username already exists");
     }
     catch (NotFound)
     {
@@ -770,7 +770,7 @@ void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Revie
 
     if ( ! found )
     {
-        throw NotFound{};
+        throw NotFound("Episode not found:" + episodeIdentifier.episodeId);
     }
 
     tvShow.addEpisodeReview(episodeIdentifier, review);
@@ -811,7 +811,7 @@ void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comm
 
     if ( ! found )
     {
-        throw NotFound{};
+        throw NotFound("Episode not found:" + episodeIdentifier.episodeId);
     }
 
     tvShow.addEpisodeComment(episodeIdentifier, comment);
@@ -847,14 +847,14 @@ void JsonConnection::loadJson()
         if(jerror.error != QJsonParseError::NoError)
         {
             qDebug() << "Error parsing json!";
-            throw InvalidJsonFormat{};
+            throw InvalidJsonFormat("Error parsing JSON");
         }
     }
 
     if(jsonDocument.isNull())
     {
         qDebug() << "Invalid Json, halting.";
-        throw InvalidJsonFormat{};
+        throw InvalidJsonFormat("Error parsing JSON; null document");
     }
 
     QJsonObject jsonObject = jsonDocument.object();
@@ -876,7 +876,7 @@ void JsonConnection::saveJson()
     if(jsonDocument.isNull())
     {
         qDebug() << "Invalid Json, halting.";
-        throw InvalidJsonFormat{};
+        throw InvalidJsonFormat("Error parsing JSON; null document");
     }
 
     file.setFileName(pathToJson);
@@ -886,7 +886,7 @@ void JsonConnection::saveJson()
     {
         qDebug() << "Could not open file for readwrite";
         qDebug() << file.errorString();
-        throw FileIOError{};
+        throw FileIOError("Error opening JSON file");
     }
     else
     {

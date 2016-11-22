@@ -7,59 +7,74 @@
 #define PLOTTALKEXCEPTIONS_H
 
 #include <QException>
+#include<QString>
 
-class AlreadyExists : public QException
+class PlotTalkException : public QException {
+public:
+    QString message;
+    PlotTalkException(QString inMessage) {message = inMessage;}
+};
+
+class AlreadyExists : public PlotTalkException
 {
 public:
+    using PlotTalkException::PlotTalkException;
     void raise() const { throw *this; }
     AlreadyExists *clone() const { return new AlreadyExists(*this); }
 };
 
-class FileIOError : public QException
+class FileIOError : public PlotTalkException
 {
 public:
+    using PlotTalkException::PlotTalkException;
     void raise() const { throw *this; }
     FileIOError *clone() const { return new FileIOError(*this); }
 };
 
-class InvalidEmail : public QException
+class InvalidEmail : public PlotTalkException
 {
 public:
+    using PlotTalkException::PlotTalkException;
     void raise() const { throw *this; }
     InvalidEmail *clone() const { return new InvalidEmail(*this); }
 };
 
-class InvalidJsonFormat : public QException
+class InvalidJsonFormat : public PlotTalkException
 {
 public:
+    using PlotTalkException::PlotTalkException;
     void raise() const { throw *this; }
     InvalidJsonFormat *clone() const { return new InvalidJsonFormat(*this); }
 };
 
-class InvalidPassword : public QException
+class InvalidPassword : public PlotTalkException
 {
 public:
+    using PlotTalkException::PlotTalkException;
     void raise() const { throw *this; }
     InvalidPassword *clone() const { return new InvalidPassword(*this); }
 };
 
-class NotFound : public QException
+class NotFound : public PlotTalkException
 {
 public:
+    using PlotTalkException::PlotTalkException;
     void raise() const { throw *this; }
     NotFound *clone() const { return new NotFound(*this); }
 };
 
-class NotImplemented : public QException
+class NotImplemented : public PlotTalkException
 {
 public:
+    using PlotTalkException::PlotTalkException;
     void raise() const { throw *this; }
     NotImplemented *clone() const { return new NotImplemented(*this); }
 };
 
-class Unexpected : public QException
+class Unexpected : public PlotTalkException
 {
 public:
+    using PlotTalkException::PlotTalkException;
     void raise() const { throw *this; }
     Unexpected *clone() const { return new Unexpected(*this); }
 };
