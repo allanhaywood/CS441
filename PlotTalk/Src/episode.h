@@ -4,15 +4,18 @@
  */
 #ifndef EPISODE_H
 #define EPISODE_H
+#include<review.h>
+#include<comment.h>
 
 #include<QString>
 #include<QVector>
-#include<review.h>
-#include<comment.h>
+#include<QHash>
 
 class Episode
 {
 public:
+    friend class TvShow;
+    friend class Season;
     int episodeId;
     int episodeNumber;
     QString name;
@@ -21,19 +24,18 @@ public:
     Episode();
     Episode(int episodeId, int episodeNumber, QString name, QString summary);
 
-    // Adding reactions later.
-    //Episode(int episodeId, QString name, QVector<Review> reviews, QVector<Comment> comments);
+    Episode(int episodeId, int episodeNumber, QString name, QString summary, QHash<QString, Review> reviews, QList<Comment> comments);
 
-    //QVector<Review> getReviews();
-    //QVector<Review> getComments();
+    void addReview(Review review);
+    void addComment(Comment comment);
 
-    //void addReview();
-    //QVector<Review> getComments();
-
+    const QList<Review> inspectReviews();
+    const QList<Comment> &getComments();
+    const QList<Comment> inspectComments();
 
 private:
-    //QVector<Review> reviews;
-    //QVector<Comment> comments;
+    QHash<QString, Review> reviews;
+    QList<Comment> comments;
 };
 
 #endif // EPISODE_H

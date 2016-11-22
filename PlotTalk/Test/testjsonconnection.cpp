@@ -2,10 +2,12 @@
  *
  * @author Allan Haywood
  */
-#include <QtTest/QtTest>
-#include <QDir>
 #include "plottalkexceptions.h"
 #include "testjsonconnection.h"
+#include "common.h"
+
+#include <QtTest/QtTest>
+#include <QDir>
 
 void TestJsonConnection::TestGetTvShow1()
 {
@@ -25,24 +27,51 @@ void TestJsonConnection::TestGetTvShow1()
     QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
 
     QVector<Season> seasons = tvShow.inspectSeasons();
+    QCOMPARE(seasons.count(), 7);
 
+    Season season = tvShow.inspectSeason(0);
     QString expectedSeasonName = "Season 0";
 
-    QCOMPARE(seasons.count(), 7);
-    QCOMPARE(seasons[0].seasonId, 3627);
-    QCOMPARE(seasons[0].seasonNumber, 0);
-    QCOMPARE(seasons[0].name, expectedSeasonName);
+    QCOMPARE(season.seasonId, 3627);
+    QCOMPARE(season.seasonNumber, 0);
+    QCOMPARE(season.name, expectedSeasonName);
 
-    QVector<Episode> episodes = seasons[0].inspectEpisodes();
+    QVector<Episode> episodes = season.inspectEpisodes();
+    QCOMPARE(episodes.count(), 11);
+
+    Episode episode = season.inspectEpisode(1);
 
     QString expectedEpisodeName = "Inside Game of Thrones";
     QString expectedEpisodeSummary = "A short look into the film-making process for the production Game of Thrones";
+    QCOMPARE(episode.episodeId, 63087);
+    QCOMPARE(episode.episodeNumber, 1);
+    QCOMPARE(episode.name, expectedEpisodeName);
+    QCOMPARE(episode.summary, expectedEpisodeSummary);
 
-    QCOMPARE(episodes.count(), 11);
-    QCOMPARE(episodes[0].episodeId, 63087);
-    QCOMPARE(episodes[0].episodeNumber, 1);
-    QCOMPARE(episodes[0].name, expectedEpisodeName);
-    QCOMPARE(episodes[0].summary, expectedEpisodeSummary);
+    QList<Review> reviews = episode.inspectReviews();
+    QCOMPARE(reviews.count(), 1);
+
+    QString expectedDateTimePosted = "1997-07-16T19:20:30.45+00:00";
+    QUuid expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EE}");
+    QString expectedText = "It is amazing how this show is made.";
+    QString expectedUsername = "plottalkadmin";
+
+    QCOMPARE(reviews[0].dateTimePosted, expectedDateTimePosted);
+    QCOMPARE(reviews[0].postUuid, expectedPostUuid);
+    QCOMPARE(reviews[0].rating, 5);
+    QCOMPARE(reviews[0].text, expectedText);
+    QCOMPARE(reviews[0].username, expectedUsername);
+
+    QList<Comment> comments = episode.inspectComments();
+    QVERIFY(comments.count() == 1);
+
+    expectedDateTimePosted = "1997-07-16T19:20:30.46+00:00";
+    expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EF}");
+
+    QCOMPARE(comments[0].dateTimePosted, expectedDateTimePosted);
+    QCOMPARE(comments[0].postUuid, expectedPostUuid);
+    QCOMPARE(comments[0].text, expectedText);
+    QCOMPARE(comments[0].username, expectedUsername);
 }
 
 void TestJsonConnection::TestGetTvShow2()
@@ -62,25 +91,28 @@ void TestJsonConnection::TestGetTvShow2()
     QCOMPARE(tvShow.tmdbLink, expectedTmdbLink);
     QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
 
-    QVector<Season> seasons = tvShow.inspectSeasons();
+    QHash<int, Season> &seasons = tvShow.getSeasons();
+    QCOMPARE(seasons.count(), 3);
 
+    Season &season = tvShow.getSeason(0);
     QString expectedSeasonName = "season_0.0";
 
-    QCOMPARE(seasons.count(), 3);
-    QCOMPARE(seasons[0].seasonId, 77843);
-    QCOMPARE(seasons[0].seasonNumber, 0);
-    QCOMPARE(seasons[0].name, expectedSeasonName);
+    QCOMPARE(season.seasonId, 77843);
+    QCOMPARE(season.seasonNumber, 0);
+    QCOMPARE(season.name, expectedSeasonName);
 
-    QVector<Episode> episodes = seasons[0].inspectEpisodes();
+    QHash<int, Episode> &episodes = season.getEpisodes();
+    QCOMPARE(episodes.count(), 3);
+
+    Episode &episode = season.getEpisode(2);
 
     QString expectedEpisodeName = "Hacking Robot 101";
     QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";
 
-    QCOMPARE(episodes.count(), 3);
-    QCOMPARE(episodes[1].episodeId, 1203464);
-    QCOMPARE(episodes[1].episodeNumber, 2);
-    QCOMPARE(episodes[1].name, expectedEpisodeName);
-    QCOMPARE(episodes[1].summary, expectedEpisodeSummary);
+    QCOMPARE(episode.episodeId, 1203464);
+    QCOMPARE(episode.episodeNumber, 2);
+    QCOMPARE(episode.name, expectedEpisodeName);
+    QCOMPARE(episode.summary, expectedEpisodeSummary);
 }
 
 void TestJsonConnection::TestGetUser()
@@ -145,17 +177,12 @@ void TestJsonConnection::TestAddUser()
     QString email = "nuser@gmail.com";
     QString passwordHash = "newuser123";
 
-    // Get json from resources, but it isn't writeable so save to a different location.
-    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
-
-    // Create a test json file
-    QString currentPath = QDir::currentPath();
-    currentPath.append("/testJson.json");
-    QString jsonPath = QDir::cleanPath(currentPath);
-
-    jsonConnection.setPathToJson(jsonPath);
+    JsonConnection jsonConnection = JsonConnection();
 
     User user = User(username, firstName, lastName, email, passwordHash);
+
+    // Remove user if it already exists.
+    jsonConnection.removeUser(username);
 
     jsonConnection.addUser(user);
 
@@ -167,6 +194,9 @@ void TestJsonConnection::TestAddUser()
     QCOMPARE(user.email, email);
     QCOMPARE(user.passwordHash, passwordHash);
     QCOMPARE(user.isAdmin(), false);
+
+    // Remove user when done.
+    jsonConnection.removeUser(username);
 }
 
 void TestJsonConnection::TestAddAdminUser()
@@ -178,17 +208,12 @@ void TestJsonConnection::TestAddAdminUser()
     QString email = "nuser@gmail.com";
     QString passwordHash = "newuser123";
 
-    // Get json from resources, but it isn't writeable so save to a different location.
-    JsonConnection jsonConnection = JsonConnection(":/json/Json/test.json");
-
-    // Create a test json file
-    QString currentPath = QDir::currentPath();
-    currentPath.append("/testJson.json");
-    QString jsonPath = QDir::cleanPath(currentPath);
-
-    jsonConnection.setPathToJson(jsonPath);
+    JsonConnection jsonConnection = JsonConnection();
 
     User user = User(username, firstName, lastName, email, passwordHash, true);
+
+    // Remove user if it already exists.
+    jsonConnection.removeUser(username);
 
     jsonConnection.addUser(user);
 
@@ -200,6 +225,9 @@ void TestJsonConnection::TestAddAdminUser()
     QCOMPARE(user.email, email);
     QCOMPARE(user.passwordHash, passwordHash);
     QCOMPARE(user.isAdmin(), true);
+
+    // Remove user when done.
+    jsonConnection.removeUser(username);
 }
 
 void TestJsonConnection::NegTestAddUser()

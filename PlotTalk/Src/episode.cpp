@@ -13,7 +13,11 @@ Episode::Episode()
     episodeNumber = 0;
     name = "";
     summary = "";
+    reviews = QHash<QString, Review>();
+    comments = QList<Comment>();
 }
+
+/**
 
 /**
  * @brief Episode::Episode Creates an episode with the provided episodeId and name.
@@ -21,11 +25,72 @@ Episode::Episode()
  * @param episodeNumber The episode number used by the movie database.
  * @param name The name as used by the movie database.
  * @param summary The summary for this episode as provided by movie database.
+ * @param reviews A qhash of reviews, with the username as the key.
+ * @param comments A vector of comments.
  */
-Episode::Episode(int episodeId, int episodeNumber, QString name, QString summary)
+Episode::Episode(int episodeId, int episodeNumber, QString name, QString summary, QHash<QString, Review> reviews, QList<Comment> comments)
 {
     this->episodeId = episodeId;
     this->episodeNumber = episodeNumber;
     this->name = name;
     this->summary = summary;
+    this->reviews = reviews;
+    this->comments = comments;
+}
+
+/**
+ * @brief Episode::addReview Adds the provided review to this episode.
+ * @param review The review to add.
+ *
+ * If a review is already posted by this user, it will be updated with this review.
+ * The original UUID will be kept, to keep in sync with the backend.
+ */
+void Episode::addReview(Review review)
+{
+    // Since there can be only a single review per user, this allows an existing
+    // review to be overwritten, but the same UUID is kept, so the backend won't end
+    // up with multiple reviews per user (as the UUID is a primary key)
+    // Basically it treats it like a review edit.
+    if ( reviews.contains(review.username) )
+    {
+        review.postUuid = reviews[review.username].postUuid;
+    }
+
+    reviews[review.username] = review;
+}
+
+/**
+ * @brief Episode::addComment Adds the provided comment to add to this episode.
+ * @param comment The comment to add.
+ */
+void Episode::addComment(Comment comment)
+{
+    comments.append(comment);
+}
+
+/**
+ * @brief Episode::inspectReviews Returns a read only list of reviews.
+ * @return A read only list of reviews.
+ */
+const QList<Review> Episode::inspectReviews()
+{
+    return reviews.values();
+}
+
+/**
+ * @brief Episode::getComments Returns a reference to the comments.
+ * @return A reference to the comments for this episode.
+ */
+const QList<Comment> &Episode::getComments()
+{
+    return comments;
+}
+
+/**
+ * @brief Episode::inspectComments Returns a read only list of comments.
+ * @return A read only list of comments on this episode.
+ */
+const QList<Comment> Episode::inspectComments()
+{
+    return getComments();
 }

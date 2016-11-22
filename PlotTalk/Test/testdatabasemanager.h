@@ -15,7 +15,7 @@ private slots:
     void TestGetTvShowDefaultConstructor();
     void TestGetTvShowJsonPathConstructor();
     void NegTestGetTvShowJsonPathConstructor();
-    void TestGetUserDefaultConstructor();
+    void TestGetUser();
     void TestGetUserByEmail();
     void TestAddUser();
     void NegTestAddUser();
@@ -27,6 +27,15 @@ private slots:
     void NegUpdateUser();
     void TestGetListOfAllTvShows();
     void TestGetListOfCachedTvShows();
+    void TestModifyTvShow();
+    void TestGetAllUsers();
+    void TestGetAllCachedUsers();
+    void TestGetTvShowById();
+    void TestAddEpisodeReview();
+    void TestAddEpisodeComment();
+
+private:
+    bool deleteTempJson();
 };
 
 #endif // TESTDATABASEMANAGER_H

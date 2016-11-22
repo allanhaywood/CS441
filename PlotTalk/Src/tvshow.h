@@ -5,6 +5,9 @@
 #ifndef TVSHOW_H
 #define TVSHOW_H
 #include "season.h"
+#include "review.h"
+#include "comment.h"
+#include "common.h"
 
 #include <QString>
 #include <QVector>
@@ -21,15 +24,23 @@ public:
     TvShow();
     TvShow(QString name, QString tmdbLink, QString graphicLink);
     TvShow(int showId, QString name, QString tmdbLink, QString graphicLink);
-    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QVector<Season> seasons);
+    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QHash<int, Season> seasons);
 
-    const QVector<Season>& inspectSeasons();
+    const QVector<Season> inspectSeasons();
+    QHash<int, Season> &getSeasons();
+
     void addSeason(Season season);
-    //void removeSeason(int seasonId);
-    Season getSeason(int number);
+    Season &getSeason(int number);
+    Season inspectSeason(int number);
+
+    void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
+    void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
+
+    // Not implementing replies yet.
+    //void addReactionReply(EpisodeIdentifier episodeIdentifier, QUuid reactionUuid, Reply reply);
 
 private:
-    QVector<Season> seasons;
+    QHash<int, Season> seasons;
 };
 
 #endif

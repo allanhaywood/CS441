@@ -39,7 +39,7 @@ AccountManager::~AccountManager()//destructor
 
 bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
 {
-   User thisUser(handle, first, last, Email, password);//add Password Hash when possible
+   User thisUser = User(handle, first, last, Email, password);//add Password Hash when possible
    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
    DatabaseManagerSingleton::Instance().addUser(thisUser);
    thisGuy=thisUser;
@@ -71,13 +71,14 @@ selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, 
     QValidator *validEmail=new QRegularExpressionValidator(checkEmail, 0);
     QValidator *validPwd = new QRegularExpressionValidator(checkPassword,0);
 
-/*
+    /*
 
-Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case
-letter At least 1 Capital letter At least 1 digit At least 1 special character Length should
-be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
+    Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case
+    letter At least 1 Capital letter At least 1 digit At least 1 special character Length should
+    be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
 
-*/
+    */
+
     int num=0;
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 

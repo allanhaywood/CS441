@@ -5,12 +5,13 @@
 
 #ifndef JSONCONNECTION_H
 #define JSONCONNECTION_H
-#include <QString>
-#include <QJsonObject>
-
 #include "iconnection.h"
 #include "tvshow.h"
 #include "user.h"
+
+#include <QString>
+#include <QJsonObject>
+#include <QJsonValue>
 
 class JsonConnection : public IConnection
 {
@@ -28,13 +29,16 @@ public:
     // @throws NotFound when TvShow is not found.
     TvShow getTvShow(QString name);
 
-    //void addTvShow(TvShow tvShow);
+    // @throws AlreadyExists when TvShow already exists.
+    void addTvShow(TvShow tvShow);
 
     // @throws NotFound when user is not found.
     User getUser(QString username);
 
     // @throws NotFound when user is not found.
     QString getUserNameByEmail(QString email);
+
+    QString getTvShowNameById(int id);
 
     void addUser(User user);
 
@@ -45,6 +49,11 @@ public:
     bool emailExists(QString email);
 
     QList<QString> getListOfAllTvShows();
+
+    QList<QString> getListOfAllUsers();
+
+    void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
+    void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
 
     // Normally the loadJson and saveJson wouldn't be public, but they have been made public,
     // for easy access by QTest. TODO: Investigate alternative access. ex. Via Friendly classes.
@@ -59,10 +68,28 @@ private:
     QString pathToJson;
 
     QJsonArray getTopLevelJsonArray(QString jsonArrayName);
-    QVector<Season> getSeasons(QJsonArray jsonSeasons);
+    QHash<int, Season> getSeasons(QJsonArray jsonSeasons);
     Season getSeason(QJsonObject jsonSeason);
-    QVector<Episode> getEpisodes(QJsonArray jsonEpisodes);
+    QHash<int, Episode> getEpisodes(QJsonArray jsonEpisodes);
     Episode getEpisode(QJsonObject jsonEpisode);
+    QHash<QString, Review> getReviews(QJsonValue jsonReviews);
+    QList<Comment> getComments(QJsonValue jsonComments);
+
+    QJsonObject tvShowToJsonObject(TvShow tvShow);
+
+    QJsonArray seasonsToJsonArray(QVector<Season> seasons);
+    QJsonValue seasonToJsonValue(Season season);
+
+    QJsonArray episodesToJsonArray(QVector<Episode> episodes);
+    QJsonValue episodeToJsonValue(Episode episode);
+
+    QJsonArray reviewsToJsonArray(QList<Review> reviews);
+    QJsonValue reviewToJsonValue(Review review);
+
+    QJsonArray commentsToJsonArray(QList<Comment> comments);
+    QJsonValue commentToJsonValue(Comment comment);
+
+    QJsonObject userToJsonObject(User user);
 };
 
 #endif // JSONCONNECTION_H

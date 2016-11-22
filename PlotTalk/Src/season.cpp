@@ -14,7 +14,7 @@ Season::Season()
     seasonId = 0;
     seasonNumber = 0;
     name = "";
-    episodes = QVector<Episode>();
+    episodes = QHash<int, Episode>();
 }
 
 /**
@@ -22,9 +22,9 @@ Season::Season()
  * @param seasonId The season ID as specified by the movie database.
  * @param seasonNumber The season number as specified by the movie database.
  * @param name The name of the season as specified by the movie database.
- * @param episodes A vector of episodes to add to the season.
+ * @param episodes A map of episodes to add to the season.
  */
-Season::Season(int seasonId, int seasonNumber, QString name, QVector<Episode> episodes)
+Season::Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode> episodes)
 {
     this->seasonId = seasonId;
     this->seasonNumber = seasonNumber;
@@ -38,7 +38,18 @@ Season::Season(int seasonId, int seasonNumber, QString name, QVector<Episode> ep
  *
  * NOTE: Any changes to episodes will not be reflected in the TvShow class.
  */
-const QVector<Episode>& Season::inspectEpisodes()
+const QVector<Episode> Season::inspectEpisodes()
+{
+    return episodes.values().toVector();
+}
+
+/**
+ * @brief Season::getEpisodes Returns a reference to the map of episodes.
+ * @return A reference to the map of episodes.
+ *
+ * @note The episodeId is the key.
+ */
+QHash<int, Episode> &Season::getEpisodes()
 {
     return episodes;
 }
@@ -49,7 +60,7 @@ const QVector<Episode>& Season::inspectEpisodes()
  */
 void Season::addEpisode(Episode episode)
 {
-    episodes.append(episode);
+    episodes.insert(episode.episodeId, episode);
 }
 
 /**
@@ -58,12 +69,42 @@ void Season::addEpisode(Episode episode)
  * @returns matching Episode
  * @throws NotFound exception if no match found
  */
-Episode Season::getEpisode(QString name)
+Episode &Season::getEpisode(QString name)
 {
-    for(int i = 0; i < episodes.size(); i++) {
-        if (episodes[i].name == name) {
-            return episodes[i];
+    for (auto &episode : episodes)
+    {
+        if (episode.name == name)
+        {
+            return episode;
+        }
+    }
+
+    throw NotFound("Episode not found:" + name);
+}
+
+/**
+ * @brief Season::getEpisode Returns a reference to the episode with the indicated number.
+ * @param number The episodeNumber
+ * @return A reference to an episode with the provided number.
+ */
+Episode &Season::getEpisode(int number)
+{
+    for (auto &episode : episodes)
+    {
+        if (episode.episodeNumber == number)
+        {
+            return episode;
         }
     }
     throw NotFound("Unable to retrieve episode " + name + " from season number " + QString::number(seasonNumber));
+}
+
+/**
+ * @brief Season::inspectEpisode Returns a copy of the episode with the specified number.
+ * @param number The episode number.
+ * @return A copy of the episode with the specified number.
+ */
+Episode Season::inspectEpisode(int number)
+{
+    return getEpisode(number);
 }

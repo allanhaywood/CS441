@@ -12,19 +12,29 @@
 class Season
 {
 public:
+    friend class TvShow;
     int seasonId;
     int seasonNumber;
     QString name;
 
     Season();
-    Season(int seasonId, int seasonNumber, QString name, QVector<Episode> episodes);
+    Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode> episodes);
 
-    const QVector<Episode>& inspectEpisodes();
+    const QVector<Episode> inspectEpisodes();
+    QHash<int, Episode> &getEpisodes();
+
     void addEpisode(Episode episode);
-    Episode getEpisode(QString name);
+
+    // @throws NotFound
+    Episode &getEpisode(QString name);
+
+    // @throws NotFound
+    Episode &getEpisode(int number);
+
+    Episode inspectEpisode(int number);
 
 private:
-    QVector<Episode> episodes;
+    QHash<int, Episode> episodes;
 };
 
 #endif // SEASON_H
