@@ -4,14 +4,18 @@
  */
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
-#include <QHash>
-#include <QList>
-
 #include "singleton.h"
 #include "jsonconnection.h"
 
-class DatabaseManager
+#include <QObject>
+#include <QHash>
+#include <QList>
+
+
+class DatabaseManager : public QObject
 {
+    Q_OBJECT
+
 public:
     DatabaseManager();
     DatabaseManager(QString jsonPath);
@@ -61,6 +65,9 @@ public:
 
     // Used for testing only.
     void emptyCache();
+
+signals:
+    void notify();
 
 private:
     QHash<QString, TvShow> tvShowHash;

@@ -243,6 +243,7 @@ void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Revi
     QString tvShowName = inspectTvShowById(episodeIdentifier.tvShowId).name;
     tvShowHash[tvShowName].addEpisodeReview(episodeIdentifier, review);
     connection.addEpisodeReview(episodeIdentifier, review);
+    emit notify();
 }
 
 /**
@@ -255,6 +256,7 @@ void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Com
     QString tvShowName = inspectTvShowById(episodeIdentifier.tvShowId).name;
     tvShowHash[tvShowName].addEpisodeComment(episodeIdentifier, comment);
     connection.addEpisodeComment(episodeIdentifier, comment);
+    emit notify();
 }
 
 /**
