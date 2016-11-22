@@ -52,7 +52,9 @@ Reaction::Reaction(QUuid postUuid, QString username, QString text, QString dateT
  */
 void Reaction::setDateTimePosted()
 {
-    dateTimePosted = QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap UTC");
+    QDateTime utcTime = QDateTime::currentDateTimeUtc();
+    utcTime.setTimeSpec(Qt::UTC);
+    dateTimePosted = utcTime.toLocalTime().toString("MM/dd/yyyy h:mm ap");
 }
 
 /**
