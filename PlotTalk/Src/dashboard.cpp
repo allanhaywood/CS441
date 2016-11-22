@@ -122,7 +122,7 @@ void Dashboard::on_AboutButton_clicked()
 void Dashboard::on_leftList_itemClicked(QListWidgetItem *item)
 {
     QString selected = item->text();
-    selectedShow = &DatabaseManagerSingleton::Instance().getTvShow(selected);
+    selectedShow = DatabaseManagerSingleton::Instance().getTvShow(selected);
     populateSeasonList(ui->rightTree);
 }
 
@@ -135,7 +135,7 @@ void Dashboard::populateSeasonList(QTreeWidget *treeWidget) {
     treeWidget->clear();
     //using pointers to prevent objects from going out of scope
     //no need to delete tree items - parent tree destroys its children
-    foreach(Season season, selectedShow->inspectSeasons()) {
+    foreach(Season season, selectedShow.inspectSeasons()) {
         QTreeWidgetItem *seasonNode = new QTreeWidgetItem(treeWidget);
         seasonNode->setText(0, "Season " + QString::number(season.seasonNumber));
         foreach(Episode episode, season.inspectEpisodes()) {
@@ -157,8 +157,8 @@ void Dashboard::on_rightTree_itemClicked(QTreeWidgetItem *item, int)
   //once seasons and episodes are fully implemented, season and episode objects will be populated with actual data
   if (item->childCount() == 0) { // the selection is a leaf (i.e. it's an episode)
         QTreeWidgetItem *parent = item->parent();
-        selectedSeason = selectedShow->getSeason(parent->text(0).split(" ")[1].toInt());
-        selectedEpisode = selectedSeason->getEpisode(item->text(0));
+        selectedSeason = selectedShow.getSeason(parent->text(0).split(" ")[1].toInt());
+        selectedEpisode = selectedSeason.getEpisode(item->text(0));
         //go to media item page
         populateSeasonList(ui->mediaItemTree);
         populateMediaItemPage();
@@ -194,12 +194,12 @@ void Dashboard::populateMediaItemPage() {
     // ensure only integers can be entered for rating score
     ui->ratingNumber->setValidator(new QIntValidator(0, 100, this));
 
-    ui->showName->setText(selectedShow->name);
+    ui->showName->setText(selectedShow.name);
     QString seasonText = "Season ";
-    seasonText.append(QString::number(selectedSeason->seasonNumber));
+    seasonText.append(QString::number(selectedSeason.seasonNumber));
     ui->seasonName->setText(seasonText);
-    ui->episodeSummary->setText(selectedEpisode->summary);
-    ui->episodeName->setText(selectedEpisode->name);
+    ui->episodeSummary->setText(selectedEpisode.summary);
+    ui->episodeName->setText(selectedEpisode.name);
     //@TODO: only show spoiler alert if user hasn't watched episode
     //if episode is in user's watched list:
     //hide watched warning and checkbox
@@ -226,8 +226,8 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
   //once seasons and episodes are fully implemented, season and episode objects will be populated with actual data
   if (item->childCount() == 0) { // the selection is a leaf (i.e. it's an episode)
         QTreeWidgetItem *parent = item->parent();
-        selectedSeason = selectedShow->getSeason(parent->text(0).split(" ")[1].toInt());
-        selectedEpisode = selectedSeason->getEpisode(item->text(0));
+        selectedSeason = selectedShow.getSeason(parent->text(0).split(" ")[1].toInt());
+        selectedEpisode = selectedSeason.getEpisode(item->text(0));
         //go to media item page
         populateMediaItemPage();
   }

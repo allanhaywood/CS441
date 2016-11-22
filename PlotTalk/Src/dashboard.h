@@ -72,9 +72,9 @@ private:
     About* AboutPage = NULL;
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
     enum Pages {WELCOME, NAVIGATION, ITEM, ACCOUNT}; //pages of the dashboard, ordered by their page number
-    TvShow* selectedShow = NULL;
-    Season* selectedSeason = NULL;
-    Episode* selectedEpisode = NULL;
+    TvShow selectedShow;
+    Season selectedSeason;
+    Episode selectedEpisode;
     User theUser;
 };
 

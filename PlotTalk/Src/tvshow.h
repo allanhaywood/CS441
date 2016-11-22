@@ -26,7 +26,7 @@ public:
     const QVector<Season>& inspectSeasons();
     void addSeason(Season season);
     //void removeSeason(int seasonId);
-    Season *getSeason(int number);
+    Season getSeason(int number);
 
 private:
     QVector<Season> seasons;
