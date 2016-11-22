@@ -110,7 +110,7 @@ TvShow JsonConnection::getTvShow(QString name)
     if (! found)
     {
         qDebug() << "No match found for:" << name;
-        throw NotFound{};
+        throw NotFound("Unable to find show: " + name);
     }
 
     qDebug() << "JsonSeasons:" << jsonSeasons;
@@ -242,7 +242,7 @@ User JsonConnection::getUser(QString username)
     if (! found)
     {
         qDebug() << "No match found for:" << username;
-        throw NotFound{};
+        throw NotFound("Unable to find user " + username + " in JSON");
     }
 
     // Use the information found to construct a user of the requested tvshow.
@@ -282,7 +282,7 @@ QString JsonConnection::getUserNameByEmail(QString email)
     if (! found)
     {
         qDebug() << "No match found for:" << email;
-        throw NotFound{};
+        throw NotFound("Unable to find user with email " + email + " in JSON");
     }
 
     return jsonUsername;
@@ -300,7 +300,7 @@ void JsonConnection::addUser(User user)
     try
     {
         User testExistUser = getUser(user.username);
-        throw AlreadyExists{};
+        throw AlreadyExists("Unable to add user " + user.username + "; username already exists");
     }
     catch (NotFound)
     {
@@ -459,14 +459,14 @@ void JsonConnection::loadJson()
         if(jerror.error != QJsonParseError::NoError)
         {
             qDebug() << "Error parsing json!";
-            throw InvalidJsonFormat();
+            throw InvalidJsonFormat("Error parsing JSON");
         }
     }
 
     if(jsonDocument.isNull())
     {
         qDebug() << "Invalid Json, halting.";
-        throw InvalidJsonFormat{};
+        throw InvalidJsonFormat("Error parsing JSON; null document");
     }
 
     QJsonObject jsonObject = jsonDocument.object();
@@ -488,7 +488,7 @@ void JsonConnection::saveJson()
     if(jsonDocument.isNull())
     {
         qDebug() << "Invalid Json, halting.";
-        throw InvalidJsonFormat{};
+        throw InvalidJsonFormat("Error parsing JSON; null document");
     }
 
     file.setFileName(pathToJson);
@@ -498,7 +498,7 @@ void JsonConnection::saveJson()
     {
         qDebug() << "Could not open file for readwrite";
         qDebug() << file.errorString();
-        throw FileIOError{};
+        throw FileIOError("Error opening JSON file");
     }
     else
     {

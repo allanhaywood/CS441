@@ -60,10 +60,10 @@ void Season::addEpisode(Episode episode)
  */
 Episode Season::getEpisode(QString name)
 {
-    foreach (Episode episode, episodes) {
-        if (episode.name == name) {
-            return episode;
+    for(int i = 0; i < episodes.size(); i++) {
+        if (episodes[i].name == name) {
+            return episodes[i];
         }
     }
-    throw NotFound();
+    throw NotFound("Unable to retrieve episode " + name + " from season number " + QString::number(seasonNumber));
 }

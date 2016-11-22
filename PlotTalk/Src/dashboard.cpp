@@ -194,7 +194,6 @@ void Dashboard::populateMediaItemPage() {
     // ensure only integers can be entered for rating score
     ui->ratingNumber->setValidator(new QIntValidator(0, 100, this));
 
-    // set show name, season, episode name
     ui->showName->setText(selectedShow.name);
     QString seasonText = "Season ";
     seasonText.append(QString::number(selectedSeason.seasonNumber));
@@ -341,6 +340,9 @@ void Dashboard::on_watchedConfirmButton_clicked()
     //@TODO add episode to watched list once it has been added to user class
 }
 
+/**
+ * @brief Dashboard::on_logoutButton_clicked logs out the current user
+ */
 void Dashboard::on_logoutButton_clicked()
 {
      AccountManager *userInfo= AccountManager::getInstance();
@@ -466,6 +468,6 @@ void Dashboard::on_reviewButton_clicked()
  */
 void Dashboard::on_ratingNumber_textEdited(const QString &arg1)
 {
-    int newRating = ui->ratingNumber->text().toInt();
+    int newRating = arg1.toInt();
     ui->ratingMeter->setValue(newRating);
 }
