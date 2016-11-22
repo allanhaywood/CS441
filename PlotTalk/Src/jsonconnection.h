@@ -12,7 +12,6 @@
 #include <QString>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QMap>
 
 class JsonConnection : public IConnection
 {
@@ -69,11 +68,11 @@ private:
     QString pathToJson;
 
     QJsonArray getTopLevelJsonArray(QString jsonArrayName);
-    QMap<int, Season> getSeasons(QJsonArray jsonSeasons);
+    QHash<int, Season> getSeasons(QJsonArray jsonSeasons);
     Season getSeason(QJsonObject jsonSeason);
-    QMap<int, Episode> getEpisodes(QJsonArray jsonEpisodes);
+    QHash<int, Episode> getEpisodes(QJsonArray jsonEpisodes);
     Episode getEpisode(QJsonObject jsonEpisode);
-    QMap<QString, Review> getReviews(QJsonValue jsonReviews);
+    QHash<QString, Review> getReviews(QJsonValue jsonReviews);
     QList<Comment> getComments(QJsonValue jsonComments);
 
     QJsonObject tvShowToJsonObject(TvShow tvShow);

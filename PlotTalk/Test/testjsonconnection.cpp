@@ -91,7 +91,7 @@ void TestJsonConnection::TestGetTvShow2()
     QCOMPARE(tvShow.tmdbLink, expectedTmdbLink);
     QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
 
-    QMap<int, Season> &seasons = tvShow.getSeasons();
+    QHash<int, Season> &seasons = tvShow.getSeasons();
     QCOMPARE(seasons.count(), 3);
 
     Season &season = tvShow.getSeason(0);
@@ -101,7 +101,7 @@ void TestJsonConnection::TestGetTvShow2()
     QCOMPARE(season.seasonNumber, 0);
     QCOMPARE(season.name, expectedSeasonName);
 
-    QMap<int, Episode> &episodes = season.getEpisodes();
+    QHash<int, Episode> &episodes = season.getEpisodes();
     QCOMPARE(episodes.count(), 3);
 
     Episode &episode = season.getEpisode(2);

@@ -22,7 +22,6 @@
 #include "jsonconnection.h"
 #include "plottalkexceptions.h"
 
-#include <QMap>
 #include <QDebug>
 
 /**
@@ -144,7 +143,7 @@ void DatabaseManager::updateUser(User user)
 {
     if (! connection.usernameExists(user.username))
     {
-        throw NotFound{};
+        throw NotFound("User name not found:" + user.username);
     }
 
     userHash[user.username].firstName = user.firstName;

@@ -14,7 +14,7 @@ Season::Season()
     seasonId = 0;
     seasonNumber = 0;
     name = "";
-    episodes = QMap<int, Episode>();
+    episodes = QHash<int, Episode>();
 }
 
 /**
@@ -24,7 +24,7 @@ Season::Season()
  * @param name The name of the season as specified by the movie database.
  * @param episodes A map of episodes to add to the season.
  */
-Season::Season(int seasonId, int seasonNumber, QString name, QMap<int, Episode> episodes)
+Season::Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode> episodes)
 {
     this->seasonId = seasonId;
     this->seasonNumber = seasonNumber;
@@ -49,7 +49,7 @@ const QVector<Episode> Season::inspectEpisodes()
  *
  * @note The episodeId is the key.
  */
-QMap<int, Episode> &Season::getEpisodes()
+QHash<int, Episode> &Season::getEpisodes()
 {
     return episodes;
 }
@@ -79,7 +79,7 @@ Episode &Season::getEpisode(QString name)
         }
     }
 
-    throw NotFound{};
+    throw NotFound("Episode not found:" + name);
 }
 
 /**
@@ -96,8 +96,7 @@ Episode &Season::getEpisode(int number)
             return episode;
         }
     }
-
-    throw NotFound{};
+    throw NotFound("Unable to retrieve episode " + name + " from season number " + QString::number(seasonNumber));
 }
 
 /**

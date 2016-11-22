@@ -11,7 +11,6 @@
 
 #include <QString>
 #include <QVector>
-#include <QMap>
 
 class TvShow
 {
@@ -25,10 +24,10 @@ public:
     TvShow();
     TvShow(QString name, QString tmdbLink, QString graphicLink);
     TvShow(int showId, QString name, QString tmdbLink, QString graphicLink);
-    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QMap<int, Season> seasons);
+    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QHash<int, Season> seasons);
 
     const QVector<Season> inspectSeasons();
-    QMap<int, Season> &getSeasons();
+    QHash<int, Season> &getSeasons();
 
     void addSeason(Season season);
     Season &getSeason(int number);
@@ -41,7 +40,7 @@ public:
     //void addReactionReply(EpisodeIdentifier episodeIdentifier, QUuid reactionUuid, Reply reply);
 
 private:
-    QMap<int, Season> seasons;
+    QHash<int, Season> seasons;
 };
 
 #endif

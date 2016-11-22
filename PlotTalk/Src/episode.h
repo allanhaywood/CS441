@@ -4,12 +4,12 @@
  */
 #ifndef EPISODE_H
 #define EPISODE_H
+#include<review.h>
+#include<comment.h>
 
 #include<QString>
 #include<QVector>
-#include<QMap>
-#include<review.h>
-#include<comment.h>
+#include<QHash>
 
 class Episode
 {
@@ -24,7 +24,7 @@ public:
     Episode();
     Episode(int episodeId, int episodeNumber, QString name, QString summary);
 
-    Episode(int episodeId, int episodeNumber, QString name, QString summary, QMap<QString, Review> reviews, QList<Comment> comments);
+    Episode(int episodeId, int episodeNumber, QString name, QString summary, QHash<QString, Review> reviews, QList<Comment> comments);
 
     void addReview(Review review);
     void addComment(Comment comment);
@@ -34,7 +34,7 @@ public:
     const QList<Comment> inspectComments();
 
 private:
-    QMap<QString, Review> reviews;
+    QHash<QString, Review> reviews;
     QList<Comment> comments;
 };
 

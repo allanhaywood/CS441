@@ -14,7 +14,7 @@ TvShow::TvShow()
     name = "";
     tmdbLink = "";
     graphicLink = "";
-    seasons = QMap<int, Season>();
+    seasons = QHash<int, Season>();
 }
 
 /**
@@ -29,7 +29,7 @@ TvShow::TvShow(QString name, QString tmdbLink, QString graphicLink)
     this->name = name;
     this->tmdbLink = tmdbLink;
     this->graphicLink = graphicLink;
-    seasons = QMap<int, Season>();
+    seasons = QHash<int, Season>();
 }
 
 /**
@@ -45,7 +45,7 @@ TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink)
     this->name = name;
     this->tmdbLink = tmdbLink;
     this->graphicLink = graphicLink;
-    seasons = QMap<int, Season>();
+    seasons = QHash<int, Season>();
 }
 
 /**
@@ -56,7 +56,7 @@ TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink)
  * @param graphicLink A URL to a graphic for the show.
  * @param seasons A map of seasons to add to the tvshow.
  */
-TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QMap<int, Season> seasons)
+TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QHash<int, Season> seasons)
 {
     this->showId = showId;
     this->name = name;
@@ -76,7 +76,7 @@ const QVector<Season> TvShow::inspectSeasons()
     return seasons.values().toVector();
 }
 
-QMap<int, Season> &TvShow::getSeasons()
+QHash<int, Season> &TvShow::getSeasons()
 {
     return seasons;
 }
@@ -105,8 +105,7 @@ Season &TvShow::getSeason(int number)
             return season;
         }
     }
-
-    throw NotFound{};
+    throw NotFound("Unable to retrieve season number " + QString::number(number) + " from show " + name);
 }
 
 /**

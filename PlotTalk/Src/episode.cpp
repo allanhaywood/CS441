@@ -13,7 +13,7 @@ Episode::Episode()
     episodeNumber = 0;
     name = "";
     summary = "";
-    reviews = QMap<QString, Review>();
+    reviews = QHash<QString, Review>();
     comments = QList<Comment>();
 }
 
@@ -25,10 +25,10 @@ Episode::Episode()
  * @param episodeNumber The episode number used by the movie database.
  * @param name The name as used by the movie database.
  * @param summary The summary for this episode as provided by movie database.
- * @param reviews A qmap of reviews, with the username as the key.
+ * @param reviews A qhash of reviews, with the username as the key.
  * @param comments A vector of comments.
  */
-Episode::Episode(int episodeId, int episodeNumber, QString name, QString summary, QMap<QString, Review> reviews, QList<Comment> comments)
+Episode::Episode(int episodeId, int episodeNumber, QString name, QString summary, QHash<QString, Review> reviews, QList<Comment> comments)
 {
     this->episodeId = episodeId;
     this->episodeNumber = episodeNumber;
