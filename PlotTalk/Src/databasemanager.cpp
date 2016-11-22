@@ -214,7 +214,11 @@ QList<QString> DatabaseManager::getListOfCachedUsers()
     return userHash.keys();
 }
 
-
+/**
+ * @brief DatabaseManager::getTvShowNameById Gets the tvshow name by its id.
+ * @param showId The show id to lookup the name for.
+ * @return The name of the tvshow.
+ */
 QString DatabaseManager::getTvShowNameById(int showId)
 {
     qDebug() << "Looking for show id:" << showId;
@@ -228,6 +232,7 @@ QString DatabaseManager::getTvShowNameById(int showId)
         }
     }
 
+    // If not found in the cache, check the database connection.
     return connection.getTvShowNameById(showId);
 }
 
