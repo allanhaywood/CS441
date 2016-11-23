@@ -122,19 +122,19 @@ bool User::HasTheUserWatchedAnything()
 
 bool User::AddWatchedEpisodeList(QList<EpisodeIdentifier> episodeList)
 {
-    if(episodeList.size()!=0)
+  if(episodeList.size()!=0)
     {
         int dummy=0;
         for (int i=0; i<episodeList.size(); i++)
         {
-          if(!HasUserWatchedThisEpisode(episodeList[i], dummy))
+          if(HasUserWatchedThisEpisode(episodeList[i], dummy))
           {
               return false;
           }
         }
         for (int i=0; i<episodeList.size(); i++)
         {
-              if(!addWatchedEpisode(episodeList[i]));
+          if(!addWatchedEpisode(episodeList[i]))
           {
               return false;
           }
