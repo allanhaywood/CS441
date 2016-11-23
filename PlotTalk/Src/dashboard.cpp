@@ -25,7 +25,7 @@ Dashboard::Dashboard(QWidget *parent) :
     theUser=userInfo->getCurrentAccount();
     ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
 
-    //QObject::connect(&DatabaseManagerSingleton::Instance(), SIGNAL(notify()), this, SLOT(update()));
+    QObject::connect(&DatabaseManagerSingleton::Instance(), SIGNAL(notify()), this, SLOT(update()));
 
 }
 
@@ -184,6 +184,8 @@ void Dashboard::populateMediaItemPage() {
     ui->reviewCommentBox->clear();
     ui->reviewTable->setRowCount(0);
     ui->episodeRatingNum->setText(0); // @TODO: Replace this with episode's saved overall rating
+
+    //TODO: populate comments and reviews from JSON
 
     // ensure first comment/review tab viewed is comment tab
     ui->commentTabWidget->setCurrentIndex(0);
@@ -481,8 +483,8 @@ void Dashboard::on_ratingNumber_textEdited(const QString &arg1)
 void Dashboard::update()
 {
     if (ui->stackedWidget->currentIndex() == ITEM) {
-        selectedShow = DatabaseManagerSingleton::Instance().getTvShow(selectedShow.name);
-        selectedSeason = selectedShow.getSeason(selectedSeason.seasonNumber);
-        selectedEpisode = selectedSeason.getEpisode(selectedEpisode.name);
+        selectedShow = DatabaseManagerSingleton::Instance().inspectTvShow(selectedShow.name);
+        selectedSeason = selectedShow.inspectSeason(selectedSeason.seasonNumber);
+        selectedEpisode = selectedSeason.inspectEpisode(selectedEpisode.name);
     }
 }
