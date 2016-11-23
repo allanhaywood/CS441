@@ -37,12 +37,12 @@ AccountManager::~AccountManager()//destructor
  * @return true always as it will always call the database manager and insert the info
  */
 
-bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
+bool AccountManager::createAccount(QString first, QString last, QString Email, QString handle, QString password)
 {\
 return createAccount(first, last, Email, handle, password, false);
 }
 
-bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password, bool isAdmin)
+bool AccountManager::createAccount(QString first, QString last, QString Email, QString handle, QString password, bool isAdmin)
 {
         User thisUser = User(handle, first, last, Email, password, isAdmin);//add Password Hash when possibl
         DatabaseManagerSingleton::Instance().addUser(thisUser);
@@ -75,7 +75,7 @@ User &AccountManager::getCurrentAccount()
  * @return an enum value that tells the client the user has been added or what error the data contains
  */
 
-selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password, bool isAdmin)
+selectEnum AccountManager::checkFieldsAndCreate(QString fName, QString lName, QString handle, QString email, QString password, bool isAdmin)
 {
     QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
     QRegularExpression checkPassword("(?=^.{8,30}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
@@ -113,7 +113,7 @@ selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, 
  * @param takes an email string, a password string, and a user object.
  * @return true and fills passses back the found user by reference if user exists, false and no passback if not found.
  */
-bool AccountManager::checkEmailAndPassword(QString& email, QString& password, User &user)
+bool AccountManager::checkEmailAndPassword(QString email, QString password, User user)
 {
 
 
