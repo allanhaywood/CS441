@@ -7,7 +7,7 @@ void testSeason::testSeasonConstructor()
     int seasonNumber = 1;
     QString name = "Test";
 
-    QMap<int, Episode> episodes = QMap<int, Episode>();
+    QHash<int, Episode> episodes = QHash<int, Episode>();
 
     Season season = Season(seasonId, seasonNumber, name, episodes);
     QCOMPARE(season.seasonId, seasonId);

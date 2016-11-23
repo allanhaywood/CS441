@@ -23,7 +23,6 @@
 #include "plottalkexceptions.h"
 #include "user.h"
 
-#include <QMap>
 #include <QDebug>
 #include <QList>
 
@@ -146,7 +145,7 @@ void DatabaseManager::updateUser(User user)
 {
     if (! connection.usernameExists(user.username))
     {
-        throw NotFound{};
+        throw NotFound("User name not found:" + user.username);
     }
 
     userHash[user.username].firstName = user.firstName;
