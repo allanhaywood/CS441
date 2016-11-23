@@ -19,7 +19,7 @@ void TestDatabaseManager::TestGetTvShowDefaultConstructor()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    TvShow& tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
+    TvShow tvShow = DatabaseManagerSingleton::Instance().inspectTvShow(name);
 
     QCOMPARE(tvShow.name.toLower(), name.toLower());
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
@@ -61,7 +61,7 @@ void TestDatabaseManager::TestGetTvShowJsonPathConstructor()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    TvShow& tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShow(name);
+    TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").inspectTvShow(name);
 
     QCOMPARE(tvShow.name.toLower(), name.toLower());
     QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
@@ -81,7 +81,7 @@ void TestDatabaseManager::NegTestGetTvShowJsonPathConstructor()
 
     QVERIFY_EXCEPTION_THROWN
     (
-        TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShow(name),
+        TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").inspectTvShow(name),
         NotFound
     );
 }
@@ -97,7 +97,7 @@ void TestDatabaseManager::TestGetUser()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    User &user = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getUser(username);
+    User user = DatabaseManagerSingleton::Instance(":/json/Json/test.json").inspectUser(username);
 
     QCOMPARE(user.username, username);
     QCOMPARE(user.firstName, expectedFirstName);
@@ -117,7 +117,7 @@ void TestDatabaseManager::TestGetUserByEmail()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    User &user = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getUserByEmail(email);
+    User user = DatabaseManagerSingleton::Instance(":/json/Json/test.json").inspectUserByEmail(email);
 
     QCOMPARE(user.username, expectedUsername);
     QCOMPARE(user.firstName, expectedFirstName);
@@ -143,7 +143,7 @@ void TestDatabaseManager::TestAddUser()
     User userBefore = User(username, expectedFirstName, expectedLastName, expectedEmail, expectedPasswordHash);
     DatabaseManagerSingleton::Instance().addUser(userBefore);
 
-    User userAfter = DatabaseManagerSingleton::Instance().getUser(username);
+    User userAfter = DatabaseManagerSingleton::Instance().inspectUser(username);
 
     QCOMPARE(userAfter.username, username);
     QCOMPARE(userAfter.firstName, expectedFirstName);
@@ -225,6 +225,7 @@ void TestDatabaseManager::NegTestEmailExists()
     QVERIFY(! DatabaseManagerSingleton::Instance(":/json/Json/test.json").emailExists(email));
 }
 
+/*
 void TestDatabaseManager::TestUpdateUser()
 {
     // Set up strings to compare against.
@@ -244,7 +245,7 @@ void TestDatabaseManager::TestUpdateUser()
     DatabaseManagerSingleton::Instance().addUser(user);
 
     // Validate state of user.
-    User user2 = DatabaseManagerSingleton::Instance().getUser(username);
+    User user2 = DatabaseManagerSingleton::Instance().inspectUser(username);
 
     QCOMPARE(user2.username, username);
     QCOMPARE(user2.firstName, expectedFirstName);
@@ -262,7 +263,7 @@ void TestDatabaseManager::TestUpdateUser()
 
     DatabaseManagerSingleton::Instance().updateUser(user3);
 
-    User user4 = DatabaseManagerSingleton::Instance().getUser(username);
+    User user4 = DatabaseManagerSingleton::Instance().inspectUser(username);
 
     QCOMPARE(user4.username, username);
     QCOMPARE(user4.firstName, newFirstName);
@@ -273,7 +274,9 @@ void TestDatabaseManager::TestUpdateUser()
     // Remove temp user when done.
     DatabaseManagerSingleton::Instance().removeUser(username);
 }
+*/
 
+/*
 void TestDatabaseManager::NegUpdateUser()
 {
     // Set up strings to compare against.
@@ -293,6 +296,7 @@ void TestDatabaseManager::NegUpdateUser()
         NotFound
     );
 }
+*/
 
 void TestDatabaseManager::TestGetListOfAllTvShows()
 {
@@ -313,7 +317,7 @@ void TestDatabaseManager::TestGetListOfCachedTvShows()
 
     DatabaseManagerSingleton::Instance(":/json/Json/test.json").emptyCache();
 
-    TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getTvShow("Mr. Robot");
+    TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test.json").inspectTvShow("Mr. Robot");
 
     QList<QString> cachedTvShows = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getListOfCachedTvShows();
 
@@ -323,77 +327,6 @@ void TestDatabaseManager::TestGetListOfCachedTvShows()
     QCOMPARE(cachedTvShows.length(),1);
 
     QCOMPARE(cachedTvShows[0],tvShow0);
-}
-
-void TestDatabaseManager::TestModifyTvShow()
-{
-    // Set up strings to compare against.
-    QString name = "Mr. Robot";
-    QString expectedTmdbLink = "https://www.themoviedb.org/tv/62560-mr-robot";
-    QString expectedGraphicLink = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg";
-
-    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
-
-    TvShow &tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
-
-    QCOMPARE(tvShow.name.toLower(), name.toLower());
-    QCOMPARE(tvShow.tmdbLink.toLower(), expectedTmdbLink.toLower());
-    QCOMPARE(tvShow.graphicLink.toLower(), expectedGraphicLink.toLower());
-
-    QHash<int, Season> &seasons = tvShow.getSeasons();
-
-    QCOMPARE(seasons.count(), 3);
-
-    Season &season = seasons[77843];
-
-    QString expectedSeasonName = "season_0.0";
-
-    QCOMPARE(season.name, expectedSeasonName);
-    QCOMPARE(season.seasonId, 77843);
-    QCOMPARE(season.seasonNumber, 0);
-
-    QHash<int, Episode> &episodes = season.getEpisodes();
-
-    QCOMPARE(episodes.count(), 3);
-
-    Episode &episode = episodes[1203464];
-
-    QString expectedEpisodeName = "Hacking Robot 101";
-    QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";
-
-    QCOMPARE(episode.episodeId, 1203464);
-    QCOMPARE(episode.episodeNumber, 2);
-    QCOMPARE(episode.name, expectedEpisodeName);
-    QCOMPARE(episode.summary, expectedEpisodeSummary);
-
-    // Modify top level tvshow, and verify change.
-    QString updatedTvShowName = "Updated TV name";
-    tvShow.name = updatedTvShowName;
-
-    // Modify, and get from cache to see if it udpated.
-    QString updatedEpisodeName = "Updated Ep name";
-    tvShow.getSeasons()[66343].getEpisodes()[1203464].name = updatedEpisodeName;
-
-    QCOMPARE(tvShow.getSeasons()[66343].getEpisodes()[1203464].name, updatedEpisodeName);
-
-    TvShow &tvShow2 = DatabaseManagerSingleton::Instance().getTvShow(name);
-    QCOMPARE(tvShow2.name, updatedTvShowName);
-    QCOMPARE(tvShow.getSeasons()[66343].getEpisodes()[1203464].name, updatedEpisodeName);
-
-    QHash<int, Season> &seasons2 = tvShow2.getSeasons();
-
-    Season &season2 = seasons2[0];
-
-    QHash<int, Episode> &episodes2 = season2.getEpisodes();
-
-    Episode &episode2 = episodes2[0];
-
-    QString updatedEpisode2Name = "Updated Ep2 name";
-
-    episode2.name = updatedEpisode2Name;
-
-    TvShow &tvShow3 = DatabaseManagerSingleton::Instance().getTvShow(name);
-    QCOMPARE(tvShow3.getSeasons()[0].getEpisodes()[0].name, updatedEpisode2Name);
 }
 
 void TestDatabaseManager::TestGetAllUsers()
@@ -415,7 +348,7 @@ void TestDatabaseManager::TestGetAllCachedUsers()
 
     QCOMPARE(allUsers.count(), 0);
 
-    User testUser = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getUser("admin");
+    User testUser = DatabaseManagerSingleton::Instance(":/json/Json/test.json").inspectUser("admin");
 
     allUsers = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getListOfCachedUsers();
 
@@ -432,7 +365,7 @@ void TestDatabaseManager::TestGetTvShowById()
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
-    TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").getTvShowById(1396);
+    TvShow tvShow = DatabaseManagerSingleton::Instance(":/json/Json/test2.json").inspectTvShowById(1396);
 
     QCOMPARE(tvShow.name, name);
 }
@@ -455,9 +388,9 @@ void TestDatabaseManager::TestAddEpisodeReview()
     DatabaseManagerSingleton::Instance().addEpisodeReview(episodeIdentifider, review);
 
     QString name = "Game of Thrones";
-    TvShow &tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
+    TvShow tvShow = DatabaseManagerSingleton::Instance().inspectTvShow(name);
 
-    QList<Review> reviews = tvShow.getSeason(0).getEpisode(1).inspectReviews();
+    QList<Review> reviews = tvShow.inspectSeason(0).inspectEpisode(1).inspectReviews();
 
     bool found = false;
     foreach (const Review &thisReview, reviews)
@@ -490,9 +423,9 @@ void TestDatabaseManager::TestAddEpisodeComment()
     DatabaseManagerSingleton::Instance().addEpisodeComment(episodeIdentifider, comment);
 
     QString name = "Game of Thrones";
-    TvShow &tvShow = DatabaseManagerSingleton::Instance().getTvShow(name);
+    TvShow tvShow = DatabaseManagerSingleton::Instance().inspectTvShow(name);
 
-    QList<Comment> comments = tvShow.getSeason(0).getEpisode(1).getComments();
+    QList<Comment> comments = tvShow.inspectSeason(0).inspectEpisode(1).inspectComments();
 
     bool found = false;
     foreach (const Comment &thisComment, comments)

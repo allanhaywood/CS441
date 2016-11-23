@@ -8,7 +8,7 @@ void testExceptions::testExceptionThrow()
     TvShow show ("Show Name", "", ""); //create a show with nothing in it
     QString actualMessage;
     try {
-        show.getSeason(0); //try to retrieve an episode from it - will throw NotFound exception
+        show.inspectSeason(0); //try to retrieve an episode from it - will throw NotFound exception
     } catch (PlotTalkException e) {
         actualMessage = e.message;
     }

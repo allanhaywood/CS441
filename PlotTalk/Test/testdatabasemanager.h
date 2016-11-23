@@ -23,11 +23,11 @@ private slots:
     void NegTestUserExists();
     void TestEmailExists();
     void NegTestEmailExists();
-    void TestUpdateUser();
-    void NegUpdateUser();
+    //void TestUpdateUser();
+    //void NegUpdateUser();
     void TestGetListOfAllTvShows();
     void TestGetListOfCachedTvShows();
-    void TestModifyTvShow();
+    //void NegTestModifyTvShow();
     void TestGetAllUsers();
     void TestGetAllCachedUsers();
     void TestGetTvShowById();

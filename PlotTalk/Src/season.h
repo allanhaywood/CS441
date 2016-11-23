@@ -20,21 +20,21 @@ public:
     Season();
     Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode> episodes);
 
-    const QVector<Episode> inspectEpisodes();
-    QHash<int, Episode> &getEpisodes();
+    QVector<Episode> inspectEpisodes();
+
+    Episode inspectEpisode(int number);
+    Episode inspectEpisode(QString name);
 
     void addEpisode(Episode episode);
 
-    // @throws NotFound
-    Episode &getEpisode(QString name);
-
-    // @throws NotFound
-    Episode &getEpisode(int number);
-
-    Episode inspectEpisode(int number);
-
 private:
     QHash<int, Episode> episodes;
+    QHash<int, Episode> &getEpisodes();
+    // @throws NotFound
+    const Episode &getEpisode(QString name);
+
+    // @throws NotFound
+    const Episode &getEpisode(int number);
 };
 
 #endif // SEASON_H
