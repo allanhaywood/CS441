@@ -71,12 +71,12 @@ TvShow::TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, 
  *
  * NOTE: Any changes made to seasons will not be reflected in the TvShow class.
  */
-const QVector<Season> TvShow::inspectSeasons()
+QVector<Season> TvShow::inspectSeasons()
 {
     return seasons.values().toVector();
 }
 
-QHash<int, Season> &TvShow::getSeasons()
+const QHash<int, Season> &TvShow::getSeasons()
 {
     return seasons;
 }
@@ -96,7 +96,7 @@ void TvShow::addSeason(Season season)
  * @returns matching Season
  * @throws NotFound exception if no match found
  */
-Season &TvShow::getSeason(int number)
+const Season &TvShow::getSeason(int number)
 {
     for (auto &season : seasons)
     {
