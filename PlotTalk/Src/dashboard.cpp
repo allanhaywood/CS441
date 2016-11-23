@@ -390,7 +390,10 @@ void Dashboard::on_commentButton_clicked()
     // set data in the new row
     Comment newComment(theUser.username, ui->commentBox->toPlainText());
     // @TODO: Add call to DatabaseManager here to save comment in JSON
-    QString userAndDate = newComment.username + "\n" + newComment.dateTimePosted;
+    QDateTime utcTime = QDateTime::fromString(newComment.dateTimePosted, "MM/dd/yyyy h:m ap");
+    utcTime.setTimeSpec(Qt::UTC);
+    QString localTime = utcTime.toLocalTime().toString("MM/dd/yyyy h:mm ap");
+    QString userAndDate = newComment.username + "\n" + localTime;
     ui->commentTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
     QTextEdit *commentText = new QTextEdit;
     commentText->setText(newComment.text);
@@ -443,7 +446,10 @@ void Dashboard::on_reviewButton_clicked()
     // set data in new row
     Review newReview(theUser.username, ui->reviewCommentBox->toPlainText(), ui->ratingNumber->text().toInt());
     // @TODO: Add call to DatabaseManager here to save comment in JSON
-    QString userAndDate = newReview.username + "\n" + newReview.dateTimePosted;
+    QDateTime utcTime = QDateTime::fromString(newReview.dateTimePosted, "MM/dd/yyyy h:m ap");
+    utcTime.setTimeSpec(Qt::UTC);
+    QString localTime = utcTime.toLocalTime().toString("MM/dd/yyyy h:mm ap");
+    QString userAndDate = newReview.username + "\n" + localTime;
     ui->reviewTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
     ui->reviewTable->setItem(curRow, 1, new QTableWidgetItem(QString::number(newReview.rating)));
     QTextEdit *reviewText = new QTextEdit;
