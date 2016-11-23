@@ -8,7 +8,7 @@
 #include "jsonconnection.h"
 
 #include <QObject>
-#include <QHash>
+#include <QMap>
 #include <QList>
 
 
@@ -70,8 +70,8 @@ signals:
     void notify();
 
 private:
-    QHash<QString, TvShow> tvShowHash;
-    QHash<QString, User> userHash;
+    QMap<QString, TvShow> tvShowMap;
+    QMap<QString, User> userMap;
 
     DatabaseManager(DatabaseManager const&);    // copy constructor hidden
     //DatabaseManager& operator=(DatabaseManager const&);  // assign op hidden

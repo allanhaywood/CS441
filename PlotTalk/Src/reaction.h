@@ -17,6 +17,8 @@ public:
     QString text; //main body of post (or review text)
     QString dateTimePosted; //in UTC for now to avoid localization issues
 
+    bool operator<(const Reaction &rhs) const;
+
 protected: //protected constructors to prevent direct instantiation of base class
     Reaction();
     Reaction(QString username, QString text);

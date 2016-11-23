@@ -4,10 +4,11 @@
  */
 #ifndef SEASON_H
 #define SEASON_H
+#include "episode.h"
+
 #include <QString>
 #include <QVector>
-
-#include "episode.h"
+#include <QMap>
 
 class Season
 {
@@ -18,7 +19,7 @@ public:
     QString name;
 
     Season();
-    Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode> episodes);
+    Season(int seasonId, int seasonNumber, QString name, QMap<int, Episode> episodes);
 
     QVector<Episode> inspectEpisodes();
 
@@ -27,9 +28,11 @@ public:
 
     void addEpisode(Episode episode);
 
+    bool operator<(const Season &rhs) const;
+
 private:
-    QHash<int, Episode> episodes;
-    QHash<int, Episode> &getEpisodes();
+    QMap<int, Episode> episodes;
+    QMap<int, Episode> &getEpisodes();
     // @throws NotFound
     const Episode &getEpisode(QString name);
 

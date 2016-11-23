@@ -24,7 +24,7 @@ public:
     TvShow();
     TvShow(QString name, QString tmdbLink, QString graphicLink);
     TvShow(int showId, QString name, QString tmdbLink, QString graphicLink);
-    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QHash<int, Season> seasons);
+    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QMap<int, Season> seasons);
 
     QVector<Season> inspectSeasons();
     Season inspectSeason(int number);
@@ -34,13 +34,15 @@ public:
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
 
+    bool operator<(const TvShow &rhs) const;
+
     // Not implementing replies yet.
     //void addReactionReply(EpisodeIdentifier episodeIdentifier, QUuid reactionUuid, Reply reply);
 
 private:
-    QHash<int, Season> seasons;
+    QMap<int, Season> seasons;
 
-    const QHash<int, Season> &getSeasons();
+    const QMap<int, Season> &getSeasons();
     const Season &getSeason(int number);
 };
 

@@ -9,7 +9,7 @@
 
 #include<QString>
 #include<QVector>
-#include<QHash>
+#include<QMap>
 
 class Episode
 {
@@ -24,7 +24,7 @@ public:
     Episode();
     Episode(int episodeId, int episodeNumber, QString name, QString summary);
 
-    Episode(int episodeId, int episodeNumber, QString name, QString summary, QHash<QString, Review> reviews, QList<Comment> comments);
+    Episode(int episodeId, int episodeNumber, QString name, QString summary, QMap<QString, Review> reviews, QList<Comment> comments);
 
     QList<Review> inspectReviews();
     QList<Comment> inspectComments();
@@ -32,9 +32,10 @@ public:
     void addReview(Review review);
     void addComment(Comment comment);
 
+    bool operator<(const Episode &rhs) const;
 
 private:
-    QHash<QString, Review> reviews;
+    QMap<QString, Review> reviews;
     QList<Comment> comments;
 
     const QList<Comment> &getComments();
