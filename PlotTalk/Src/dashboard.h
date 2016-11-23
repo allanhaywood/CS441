@@ -28,6 +28,9 @@ public:
 
     void hideAdminButton();
 
+public slots:
+    void update();
+
 private slots:
     void on_myAccountButton_clicked();
 

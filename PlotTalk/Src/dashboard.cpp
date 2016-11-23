@@ -25,6 +25,8 @@ Dashboard::Dashboard(QWidget *parent) :
     theUser=userInfo->getCurrentAccount();
     ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
 
+    //QObject::connect(&DatabaseManagerSingleton::Instance(), SIGNAL(notify()), this, SLOT(update()));
+
 }
 
 Dashboard::~Dashboard()
@@ -470,4 +472,17 @@ void Dashboard::on_ratingNumber_textEdited(const QString &arg1)
 {
     int newRating = arg1.toInt();
     ui->ratingMeter->setValue(newRating);
+}
+
+/**
+ * @brief Dashboard::update updates selectedShow, selectedSeason, and selectedEpisode and GUI if user is on media item page
+ * @pre expects selectedShow, selectedSeason, and selectedEpisode to be set
+ */
+void Dashboard::update()
+{
+    if (ui->stackedWidget->currentIndex() == ITEM) {
+        selectedShow = DatabaseManagerSingleton::Instance().getTvShow(selectedShow.name);
+        selectedSeason = selectedShow.getSeason(selectedSeason.seasonNumber);
+        selectedEpisode = selectedSeason.getEpisode(selectedEpisode.name);
+    }
 }
