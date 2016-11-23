@@ -559,7 +559,7 @@ QString JsonConnection::getTvShowNameById(int id)
     if (! found)
     {
         qDebug() << "No match found for:" << id;
-        throw NotFound("No match found for:" + id);
+        throw NotFound("No match found for:" + QString::number(id));
     }
 
     return jsonName;
@@ -577,7 +577,7 @@ void JsonConnection::addUser(User user)
     try
     {
         User testExistUser = getUser(user.username);
-        throw AlreadyExists("Unable to add user " + user.username + "; username already exists");
+        throw AlreadyExists("Unable to add user " + user.username + ": username already exists");
     }
     catch (NotFound)
     {
@@ -770,7 +770,7 @@ void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Revie
 
     if ( ! found )
     {
-        throw NotFound("Episode not found:" + episodeIdentifier.episodeId);
+        throw NotFound("Episode not found:" + QString::number(episodeIdentifier.episodeId));
     }
 
     tvShow.addEpisodeReview(episodeIdentifier, review);
@@ -811,7 +811,7 @@ void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comm
 
     if ( ! found )
     {
-        throw NotFound("Episode not found:" + episodeIdentifier.episodeId);
+        throw NotFound("Episode not found:" + QString::number(episodeIdentifier.episodeId));
     }
 
     tvShow.addEpisodeComment(episodeIdentifier, comment);
