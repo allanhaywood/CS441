@@ -65,6 +65,11 @@ void Season::addEpisode(Episode episode)
     episodes.insert(episode.episodeId, episode);
 }
 
+/**
+ * @brief Season::operator < Compares two Seasons, used for sorting
+ * @param rhs The Object to compare to.
+ * @return True if lhs is less than right hand side.
+ */
 bool Season::operator<(const Season &rhs) const
 {
     return this->seasonNumber < rhs.seasonNumber;

@@ -7,7 +7,9 @@
 #include <QDateTime>
 
 /**
- * @brief Reaction::Reaction Creates a default reaction with all values initialized.
+ * @brief Reaction::operator < Compares two reactions by their posted date.
+ * @param rhs The other reaction to compare to.
+ * @return True if the left reaction is earlier than the right reaction.
  */
 bool Reaction::operator<(const Reaction &rhs) const
 {
@@ -17,6 +19,9 @@ bool Reaction::operator<(const Reaction &rhs) const
     return lhsUtcTime < rhsUtcTime;
 }
 
+/**
+ * @brief Reaction::Reaction Creates a default reaction with all values initialized.
+ */
 Reaction::Reaction()
 {
     setUuid();

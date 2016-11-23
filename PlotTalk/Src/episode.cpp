@@ -68,6 +68,11 @@ void Episode::addComment(Comment comment)
     comments.append(comment);
 }
 
+/**
+ * @brief Episode::operator < Compares to episodes to be able to sort by episode order.
+ * @param rhs
+ * @return Returns true if this episode is earlier than the rhs episode.
+ */
 bool Episode::operator<(const Episode &rhs) const
 {
     return this->episodeNumber < rhs.episodeNumber;
