@@ -164,7 +164,8 @@ void Dashboard::on_rightTree_itemClicked(QTreeWidgetItem *item, int)
   if (item->childCount() == 0) { // the selection is a leaf (i.e. it's an episode)
         QTreeWidgetItem *parent = item->parent();
         selectedSeason = selectedShow.inspectSeason(parent->text(0).split(" ")[1].toInt());
-        selectedEpisode = selectedSeason.inspectEpisode(item->text(0).split(": ")[1]);
+        QString itemText = item->text(0);
+        selectedEpisode = selectedSeason.inspectEpisode(itemText.right((itemText.length()-2)-itemText.indexOf(": "))); //get all the characters after the episode number
         //go to media item page
         populateSeasonList(ui->mediaItemTree);
         populateMediaItemPage();
@@ -267,7 +268,8 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
   if (item->childCount() == 0) { // the selection is a leaf (i.e. it's an episode)
         QTreeWidgetItem *parent = item->parent();
         selectedSeason = selectedShow.inspectSeason(parent->text(0).split(" ")[1].toInt());
-        selectedEpisode = selectedSeason.inspectEpisode(item->text(0).split(": ")[1]);
+        QString itemText = item->text(0);
+        selectedEpisode = selectedSeason.inspectEpisode(itemText.right((itemText.length()-2)-itemText.indexOf(": "))); //get all the characters after the episode number
         //go to media item page
         populateMediaItemPage();
   }
