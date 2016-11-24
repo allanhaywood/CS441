@@ -77,6 +77,7 @@ void Dashboard::on_popularButton_clicked()
 void Dashboard::on_watchedButton_clicked()
 {
     ui->leftList->setDisabled(false);
+    ui->leftList->clear();
     ui->stackedWidget->setCurrentIndex(NAVIGATION);
 }
 
