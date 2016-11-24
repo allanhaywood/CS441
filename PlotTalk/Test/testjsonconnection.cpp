@@ -51,26 +51,27 @@ void TestJsonConnection::TestGetTvShow1()
     QList<Review> reviews = episode.inspectReviews();
     QCOMPARE(reviews.count(), 1);
 
-    QString expectedDateTimePosted = "1997-07-16T19:20:30.45+00:00";
+    QString expectedDateTimePosted = "11/24/2016 2:30 am";
     QUuid expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EE}");
-    QString expectedText = "It is amazing how this show is made.";
-    QString expectedUsername = "plottalkadmin";
+    QString expectedReviewText = "This show is awesome!";
+    QString expectedCommentText = "It is amazing how this show is made.";
+    QString expectedUsername = "admin";
 
     QCOMPARE(reviews[0].dateTimePosted, expectedDateTimePosted);
     QCOMPARE(reviews[0].postUuid, expectedPostUuid);
-    QCOMPARE(reviews[0].rating, 5);
-    QCOMPARE(reviews[0].text, expectedText);
+    QCOMPARE(reviews[0].rating, 100);
+    QCOMPARE(reviews[0].text, expectedReviewText);
     QCOMPARE(reviews[0].username, expectedUsername);
 
     QList<Comment> comments = episode.inspectComments();
     QVERIFY(comments.count() == 1);
 
-    expectedDateTimePosted = "1997-07-16T19:20:30.46+00:00";
+    expectedDateTimePosted = "11/24/2016 2:31 am";
     expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EF}");
 
     QCOMPARE(comments[0].dateTimePosted, expectedDateTimePosted);
     QCOMPARE(comments[0].postUuid, expectedPostUuid);
-    QCOMPARE(comments[0].text, expectedText);
+    QCOMPARE(comments[0].text, expectedCommentText);
     QCOMPARE(comments[0].username, expectedUsername);
 }
 
