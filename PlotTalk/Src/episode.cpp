@@ -13,7 +13,7 @@ Episode::Episode()
     episodeNumber = 0;
     name = "";
     summary = "";
-    reviews = QHash<QString, Review>();
+    reviews = QMap<QString, Review>();
     comments = QList<Comment>();
 }
 
@@ -25,10 +25,10 @@ Episode::Episode()
  * @param episodeNumber The episode number used by the movie database.
  * @param name The name as used by the movie database.
  * @param summary The summary for this episode as provided by movie database.
- * @param reviews A qhash of reviews, with the username as the key.
+ * @param reviews A qmap of reviews, with the username as the key.
  * @param comments A vector of comments.
  */
-Episode::Episode(int episodeId, int episodeNumber, QString name, QString summary, QHash<QString, Review> reviews, QList<Comment> comments)
+Episode::Episode(int episodeId, int episodeNumber, QString name, QString summary, QMap<QString, Review> reviews, QList<Comment> comments)
 {
     this->episodeId = episodeId;
     this->episodeNumber = episodeNumber;
@@ -69,12 +69,24 @@ void Episode::addComment(Comment comment)
 }
 
 /**
+ * @brief Episode::operator < Compares to episodes to be able to sort by episode order.
+ * @param rhs
+ * @return Returns true if this episode is earlier than the rhs episode.
+ */
+bool Episode::operator<(const Episode &rhs) const
+{
+    return this->episodeNumber < rhs.episodeNumber;
+}
+
+/**
  * @brief Episode::inspectReviews Returns a read only list of reviews.
  * @return A read only list of reviews.
  */
 QList<Review> Episode::inspectReviews()
 {
-    return reviews.values();
+    QList<Review> list = reviews.values();
+    qSort(list);
+    return list;
 }
 
 /**
@@ -83,6 +95,7 @@ QList<Review> Episode::inspectReviews()
  */
 const QList<Comment> &Episode::getComments()
 {
+    qSort(comments);
     return comments;
 }
 

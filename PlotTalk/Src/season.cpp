@@ -14,7 +14,7 @@ Season::Season()
     seasonId = 0;
     seasonNumber = 0;
     name = "";
-    episodes = QHash<int, Episode>();
+    episodes = QMap<int, Episode>();
 }
 
 /**
@@ -24,7 +24,7 @@ Season::Season()
  * @param name The name of the season as specified by the movie database.
  * @param episodes A map of episodes to add to the season.
  */
-Season::Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode> episodes)
+Season::Season(int seasonId, int seasonNumber, QString name, QMap<int, Episode> episodes)
 {
     this->seasonId = seasonId;
     this->seasonNumber = seasonNumber;
@@ -40,7 +40,9 @@ Season::Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode>
  */
 QVector<Episode> Season::inspectEpisodes()
 {
-    return episodes.values().toVector();
+    QVector<Episode> vector = episodes.values().toVector();
+    qSort(vector);
+    return vector;
 }
 
 /**
@@ -49,7 +51,7 @@ QVector<Episode> Season::inspectEpisodes()
  *
  * @note The episodeId is the key.
  */
-QHash<int, Episode> &Season::getEpisodes()
+QMap<int, Episode> &Season::getEpisodes()
 {
     return episodes;
 }
@@ -61,6 +63,16 @@ QHash<int, Episode> &Season::getEpisodes()
 void Season::addEpisode(Episode episode)
 {
     episodes.insert(episode.episodeId, episode);
+}
+
+/**
+ * @brief Season::operator < Compares two Seasons, used for sorting
+ * @param rhs The Object to compare to.
+ * @return True if lhs is less than right hand side.
+ */
+bool Season::operator<(const Season &rhs) const
+{
+    return this->seasonNumber < rhs.seasonNumber;
 }
 
 /**

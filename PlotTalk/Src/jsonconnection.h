@@ -68,11 +68,11 @@ private:
     QString pathToJson;
 
     QJsonArray getTopLevelJsonArray(QString jsonArrayName);
-    QHash<int, Season> getSeasons(QJsonArray jsonSeasons);
+    QMap<int, Season> getSeasons(QJsonArray jsonSeasons);
     Season getSeason(QJsonObject jsonSeason);
-    QHash<int, Episode> getEpisodes(QJsonArray jsonEpisodes);
+    QMap<int, Episode> getEpisodes(QJsonArray jsonEpisodes);
     Episode getEpisode(QJsonObject jsonEpisode);
-    QHash<QString, Review> getReviews(QJsonValue jsonReviews);
+    QMap<QString, Review> getReviews(QJsonValue jsonReviews);
     QList<Comment> getComments(QJsonValue jsonComments);
 
     QJsonObject tvShowToJsonObject(TvShow tvShow);

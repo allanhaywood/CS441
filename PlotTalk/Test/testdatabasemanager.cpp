@@ -304,8 +304,8 @@ void TestDatabaseManager::TestGetListOfAllTvShows()
 
     QList<QString> allTvShows = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getListOfAllTvShows();
 
-    QString tvShow0 = "Game of Thrones";
-    QString tvShow1 = "Mr. Robot";
+    QString tvShow0 = "Breaking Bad";
+    QString tvShow1 = "Game of Thrones";
 
     QCOMPARE(allTvShows[0],tvShow0);
     QCOMPARE(allTvShows[1],tvShow1);
