@@ -145,7 +145,7 @@ void Dashboard::populateSeasonList(QTreeWidget *treeWidget) {
         seasonNode->setText(0, "Season " + QString::number(season.seasonNumber));
         foreach(Episode episode, season.inspectEpisodes()) {
             QTreeWidgetItem *episodeNode = new QTreeWidgetItem(seasonNode);
-            episodeNode->setText(0, episode.name);
+            episodeNode->setText(0, "Episode " + QString::number(episode.episodeNumber) + ": " + episode.name);
         }
     }
 
@@ -163,7 +163,7 @@ void Dashboard::on_rightTree_itemClicked(QTreeWidgetItem *item, int)
   if (item->childCount() == 0) { // the selection is a leaf (i.e. it's an episode)
         QTreeWidgetItem *parent = item->parent();
         selectedSeason = selectedShow.inspectSeason(parent->text(0).split(" ")[1].toInt());
-        selectedEpisode = selectedSeason.inspectEpisode(item->text(0));
+        selectedEpisode = selectedSeason.inspectEpisode(item->text(0).split(": ")[1]);
         //go to media item page
         populateSeasonList(ui->mediaItemTree);
         populateMediaItemPage();
@@ -238,7 +238,7 @@ void Dashboard::populateMediaItemPage() {
     seasonText.append(QString::number(selectedSeason.seasonNumber));
     ui->seasonName->setText(seasonText);
     ui->episodeSummary->setText(selectedEpisode.summary);
-    ui->episodeName->setText(selectedEpisode.name);
+    ui->episodeName->setText("Episode " + QString::number(selectedEpisode.episodeNumber) + ": " + selectedEpisode.name);
     //@TODO: only show spoiler alert if user hasn't watched episode
     //if episode is in user's watched list:
     //hide watched warning and checkbox
@@ -266,7 +266,7 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
   if (item->childCount() == 0) { // the selection is a leaf (i.e. it's an episode)
         QTreeWidgetItem *parent = item->parent();
         selectedSeason = selectedShow.inspectSeason(parent->text(0).split(" ")[1].toInt());
-        selectedEpisode = selectedSeason.inspectEpisode(item->text(0));
+        selectedEpisode = selectedSeason.inspectEpisode(item->text(0).split(": ")[1]);
         //go to media item page
         populateMediaItemPage();
   }
