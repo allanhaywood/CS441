@@ -10,6 +10,8 @@
 #include <QDateTime>
 #include "mainwindow.h"
 #include <QMessageBox>
+#include "comment.h"
+#include "review.h"
 
 
 Dashboard::Dashboard(QWidget *parent) :
@@ -185,7 +187,7 @@ void Dashboard::populateMediaItemPage() {
     ui->reviewTable->setRowCount(0);
     ui->episodeRatingNum->setText(0); // @TODO: Replace this with episode's saved overall rating
 
-    //TODO: populate comments and reviews from JSON
+    // @TODO: Load saved comments/reviews from JSON to GUI
 
     // ensure first comment/review tab viewed is comment tab
     ui->commentTabWidget->setCurrentIndex(0);
@@ -386,12 +388,17 @@ void Dashboard::on_commentButton_clicked()
     int curRow = ui->commentTable->rowCount(); // current row of next comment
     ui->commentTable->insertRow(curRow);
     ui->commentTable->setRowHeight(curRow, 50);
-    // @TODO: Replace this explicit call to date to using date from reaction/review/reply class
-    QString userAndDate = theUser.username + "\n" + QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap");
+
+    // set data in the new row
+    Comment newComment(theUser.username, ui->commentBox->toPlainText());
+    // @TODO: Add call to DatabaseManager here to save comment in JSON
+    QDateTime utcTime = QDateTime::fromString(newComment.dateTimePosted, "MM/dd/yyyy h:m ap");
+    utcTime.setTimeSpec(Qt::UTC);
+    QString localTime = utcTime.toLocalTime().toString("MM/dd/yyyy h:mm ap");
+    QString userAndDate = newComment.username + "\n" + localTime;
     ui->commentTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
-    ui->commentTable->setItem(curRow, 1, new QTableWidgetItem(ui->commentBox->toPlainText()));
     QTextEdit *commentText = new QTextEdit;
-    commentText->setText(ui->commentTable->item(curRow, 1)->text());
+    commentText->setText(newComment.text);
     commentText->setReadOnly(true);
     ui->commentTable->setCellWidget(curRow, 1, commentText);
     ui->commentTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
@@ -437,13 +444,18 @@ void Dashboard::on_reviewButton_clicked()
     int curRow = ui->reviewTable->rowCount(); // current row of next review
     ui->reviewTable->insertRow(curRow);
     ui->reviewTable->setRowHeight(curRow, 50);
-    // @TODO: Replace this explicit call to date to using date from reaction/review/reply class
-    QString userAndDate = theUser.username + "\n" + QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap");
+
+    // set data in new row
+    Review newReview(theUser.username, ui->reviewCommentBox->toPlainText(), ui->ratingNumber->text().toInt());
+    // @TODO: Add call to DatabaseManager here to save comment in JSON
+    QDateTime utcTime = QDateTime::fromString(newReview.dateTimePosted, "MM/dd/yyyy h:m ap");
+    utcTime.setTimeSpec(Qt::UTC);
+    QString localTime = utcTime.toLocalTime().toString("MM/dd/yyyy h:mm ap");
+    QString userAndDate = newReview.username + "\n" + localTime;
     ui->reviewTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
-    ui->reviewTable->setItem(curRow, 1, new QTableWidgetItem(ui->ratingNumber->text()));
-    ui->reviewTable->setItem(curRow, 2, new QTableWidgetItem(ui->reviewCommentBox->toPlainText()));
+    ui->reviewTable->setItem(curRow, 1, new QTableWidgetItem(QString::number(newReview.rating)));
     QTextEdit *reviewText = new QTextEdit;
-    reviewText->setText(ui->reviewTable->item(curRow, 2)->text());
+    reviewText->setText(newReview.text);
     reviewText->setReadOnly(true);
     ui->reviewTable->setCellWidget(curRow, 2, reviewText);
     ui->reviewTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
