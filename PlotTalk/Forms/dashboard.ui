@@ -1518,7 +1518,7 @@ p, li { white-space: pre-wrap; }
          </font>
         </property>
         <property name="placeholderText">
-         <string>Enter title of movie or TV show</string>
+         <string>Enter title of TV show</string>
         </property>
        </widget>
       </item>
