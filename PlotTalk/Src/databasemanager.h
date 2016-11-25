@@ -57,7 +57,6 @@ public:
     // Used for testing only.
     void emptyCache();
 
-    QList<User> getAllUsers();
 
 private:
     QHash<QString, TvShow> tvShowHash;

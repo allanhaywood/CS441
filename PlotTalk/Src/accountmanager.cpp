@@ -113,7 +113,7 @@ selectEnum AccountManager::checkFieldsAndCreate(QString fName, QString lName, QS
  * @param takes an email string, a password string, and a user object.
  * @return true and fills passses back the found user by reference if user exists, false and no passback if not found.
  */
-bool AccountManager::checkEmailAndPassword(QString email, QString password, User user)
+bool AccountManager::checkEmailAndPassword(QString email, QString password, User &user)
 {
 
 

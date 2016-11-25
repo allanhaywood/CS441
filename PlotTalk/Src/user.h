@@ -29,9 +29,9 @@ public:
     bool isAdmin();
     bool addWatchedEpisode(EpisodeIdentifier episode);
     bool removeWatchedEpisode(EpisodeIdentifier episode);
-    bool HasTheUserWatchedAnything();
-    bool HasUserWatchedThisEpisode(EpisodeIdentifier episode, int &location);
-    bool AddWatchedEpisodeList(QList<EpisodeIdentifier> episodeList);
+    bool hasTheUserWatchedAnything();
+    bool hasUserWatchedThisEpisode(EpisodeIdentifier episode, int &location);
+    bool addWatchedEpisodeList(QList<EpisodeIdentifier> episodeList);
 private:
     bool _isAdmin;
 

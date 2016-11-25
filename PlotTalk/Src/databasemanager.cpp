@@ -245,31 +245,4 @@ void DatabaseManager::emptyCache()
     tvShowHash.clear();
     userHash.clear();
 }
-/*
-QList<User> DatabaseManager::getAllUsers()//-----------------------------Easy to find marker---------------------------------------------
-{//This format would be the best for me -Josh
 
-    //code for testing, keep if you want delete if not    -start-
-
-    User hold;
-
-
-    QList<User> aList;
-
-    for(int i=0;i<50;i++)
-    {
-        hold.firstName="Josh";
-        hold.lastName="Reaves";
-        hold.email="ThisEmail@email";
-        hold.username="User";
-        hold.passwordHash="ABCabc123!@";
-
-        aList.append(hold);
-    }
-
-    return aList;
-
-    //code for testing -end-
-
-}
-*/

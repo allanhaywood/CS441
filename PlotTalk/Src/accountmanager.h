@@ -39,7 +39,7 @@ public:
     bool createAccount(User user);
     User &getCurrentAccount();//done
     selectEnum checkFieldsAndCreate(QString fName, QString lName, QString handle, QString email, QString password, bool isAdmin);
-    bool checkEmailAndPassword(QString email, QString password, User user);
+    bool checkEmailAndPassword(QString email, QString password, User &user);
     bool EmailExists(QString email);
     void ClearForLogout();
 };
