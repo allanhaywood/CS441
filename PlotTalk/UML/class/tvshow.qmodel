@@ -50,7 +50,7 @@
                          <object>{5c7aa52d-ad75-46c4-ad78-7c5028e89103}</object>
                          <name>TvShow</name>
                          <pos>x:145;y:190</pos>
-                         <rect>x:-120;y:-85;w:240;h:170</rect>
+                         <rect>x:-230;y:-115;w:460;h:230</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -92,7 +92,7 @@
                          <object>{9f933aa8-0401-41c8-880e-2afe318c43ff}</object>
                          <name>Episode</name>
                          <pos>x:140;y:720</pos>
-                         <rect>x:-95;y:-70;w:190;h:140</rect>
+                         <rect>x:-220;y:-125;w:440;h:250</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -165,13 +165,34 @@
                         <DObject>
                          <base-DElement>
                           <DElement>
-                           <uid>{c2fff2e0-327c-4ac3-b6ef-5a0296eb98af}</uid>
+                           <uid>{0d17ddf4-6cd8-439d-9511-5ae6c52f0841}</uid>
                           </DElement>
                          </base-DElement>
-                         <object>{d79307ee-f8f8-496c-b40b-a55fdb351f30}</object>
-                         <name>Reaction</name>
-                         <pos>x:380;y:720</pos>
-                         <rect>x:-70;y:-70;w:140;h:140</rect>
+                         <object>{ac4795f6-ccf9-44c6-8e46-127830a6a86c}</object>
+                         <name>Reviews</name>
+                         <pos>x:595;y:540</pos>
+                         <rect>x:-110;y:-60;w:220;h:120</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{4a518334-f683-4b16-be96-df46e107d64b}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{2409ac0e-dfe1-4ef0-a668-03b76ce2814b}</object>
+                         <name>Comments</name>
+                         <pos>x:600;y:820</pos>
+                         <rect>x:-110;y:-50;w:220;h:100</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -186,11 +207,11 @@
                         <DRelation>
                          <base-DElement>
                           <DElement>
-                           <uid>{b1fc002a-7ef3-427f-a5a7-4a122575e88c}</uid>
+                           <uid>{03ce53af-9797-4a24-8cab-d2864c5d0c40}</uid>
                           </DElement>
                          </base-DElement>
-                         <object>{e7adf9c4-3a98-4eae-b90e-38b565c948b6}</object>
-                         <a>{c2fff2e0-327c-4ac3-b6ef-5a0296eb98af}</a>
+                         <object>{d94f2360-7f76-4eff-b67b-788332f7b996}</object>
+                         <a>{0d17ddf4-6cd8-439d-9511-5ae6c52f0841}</a>
                          <b>{bad10144-e9a2-4b21-94bc-e7807e54f00b}</b>
                         </DRelation>
                        </base-DRelation>
@@ -209,72 +230,37 @@
                      </instance>
                     </item>
                     <item>
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
-                         <uid>{94916b2b-14c9-4ac3-8f3f-0d021b683f0d}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <text>reactions is a private variable
-There will be a getter, to get the reactons
-Which will lazy load reactions, only when getReactions is called.
-
-
-
-</text>
-                       <pos>x:50;y:800</pos>
-                       <rect>x:0;y:0;w:320;h:107</rect>
-                      </DAnnotation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
-                         <uid>{0dc9cae0-190f-46fc-98a4-5b65780928b5}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <text>The subclasses should use the TvShows connection to get and set data</text>
-                       <pos>x:270;y:405</pos>
-                       <rect>x:0;y:0;w:358;h:29</rect>
-                      </DAnnotation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
-                         <uid>{a35a65e0-ff9a-4707-bdd3-c2695615c16d}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <text>NOTE: Since DatabaseManager is a subclass of connection, either it or another subclass
-of Connection can be used as the connection here. </text>
-                       <pos>x:290;y:270</pos>
-                       <rect>x:0;y:0;w:437;h:42</rect>
-                      </DAnnotation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
-                         <uid>{2dfa54a1-7054-43de-b9e9-92f6d6ac660a}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <text>Please See The Reactions UML for the continuation!</text>
-                       <pos>x:460;y:715</pos>
-                       <rect>x:0;y:0;w:63;h:107</rect>
-                       <auto-sized>false</auto-sized>
-                      </DAnnotation>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{c8c28a62-e559-44ff-92b4-d2661c7965a1}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{b4de458f-fc95-468e-a667-15d87f1c5545}</object>
+                         <a>{4a518334-f683-4b16-be96-df46e107d64b}</a>
+                         <b>{bad10144-e9a2-4b21-94bc-e7807e54f00b}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                        </DAssociationEnd>
+                       </a>
+                       <b>
+                        <DAssociationEnd>
+                         <cradinality>0..*</cradinality>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </b>
+                      </DAssociation>
                      </instance>
                     </item>
                    </qlist>
                   </elements>
-                  <last-modified>1479760920465</last-modified>
+                  <last-modified>1480054579176</last-modified>
                   <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -303,58 +289,94 @@ of Connection can be used as the connection here. </text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{4095adc5-a68c-4238-9497-a7be54452a9d}</uid>
+                    <uid>{790ead86-ddef-44dc-b485-5cd32435dd95}</uid>
                     <type>1</type>
                     <declaration>QString name</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{819d6a46-e795-4b51-a40a-1cb097add147}</uid>
+                    <uid>{2763164c-e0fa-46cf-9585-fb88f47d4ec1}</uid>
                     <type>1</type>
                     <declaration>QString tmdbLink</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{8c65d744-2038-4490-9bdc-89bb82ab8814}</uid>
+                    <uid>{66045a7f-0bf8-4db7-87bb-e2bf5432c09f}</uid>
                     <type>1</type>
                     <declaration>QString graphicLink</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{1c9f3369-1da4-4806-a74c-b3de8682603b}</uid>
+                    <uid>{8696c442-e4e2-4850-972d-93000e4c4442}</uid>
                     <type>2</type>
-                    <declaration>-const QVector&lt;Season&gt;&amp; inspectSeasons()</declaration>
+                    <declaration>QVector&lt;Season&gt; inspectSeasons()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{feab75f6-432b-4f6a-aad6-a5724cfc7336}</uid>
+                    <uid>{ee0cfbe1-6cb4-471e-a06f-3d08b6b62ce5}</uid>
                     <type>2</type>
-                    <declaration>Season:getSeason(int number)</declaration>
+                    <declaration>Season inspectSeason(int number)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d66ea541-64e9-4faf-aaf5-b7297d55ae89}</uid>
+                    <uid>{707173f9-a69f-4a93-98e7-278dd2e73958}</uid>
                     <type>2</type>
-                    <declaration>- void addSeason(Season season)</declaration>
+                    <declaration>void addSeason(Season season)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{706b59f2-a658-46fc-a1c8-f500bde8302d}</uid>
+                    <uid>{3106bb00-79b1-42e5-b6db-8814ba7503b3}</uid>
+                    <type>2</type>
+                    <declaration>void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a578603b-adf4-4dc3-80e6-d269fa00159b}</uid>
+                    <type>2</type>
+                    <declaration>void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d6080ab4-1ab1-4291-b217-7885b4547a9a}</uid>
+                    <type>2</type>
+                    <properties>4</properties>
+                    <declaration>bool operator&lt;(const TvShow &amp;rhs)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{3a603c3e-713a-4de4-84f8-dc21b24407fb}</uid>
+                    <type>2</type>
+                    <declaration>void addReactionReply(EpisodeIdentifier episodeIdentifier, QUuid reactionUuid, Reply reply)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2f21a847-f015-4a30-925a-170c99ab1270}</uid>
                     <type>1</type>
-                    <declaration>int showId</declaration>
+                    <declaration>QMap&lt;int, Season&gt; seasons</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{c8f7d3e2-30a2-449e-8a4f-4621d0f326c5}</uid>
-                    <type>1</type>
-                    <declaration>QVector&lt;Season&gt; seasons</declaration>
+                    <uid>{0a08ab9c-369a-4574-9543-f81d649d19c4}</uid>
+                    <type>2</type>
+                    <declaration>const QMap&lt;int, Season&gt; &amp;getSeasons()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c0f00f2b-62a6-42a8-93c5-8a6c1a5d9c7b}</uid>
+                    <type>2</type>
+                    <declaration>const Season &amp;getSeason(int number)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -489,49 +511,49 @@ of Connection can be used as the connection here. </text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{169827a6-e155-4ed8-a0ec-14649c8b5a42}</uid>
+                    <uid>{3ae3b2ea-a6b0-431c-9a86-782d957cebea}</uid>
                     <type>1</type>
                     <declaration>int seasonId</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{b4235344-bdf8-4f1f-bc42-5ae8525ebef3}</uid>
+                    <uid>{c71dd5e0-8aa3-4007-ba27-8c11564011c8}</uid>
                     <type>1</type>
                     <declaration>int seasonNumber</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{faf81db6-fa86-4266-bac1-307e9c19068a}</uid>
+                    <uid>{d7aad0fc-63a4-4feb-b560-c765836eebe5}</uid>
                     <type>1</type>
                     <declaration>QString name</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{997ba08f-9255-4f8c-b788-7be965ee88a0}</uid>
+                    <uid>{757d4471-37ee-4cd5-ac78-dbea1fc84698}</uid>
                     <type>2</type>
                     <declaration>const QVector&lt;Episode&gt;&amp; inspectEpisodes()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ae1f10ed-f1ff-4aed-b2a8-a61917d1d0e3}</uid>
+                    <uid>{2b5e5a8a-579f-4ac8-8a6f-46335b0945e2}</uid>
                     <type>2</type>
                     <declaration>void addEpisode(Episode episode)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{3a7b1f3f-4d4f-47e0-9ffe-c4c04aebadbd}</uid>
+                    <uid>{9fbabb8b-e293-4e2d-b1c6-e30d2d4978c9}</uid>
                     <type>2</type>
                     <declaration>Episode getEpisode(QString name)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{714ce17c-cb13-4b7e-9976-67d4cbd7a281}</uid>
+                    <uid>{df184831-a501-4e7a-9edb-56f7b2a3b731}</uid>
                     <type>1</type>
                     <declaration>QVector&lt;Episode&gt; episodes</declaration>
                    </MClassMember>
@@ -604,44 +626,101 @@ of Connection can be used as the connection here. </text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{a2df8a51-a6ff-4ed8-a17a-bd986e63cee2}</uid>
-                    <type>2</type>
-                    <declaration>addReaction(Reaction reaction)</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{b4f878ea-5767-46dc-ad34-7e52dfd05b02}</uid>
+                    <uid>{e0da26c2-5e2a-4161-af1d-f7819ed55230}</uid>
                     <type>1</type>
-                    <declaration>int episodeId</declaration>
+                    <declaration>int seasonId</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ffb6bd4d-263f-455b-a8d0-359612a4a6de}</uid>
+                    <uid>{1a99e525-2c3a-4897-a047-eb2ee4a4478a}</uid>
                     <type>1</type>
-                    <declaration>int episodeNumber</declaration>
+                    <declaration>int seasonNumber</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{67de814c-c421-4fec-a096-6fb368372bd8}</uid>
+                    <uid>{a30d9552-5635-41da-beaa-1f1486e83b4c}</uid>
                     <type>1</type>
                     <declaration>QString name</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{115962d0-4aad-4150-9b21-859a969b614c}</uid>
-                    <type>1</type>
-                    <declaration>QString summary</declaration>
+                    <uid>{594806ee-e5e8-4119-87a0-05c61a35eb91}</uid>
+                    <type>2</type>
+                    <declaration>Season()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{7219a358-2405-4b56-a025-891e2994e2b5}</uid>
+                    <uid>{e876d61e-a595-4aa0-82e6-0e68d13f86da}</uid>
                     <type>2</type>
-                    <declaration>QVector&lt;Reaction&gt; getReaction()</declaration>
+                    <declaration>Season(int seasonId, int seasonNumber, QString name, QMap&lt;int, Episode&gt; episodes)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ca924fee-a76b-40b9-90b8-8c5d1e5973b1}</uid>
+                    <type>2</type>
+                    <declaration>QVector&lt;Episode&gt; inspectEpisodes()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2aaa0d56-d338-4491-abb5-664bb0ef021c}</uid>
+                    <type>2</type>
+                    <declaration>Episode inspectEpisode(int number)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0c57b9c3-5aaa-4ec4-8fb8-b31b9dd3a69f}</uid>
+                    <type>2</type>
+                    <declaration>Episode inspectEpisode(QString name)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{b70d1a3b-8e74-434f-9004-714a27879128}</uid>
+                    <type>2</type>
+                    <declaration>void addEpisode(Episode episode)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1748f33a-06d4-41e3-a50d-d63a1e002891}</uid>
+                    <type>2</type>
+                    <properties>4</properties>
+                    <declaration>bool operator&lt;(const Season &amp;rhs)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{99bf687b-b3da-4a52-8ed7-1fccdb8d0614}</uid>
+                    <type>1</type>
+                    <declaration>QMap&lt;int, Episode&gt; episodes</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{78f0786d-1b7c-4b31-8cd8-3afb418a5ec7}</uid>
+                    <type>2</type>
+                    <declaration>QMap&lt;int, Episode&gt; &amp;getEpisodes()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5188398d-4f40-4ba4-9c1c-b28e25973d92}</uid>
+                    <type>2</type>
+                    <declaration>const Episode &amp;getEpisode(QString name)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2217ef4d-01cc-4757-8cfb-c84e7af6fc86}</uid>
+                    <type>2</type>
+                    <declaration>const Episode &amp;getEpisode(int number)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -653,7 +732,7 @@ of Connection can be used as the connection here. </text>
            </item>
            <item>
             <handle>
-             <uid>{d79307ee-f8f8-496c-b40b-a55fdb351f30}</uid>
+             <uid>{ac4795f6-ccf9-44c6-8e46-127830a6a86c}</uid>
              <target>
               <instance type="MClass">
                <MClass>
@@ -661,17 +740,17 @@ of Connection can be used as the connection here. </text>
                  <MObject>
                   <base-MElement>
                    <MElement>
-                    <uid>{d79307ee-f8f8-496c-b40b-a55fdb351f30}</uid>
+                    <uid>{ac4795f6-ccf9-44c6-8e46-127830a6a86c}</uid>
                    </MElement>
                   </base-MElement>
-                  <name>Reaction</name>
+                  <name>Reviews</name>
                   <relations>
                    <handles>
                     <handles>
                      <qlist>
                       <item>
                        <handle>
-                        <uid>{e7adf9c4-3a98-4eae-b90e-38b565c948b6}</uid>
+                        <uid>{d94f2360-7f76-4eff-b67b-788332f7b996}</uid>
                         <target>
                          <instance type="MAssociation">
                           <MAssociation>
@@ -679,10 +758,10 @@ of Connection can be used as the connection here. </text>
                             <MRelation>
                              <base-MElement>
                               <MElement>
-                               <uid>{e7adf9c4-3a98-4eae-b90e-38b565c948b6}</uid>
+                               <uid>{d94f2360-7f76-4eff-b67b-788332f7b996}</uid>
                               </MElement>
                              </base-MElement>
-                             <a>{d79307ee-f8f8-496c-b40b-a55fdb351f30}</a>
+                             <a>{ac4795f6-ccf9-44c6-8e46-127830a6a86c}</a>
                              <b>{9f933aa8-0401-41c8-880e-2afe318c43ff}</b>
                             </MRelation>
                            </base-MRelation>
@@ -712,44 +791,117 @@ of Connection can be used as the connection here. </text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{17c6ece5-ad3f-494b-8bec-97ed0586a865}</uid>
+                    <uid>{78dfff05-c154-4f92-87e9-e7fa511771c2}</uid>
                     <type>1</type>
-                    <declaration>int postID</declaration>
+                    <declaration>int rating</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{3cbf8cf0-08bf-4d8a-9ce5-01d4b020c553}</uid>
-                    <type>1</type>
-                    <declaration>int mediaID</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{5c433250-3203-427a-868c-9b4c604c4939}</uid>
-                    <type>1</type>
-                    <declaration>int userID</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{9d1a60a5-9385-4a25-a40f-13b75a555d39}</uid>
-                    <type>1</type>
-                    <declaration>QString dateTimePosted</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{0aa998f1-42ef-4c14-834b-926430d77869}</uid>
-                    <type>1</type>
-                    <declaration>QString text</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{0fc70185-f3e5-4782-aee6-410b9f4be1a6}</uid>
+                    <uid>{183ee671-052c-4c36-a8ef-d7e51cd1c54d}</uid>
                     <type>2</type>
-                    <declaration>void setDateTimePosted()</declaration>
+                    <declaration>void addReply(Reply reply)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{75fe3a57-6e30-4b48-abbc-f2de6348f25c}</uid>
+                    <type>2</type>
+                    <declaration>const QVector&lt;Reply&gt; &amp;inspectReplies()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{82baee70-2c27-4100-be0c-c79d1bb15026}</uid>
+                    <type>1</type>
+                    <declaration>QVector&lt;Reply&gt; replies</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{2409ac0e-dfe1-4ef0-a668-03b76ce2814b}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{2409ac0e-dfe1-4ef0-a668-03b76ce2814b}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>Comments</name>
+                  <relations>
+                   <handles>
+                    <handles>
+                     <qlist>
+                      <item>
+                       <handle>
+                        <uid>{b4de458f-fc95-468e-a667-15d87f1c5545}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{b4de458f-fc95-468e-a667-15d87f1c5545}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{2409ac0e-dfe1-4ef0-a668-03b76ce2814b}</a>
+                             <b>{9f933aa8-0401-41c8-880e-2afe318c43ff}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                            </MAssociationEnd>
+                           </a>
+                           <b>
+                            <MAssociationEnd>
+                             <cardinality>0..*</cardinality>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </b>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                     </qlist>
+                    </handles>
+                   </handles>
+                  </relations>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{758a29c2-f558-400f-b33e-03cc7776a9f5}</uid>
+                    <type>2</type>
+                    <declaration>void addReply(Reply reply)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{e114d132-59c1-4b02-b529-0f37200d49b7}</uid>
+                    <type>2</type>
+                    <declaration>const QVector&lt;Reply&gt; &amp;inspectReplies()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{e52078c6-80f5-493f-8115-10106b0d6cbb}</uid>
+                    <type>1</type>
+                    <declaration>QVector&lt;Reply&gt; replies</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
