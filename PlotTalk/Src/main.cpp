@@ -1,5 +1,7 @@
 #include "mainwindow.h"
-#include <../QtWidgets/QApplication>
+#include <QApplication>
+#include <QMessageBox>
+#include "plottalkexceptions.h"
 
 int main(int argc, char *argv[])
 {
@@ -7,5 +9,14 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    return a.exec();
+    int status;
+    try {
+        status = a.exec();
+    } catch (PlotTalkException e) {
+        QMessageBox exceptionBox;
+        exceptionBox.setText("Unhandled exception in program:\n" + e.message);
+        exceptionBox.exec();
+    }
+
+    return status;
 }

@@ -16,16 +16,20 @@ HEADERS += \
     Src/accountmanager.h \
     Src/addnewmedia.h \
     Src/adminpage.h \
+    Src/about.h \
     Src/jsonconnection.h \
     Src/databasemanager.h \
     Src/iconnection.h \
     Src/singleton.h \
     Src/plottalkexceptions.h \
+    Src/user.h \
     Src/reaction.h \
     Src/reply.h \
     Src/review.h \
     Src/comment.h \
-    Src/episode.h
+    Src/season.h \
+    Src/episode.h \
+    Src/common.h
 
 SOURCES += \
     Src/main.cpp \
@@ -37,21 +41,25 @@ SOURCES += \
     Src/accountmanager.cpp \
     Src/addnewmedia.cpp \
     Src/adminpage.cpp \
+    Src/about.cpp \
     Src/jsonconnection.cpp \
     Src/databasemanager.cpp \
+    Src/user.cpp \
     Src/reaction.cpp \
     Src/reply.cpp \
     Src/review.cpp \
     Src/comment.cpp \
+    Src/season.cpp \
     Src/episode.cpp
-           
+
 FORMS += \
     Forms/mainwindow.ui \
     Forms/createacctpage.ui \
     Forms/dashboard.ui \
     Forms/forgotpassword.ui \
-    Forms/addnewmedia.ui\
-    Forms/adminpage.ui
+    Forms/addnewmedia.ui \
+    Forms/adminpage.ui \
+    Forms/about.ui
 
 RESOURCES += \
     Resources/resources.qrc
@@ -70,14 +78,22 @@ test {
         Test/testtvshow.h \
         Test/testjsonconnection.h \
         Test/testdatabasemanager.h \
-		Test/testreply.h
+        Test/testaccountmanager.h \
+        Test/testreply.h \
+        Test/testuser.h \
+        Test/testseason.h \
+        Test/testexceptions.h
 
     SOURCES += \
         Test/testmain.cpp \
         Test/testtvshow.cpp \
         Test/testjsonconnection.cpp \
         Test/testdatabasemanager.cpp \
-		Test/testreply.cpp
+        Test/testaccountmanager.cpp \
+        Test/testreply.cpp \
+        Test/testuser.cpp \
+        Test/testseason.cpp \
+        Test/testexceptions.cpp
 
 } else {
     message(Normal build)

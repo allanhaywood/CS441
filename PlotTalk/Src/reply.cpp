@@ -1,11 +1,25 @@
+/* The reply class
+ *
+ * @author Joey Freeman
+ *
+ * @note: Not currently used.
+ */
 #include "reply.h"
 
-Reply::Reply()
+Reply::Reply() : Reaction()
 {
 
 }
 
-Reply::Reply(int inMediaID, QString inUserName, QString inText) : Reaction( inMediaID, inUserName, inText)
+Reply::Reply(QString username, QString text)
+    : Reaction(username, text)
 {
 
 }
+
+Reply::Reply(QUuid postUuid, QString username, QString text, QString dateTimePosted)
+    : Reaction(postUuid, username, text, dateTimePosted)
+{
+
+}
+

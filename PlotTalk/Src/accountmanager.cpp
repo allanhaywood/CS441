@@ -3,7 +3,11 @@
 
 #include "accountmanager.h"
 
-AccountManager *AccountManager::instance=NULL;//sets initial instance to 0
+
+#include <QRegExp>
+#include <QRegularExpressionValidator>
+
+AccountManager *AccountManager::instance=NULL;//sets initial instance to NULL
 
 AccountManager* AccountManager::getInstance()//returns a new instance or the same instance as needed
 {
@@ -17,7 +21,8 @@ AccountManager* AccountManager::getInstance()//returns a new instance or the sam
 
 
 AccountManager::AccountManager()//constructor
-{//nothing constructed except the singleton
+{
+    //nothing constructed except the singleton
 }
 
 AccountManager::~AccountManager()//destructor
@@ -26,108 +31,115 @@ AccountManager::~AccountManager()//destructor
     instance=NULL;//removes dangling pointers
 }
 
+/**
+ * @brief places an account into the database
+ * @param accepts user information in QString format in the order: first,last,Email,userName,password
+ * @return true always as it will always call the database manager and insert the info
+ */
 
-
-
-bool AccountManager::createAccount(QString &first, QString &last, QString &email, QString &handle, QString &password)
-{//places an account into the database, returns true if complete, false if email or handle are not unique
-
-    Person hold;
-    if(findPersonByEmail(hold,email) && findPersonByHandle(hold,handle))//very inefficient, may need to be fixed
-    {//checks to make sure email and handle are both unique
-
-        QFile file(fileName);//opens a file
-
-        if(file.open(QIODevice::Append))//checks to see if the file exists and opens it for appending
-        {
-            QTextStream stream(&file);//sets up the stream
-
-            stream << email << " " << first << " " << last << " " <<handle << " "<< password << endl;
-           //prints -email, firstname, lastname, handle, password- into file
-            file.close();//closes the file as it has been writen to now
-            return true;//returns true that the account was created
-        }
-        file.close();//closes the file without writing, something went wrong
-    }
-
-    return false;//returns false, something went wrong
+bool AccountManager::createAccount(QString &first, QString &last, QString &Email, QString &handle, QString &password)
+{
+   User thisUser = User(handle, first, last, Email, password);//add Password Hash when possible
+   typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+   DatabaseManagerSingleton::Instance().addUser(thisUser);
+   thisGuy=thisUser;
+   return true;//reminant of previous code
 }
 
-bool AccountManager::findPersonByHandle(Person &PassBack, QString &handleToCheck)
-{//finds an account by handle, passes back true and a person if found false if not.
-QString first;
-QString last;
-QString email;
-QString handle;
-QString password;//places for the variables as retrieved by the next section
+/**
+ * @brief gets the current account that is stored as a private object in the persistant account manager
+ * @param none
+ * @return a user object
+ */
 
-    QFile file(fileName);
-    QTextStream in(&file);//opens a file and calls it "in"
-    while(!in.atEnd())//if it's at the end stops
-    {
-    in>>email;
-    in>>first;
-    in>>last;
-    in>>handle;
-    in>>password;//stores the variables from the file into strings
-
-        if (handle==handleToCheck)//once stored, checks the handle to see if it's a match
-        {
-            PassBack.firstName=first;
-            PassBack.lastName=last;
-            PassBack.email=email;
-            PassBack.handle=handle;
-            PassBack.password=handle;//if correct puts the info into the PassBack person for passage back
-
-            ThisGuy=PassBack;//Stores the passback variable into ThisGuy as it will be the new account.
-            file.close();
-            return true;
-        }
-    }
-    file.close();
-    return false;//if the previous does not return true than the handles was not found
-}
-
-Person AccountManager::getCurrentAccount()
+User AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
-return ThisGuy;//useful for getting info into various pages without searching the database
+    return thisGuy;//useful for getting info into various pages without searching the database
 }
 
-bool AccountManager::findPersonByEmail(Person &PassBack, QString &emailtoCheck)
-{//finds a person by email, saves data to a person class and returns true if found, returns false if not found
-    QString first;
-    QString last;
-    QString email;
-    QString handle;
-    QString password;//variables to hold data for the next section
+/**
+ * @brief checks that user information is not previously in the database or unacceptable
+ * @param Takes user information in string form (first name, last name, username, email, password)
+ * @return an enum value that tells the client the user has been added or what error the data contains
+ */
 
-    QFile file(fileName);
-    QTextStream in(&file);//opens the file and calls it in
-    while(!in.atEnd())
-    {
-        in>>email;
-        in>>first;
-        in>>last;
-        in>>handle;
-        in>>password;//pulls the data from the file
+selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, QString &handle, QString &email, QString &password)
+{
+    QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
+    QRegularExpression checkPassword("(?=^.{8,30}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
 
-        if (email==emailtoCheck)//checks the email against the file
+    QValidator *validEmail=new QRegularExpressionValidator(checkEmail, 0);
+    QValidator *validPwd = new QRegularExpressionValidator(checkPassword,0);
+
+    /*
+
+    Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case
+    letter At least 1 Capital letter At least 1 digit At least 1 special character Length should
+    be between 8-30 characters. Spaces allowed The sequence of the characters is not important.
+
+    */
+
+    int num=0;
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    if((fName.size()<=1)||(lName.size()<=1)||(handle.size()<=1))
+        return selectEnum::VALUES_MISSING;//need good names and handle
+    if(validEmail->validate(email,num)!=2)
+        return selectEnum::BAD_EMAIL;//email is bad format
+    if(DatabaseManagerSingleton::Instance().emailExists(email))
+        return selectEnum::DUPLICATE_EMAIL;//email already exists
+    if(DatabaseManagerSingleton::Instance().usernameExists(handle))
+        return selectEnum::USERNAME_TAKEN;//username is taken
+    if(validPwd->validate(password,num)!=2)
+        return selectEnum::BAD_PASSWORD;//password not correct format
+
+    createAccount(fName,lName,email,handle,password);
+    return selectEnum::ALLCLEAR;
+}
+
+
+/**
+ * @brief Used by login, this checks to ensure email and password are correct and matching in the system
+ * @param takes an email string, a password string, and a user object.
+ * @return true and fills passses back the found user by reference if user exists, false and no passback if not found.
+ */
+bool AccountManager::checkEmailAndPassword(QString& email, QString& password, User &user)
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    if(DatabaseManagerSingleton::Instance().emailExists(email))
         {
-           PassBack.firstName=first;
-           PassBack.lastName=last;
-           PassBack.email=email;
-           PassBack.handle=handle;
-           PassBack.password=handle;//if it's a match gathers the information into passback to reutrn to the client
+            User hold=DatabaseManagerSingleton::Instance().inspectUserByEmail(email);
 
-           ThisGuy=PassBack;//stores the new user as the current in the program
+            if(hold.passwordHash==password)
+            {
+                user=hold;
 
-           file.close();
-           return true;
+                thisGuy = user;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-    }
+        else
+        {
+            return false;
+        }
+}
 
-    file.close();
-    return false;//returns false if email is not found
+bool AccountManager::EmailExists(QString email)//checks to see if an email exists for dashboard
+{
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+    return DatabaseManagerSingleton::Instance().emailExists(email);
+}
+
+void AccountManager::ClearForLogout()
+{
+    User BlankMan;
+    thisGuy=BlankMan;
 }
 
 

@@ -6,9 +6,18 @@
         <file>Images/administrator.png</file>
         <file>Images/remove_icon.png</file>
         <file>Images/Search.png</file>
+        <file>Images/MoviesDBlogo.png</file>
+        <file>Images/plottalking_360.png</file>
+        <file>Images/plottalking_360_small.png</file>
+        <file>Images/thumbs_down.png</file>
+        <file>Images/thumbs_up.png</file>
     </qresource>
     <qresource prefix="/json">
         <file>Json/test.json</file>
         <file>Json/test2.json</file>
-    </qresource>    
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>Fonts/Comix_Loud.ttf</file>
+        <file>Fonts/Bikinis_Personal_Use.ttf</file>
+    </qresource>
 </RCC>

@@ -1,1 +1,159 @@
-{"TvShow":[{"name":"Game of Thrones","tmdbLink":"https://www.themoviedb.org/tv/1399-game-of-thrones","graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg"},{"name":"Mr. Robot","tmdbLink":"https://www.themoviedb.org/tv/62560-mr-robot","graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg"},{"name":"Breaking Bad","tmdbLink":"https://www.themoviedb.org/tv/1396-breaking-bad","graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg"}]}
+{
+    "TvShow":
+    [
+        {
+            "showId":1399,
+            "name":"Game of Thrones",
+            "tmdbLink":"https://www.themoviedb.org/tv/1399-game-of-thrones",
+            "graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg",
+            "seasons":
+            [
+                {
+                    "seasonId":3627,
+                    "seasonNumber":0,
+                    "name":"",
+                    "episodes":
+                    [
+                        {
+                            "episodeId":63087,
+                            "episodeNumber":0,
+                            "name":"Inside Game Of Thrones"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "showId":62560,
+            "name":"Mr. Robot",
+            "tmdbLink":"https://www.themoviedb.org/tv/62560-mr-robot",
+            "graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/esN3gWb1P091xExLddD2nh4zmi3.jpg",
+            "seasons":
+            [
+                {
+                    "seasonId":66343,
+                    "seasonNumber":0,
+                    "name":"season_0.0",
+                    "episodes":
+                    [
+                        {
+                            "episodeId":1200247,
+                            "episodeNumber":1,
+                            "name":"Mr. Robot_dec0d3d.doc"
+                        },
+                        {
+                            "episodeId":1203464,
+                            "episodeNumber":2,
+                            "name":"Hacking Robot 101"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "showId":1396,
+            "name":"Breaking Bad",
+            "tmdbLink":"https://www.themoviedb.org/tv/1396-breaking-bad",
+            "graphicLink":"https://image.tmdb.org/t/p/w600_and_h900_bestv2/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg",
+            "seasons":
+            [
+                {
+                    "seasonId":3577,
+                    "seasonNumber":0,
+                    "name":"",
+                    "episodes":
+                    [
+                        {
+                            "episodeId":62131,
+                            "episodeNumber":0,
+                            "name":"Good Cop Bad Cop"
+                        }
+                    ]
+                }
+
+            ]
+        }
+    ],
+      "User": [
+        {
+          "username": "bsmith",
+          "firstName": "Bob",
+          "lastName": "Smith",
+          "email": "bsmith@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "jsmith",
+          "firstName": "John",
+          "lastName": "Smith",
+          "email": "jsmith@gmail.com",
+          "passwordHash": "badpasswordhash2",
+          "_isAdmin": false
+        },
+        {
+          "username": "omariwest",
+          "firstName": "Kanye",
+          "lastName": "West",
+          "email": "coolfool@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "michaelg",
+          "firstName": "Michael",
+          "lastName": "Scott",
+          "email": "michaelscott@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "kevinMcCalli",
+          "firstName": "Kevin",
+          "lastName": "McCallister",
+          "email": "KevinMcCallister@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "ravenB",
+          "firstName": "Raven",
+          "lastName": "Baxter",
+          "email": "ravenbaxter@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "srogers",
+          "firstName": "Steve",
+          "lastName": "Rogers",
+          "email": "steverogers@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "dorawonders",
+          "firstName": "Dora",
+          "lastName": "Explorer",
+          "email": "theexplorer@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "natashaR",
+          "firstName": "Natasha",
+          "lastName": "Romanova",
+          "email": "nataliaromanova@gmail.com",
+          "passwordHash": "badpasswordhash",
+          "_isAdmin": false
+        },
+        {
+          "username": "admin",
+          "firstName": "admin",
+          "lastName": "admin",
+          "email": "admin@gmail.com",
+          "passwordHash": "plottalkadmin",
+          "_isAdmin": true
+        }
+      ]
+}

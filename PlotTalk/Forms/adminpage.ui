@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>331</width>
+    <width>343</width>
     <height>386</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AdminPage</string>
+   <string>Admin</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QFrame" name="frame">
@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>331</width>
+      <width>341</width>
       <height>341</height>
      </rect>
     </property>
@@ -273,13 +273,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>331</width>
+     <width>343</width>
      <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuAdminPage">
     <property name="title">
-     <string>AdminPage</string>
+     <string/>
     </property>
    </widget>
    <addaction name="menuAdminPage"/>

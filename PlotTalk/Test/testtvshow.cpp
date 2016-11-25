@@ -4,6 +4,7 @@
  */
 #include <QtTest/QtTest>
 #include "testtvshow.h"
+#include "jsonconnection.h"
 
 void TestTvShow::TestConstructor()
 {
