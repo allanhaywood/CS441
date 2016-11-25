@@ -83,17 +83,29 @@ selectEnum AccountManager::checkFieldsAndCreate(QString &fName, QString &lName, 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     if((fName.size()<=1)||(lName.size()<=1)||(handle.size()<=1))
+        delete validEmail;
+        delete validPwd;
         return selectEnum::VALUES_MISSING;//need good names and handle
     if(validEmail->validate(email,num)!=2)
+        delete validEmail;
+        delete validPwd;
         return selectEnum::BAD_EMAIL;//email is bad format
     if(DatabaseManagerSingleton::Instance().emailExists(email))
+        delete validEmail;
+        delete validPwd;
         return selectEnum::DUPLICATE_EMAIL;//email already exists
     if(DatabaseManagerSingleton::Instance().usernameExists(handle))
+        delete validEmail;
+        delete validPwd;
         return selectEnum::USERNAME_TAKEN;//username is taken
     if(validPwd->validate(password,num)!=2)
+        delete validEmail;
+        delete validPwd;
         return selectEnum::BAD_PASSWORD;//password not correct format
 
     createAccount(fName,lName,email,handle,password);
+    delete validEmail;
+    delete validPwd;
     return selectEnum::ALLCLEAR;
 }
 

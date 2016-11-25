@@ -335,6 +335,11 @@ void Dashboard::on_saveButton_clicked()
             message="You must enter a first and last name";
           }
             break;
+        case selectEnum::USERNAME_TAKEN:
+          {
+            message="That user name is already taken, please try another";
+          }
+            break;
         case selectEnum::BAD_PASSWORD:
           {
             message="The password must have the following characteristics:\nIt must be more than 8 characters\nIt must contain both capital and lowercase letters\nIt must include at least one special symbol";
