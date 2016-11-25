@@ -92,11 +92,7 @@
                          <object>{9f933aa8-0401-41c8-880e-2afe318c43ff}</object>
                          <name>Episode</name>
                          <pos>x:140;y:720</pos>
-<<<<<<< Updated upstream
                          <rect>x:-95;y:-70;w:190;h:140</rect>
-=======
-                         <rect>x:-110;y:-110;w:220;h:220</rect>
->>>>>>> Stashed changes
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -163,7 +159,6 @@
                      </instance>
                     </item>
                     <item>
-<<<<<<< Updated upstream
                      <instance type="DClass">
                       <DClass>
                        <base-DObject>
@@ -185,118 +180,17 @@
                      </instance>
                     </item>
                     <item>
-=======
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
-                         <uid>{0dc9cae0-190f-46fc-98a4-5b65780928b5}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <pos>x:270;y:405</pos>
-                       <rect>x:0;y:0;w:16;h:29</rect>
-                      </DAnnotation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
-                         <uid>{a35a65e0-ff9a-4707-bdd3-c2695615c16d}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <text> </text>
-                       <pos>x:290;y:270</pos>
-                       <rect>x:0;y:0;w:19;h:29</rect>
-                      </DAnnotation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DClass">
-                      <DClass>
-                       <base-DObject>
-                        <DObject>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{a7d10784-0b76-4e06-b11d-69014337d036}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{61fbebf9-62dc-4072-8cc9-9ad5e1485cea}</object>
-                         <name>Reviews</name>
-                         <pos>x:680;y:545</pos>
-                         <rect>x:-110;y:-50;w:220;h:100</rect>
-                         <visual-role>0</visual-role>
-                        </DObject>
-                       </base-DObject>
-                       <show-all-members>true</show-all-members>
-                      </DClass>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DClass">
-                      <DClass>
-                       <base-DObject>
-                        <DObject>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{3298dd7e-8dcd-4f00-a6be-0bbb8d2b94c7}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{a7e79580-b6b8-44c2-8b9b-cb493d743e34}</object>
-                         <name>Comments</name>
-                         <pos>x:670;y:770</pos>
-                         <rect>x:-110;y:-50;w:220;h:100</rect>
-                         <auto-sized>false</auto-sized>
-                         <visual-role>0</visual-role>
-                        </DObject>
-                       </base-DObject>
-                       <show-all-members>true</show-all-members>
-                      </DClass>
-                     </instance>
-                    </item>
-                    <item>
                      <instance type="DAssociation">
                       <DAssociation>
                        <base-DRelation>
                         <DRelation>
                          <base-DElement>
                           <DElement>
-                           <uid>{b3d5af40-bcc7-41ee-b9eb-6d05e3bc5c2b}</uid>
+                           <uid>{b1fc002a-7ef3-427f-a5a7-4a122575e88c}</uid>
                           </DElement>
                          </base-DElement>
-                         <object>{44b32fc7-98d3-4d47-a0ff-78be555c6852}</object>
-                         <a>{bad10144-e9a2-4b21-94bc-e7807e54f00b}</a>
-                         <b>{3298dd7e-8dcd-4f00-a6be-0bbb8d2b94c7}</b>
-                        </DRelation>
-                       </base-DRelation>
-                       <a>
-                        <DAssociationEnd>
-                         <cradinality>0..*</cradinality>
-                         <kind>2</kind>
-                        </DAssociationEnd>
-                       </a>
-                       <b>
-                        <DAssociationEnd>
-                         <cradinality>1</cradinality>
-                        </DAssociationEnd>
-                       </b>
-                      </DAssociation>
-                     </instance>
-                    </item>
-                    <item>
->>>>>>> Stashed changes
-                     <instance type="DAssociation">
-                      <DAssociation>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{721612c6-d106-44de-b183-ffb6c82050c1}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{9dfe023e-6b9e-450d-a699-ea368debe036}</object>
-                         <a>{a7d10784-0b76-4e06-b11d-69014337d036}</a>
+                         <object>{e7adf9c4-3a98-4eae-b90e-38b565c948b6}</object>
+                         <a>{c2fff2e0-327c-4ac3-b6ef-5a0296eb98af}</a>
                          <b>{bad10144-e9a2-4b21-94bc-e7807e54f00b}</b>
                         </DRelation>
                        </base-DRelation>
@@ -314,7 +208,6 @@
                       </DAssociation>
                      </instance>
                     </item>
-<<<<<<< Updated upstream
                     <item>
                      <instance type="DAnnotation">
                       <DAnnotation>
@@ -382,11 +275,6 @@ of Connection can be used as the connection here. </text>
                    </qlist>
                   </elements>
                   <last-modified>1479760920465</last-modified>
-=======
-                   </qlist>
-                  </elements>
-                  <last-modified>1479973004718</last-modified>
->>>>>>> Stashed changes
                   <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -604,8 +492,6 @@ of Connection can be used as the connection here. </text>
                     <uid>{169827a6-e155-4ed8-a0ec-14649c8b5a42}</uid>
                     <type>1</type>
                     <declaration>int seasonId</declaration>
-<<<<<<< Updated upstream
-=======
                    </MClassMember>
                   </item>
                   <item>
@@ -613,51 +499,24 @@ of Connection can be used as the connection here. </text>
                     <uid>{b4235344-bdf8-4f1f-bc42-5ae8525ebef3}</uid>
                     <type>1</type>
                     <declaration>int seasonNumber</declaration>
->>>>>>> Stashed changes
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
-                    <uid>{b4235344-bdf8-4f1f-bc42-5ae8525ebef3}</uid>
-                    <type>1</type>
-                    <declaration>int seasonNumber</declaration>
-=======
                     <uid>{faf81db6-fa86-4266-bac1-307e9c19068a}</uid>
                     <type>1</type>
                     <declaration>QString name</declaration>
->>>>>>> Stashed changes
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
-                    <uid>{faf81db6-fa86-4266-bac1-307e9c19068a}</uid>
-                    <type>1</type>
-                    <declaration>QString name</declaration>
-=======
                     <uid>{997ba08f-9255-4f8c-b788-7be965ee88a0}</uid>
                     <type>2</type>
                     <declaration>const QVector&lt;Episode&gt;&amp; inspectEpisodes()</declaration>
->>>>>>> Stashed changes
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
-                    <uid>{997ba08f-9255-4f8c-b788-7be965ee88a0}</uid>
-                    <type>2</type>
-                    <declaration>const QVector&lt;Episode&gt;&amp; inspectEpisodes()</declaration>
-=======
-                    <uid>{ae1f10ed-f1ff-4aed-b2a8-a61917d1d0e3}</uid>
-                    <type>2</type>
-                    <declaration>void addEpisode(Episode episode)</declaration>
->>>>>>> Stashed changes
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{ae1f10ed-f1ff-4aed-b2a8-a61917d1d0e3}</uid>
                     <type>2</type>
                     <declaration>void addEpisode(Episode episode)</declaration>
@@ -667,10 +526,6 @@ of Connection can be used as the connection here. </text>
                    <MClassMember>
                     <uid>{3a7b1f3f-4d4f-47e0-9ffe-c4c04aebadbd}</uid>
                     <type>2</type>
-=======
-                    <uid>{3a7b1f3f-4d4f-47e0-9ffe-c4c04aebadbd}</uid>
-                    <type>2</type>
->>>>>>> Stashed changes
                     <declaration>Episode getEpisode(QString name)</declaration>
                    </MClassMember>
                   </item>
@@ -739,39 +594,6 @@ of Connection can be used as the connection here. </text>
                         </target>
                        </handle>
                       </item>
-                      <item>
-                       <handle>
-                        <uid>{44b32fc7-98d3-4d47-a0ff-78be555c6852}</uid>
-                        <target>
-                         <instance type="MAssociation">
-                          <MAssociation>
-                           <base-MRelation>
-                            <MRelation>
-                             <base-MElement>
-                              <MElement>
-                               <uid>{44b32fc7-98d3-4d47-a0ff-78be555c6852}</uid>
-                              </MElement>
-                             </base-MElement>
-                             <a>{9f933aa8-0401-41c8-880e-2afe318c43ff}</a>
-                             <b>{a7e79580-b6b8-44c2-8b9b-cb493d743e34}</b>
-                            </MRelation>
-                           </base-MRelation>
-                           <a>
-                            <MAssociationEnd>
-                             <cardinality>0..*</cardinality>
-                             <kind>2</kind>
-                            </MAssociationEnd>
-                           </a>
-                           <b>
-                            <MAssociationEnd>
-                             <cardinality>1</cardinality>
-                            </MAssociationEnd>
-                           </b>
-                          </MAssociation>
-                         </instance>
-                        </target>
-                       </handle>
-                      </item>
                      </qlist>
                     </handles>
                    </handles>
@@ -782,7 +604,6 @@ of Connection can be used as the connection here. </text>
                  <qlist>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{a2df8a51-a6ff-4ed8-a17a-bd986e63cee2}</uid>
                     <type>2</type>
                     <declaration>addReaction(Reaction reaction)</declaration>
@@ -793,71 +614,24 @@ of Connection can be used as the connection here. </text>
                     <uid>{b4f878ea-5767-46dc-ad34-7e52dfd05b02}</uid>
                     <type>1</type>
                     <declaration>int episodeId</declaration>
-=======
-                    <uid>{7134adf2-6656-4ceb-9d4e-939ad20e063a}</uid>
-                    <type>1</type>
-                    <declaration>QMap&lt;QString, Review&gt; reviews</declaration>
->>>>>>> Stashed changes
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{ffb6bd4d-263f-455b-a8d0-359612a4a6de}</uid>
                     <type>1</type>
                     <declaration>int episodeNumber</declaration>
-=======
-                    <uid>{fc23e8e5-937f-449b-a1f0-e3e083b1be6e}</uid>
-                    <type>1</type>
-                    <declaration>QList&lt;Comment&gt; comments</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{2c74da94-476b-4793-b03c-5f6bca0d221b}</uid>
-                    <type>2</type>
-                    <declaration>const QList&lt;Comment&gt; &amp;getComments()</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{a164dd06-3575-425e-88b1-8dfab60ce6a7}</uid>
-                    <type>2</type>
-                    <declaration>void addReview(Review review)</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{eafd16a2-d6a6-4718-af87-76843d25000f}</uid>
-                    <type>2</type>
-                    <declaration>void addComment(Comment comment)</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{63a5c810-8d99-42a3-aa81-f0b39ff582f9}</uid>
-                    <type>2</type>
-                    <properties>4</properties>
-                    <declaration>bool operator&lt;(const Episode &amp;rhs)</declaration>
->>>>>>> Stashed changes
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{67de814c-c421-4fec-a096-6fb368372bd8}</uid>
                     <type>1</type>
                     <declaration>QString name</declaration>
-=======
-                    <uid>{278b6434-f779-449f-874c-580fab6535f4}</uid>
-                    <type>2</type>
-                    <declaration>QList&lt;Review&gt; inspectReviews()</declaration>
->>>>>>> Stashed changes
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{115962d0-4aad-4150-9b21-859a969b614c}</uid>
                     <type>1</type>
                     <declaration>QString summary</declaration>
@@ -868,39 +642,6 @@ of Connection can be used as the connection here. </text>
                     <uid>{7219a358-2405-4b56-a025-891e2994e2b5}</uid>
                     <type>2</type>
                     <declaration>QVector&lt;Reaction&gt; getReaction()</declaration>
-=======
-                    <uid>{aa338a77-5b9f-4ac8-9d9f-3b9df0be723a}</uid>
-                    <type>2</type>
-                    <declaration>QList&lt;Comment&gt; inspectComments()</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{be9a4ded-77b1-4f36-a704-30721ba93b16}</uid>
-                    <type>1</type>
-                    <declaration>int episodeId</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{04a4b494-dece-44d4-b05e-4c7f5beca352}</uid>
-                    <type>1</type>
-                    <declaration>int episodeNumber</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{2efd9b41-c6a2-48fd-b1df-8811a51d20f9}</uid>
-                    <type>1</type>
-                    <declaration>QString name</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{067f1c0a-634d-4cd4-a665-e9eaf7e8a315}</uid>
-                    <type>1</type>
-                    <declaration>QString summary</declaration>
->>>>>>> Stashed changes
                    </MClassMember>
                   </item>
                  </qlist>
@@ -971,51 +712,34 @@ of Connection can be used as the connection here. </text>
                  <qlist>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{17c6ece5-ad3f-494b-8bec-97ed0586a865}</uid>
-=======
-                    <uid>{d8a968cf-dad4-45df-a3a8-1c3ba259b375}</uid>
->>>>>>> Stashed changes
                     <type>1</type>
                     <declaration>int postID</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{3cbf8cf0-08bf-4d8a-9ce5-01d4b020c553}</uid>
-=======
-                    <uid>{fab1c489-c19a-4e04-8cea-4b4076f1a8a2}</uid>
->>>>>>> Stashed changes
                     <type>1</type>
                     <declaration>int mediaID</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{5c433250-3203-427a-868c-9b4c604c4939}</uid>
-=======
-                    <uid>{a2319f61-c84f-4129-b491-e4df456dee09}</uid>
->>>>>>> Stashed changes
                     <type>1</type>
                     <declaration>int userID</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{9d1a60a5-9385-4a25-a40f-13b75a555d39}</uid>
-=======
-                    <uid>{de25859b-43c2-4a6c-a283-f30ac525d6a5}</uid>
->>>>>>> Stashed changes
                     <type>1</type>
                     <declaration>QString dateTimePosted</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-<<<<<<< Updated upstream
                     <uid>{0aa998f1-42ef-4c14-834b-926430d77869}</uid>
                     <type>1</type>
                     <declaration>QString text</declaration>
@@ -1026,151 +750,6 @@ of Connection can be used as the connection here. </text>
                     <uid>{0fc70185-f3e5-4782-aee6-410b9f4be1a6}</uid>
                     <type>2</type>
                     <declaration>void setDateTimePosted()</declaration>
-=======
-                    <uid>{b0306abf-f427-47cc-9efc-b4f436230015}</uid>
-                    <type>1</type>
-                    <declaration>QString text</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{79fd5cb6-d2eb-42f2-85fc-de6296bbf87f}</uid>
-                    <type>2</type>
-                    <declaration>void setDateTimePosted()</declaration>
-                   </MClassMember>
-                  </item>
-                 </qlist>
-                </members>
-               </MClass>
-              </instance>
-             </target>
-            </handle>
-           </item>
-           <item>
-            <handle>
-             <uid>{61fbebf9-62dc-4072-8cc9-9ad5e1485cea}</uid>
-             <target>
-              <instance type="MClass">
-               <MClass>
-                <base-MObject>
-                 <MObject>
-                  <base-MElement>
-                   <MElement>
-                    <uid>{61fbebf9-62dc-4072-8cc9-9ad5e1485cea}</uid>
-                   </MElement>
-                  </base-MElement>
-                  <name>Reviews</name>
-                  <relations>
-                   <handles>
-                    <handles>
-                     <qlist>
-                      <item>
-                       <handle>
-                        <uid>{9dfe023e-6b9e-450d-a699-ea368debe036}</uid>
-                        <target>
-                         <instance type="MAssociation">
-                          <MAssociation>
-                           <base-MRelation>
-                            <MRelation>
-                             <base-MElement>
-                              <MElement>
-                               <uid>{9dfe023e-6b9e-450d-a699-ea368debe036}</uid>
-                              </MElement>
-                             </base-MElement>
-                             <a>{61fbebf9-62dc-4072-8cc9-9ad5e1485cea}</a>
-                             <b>{9f933aa8-0401-41c8-880e-2afe318c43ff}</b>
-                            </MRelation>
-                           </base-MRelation>
-                           <a>
-                            <MAssociationEnd>
-                             <cardinality>1</cardinality>
-                            </MAssociationEnd>
-                           </a>
-                           <b>
-                            <MAssociationEnd>
-                             <cardinality>0..*</cardinality>
-                             <kind>2</kind>
-                            </MAssociationEnd>
-                           </b>
-                          </MAssociation>
-                         </instance>
-                        </target>
-                       </handle>
-                      </item>
-                     </qlist>
-                    </handles>
-                   </handles>
-                  </relations>
-                 </MObject>
-                </base-MObject>
-                <members>
-                 <qlist>
-                  <item>
-                   <MClassMember>
-                    <uid>{c3211109-aea6-4141-b0cc-62139554a90a}</uid>
-                    <type>2</type>
-                    <declaration>void addReply(Reply reply)</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{ae82ee54-10bb-42d5-ab03-50b39a8fc855}</uid>
-                    <type>2</type>
-                    <declaration>const QVector&lt;Reply&gt; &amp;inspectReplies()</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{0d57c2e6-cb44-4320-9c50-83a16f631ac7}</uid>
-                    <type>1</type>
-                    <declaration>QVector&lt;Reply&gt; replies</declaration>
-                   </MClassMember>
-                  </item>
-                 </qlist>
-                </members>
-               </MClass>
-              </instance>
-             </target>
-            </handle>
-           </item>
-           <item>
-            <handle>
-             <uid>{a7e79580-b6b8-44c2-8b9b-cb493d743e34}</uid>
-             <target>
-              <instance type="MClass">
-               <MClass>
-                <base-MObject>
-                 <MObject>
-                  <base-MElement>
-                   <MElement>
-                    <uid>{a7e79580-b6b8-44c2-8b9b-cb493d743e34}</uid>
-                   </MElement>
-                  </base-MElement>
-                  <name>Comments</name>
-                 </MObject>
-                </base-MObject>
-                <members>
-                 <qlist>
-                  <item>
-                   <MClassMember>
-                    <uid>{2098cc0a-0d60-424a-9d8a-cc68f7af6cd4}</uid>
-                    <type>2</type>
-                    <declaration>void addReply(Reply reply)</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{f5ae29f3-2081-4e61-8819-6af7c829c952}</uid>
-                    <type>2</type>
-                    <declaration>const QVector&lt;Reply&gt; &amp;inspectReplies()</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{1470adba-c8d5-4c4d-8432-a9a30eb0a739}</uid>
-                    <type>1</type>
-                    <declaration>QVector&lt;Reply&gt; replies</declaration>
->>>>>>> Stashed changes
                    </MClassMember>
                   </item>
                  </qlist>
