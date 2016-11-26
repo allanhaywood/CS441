@@ -290,7 +290,7 @@ void Dashboard::on_saveButton_clicked()
     QString newPassword;
 
 
-    if(ui->newPasswordBox->text()==ui->confirmPasswordBox->text() && ui->confirmPasswordBox->text()!="")
+    if(ui->newPasswordBox->text() == ui->confirmPasswordBox->text() && ui->confirmPasswordBox->text()!="")
     {
         newPassword = ui->newPasswordBox->text();
     }
