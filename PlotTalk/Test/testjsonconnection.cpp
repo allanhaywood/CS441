@@ -51,26 +51,27 @@ void TestJsonConnection::TestGetTvShow1()
     QList<Review> reviews = episode.inspectReviews();
     QCOMPARE(reviews.count(), 1);
 
-    QString expectedDateTimePosted = "1997-07-16T19:20:30.45+00:00";
+    QString expectedDateTimePosted = "11/24/2016 2:30 am";
     QUuid expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EE}");
-    QString expectedText = "It is amazing how this show is made.";
-    QString expectedUsername = "plottalkadmin";
+    QString expectedReviewText = "This show is awesome!";
+    QString expectedCommentText = "It is amazing how this show is made.";
+    QString expectedUsername = "admin";
 
     QCOMPARE(reviews[0].dateTimePosted, expectedDateTimePosted);
     QCOMPARE(reviews[0].postUuid, expectedPostUuid);
-    QCOMPARE(reviews[0].rating, 5);
-    QCOMPARE(reviews[0].text, expectedText);
+    QCOMPARE(reviews[0].rating, 100);
+    QCOMPARE(reviews[0].text, expectedReviewText);
     QCOMPARE(reviews[0].username, expectedUsername);
 
     QList<Comment> comments = episode.inspectComments();
     QVERIFY(comments.count() == 1);
 
-    expectedDateTimePosted = "1997-07-16T19:20:30.46+00:00";
+    expectedDateTimePosted = "11/24/2016 2:31 am";
     expectedPostUuid = QUuid("{67C8770B-44F1-410A-AB9A-F9B5446F13EF}");
 
     QCOMPARE(comments[0].dateTimePosted, expectedDateTimePosted);
     QCOMPARE(comments[0].postUuid, expectedPostUuid);
-    QCOMPARE(comments[0].text, expectedText);
+    QCOMPARE(comments[0].text, expectedCommentText);
     QCOMPARE(comments[0].username, expectedUsername);
 }
 
@@ -91,20 +92,20 @@ void TestJsonConnection::TestGetTvShow2()
     QCOMPARE(tvShow.tmdbLink, expectedTmdbLink);
     QCOMPARE(tvShow.graphicLink, expectedGraphicLink);
 
-    QHash<int, Season> &seasons = tvShow.getSeasons();
+    QVector<Season> seasons = tvShow.inspectSeasons();
     QCOMPARE(seasons.count(), 3);
 
-    Season &season = tvShow.getSeason(0);
+    Season season = tvShow.inspectSeason(0);
     QString expectedSeasonName = "season_0.0";
 
     QCOMPARE(season.seasonId, 77843);
     QCOMPARE(season.seasonNumber, 0);
     QCOMPARE(season.name, expectedSeasonName);
 
-    QHash<int, Episode> &episodes = season.getEpisodes();
+    QVector<Episode> episodes = season.inspectEpisodes();
     QCOMPARE(episodes.count(), 3);
 
-    Episode &episode = season.getEpisode(2);
+    Episode episode = season.inspectEpisode(2);
 
     QString expectedEpisodeName = "Hacking Robot 101";
     QString expectedEpisodeSummary = "In the premiere of the \"Mr. Robot\" after show, the series' cast and creator discuss the Season 2 premiere and field fan questions.";

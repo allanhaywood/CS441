@@ -5,36 +5,43 @@
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
 #include <QHash>
-#include <QList>
 
 #include "user.h"
 #include "singleton.h"
 #include "jsonconnection.h"
 
-class DatabaseManager
+#include <QObject>
+#include <QMap>
+#include <QList>
+
+
+class DatabaseManager : public QObject
 {
+    Q_OBJECT
+
 public:
     DatabaseManager();
     DatabaseManager(QString jsonPath);
 
     // IConnection equivalents, method names are the same, but no need to provide a reference,
     // in addition, instead of return void, it returns a reference of the object.
-    TvShow &getTvShow(QString name);
+    const TvShow inspectTvShow(QString name);
 
-    TvShow &getTvShowById(int tvShowId);
-
-    // @throws NotFound when user does not exist.
-    User &getUser(QString username);
+    // @throws NotFound
+    const TvShow inspectTvShowById(int tvShowId);
 
     // @throws NotFound when user does not exist.
-    User &getUserByEmail(QString email);
+    const User inspectUser(QString username);
+
+    // @throws NotFound when user does not exist.
+    const User inspectUserByEmail(QString email);
 
     void addUser(User user);
 
     void removeUser(QString username);
 
     // @throws NotFound when user does not exist.
-    void updateUser(User user);
+    //void updateUser(User user);
 
     bool usernameExists(QString username);
 
@@ -48,8 +55,13 @@ public:
 
     QList<QString> getListOfCachedUsers();
 
+    // @throws NotFound
+    QString getTvShowNameById(int showId);
 
+    // @throws NotFound
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
+
+    // @throws NotFound
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
 
     //@todo Add get list of watched tvshows, once watched functionality is added.
@@ -57,10 +69,12 @@ public:
     // Used for testing only.
     void emptyCache();
 
+signals:
+    void notify();
 
 private:
-    QHash<QString, TvShow> tvShowHash;
-    QHash<QString, User> userHash;
+    QMap<QString, TvShow> tvShowMap;
+    QMap<QString, User> userMap;
 
     DatabaseManager(DatabaseManager const&);    // copy constructor hidden
     //DatabaseManager& operator=(DatabaseManager const&);  // assign op hidden

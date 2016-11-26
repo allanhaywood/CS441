@@ -46,14 +46,14 @@ bool AccountManager::createAccount(QString first, QString last, QString Email, Q
 {
         User thisUser = User(handle, first, last, Email, password, isAdmin);//add Password Hash when possibl
         DatabaseManagerSingleton::Instance().addUser(thisUser);
-        referenceTodatabaseUser = DatabaseManagerSingleton::Instance().getUser(handle);
+        referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(handle);
         return true;//reminant of previous code
 }
 
 bool AccountManager::createAccount(User user)
 {
     DatabaseManagerSingleton::Instance().addUser(user);
-    referenceTodatabaseUser = DatabaseManagerSingleton::Instance().getUser(user.email);
+    referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(user.email);
     return true;
 }
 
@@ -93,17 +93,29 @@ selectEnum AccountManager::checkFieldsAndCreate(QString fName, QString lName, QS
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     if((fName.size()<=1)||(lName.size()<=1)||(handle.size()<=1))
+        delete validEmail;
+        delete validPwd;
         return selectEnum::VALUES_MISSING;//need good names and handle
     if(validEmail->validate(email,num)!=2)
+        delete validEmail;
+        delete validPwd;
         return selectEnum::BAD_EMAIL;//email is bad format
     if(DatabaseManagerSingleton::Instance().emailExists(email))
+        delete validEmail;
+        delete validPwd;
         return selectEnum::DUPLICATE_EMAIL;//email already exists
     if(DatabaseManagerSingleton::Instance().usernameExists(handle))
+        delete validEmail;
+        delete validPwd;
         return selectEnum::USERNAME_TAKEN;//username is taken
     if(validPwd->validate(password,num)!=2)
+        delete validEmail;
+        delete validPwd;
         return selectEnum::BAD_PASSWORD;//password not correct format
 
-    createAccount(fName, lName, email, handle, password, isAdmin);
+    createAccount(fName,lName,email,handle,password,isAdmin);
+    delete validEmail;
+    delete validPwd;
     return selectEnum::ALLCLEAR;
 }
 
@@ -113,13 +125,11 @@ selectEnum AccountManager::checkFieldsAndCreate(QString fName, QString lName, QS
  * @param takes an email string, a password string, and a user object.
  * @return true and fills passses back the found user by reference if user exists, false and no passback if not found.
  */
-bool AccountManager::checkEmailAndPassword(QString email, QString password, User &user)
+bool AccountManager::checkEmailAndPassword(QString email, QString password, User user)
 {
-
-
     if(DatabaseManagerSingleton::Instance().emailExists(email))
         {
-            User hold=DatabaseManagerSingleton::Instance().getUserByEmail(email);
+            User hold=DatabaseManagerSingleton::Instance().inspectUserByEmail(email);
 
             if(hold.passwordHash==password)
             {

@@ -14,7 +14,7 @@ Season::Season()
     seasonId = 0;
     seasonNumber = 0;
     name = "";
-    episodes = QHash<int, Episode>();
+    episodes = QMap<int, Episode>();
 }
 
 /**
@@ -24,7 +24,7 @@ Season::Season()
  * @param name The name of the season as specified by the movie database.
  * @param episodes A map of episodes to add to the season.
  */
-Season::Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode> episodes)
+Season::Season(int seasonId, int seasonNumber, QString name, QMap<int, Episode> episodes)
 {
     this->seasonId = seasonId;
     this->seasonNumber = seasonNumber;
@@ -38,9 +38,11 @@ Season::Season(int seasonId, int seasonNumber, QString name, QHash<int, Episode>
  *
  * NOTE: Any changes to episodes will not be reflected in the TvShow class.
  */
-const QVector<Episode> Season::inspectEpisodes()
+QVector<Episode> Season::inspectEpisodes()
 {
-    return episodes.values().toVector();
+    QVector<Episode> vector = episodes.values().toVector();
+    qSort(vector);
+    return vector;
 }
 
 /**
@@ -49,7 +51,7 @@ const QVector<Episode> Season::inspectEpisodes()
  *
  * @note The episodeId is the key.
  */
-QHash<int, Episode> &Season::getEpisodes()
+QMap<int, Episode> &Season::getEpisodes()
 {
     return episodes;
 }
@@ -64,12 +66,22 @@ void Season::addEpisode(Episode episode)
 }
 
 /**
+ * @brief Season::operator < Compares two Seasons, used for sorting
+ * @param rhs The Object to compare to.
+ * @return True if lhs is less than right hand side.
+ */
+bool Season::operator<(const Season &rhs) const
+{
+    return this->seasonNumber < rhs.seasonNumber;
+}
+
+/**
  * @brief Season::getEpisode Return episode with matching name in this season
  * @param QString name
  * @returns matching Episode
  * @throws NotFound exception if no match found
  */
-Episode &Season::getEpisode(QString name)
+const Episode &Season::getEpisode(QString name)
 {
     for (auto &episode : episodes)
     {
@@ -87,7 +99,7 @@ Episode &Season::getEpisode(QString name)
  * @param number The episodeNumber
  * @return A reference to an episode with the provided number.
  */
-Episode &Season::getEpisode(int number)
+const Episode &Season::getEpisode(int number)
 {
     for (auto &episode : episodes)
     {
@@ -107,4 +119,9 @@ Episode &Season::getEpisode(int number)
 Episode Season::inspectEpisode(int number)
 {
     return getEpisode(number);
+}
+
+Episode Season::inspectEpisode(QString name)
+{
+    return getEpisode(name);
 }

@@ -24,23 +24,26 @@ public:
     TvShow();
     TvShow(QString name, QString tmdbLink, QString graphicLink);
     TvShow(int showId, QString name, QString tmdbLink, QString graphicLink);
-    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QHash<int, Season> seasons);
+    TvShow(int showId, QString name, QString tmdbLink, QString graphicLink, QMap<int, Season> seasons);
 
-    const QVector<Season> inspectSeasons();
-    QHash<int, Season> &getSeasons();
+    QVector<Season> inspectSeasons();
+    Season inspectSeason(int number);
 
     void addSeason(Season season);
-    Season &getSeason(int number);
-    Season inspectSeason(int number);
 
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
+
+    bool operator<(const TvShow &rhs) const;
 
     // Not implementing replies yet.
     //void addReactionReply(EpisodeIdentifier episodeIdentifier, QUuid reactionUuid, Reply reply);
 
 private:
-    QHash<int, Season> seasons;
+    QMap<int, Season> seasons;
+
+    const QMap<int, Season> &getSeasons();
+    const Season &getSeason(int number);
 };
 
 #endif

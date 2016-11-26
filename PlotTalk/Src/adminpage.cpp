@@ -31,7 +31,7 @@ void AdminPage::on_Users_clicked()
 
      for(int i=0; i<allUserNames.size(); i++)
      {
-        allUsers.append(DatabaseManagerSingleton::Instance().getUser(allUserNames[i]));
+        allUsers.append(DatabaseManagerSingleton::Instance().inspectUser(allUserNames[i]));
      }//populates a list of users from the usernames
 
      ui->UserList->addItem("First\tLast\tEmail\t\tHandle");
