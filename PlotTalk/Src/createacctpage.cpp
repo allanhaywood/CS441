@@ -46,8 +46,9 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        AccountManager *check= AccountManager::getInstance();
        if(ui->PasswordBox1->text()==ui->PasswordBox2->text())//must also check to see if password matches requirements
        {
+           User createdUser = User(handle, firstName, lastName, email, password, false);
            //QString message; //To do what was done on dashboard.
-           switch(check->checkFieldsAndCreate(firstName, lastName, handle, email, password, false))
+           switch(check->checkFieldsAndCreate(createdUser))
            {
            case selectEnum::ALLCLEAR:
            {

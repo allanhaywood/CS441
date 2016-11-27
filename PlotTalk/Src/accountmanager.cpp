@@ -31,12 +31,14 @@ AccountManager::~AccountManager()//destructor
     instance=NULL;//removes dangling pointers
 }
 
+/*
 /**
  * @brief places an account into the database
  * @param accepts user information in QString format in the order: first,last,Email,userName,password
  * @return true always as it will always call the database manager and insert the info
  */
 
+/*
 bool AccountManager::createAccount(QString first, QString last, QString Email, QString handle, QString password)
 {\
 return createAccount(first, last, Email, handle, password, false);
@@ -49,12 +51,11 @@ bool AccountManager::createAccount(QString first, QString last, QString Email, Q
         referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(handle);
         return true;//reminant of previous code
 }
-
-bool AccountManager::createAccount(User user)
+*/
+void AccountManager::createAccount(User user)
 {
     DatabaseManagerSingleton::Instance().addUser(user);
     referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(user.email);
-    return true;
 }
 
 
@@ -75,8 +76,15 @@ User &AccountManager::getCurrentAccount()
  * @return an enum value that tells the client the user has been added or what error the data contains
  */
 
-selectEnum AccountManager::checkFieldsAndCreate(QString fName, QString lName, QString handle, QString email, QString password, bool isAdmin)
+selectEnum AccountManager::checkFieldsAndCreate(User user)
 {
+
+QString fName = user.firstName;
+QString lName = user.lastName;
+QString handle = user.username;
+QString email = user.email;
+QString password = user.passwordHash;
+
     QRegularExpression checkEmail("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
     QRegularExpression checkPassword("(?=^.{8,30}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
 
@@ -122,7 +130,7 @@ selectEnum AccountManager::checkFieldsAndCreate(QString fName, QString lName, QS
         delete validPwd;
         return selectEnum::BAD_PASSWORD;//password not correct format
     }
-    createAccount(fName,lName,email,handle,password,isAdmin);
+    createAccount(user);
     delete validEmail;
     delete validPwd;
     return selectEnum::ALLCLEAR;
@@ -166,8 +174,8 @@ bool AccountManager::EmailExists(QString email)//checks to see if an email exist
 
 void AccountManager::ClearForLogout()
 {
-    User BlankMan;
-    referenceTodatabaseUser=BlankMan;
+    User BlankUser;
+    referenceTodatabaseUser=BlankUser;
 }
 
 
