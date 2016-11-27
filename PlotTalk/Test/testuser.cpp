@@ -6,7 +6,6 @@
 #include "testuser.h"
 void TestUser::TestUserDefaultConstructor1()
 {
-
     User user = User();
     QVERIFY(user.username.isEmpty());
     QVERIFY(user.firstName.isEmpty());
@@ -74,7 +73,6 @@ void TestUser::TestsForWatchedList()
     episode3.episodeId=3;
     episode3.seasonId=4;
     episode3.tvShowId=2;
-    int location;
 
     QList<EpisodeIdentifier> episodeGroup;
     episodeGroup.append(episode1);
@@ -83,30 +81,46 @@ void TestUser::TestsForWatchedList()
 
     User user = User(username, firstName, lastName, email, passwordHash);
     QCOMPARE(user.hasTheUserWatchedAnything(), false);//the user has not watched any shows
-    QCOMPARE(user.addWatchedEpisode(episode1), true);//adding an episode
-    QCOMPARE(user.hasUserWatchedThisEpisode(episode1,location),true);
-    QCOMPARE(location,0);
-    QCOMPARE(user.hasTheUserWatchedAnything(), true);//now the user has watched a show
-    QCOMPARE(user.addWatchedEpisode(episode2), true);//adding a second episode
-    QCOMPARE(user.addWatchedEpisode(episode3), true);//adding a third episode
-    QCOMPARE(user.hasUserWatchedThisEpisode(episode2,location),true);
-    QCOMPARE(location,1);
-    QCOMPARE(user.addWatchedEpisodeList(episodeGroup),false);//one or more episodes already exist
-    QCOMPARE(user.hasUserWatchedThisEpisode(episode3,location),true);
-    QCOMPARE(location,2);
-    QCOMPARE(user.removeWatchedEpisode(episode1), true);//removing the first episode
-    QCOMPARE(user.removeWatchedEpisode(episode1), false);//episode already removed
-    QCOMPARE(user.hasTheUserWatchedAnything(), true);//the user has watched shows
-    QCOMPARE(user.addWatchedEpisode(episode2), false);//episode already added
-    QCOMPARE(user.removeWatchedEpisode(episode2), true);//remove second episode
-    QCOMPARE(user.removeWatchedEpisode(episode3), true);//remove third episode
-    QCOMPARE(user.removeWatchedEpisode(episode3), false);//episode already removed
-    QCOMPARE(user.hasTheUserWatchedAnything(),false);//the user has watched no shows now
-    QCOMPARE(user.addWatchedEpisodeList(episodeGroup), true);//adds a list of episode ids to the user
-    QCOMPARE(user.addWatchedEpisodeList(episodeGroup),false);//list already addedadded episodes to list
-    QCOMPARE(user.removeWatchedEpisode(episode1), true);
-    QCOMPARE(user.removeWatchedEpisode(episode2), true);
-    QCOMPARE(user.removeWatchedEpisode(episode3), true);//successfully remove all the episodes
-    QCOMPARE(user.removeWatchedEpisode(episode3), false);//cannot remove an episode that isn't in the user
-}
 
+    user.addWatchedEpisode(episode1);//adding an episode
+    QCOMPARE(user.hasUserWatchedThisEpisode(episode1), true);
+    QCOMPARE(user.hasTheUserWatchedAnything(), true);//now the user has watched a show
+
+    user.addWatchedEpisode(episode2);//adding a second episode
+    user.addWatchedEpisode(episode3);//adding a third episode
+
+    QCOMPARE(user.hasUserWatchedThisEpisode(episode2), true);
+
+    user.addWatchedEpisodeList(episodeGroup);//one or more episodes already exist
+
+    QCOMPARE(user.hasUserWatchedThisEpisode(episode3), true);
+
+    user.removeWatchedEpisode(episode1);//removing the first episode
+    user.removeWatchedEpisode(episode1);//episode already removed
+
+    QCOMPARE(user.hasTheUserWatchedAnything(), true);//the user has watched shows
+
+    user.addWatchedEpisode(episode2);//episode already added
+
+    user.removeWatchedEpisode(episode2);//remove second episode
+
+    user.removeWatchedEpisode(episode3);//remove third episode
+    user.removeWatchedEpisode(episode3);//episode already removed
+
+    QCOMPARE(user.hasTheUserWatchedAnything(), false);//the user has watched no shows now
+
+    user.addWatchedEpisodeList(episodeGroup);//adds a list of episode ids to the user
+    user.addWatchedEpisodeList(episodeGroup);//list already addedadded episodes to list
+
+    user.removeWatchedEpisode(episode1);
+    QCOMPARE(user.hasTheUserWatchedAnything(), true); // There should still be episodes left.
+
+    user.removeWatchedEpisode(episode2);
+    QCOMPARE(user.hasTheUserWatchedAnything(), true); // There should still be episodes left.
+
+    user.removeWatchedEpisode(episode3);//successfully remove all the episodes
+    QCOMPARE(user.hasTheUserWatchedAnything(),false);//the user has watched no shows now
+
+    user.removeWatchedEpisode(episode3);//cannot remove an episode that isn't in the user
+    QCOMPARE(user.hasTheUserWatchedAnything(),false);//the user has watched no shows now
+}

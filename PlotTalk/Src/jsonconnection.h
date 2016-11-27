@@ -10,6 +10,7 @@
 #include "user.h"
 
 #include <QString>
+#include <QList>
 #include <QJsonObject>
 #include <QJsonValue>
 
@@ -55,6 +56,9 @@ public:
     void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review);
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
 
+    void addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username);
+    void removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username);
+
     // Normally the loadJson and saveJson wouldn't be public, but they have been made public,
     // for easy access by QTest. TODO: Investigate alternative access. ex. Via Friendly classes.
     void loadJson();
@@ -90,6 +94,8 @@ private:
     QJsonValue commentToJsonValue(Comment comment);
 
     QJsonObject userToJsonObject(User user);
+    QJsonArray watchedEpisodesToJsonArray(QList<EpisodeIdentifier> watchedEpisodes);
+    QList<EpisodeIdentifier> getWatchedEpisodes(QJsonArray jsonWatchedEpisodes);
 };
 
 #endif // JSONCONNECTION_H

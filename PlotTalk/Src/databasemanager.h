@@ -64,7 +64,11 @@ public:
     // @throws NotFound
     void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment);
 
-    //@todo Add get list of watched tvshows, once watched functionality is added.
+    void addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username);
+
+    void removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username);
+
+    QList<QString> getListOfWatchedTvShowNamesForUser(QString username);
 
     // Used for testing only.
     void emptyCache();
