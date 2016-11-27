@@ -66,6 +66,11 @@ public:
     virtual void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review) = 0;
 
     virtual void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment) = 0;
+
+    virtual void addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username) = 0;
+
+    virtual void removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username) = 0;
+
 };
 
 #endif // ICONNECTION_H

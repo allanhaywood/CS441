@@ -275,6 +275,30 @@ void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Com
 }
 
 /**
+ * @brief DatabaseManager::addWatchedEpisode Adds the specified episode to the specified users watched episodes list.
+ * @param episodeIdentifier The episode to add to the users watched shows.
+ * @param username The username to add the watched episode to.
+ */
+void DatabaseManager::addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
+{
+    userMap[username].addWatchedEpisode(episodeIdentifier);
+    connection.addWatchedEpisode(episodeIdentifier, username);
+    emit notify();
+}
+
+/**
+ * @brief DatabaseManager::removeWatchedEpisode Removes the specified episode from the specified users watched episodes list.
+ * @param episodeIdentifier The episode to remove from the users watched shows.
+ * @param username The username to remove the watched episode from.
+ */
+void DatabaseManager::removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
+{
+    userMap[username].removeWatchedEpisode(episodeIdentifier);
+    connection.removeWatchedEpisode(episodeIdentifier, username);
+    emit notify();
+}
+
+/**
  * @brief DatabaseManager::emptyCache Used for testing only, to empty cache.
  */
 void DatabaseManager::emptyCache()

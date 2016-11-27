@@ -322,3 +322,61 @@ void TestJsonConnection::TestGetListOfAllTvShows()
     QCOMPARE(allTvShows[0],tvShow0);
     QCOMPARE(allTvShows[1],tvShow1);
 }
+
+void TestJsonConnection::TestUserWatchedEpisodes()
+{
+    // Set up strings to compare against.
+    QString username = "nuser";
+    QString firstName = "New";
+    QString lastName = "User";
+    QString email = "nuser@gmail.com";
+    QString passwordHash = "newuser123";
+    QList<EpisodeIdentifier> watchedEpisodes = QList<EpisodeIdentifier>();
+
+    EpisodeIdentifier eI1;
+    eI1.tvShowId = 1;
+    eI1.seasonId = 2;
+    eI1.episodeId = 3;
+
+    EpisodeIdentifier eI2;
+    eI2.tvShowId = 4;
+    eI2.seasonId = 5;
+    eI2.episodeId = 6;
+
+    watchedEpisodes.append(eI1);
+    watchedEpisodes.append(eI2);
+
+    JsonConnection jsonConnection = JsonConnection();
+
+    User user = User(username, firstName, lastName, email, passwordHash, watchedEpisodes);
+
+    // Remove user if it already exists.
+    jsonConnection.removeUser(username);
+
+    jsonConnection.addUser(user);
+
+    user = jsonConnection.getUser(username);
+
+    QCOMPARE(user.username, username);
+    QCOMPARE(user.firstName, firstName);
+    QCOMPARE(user.lastName, lastName);
+    QCOMPARE(user.email, email);
+    QCOMPARE(user.passwordHash, passwordHash);
+    QCOMPARE(user.isAdmin(), false);
+
+    QList<EpisodeIdentifier> userAfterWatchedEpisodes = user.inspectWatchedEpisodes();
+
+    // Make sure both lists are the same length.
+    QCOMPARE(userAfterWatchedEpisodes.size(), watchedEpisodes.size());
+
+    qSort(watchedEpisodes);
+    qSort(userAfterWatchedEpisodes);
+
+    for (int i = 0; i < watchedEpisodes.size(); i++)
+    {
+        QCOMPARE(userAfterWatchedEpisodes[i].getKey(), watchedEpisodes[i].getKey());
+    }
+
+    // Remove user when done.
+    jsonConnection.removeUser(username);
+}
