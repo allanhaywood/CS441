@@ -470,6 +470,94 @@ void TestDatabaseManager::TestAddEpisodeComment()
     QCOMPARE(found, true);
 }
 
+void TestDatabaseManager::TestAddAndRemoveWatchedEpisode()
+{
+    // Set up strings to compare against.
+    QString username = "nuser";
+    QString expectedFirstName = "New";
+    QString expectedLastName = "User";
+    QString expectedEmail = "nuser@gmail.com";
+    QString expectedPasswordHash = "newuser123";
+
+    QList<EpisodeIdentifier> expectedWatchedEpisodes = QList<EpisodeIdentifier>();
+
+    expectedWatchedEpisodes.append(EpisodeIdentifier::fromKey("1:2:3"));
+    expectedWatchedEpisodes.append(EpisodeIdentifier::fromKey("4:5:6"));
+    expectedWatchedEpisodes.append(EpisodeIdentifier::fromKey("7:8:9"));
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    qDebug() << "Removing user before attempting to add.";
+    DatabaseManagerSingleton::Instance().removeUser(username);
+
+    // Create user without watched episodes list.
+    User userBefore = User(username, expectedFirstName, expectedLastName, expectedEmail, expectedPasswordHash);
+    DatabaseManagerSingleton::Instance().addUser(userBefore);
+
+    User userAfter = DatabaseManagerSingleton::Instance().inspectUser(username);
+
+    QCOMPARE(userAfter.username, username);
+    QCOMPARE(userAfter.firstName, expectedFirstName);
+    QCOMPARE(userAfter.lastName, expectedLastName);
+    QCOMPARE(userAfter.email, expectedEmail);
+    QCOMPARE(userAfter.passwordHash, expectedPasswordHash);
+    QCOMPARE(userAfter.isAdmin(), false);
+
+    QList<EpisodeIdentifier> userAfterWatchedEpisodes = userAfter.inspectWatchedEpisodes();
+
+    // Validate watched episodes is empty.
+    QCOMPARE(userAfterWatchedEpisodes.size(), 0);
+
+    DatabaseManagerSingleton::Instance().addWatchedEpisode(EpisodeIdentifier::fromKey("1:2:3"), username);
+    DatabaseManagerSingleton::Instance().addWatchedEpisode(EpisodeIdentifier::fromKey("4:5:6"), username);
+    DatabaseManagerSingleton::Instance().addWatchedEpisode(EpisodeIdentifier::fromKey("7:8:9"), username);
+
+    User userAfter2 = DatabaseManagerSingleton::Instance().inspectUser(username);
+
+    QCOMPARE(userAfter2.username, username);
+    QCOMPARE(userAfter2.firstName, expectedFirstName);
+    QCOMPARE(userAfter2.lastName, expectedLastName);
+    QCOMPARE(userAfter2.email, expectedEmail);
+    QCOMPARE(userAfter2.passwordHash, expectedPasswordHash);
+    QCOMPARE(userAfter2.isAdmin(), false);
+
+    userAfterWatchedEpisodes = userAfter2.inspectWatchedEpisodes();
+
+    // Make sure both lists are the same length.
+    QCOMPARE(userAfterWatchedEpisodes.size(), expectedWatchedEpisodes.size());
+
+    qSort(expectedWatchedEpisodes);
+    qSort(userAfterWatchedEpisodes);
+
+    for (int i = 0; i < expectedWatchedEpisodes.size(); i++)
+    {
+        QCOMPARE(userAfterWatchedEpisodes[i].getKey(), expectedWatchedEpisodes[i].getKey());
+    }
+
+    // Remove one of the episodes from the watched list.
+    DatabaseManagerSingleton::Instance().removeWatchedEpisode(EpisodeIdentifier::fromKey("4:5:6"), username);
+
+    User userAfter3 = DatabaseManagerSingleton::Instance().inspectUser(username);
+
+    userAfterWatchedEpisodes = userAfter3.inspectWatchedEpisodes();
+
+    expectedWatchedEpisodes.removeAt(1);
+
+    // Make sure both lists are the same length.
+    QCOMPARE(userAfterWatchedEpisodes.size(), expectedWatchedEpisodes.size());
+
+    qSort(expectedWatchedEpisodes);
+    qSort(userAfterWatchedEpisodes);
+
+    for (int i = 0; i < expectedWatchedEpisodes.size(); i++)
+    {
+        QCOMPARE(userAfterWatchedEpisodes[i].getKey(), expectedWatchedEpisodes[i].getKey());
+    }
+
+    qDebug() << "Removing user after test.";
+    DatabaseManagerSingleton::Instance().removeUser(username);
+}
+
 bool TestDatabaseManager::deleteTempJson()
 {
     // Delete temporary json file for testing.

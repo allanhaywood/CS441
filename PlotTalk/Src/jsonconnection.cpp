@@ -866,6 +866,90 @@ void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comm
 }
 
 /**
+ * @brief JsonConnection::addWatchedEpisode Adds the specified episode to the specified users watched list.
+ * @param episodeIdentifier The episode that was watched.
+ * @param username The username that watched the episode.
+ *
+ * @throws NotFound
+ */
+void JsonConnection::addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
+{
+    QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
+    User user;
+
+    QJsonObject obj;
+
+    int index = 0;
+    bool found = false;
+    foreach (const QJsonValue &value, users)
+    {
+        obj = value.toObject();
+        if ( obj["username"] ==  username )
+        {
+            user = getUser(obj["username"].toString());
+            found = true;
+            break;
+        }
+
+        ++index;
+    }
+
+    if ( ! found )
+    {
+        throw NotFound("User not found:" + username);
+    }
+
+    user.addWatchedEpisode(episodeIdentifier);
+
+    users.replace(index, userToJsonObject(user));
+
+    json[JSON_USER_ARRAY_NAME] = users;
+
+    saveJson();
+}
+
+/**
+ * @brief JsonConnection::removeWatchedEpisode Removes the specified episode from the specified users watched list.
+ * @param episodeIdentifier The episode that was not watched.
+ * @param username The username to remove the watched episode from.
+ */
+void JsonConnection::removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
+{
+    QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
+    User user;
+
+    QJsonObject obj;
+
+    int index = 0;
+    bool found = false;
+    foreach (const QJsonValue &value, users)
+    {
+        obj = value.toObject();
+        if ( obj["username"] ==  username )
+        {
+            user = getUser(obj["username"].toString());
+            found = true;
+            break;
+        }
+
+        ++index;
+    }
+
+    if ( ! found )
+    {
+        throw NotFound("User not found:" + username);
+    }
+
+    user.removeWatchedEpisode(episodeIdentifier);
+
+    users.replace(index, userToJsonObject(user));
+
+    json[JSON_USER_ARRAY_NAME] = users;
+
+    saveJson();
+}
+
+/**
  * @brief JsonConnection::loadJson Reads the specified json from file.
   */
 void JsonConnection::loadJson()
