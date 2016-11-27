@@ -364,11 +364,11 @@ void TestJsonConnection::TestUserWatchedEpisodes()
     QCOMPARE(user.passwordHash, passwordHash);
     QCOMPARE(user.isAdmin(), false);
 
-    qSort(watchedEpisodes);
-    qSort(user.watchedEpisodes);
-
     // Make sure both lists are the same length.
     QCOMPARE(user.watchedEpisodes.size(), watchedEpisodes.size());
+
+    qSort(watchedEpisodes);
+    qSort(user.watchedEpisodes);
 
     for (int i = 0; i < watchedEpisodes.size(); i++)
     {

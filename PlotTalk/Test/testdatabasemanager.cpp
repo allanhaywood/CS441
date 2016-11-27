@@ -5,6 +5,7 @@
 #include <QtTest/QtTest>
 #include "plottalkexceptions.h"
 #include "testdatabasemanager.h"
+#include "common.h"
 
 /**
  * @brief TestDatabaseManager::TestGetTvShowDefaultConstructor Uses the default constructor for the DBManager and looks up
@@ -135,12 +136,17 @@ void TestDatabaseManager::TestAddUser()
     QString expectedEmail = "nuser@gmail.com";
     QString expectedPasswordHash = "newuser123";
 
+    QList<EpisodeIdentifier> expectedWatchedEpisodes = QList<EpisodeIdentifier>();
+
+    expectedWatchedEpisodes.append(EpisodeIdentifier::fromKey("1:2:3"));
+    expectedWatchedEpisodes.append(EpisodeIdentifier::fromKey("4:5:6"));
+
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     qDebug() << "Removing user before attempting to add.";
     DatabaseManagerSingleton::Instance().removeUser(username);
 
-    User userBefore = User(username, expectedFirstName, expectedLastName, expectedEmail, expectedPasswordHash);
+    User userBefore = User(username, expectedFirstName, expectedLastName, expectedEmail, expectedPasswordHash, expectedWatchedEpisodes);
     DatabaseManagerSingleton::Instance().addUser(userBefore);
 
     User userAfter = DatabaseManagerSingleton::Instance().inspectUser(username);
@@ -150,6 +156,18 @@ void TestDatabaseManager::TestAddUser()
     QCOMPARE(userAfter.lastName, expectedLastName);
     QCOMPARE(userAfter.email, expectedEmail);
     QCOMPARE(userAfter.passwordHash, expectedPasswordHash);
+    QCOMPARE(userAfter.isAdmin(), false);
+
+    // Make sure both lists are the same length.
+    QCOMPARE(userAfter.watchedEpisodes.size(), expectedWatchedEpisodes.size());
+
+    qSort(expectedWatchedEpisodes);
+    qSort(userAfter.watchedEpisodes);
+
+    for (int i = 0; i < expectedWatchedEpisodes.size(); i++)
+    {
+        QCOMPARE(userAfter.watchedEpisodes[i].getKey(), expectedWatchedEpisodes[i].getKey());
+    }
 
     qDebug() << "Removing user after test.";
     DatabaseManagerSingleton::Instance().removeUser(username);
