@@ -6,7 +6,6 @@
 #include "testuser.h"
 void TestUser::TestUserDefaultConstructor1()
 {
-
     User user = User();
     QVERIFY(user.username.isEmpty());
     QVERIFY(user.firstName.isEmpty());
@@ -74,7 +73,6 @@ void TestUser::TestsForWatchedList()
     episode3.episodeId=3;
     episode3.seasonId=4;
     episode3.tvShowId=2;
-    int location;
 
     QList<EpisodeIdentifier> episodeGroup;
     episodeGroup.append(episode1);
@@ -126,4 +124,3 @@ void TestUser::TestsForWatchedList()
     user.removeWatchedEpisode(episode3);//cannot remove an episode that isn't in the user
     QCOMPARE(user.hasTheUserWatchedAnything(),false);//the user has watched no shows now
 }
-

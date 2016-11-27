@@ -576,3 +576,59 @@ bool TestDatabaseManager::deleteTempJson()
 
     return true;
 }
+
+void TestDatabaseManager::TestWatchedTvShowList()
+{
+    QString username = "newbsmith";
+    QString firstName = "Newb";
+    QString lastName = "Smith";
+    QString email = "newbsmith@gmail.com";
+    QString passwordHash = "badpasswordhash";
+
+    QList<QString> expectedWatchedShows = QList<QString>();
+
+    EpisodeIdentifier episode1;
+    episode1.episodeId=1;
+    episode1.seasonId=2;
+    episode1.tvShowId=62560; // Actual tvshow Id for Mr.Robot.
+
+    expectedWatchedShows.append("Mr. Robot");
+
+    EpisodeIdentifier episode2;
+    episode2.episodeId=2;
+    episode2.seasonId=3;
+    episode2.tvShowId=63926; // Actual tvshow Id for One-Punch Man.
+
+    expectedWatchedShows.append("One-Punch Man");
+
+    User user = User(username, firstName, lastName, email, passwordHash);
+
+    user.addWatchedEpisode(episode1);
+    user.addWatchedEpisode(episode2);
+
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
+
+    // Make sure user doesn't already exist before adding it.
+    DatabaseManagerSingleton::Instance().removeUser(user.username);
+
+    DatabaseManagerSingleton::Instance().addUser(user);
+
+    QList<QString> watchedShows = DatabaseManagerSingleton::Instance().getListOfWatchedTvShowNamesForUser(user.username);
+
+    // Make sure both lists are the same size.
+    QCOMPARE(watchedShows.size(), expectedWatchedShows.size());
+
+    qSort(expectedWatchedShows);
+    qSort(watchedShows);
+
+    for (int i = 0; i < expectedWatchedShows.size(); i++)
+    {
+        qDebug() << "Actual:" << watchedShows[i];
+        qDebug() << "Expected:" << expectedWatchedShows[i];
+        QCOMPARE(watchedShows[i], expectedWatchedShows[i]);
+    }
+
+    // Remove user when done.
+    DatabaseManagerSingleton::Instance().removeUser(user.username);
+}
+

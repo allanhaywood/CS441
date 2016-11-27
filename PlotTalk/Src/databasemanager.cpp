@@ -299,6 +299,25 @@ void DatabaseManager::removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, 
 }
 
 /**
+ * @brief DatabaseManager::getListOfWatchedTvShowNamesForUser Returns a list of tvshow names for the tvshows the specified username has watched.
+ * @param username The username to lookup.
+ * @return List of tvshow names that have been watched by the specified user.
+ */
+QList<QString> DatabaseManager::getListOfWatchedTvShowNamesForUser(QString username)
+{
+    QList<QString> watchedTvShowNames;
+
+    User user = inspectUser(username);
+
+    foreach(const EpisodeIdentifier &episodeIdentifier, user.inspectWatchedEpisodes())
+    {
+        watchedTvShowNames.append(getTvShowNameById(episodeIdentifier.tvShowId));
+    }
+
+    return watchedTvShowNames;
+}
+
+/**
  * @brief DatabaseManager::emptyCache Used for testing only, to empty cache.
  */
 void DatabaseManager::emptyCache()

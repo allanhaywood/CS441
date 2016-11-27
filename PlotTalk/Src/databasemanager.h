@@ -68,7 +68,7 @@ public:
 
     void removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username);
 
-    //@todo Add get list of watched tvshows, once watched functionality is added.
+    QList<QString> getListOfWatchedTvShowNamesForUser(QString username);
 
     // Used for testing only.
     void emptyCache();
