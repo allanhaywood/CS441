@@ -275,6 +275,49 @@ void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Com
 }
 
 /**
+ * @brief DatabaseManager::addWatchedEpisode Adds the specified episode to the specified users watched episodes list.
+ * @param episodeIdentifier The episode to add to the users watched shows.
+ * @param username The username to add the watched episode to.
+ */
+void DatabaseManager::addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
+{
+    userMap[username].addWatchedEpisode(episodeIdentifier);
+    connection.addWatchedEpisode(episodeIdentifier, username);
+    emit notify();
+}
+
+/**
+ * @brief DatabaseManager::removeWatchedEpisode Removes the specified episode from the specified users watched episodes list.
+ * @param episodeIdentifier The episode to remove from the users watched shows.
+ * @param username The username to remove the watched episode from.
+ */
+void DatabaseManager::removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
+{
+    userMap[username].removeWatchedEpisode(episodeIdentifier);
+    connection.removeWatchedEpisode(episodeIdentifier, username);
+    emit notify();
+}
+
+/**
+ * @brief DatabaseManager::getListOfWatchedTvShowNamesForUser Returns a list of tvshow names for the tvshows the specified username has watched.
+ * @param username The username to lookup.
+ * @return List of tvshow names that have been watched by the specified user.
+ */
+QList<QString> DatabaseManager::getListOfWatchedTvShowNamesForUser(QString username)
+{
+    QList<QString> watchedTvShowNames;
+
+    User user = inspectUser(username);
+
+    foreach(const EpisodeIdentifier &episodeIdentifier, user.inspectWatchedEpisodes())
+    {
+        watchedTvShowNames.append(getTvShowNameById(episodeIdentifier.tvShowId));
+    }
+
+    return watchedTvShowNames;
+}
+
+/**
  * @brief DatabaseManager::emptyCache Used for testing only, to empty cache.
  */
 void DatabaseManager::emptyCache()

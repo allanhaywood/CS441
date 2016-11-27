@@ -98,3 +98,14 @@ test {
 } else {
     message(Normal build)
 }
+
+DISTFILES += \
+    UML/class/browse_episodes_of_season.qmodel \
+    UML/class/creatingNewAcct.qmodel \
+    UML/class/databasemanager.qmodel \
+    UML/class/log_in_existing.qmodel \
+    UML/class/persbackstore.qmodel \
+    UML/class/tvshow.qmodel \
+    UML/class/uml_checkoffmedia.qmodel \
+    UML/class/uml_reactions.qmodel \
+    UML/class/user.qmodel
