@@ -1,6 +1,8 @@
 #ifndef ADMINPAGE_H
 #define ADMINPAGE_H
 
+#include "databasemanager.h"
+
 #include <QMainWindow>
 
 namespace Ui {
@@ -14,6 +16,7 @@ class AdminPage : public QMainWindow
 public:
     explicit AdminPage(QWidget *parent = 0);
     ~AdminPage();
+    typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
 private slots:
 
@@ -23,8 +26,20 @@ private slots:
 
     void on_edit_clicked();
 
+    void on_GoBack_clicked();
+
+    void on_addUser_clicked();
+
+    void on_CreateUser_clicked();
+
+    void on_goBack2_clicked();
+
+    void on_delUser_clicked();
+
 private:
     Ui::AdminPage *ui;
+    const int TABSBEFOREUSERNAME=3;
+    enum AdminPages {VIEWUSERS, ADDUSER, NEXT, ANOTHER};
 };
 
 #endif // ADMINPAGE_H

@@ -17,7 +17,7 @@ void testAccountManager::testGetCurrentAccount()//returns the account that was c
 
     User holder;
     AccountManager *checkme= AccountManager::getInstance();
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle3,validEmail3,validPwd),selectEnum::ALLCLEAR);
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle3,validEmail3,validPwd, false),selectEnum::ALLCLEAR);
     holder=checkme->getCurrentAccount();
     QCOMPARE(holder.firstName,fName);
     QCOMPARE(holder.lastName,lName);
@@ -54,21 +54,21 @@ void testAccountManager::testCheckFields()
     DatabaseManagerSingleton::Instance().removeUser(validHandle);
     DatabaseManagerSingleton::Instance().removeUser(validHandle2);
 
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle,validEmail,Pwd1),selectEnum::ALLCLEAR);//account added
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle,validEmail2,Pwd1),selectEnum::USERNAME_TAKEN);//handle is already used
-    QCOMPARE(checkme->checkFieldsAndCreate(none,lName,validHandle2,validEmail2,Pwd1),selectEnum::VALUES_MISSING);//First Name is not acceptable
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,none,validHandle2,validEmail2,Pwd1),selectEnum::VALUES_MISSING);//Last Name is not acceptable
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail,Pwd1),selectEnum::DUPLICATE_EMAIL);//email is already used
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validHandle,Pwd1),selectEnum::BAD_EMAIL);//email format bad
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,badEmail,Pwd1),selectEnum::BAD_EMAIL);//less bad email is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd),selectEnum::BAD_PASSWORD);//bad password format is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd2),selectEnum::BAD_PASSWORD);//other bad password is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,Pwd2),selectEnum::BAD_PASSWORD);//bad passward is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd3),selectEnum::BAD_PASSWORD);//bad passward is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd4),selectEnum::BAD_PASSWORD);//bad passward is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd5),selectEnum::BAD_PASSWORD);//bad passward is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,Pwd1),selectEnum::ALLCLEAR);//second account is added
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,Pwd1),selectEnum::DUPLICATE_EMAIL);//email is already used
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle,validEmail,Pwd1, false),selectEnum::ALLCLEAR);//account added
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle,validEmail2,Pwd1, false),selectEnum::USERNAME_TAKEN);//handle is already used
+    QCOMPARE(checkme->checkFieldsAndCreate(none,lName,validHandle2,validEmail2,Pwd1, false),selectEnum::VALUES_MISSING);//First Name is not acceptable
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,none,validHandle2,validEmail2,Pwd1, false),selectEnum::VALUES_MISSING);//Last Name is not acceptable
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail,Pwd1, false),selectEnum::DUPLICATE_EMAIL);//email is already used
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validHandle,Pwd1, false),selectEnum::BAD_EMAIL);//email format bad
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,badEmail,Pwd1, false),selectEnum::BAD_EMAIL);//less bad email is rejected
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd, false),selectEnum::BAD_PASSWORD);//bad password format is rejected
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd2, false),selectEnum::BAD_PASSWORD);//other bad password is rejected
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,Pwd2, false),selectEnum::BAD_PASSWORD);//bad passward is rejected
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd3, false),selectEnum::BAD_PASSWORD);//bad passward is rejected
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd4, false),selectEnum::BAD_PASSWORD);//bad passward is rejected
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd5, false),selectEnum::BAD_PASSWORD);//bad passward is rejected
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,Pwd1, false),selectEnum::ALLCLEAR);//second account is added
+    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,Pwd1, false),selectEnum::DUPLICATE_EMAIL);//email is already used
 
     // Remove temp users when done.
     DatabaseManagerSingleton::Instance().removeUser(validHandle);

@@ -47,7 +47,7 @@ void CreateAcctPage::on_CreateAcctButton_clicked()
        if(ui->PasswordBox1->text()==ui->PasswordBox2->text())//must also check to see if password matches requirements
        {
            //QString message; //To do what was done on dashboard.
-           switch(check->checkFieldsAndCreate(firstName, lastName, handle, email, password))
+           switch(check->checkFieldsAndCreate(firstName, lastName, handle, email, password, false))
            {
            case selectEnum::ALLCLEAR:
            {

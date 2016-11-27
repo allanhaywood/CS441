@@ -4,6 +4,9 @@
  */
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
+#include <QHash>
+
+#include "user.h"
 #include "singleton.h"
 #include "jsonconnection.h"
 

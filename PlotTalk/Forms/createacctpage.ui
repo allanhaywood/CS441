@@ -398,6 +398,23 @@ font-family: verdana;
     <string>go back to login</string>
    </property>
   </widget>
+  <zorder>FirstNameLabel</zorder>
+  <zorder>LastNameLabel</zorder>
+  <zorder>passwordLabel2</zorder>
+  <zorder>passwordLabel</zorder>
+  <zorder>CreateAcctHeader</zorder>
+  <zorder>CreateAcctButton</zorder>
+  <zorder>screenNameLabel</zorder>
+  <zorder>PasswordBox1</zorder>
+  <zorder>PasswordBox2</zorder>
+  <zorder>EmailLabel</zorder>
+  <zorder>FirstNameBox</zorder>
+  <zorder>LastNameBox</zorder>
+  <zorder>emailBox</zorder>
+  <zorder>handleBox</zorder>
+  <zorder>pwdMatch</zorder>
+  <zorder>GoBack</zorder>
+  <zorder>incorrectPasswordLabel</zorder>
  </widget>
  <tabstops>
   <tabstop>FirstNameBox</tabstop>

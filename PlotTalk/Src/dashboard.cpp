@@ -316,7 +316,7 @@ void Dashboard::on_saveButton_clicked()
         QString message;
 
         DatabaseManagerSingleton::Instance().removeUser(theUser.username);
-        selectEnum Problems=userInfo->checkFieldsAndCreate(newFirstName,newLastName,theUser.username,newEmail,newPassword);
+        selectEnum Problems=userInfo->checkFieldsAndCreate(newFirstName,newLastName,theUser.username,newEmail,newPassword,false);
 
         switch (Problems)
         {
@@ -335,6 +335,11 @@ void Dashboard::on_saveButton_clicked()
         case selectEnum::VALUES_MISSING:
           {
             message="You must enter a first and last name";
+          }
+            break;
+        case selectEnum::USERNAME_TAKEN:
+          {
+            message="That user name is already taken, please try another";
           }
             break;
         case selectEnum::BAD_PASSWORD:
