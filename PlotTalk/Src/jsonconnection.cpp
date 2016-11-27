@@ -631,7 +631,7 @@ QJsonObject JsonConnection::userToJsonObject(User user)
     jsonObject.insert("email", QJsonValue(user.email));
     jsonObject.insert("passwordHash", QJsonValue(user.passwordHash));
     jsonObject.insert("_isAdmin", QJsonValue(user.isAdmin()));
-    jsonObject.insert("watchedEpisodes", watchedEpisodesToJsonArray(user.watchedEpisodes));
+    jsonObject.insert("watchedEpisodes", watchedEpisodesToJsonArray(user.inspectWatchedEpisodes()));
 
     return jsonObject;
 }

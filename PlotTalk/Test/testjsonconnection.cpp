@@ -364,15 +364,17 @@ void TestJsonConnection::TestUserWatchedEpisodes()
     QCOMPARE(user.passwordHash, passwordHash);
     QCOMPARE(user.isAdmin(), false);
 
+    QList<EpisodeIdentifier> userAfterWatchedEpisodes = user.inspectWatchedEpisodes();
+
     // Make sure both lists are the same length.
-    QCOMPARE(user.watchedEpisodes.size(), watchedEpisodes.size());
+    QCOMPARE(userAfterWatchedEpisodes.size(), watchedEpisodes.size());
 
     qSort(watchedEpisodes);
-    qSort(user.watchedEpisodes);
+    qSort(userAfterWatchedEpisodes);
 
     for (int i = 0; i < watchedEpisodes.size(); i++)
     {
-        QCOMPARE(user.watchedEpisodes[i].getKey(), watchedEpisodes[i].getKey());
+        QCOMPARE(userAfterWatchedEpisodes[i].getKey(), watchedEpisodes[i].getKey());
     }
 
     // Remove user when done.

@@ -8,6 +8,7 @@
 #include "common.h"
 #include <QString>
 #include <QList>
+#include <QMap>
 
 class User
 {
@@ -18,7 +19,6 @@ public:
     QString lastName;
     QString email;
     QString passwordHash;
-    QList<EpisodeIdentifier> watchedEpisodes;
 
     // TODO: Complete creating User object.
     User();
@@ -28,12 +28,17 @@ public:
     User(QString username, QString firstName, QString lastName, QString email, QString passwordHash, QList<EpisodeIdentifier> watchedEpisodes, bool isAdmin);
 
     bool isAdmin();
-    bool addWatchedEpisode(EpisodeIdentifier episode);
-    bool removeWatchedEpisode(EpisodeIdentifier episode);
+
+    void addWatchedEpisode(EpisodeIdentifier episode);
+    void removeWatchedEpisode(EpisodeIdentifier episode);
+    bool hasUserWatchedThisEpisode(EpisodeIdentifier episode);
+    void addWatchedEpisodeList(QList<EpisodeIdentifier> episodeList);
+    void removeWatchedEpisodeList(QList<EpisodeIdentifier> episodeList);
+
     bool hasTheUserWatchedAnything();
-    bool hasUserWatchedThisEpisode(EpisodeIdentifier episode, int &location);
-    bool addWatchedEpisodeList(QList<EpisodeIdentifier> episodeList);
+    QList<EpisodeIdentifier> inspectWatchedEpisodes();
 private:
+    QMap<QString, EpisodeIdentifier> watchedEpisodes;
     bool _isAdmin;
 
 

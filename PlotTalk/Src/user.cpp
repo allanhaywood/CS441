@@ -15,7 +15,7 @@ User::User()
     email = "";
     passwordHash = "";
     _isAdmin = false;
-    watchedEpisodes = QList<EpisodeIdentifier>();
+    watchedEpisodes = QMap<QString, EpisodeIdentifier>();
 }
 
 User::User(QString username, QString firstName, QString lastName, QString email, QString passwordhash)
@@ -26,7 +26,7 @@ User::User(QString username, QString firstName, QString lastName, QString email,
     this->email = email;
     this->passwordHash = passwordhash;
     _isAdmin = false;
-    watchedEpisodes = QList<EpisodeIdentifier>();
+    watchedEpisodes = QMap<QString, EpisodeIdentifier>();
 }
 
 User::User(QString username, QString firstName, QString lastName, QString email, QString passwordHash, QList<EpisodeIdentifier> watchedEpisodes)
@@ -49,7 +49,7 @@ User::User(QString username, QString firstName, QString lastName, QString email,
     this->lastName = lastName;
     this->email = email;
     this->passwordHash = passwordHash;
-    watchedEpisodes = QList<EpisodeIdentifier>();
+    watchedEpisodes = QMap<QString, EpisodeIdentifier>();
 
     _isAdmin = isAdmin;
 }
@@ -71,89 +71,78 @@ bool User::isAdmin()
     return _isAdmin;
 }
 
-bool User::addWatchedEpisode(EpisodeIdentifier episode)//adds an episode to the users watched list
+/**
+ * @brief User::addWatchedEpisode Adds a watched episode, no error if it was already marked as watched.
+ * @param episode The episode identifier for the watched episode.
+ */
+void User::addWatchedEpisode(EpisodeIdentifier episode)//adds an episode to the users watched list
 {
-    int dummy;
-    if(hasUserWatchedThisEpisode(episode, dummy))
-    {
-        return false;
-    }
-    else
-    {
-        watchedEpisodes.append(episode);
-        return true;
-    }
-
+    watchedEpisodes.insert(episode.getKey(), episode);
 }
 
-bool User::removeWatchedEpisode(EpisodeIdentifier episode)//removes an episode from the users watched list
+/**
+ * @brief User::removeWatchedEpisode Removes watched episode, no error if episode was not marked as watched.
+ * @param episode The episode to remove from watched episodes.
+ */
+void User::removeWatchedEpisode(EpisodeIdentifier episode)//removes an episode from the users watched list
 {
-    if(hasTheUserWatchedAnything())
-    {
-        int location;
-
-        if(hasUserWatchedThisEpisode(episode,location))
-        {
-            watchedEpisodes.removeAt(location);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-        return false;
+    watchedEpisodes.remove(episode.getKey());
 }
 
-bool User::hasUserWatchedThisEpisode(EpisodeIdentifier episode, int &location)//private, checks to see if an episode is in the users watched list
+/**
+ * @brief User::hasUserWatchedThisEpisode Determines if the user has watched the specified episode.
+ * @param episode The episode to check if they have watched.
+ * @return True if the episode was watched by this user, false if not.
+ */
+bool User::hasUserWatchedThisEpisode(EpisodeIdentifier episode)
 {
-    if(hasTheUserWatchedAnything())
-    {
-        int i;
-        for(i=0; i < watchedEpisodes.size(); i++)
-        {
-            if(watchedEpisodes[i].episodeId == episode.episodeId &&
-               watchedEpisodes[i].seasonId == episode.seasonId &&
-               watchedEpisodes[i].tvShowId == episode.tvShowId)
-            {
-                location=i;
-                return true;
-            }
-        }
-    }
-    return false;
+    return watchedEpisodes.contains(episode.getKey());
 }
 
+/**
+ * @brief User::hasTheUserWatchedAnything Checks if the user has watched any episodes.
+ * @return True, if the user has watched at least one thing, false if not.
+ */
 bool User::hasTheUserWatchedAnything()
 {
-    if(watchedEpisodes.size()==0)
+    if(watchedEpisodes.size() == 0)
+    {
         return false;
+    }
     else
+    {
         return true;
+    }
+}
+
+/**
+ * @brief User::addWatchedEpisodeList Adds the provided episode list to the watched episodes. No error if already marked as watched.
+ * @param episodeList The list of episodes to mark as watched.
+ */
+void User::addWatchedEpisodeList(QList<EpisodeIdentifier> episodeList)
+{
+    foreach(const EpisodeIdentifier &episode, episodeList)
+    {
+        watchedEpisodes.insert(episode.getKey(), episode);
+    }
+}
+
+/**
+ * @brief User::removeWatchedEpisodeList Removes all episodes in the provided list. No error if episode is not marked as watched.
+ * @param episodeList The list of episodes to remove.
+ */
+void User::removeWatchedEpisodeList(QList<EpisodeIdentifier> episodeList)
+{
+    foreach(const EpisodeIdentifier &episode, episodeList)
+    {
+        watchedEpisodes.remove(episode.getKey());
+    }
 }
 
 
-bool User::addWatchedEpisodeList(QList<EpisodeIdentifier> episodeList)
+
+
+QList<EpisodeIdentifier> User::inspectWatchedEpisodes()
 {
-  if(episodeList.size()!=0)
-    {
-        int dummy=0;
-        for (int i=0; i<episodeList.size(); i++)
-        {
-          if(hasUserWatchedThisEpisode(episodeList[i], dummy))
-          {
-              return false;
-          }
-        }
-        for (int i=0; i<episodeList.size(); i++)
-        {
-          if(!addWatchedEpisode(episodeList[i]))
-          {
-              return false;
-          }
-        }
-        return true;
-    }
-    else
-        return false;
+    return watchedEpisodes.values();
 }

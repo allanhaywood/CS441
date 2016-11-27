@@ -158,15 +158,17 @@ void TestDatabaseManager::TestAddUser()
     QCOMPARE(userAfter.passwordHash, expectedPasswordHash);
     QCOMPARE(userAfter.isAdmin(), false);
 
+    QList<EpisodeIdentifier> userAfterWatchedEpisodes = userAfter.inspectWatchedEpisodes();
+
     // Make sure both lists are the same length.
-    QCOMPARE(userAfter.watchedEpisodes.size(), expectedWatchedEpisodes.size());
+    QCOMPARE(userAfterWatchedEpisodes.size(), expectedWatchedEpisodes.size());
 
     qSort(expectedWatchedEpisodes);
-    qSort(userAfter.watchedEpisodes);
+    qSort(userAfterWatchedEpisodes);
 
     for (int i = 0; i < expectedWatchedEpisodes.size(); i++)
     {
-        QCOMPARE(userAfter.watchedEpisodes[i].getKey(), expectedWatchedEpisodes[i].getKey());
+        QCOMPARE(userAfterWatchedEpisodes[i].getKey(), expectedWatchedEpisodes[i].getKey());
     }
 
     qDebug() << "Removing user after test.";
