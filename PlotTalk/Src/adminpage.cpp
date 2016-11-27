@@ -123,7 +123,7 @@ void AdminPage::on_CreateUser_clicked()
         InvalidPwd = QMessageBox::question(this, "","The password does not meet security critera, override?",QMessageBox::Yes|QMessageBox::No);
         if (InvalidPwd == QMessageBox::Yes)
         {
-          addingUser->createAccount(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->emailBox->text(),ui->handleBox->text(),ui->PasswordBox1->text(),ui->AdminButton->isChecked());
+          addingUser->createAccount(newUser);
           QMessageBox UserCreated;
           UserCreated.setText("The account was created successfully");
           UserCreated.exec();
@@ -138,7 +138,7 @@ void AdminPage::on_CreateUser_clicked()
       MissingVals = QMessageBox::question(this, "","There are values missing, override?",QMessageBox::Yes|QMessageBox::No);
       if (MissingVals == QMessageBox::Yes)
       {
-        addingUser->createAccount(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->emailBox->text(),ui->handleBox->text(),ui->PasswordBox1->text(),ui->AdminButton->isChecked());
+        addingUser->createAccount(newUser);
         QMessageBox UserCreated;
         UserCreated.setText("The account was created successfully");
         UserCreated.exec();
