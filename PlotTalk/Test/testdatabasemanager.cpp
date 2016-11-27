@@ -335,6 +335,15 @@ void TestDatabaseManager::TestGetAllUsers()
 
     QList<QString> allUsers = DatabaseManagerSingleton::Instance(":/json/Json/test.json").getListOfAllUsers();
 
+    User user;
+    foreach (const QString &username, allUsers)
+    {
+        user = DatabaseManagerSingleton::Instance().inspectUser(username);
+        qDebug() << "Expected:" << username;
+        qDebug() << "Actual:" << user.username;
+        QCOMPARE(user.username, username);
+    }
+
     QCOMPARE(allUsers.count(), 10);
 
     // @todo, add more validation.

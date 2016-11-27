@@ -448,7 +448,8 @@ User JsonConnection::getUser(QString username)
     QString jsonFirstName;
     QString jsonLastName;
     QString jsonEmail;
-    QString jsonPasswordMap;
+    QString jsonPasswordHash;
+    QJsonArray jsonWatchedEpisodes;
     bool jsonIsAdmin;
 
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
@@ -471,8 +472,11 @@ User JsonConnection::getUser(QString username)
             jsonFirstName = obj["firstName"].toString();
             jsonLastName = obj["lastName"].toString();
             jsonEmail = obj["email"].toString();
-            jsonPasswordMap = obj["passwordHash"].toString();
+            jsonPasswordHash = obj["passwordHash"].toString();
+            jsonWatchedEpisodes = obj["watchedEpisodes"].toArray();
+
             jsonIsAdmin = obj["_isAdmin"].toBool();
+
             found = true;
             break;
         }
@@ -485,7 +489,26 @@ User JsonConnection::getUser(QString username)
     }
 
     // Use the information found to construct a user of the requested User.
-    return User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordMap, jsonIsAdmin);
+    return User(jsonUsername, jsonFirstName, jsonLastName, jsonEmail, jsonPasswordHash, getWatchedEpisodes(jsonWatchedEpisodes), jsonIsAdmin);
+}
+
+/**
+ * @brief JsonConnection::getWatchedEpisodes Turns a QJsonArray into a QList of watched episodes, for loading from json.
+ * @param jsonWatchedEpisodes The QJsonArray of watched episodes.
+ * @return A QList of watched episodes.
+ */
+QList<EpisodeIdentifier> JsonConnection::getWatchedEpisodes(QJsonArray jsonWatchedEpisodes)
+{
+    QList<EpisodeIdentifier> watchedEpisodes;
+
+    EpisodeIdentifier episodeIdentifier;
+    foreach(const QJsonValue &value, jsonWatchedEpisodes)
+    {
+        episodeIdentifier = EpisodeIdentifier::fromKey(value.toString());
+        watchedEpisodes.append(episodeIdentifier);
+    }
+
+    return watchedEpisodes;
 }
 
 /**
@@ -608,8 +631,27 @@ QJsonObject JsonConnection::userToJsonObject(User user)
     jsonObject.insert("email", QJsonValue(user.email));
     jsonObject.insert("passwordHash", QJsonValue(user.passwordHash));
     jsonObject.insert("_isAdmin", QJsonValue(user.isAdmin()));
+    jsonObject.insert("watchedEpisodes", watchedEpisodesToJsonArray(user.watchedEpisodes));
 
     return jsonObject;
+}
+
+/**
+ * @brief JsonConnection::watchedEpisodesToJsonArray Turns a qlist of episode identifiders into a qjsonarray for storing.
+ * @param watchedEpisodes The QList of watched Episodes.
+ * @return A QJsonArray of watched episodes.
+ */
+QJsonArray JsonConnection::watchedEpisodesToJsonArray(QList<EpisodeIdentifier> watchedEpisodes)
+{
+    QJsonArray jsonWatchedEpisodes;
+
+    foreach (const EpisodeIdentifier &watchedEpisode, watchedEpisodes)
+    {
+        qDebug() << watchedEpisode.getKey();
+        jsonWatchedEpisodes.append(watchedEpisode.getKey());
+    }
+
+    return jsonWatchedEpisodes;
 }
 
 /**

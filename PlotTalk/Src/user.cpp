@@ -15,7 +15,7 @@ User::User()
     email = "";
     passwordHash = "";
     _isAdmin = false;
-    userWatched = QList<EpisodeIdentifier>();
+    watchedEpisodes = QList<EpisodeIdentifier>();
 }
 
 User::User(QString username, QString firstName, QString lastName, QString email, QString passwordhash)
@@ -26,32 +26,44 @@ User::User(QString username, QString firstName, QString lastName, QString email,
     this->email = email;
     this->passwordHash = passwordhash;
     _isAdmin = false;
-    userWatched = QList<EpisodeIdentifier>();
+    watchedEpisodes = QList<EpisodeIdentifier>();
+}
+
+User::User(QString username, QString firstName, QString lastName, QString email, QString passwordHash, QList<EpisodeIdentifier> watchedEpisodes)
+{
+    this->username = username;
+    this->firstName = firstName;
+    this->lastName = lastName;
+    this->email = email;
+    this->passwordHash = passwordHash;
+    addWatchedEpisodeList(watchedEpisodes);
+
+    _isAdmin = false;
 }
 
 
-User::User(QString username, QString firstName, QString lastName, QString email, QString passwordhash, bool isAdmin)
+User::User(QString username, QString firstName, QString lastName, QString email, QString passwordHash, bool isAdmin)
+{
+    this->username = username;
+    this->firstName = firstName;
+    this->lastName = lastName;
+    this->email = email;
+    this->passwordHash = passwordHash;
+    watchedEpisodes = QList<EpisodeIdentifier>();
+
+    _isAdmin = isAdmin;
+}
+
+User::User(QString username, QString firstName, QString lastName, QString email, QString passwordhash, QList<EpisodeIdentifier> watchedEpisodes, bool isAdmin)
 {
     this->username = username;
     this->firstName = firstName;
     this->lastName = lastName;
     this->email = email;
     this->passwordHash = passwordhash;
+    addWatchedEpisodeList(watchedEpisodes);
+
     _isAdmin = isAdmin;
-    userWatched = QList<EpisodeIdentifier>();
-}
-
-User::User(QString username, QString firstName, QString lastName, QString email, QString passwordhash, bool isAdmin, QList<EpisodeIdentifier> episodeList)
-{
-    this->username = username;
-    this->firstName = firstName;
-    this->lastName = lastName;
-    this->email = email;
-    this->passwordHash = passwordhash;
-    _isAdmin = isAdmin;
-
-    addWatchedEpisodeList(episodeList);
-
 }
 
 bool User::isAdmin()
@@ -68,7 +80,7 @@ bool User::addWatchedEpisode(EpisodeIdentifier episode)//adds an episode to the 
     }
     else
     {
-        userWatched.append(episode);
+        watchedEpisodes.append(episode);
         return true;
     }
 
@@ -82,7 +94,7 @@ bool User::removeWatchedEpisode(EpisodeIdentifier episode)//removes an episode f
 
         if(hasUserWatchedThisEpisode(episode,location))
         {
-            userWatched.removeAt(location);
+            watchedEpisodes.removeAt(location);
             return true;
         }
         else
@@ -98,11 +110,11 @@ bool User::hasUserWatchedThisEpisode(EpisodeIdentifier episode, int &location)//
     if(hasTheUserWatchedAnything())
     {
         int i;
-        for(i=0; i < userWatched.size(); i++)
+        for(i=0; i < watchedEpisodes.size(); i++)
         {
-            if(userWatched[i].episodeId == episode.episodeId &&
-               userWatched[i].seasonId == episode.seasonId &&
-               userWatched[i].tvShowId == episode.tvShowId)
+            if(watchedEpisodes[i].episodeId == episode.episodeId &&
+               watchedEpisodes[i].seasonId == episode.seasonId &&
+               watchedEpisodes[i].tvShowId == episode.tvShowId)
             {
                 location=i;
                 return true;
@@ -114,7 +126,7 @@ bool User::hasUserWatchedThisEpisode(EpisodeIdentifier episode, int &location)//
 
 bool User::hasTheUserWatchedAnything()
 {
-    if(userWatched.size()==0)
+    if(watchedEpisodes.size()==0)
         return false;
     else
         return true;

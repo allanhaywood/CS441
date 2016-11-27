@@ -10,6 +10,7 @@
 #include "user.h"
 
 #include <QString>
+#include <QList>
 #include <QJsonObject>
 #include <QJsonValue>
 
@@ -90,6 +91,8 @@ private:
     QJsonValue commentToJsonValue(Comment comment);
 
     QJsonObject userToJsonObject(User user);
+    QJsonArray watchedEpisodesToJsonArray(QList<EpisodeIdentifier> watchedEpisodes);
+    QList<EpisodeIdentifier> getWatchedEpisodes(QJsonArray jsonWatchedEpisodes);
 };
 
 #endif // JSONCONNECTION_H

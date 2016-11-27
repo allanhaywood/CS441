@@ -18,13 +18,14 @@ public:
     QString lastName;
     QString email;
     QString passwordHash;
-    QList<EpisodeIdentifier> userWatched;
+    QList<EpisodeIdentifier> watchedEpisodes;
 
     // TODO: Complete creating User object.
     User();
     User(QString username, QString firstName, QString lastName, QString email, QString passwordHash);
     User(QString username, QString firstName, QString lastName, QString email, QString passwordHash, bool isAdmin);
-    User(QString username, QString firstName, QString lastName, QString email, QString passwordhash, bool isAdmin, QList<EpisodeIdentifier> episodeList);
+    User(QString username, QString firstName, QString lastName, QString email, QString passwordHash, QList<EpisodeIdentifier> watchedEpisodes);
+    User(QString username, QString firstName, QString lastName, QString email, QString passwordHash, QList<EpisodeIdentifier> watchedEpisodes, bool isAdmin);
 
     bool isAdmin();
     bool addWatchedEpisode(EpisodeIdentifier episode);
