@@ -895,7 +895,7 @@ p, li { white-space: pre-wrap; }
              <rect>
               <x>30</x>
               <y>50</y>
-              <width>191</width>
+              <width>361</width>
               <height>20</height>
              </rect>
             </property>
@@ -920,9 +920,9 @@ p, li { white-space: pre-wrap; }
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>10</y>
-              <width>201</width>
-              <height>20</height>
+              <y>0</y>
+              <width>381</width>
+              <height>31</height>
              </rect>
             </property>
             <property name="text">
@@ -1518,7 +1518,7 @@ p, li { white-space: pre-wrap; }
          </font>
         </property>
         <property name="placeholderText">
-         <string>Enter title of movie or TV show</string>
+         <string>Enter title of TV show</string>
         </property>
        </widget>
       </item>

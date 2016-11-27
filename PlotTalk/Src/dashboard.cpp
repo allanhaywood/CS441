@@ -10,6 +10,8 @@
 #include <QDateTime>
 #include "mainwindow.h"
 #include <QMessageBox>
+#include "comment.h"
+#include "review.h"
 
 
 Dashboard::Dashboard(QWidget *parent) :
@@ -24,6 +26,9 @@ Dashboard::Dashboard(QWidget *parent) :
     AccountManager *userInfo= AccountManager::getInstance();//gets the user information
     theUser=userInfo->getCurrentAccount();
     ui->welcomeText->setText("Welcome to PlotTalk "+theUser.firstName +"!");
+
+    //Connect the Dashboard's update() slot to the DatabaseManager's notify() signal to coordinate database changes
+    QObject::connect(&DatabaseManagerSingleton::Instance(), SIGNAL(notify()), this, SLOT(update()));
 
 }
 
@@ -72,6 +77,7 @@ void Dashboard::on_popularButton_clicked()
 void Dashboard::on_watchedButton_clicked()
 {
     ui->leftList->setDisabled(false);
+    ui->leftList->clear();
     ui->stackedWidget->setCurrentIndex(NAVIGATION);
 }
 
@@ -140,7 +146,7 @@ void Dashboard::populateSeasonList(QTreeWidget *treeWidget) {
         seasonNode->setText(0, "Season " + QString::number(season.seasonNumber));
         foreach(Episode episode, season.inspectEpisodes()) {
             QTreeWidgetItem *episodeNode = new QTreeWidgetItem(seasonNode);
-            episodeNode->setText(0, episode.name);
+            episodeNode->setText(0, "Episode " + QString::number(episode.episodeNumber) + ": " + episode.name);
         }
     }
 
@@ -158,7 +164,8 @@ void Dashboard::on_rightTree_itemClicked(QTreeWidgetItem *item, int)
   if (item->childCount() == 0) { // the selection is a leaf (i.e. it's an episode)
         QTreeWidgetItem *parent = item->parent();
         selectedSeason = selectedShow.inspectSeason(parent->text(0).split(" ")[1].toInt());
-        selectedEpisode = selectedSeason.inspectEpisode(item->text(0));
+        QString itemText = item->text(0);
+        selectedEpisode = selectedSeason.inspectEpisode(itemText.right((itemText.length()-2)-itemText.indexOf(": "))); //get all the characters after the episode number
         //go to media item page
         populateSeasonList(ui->mediaItemTree);
         populateMediaItemPage();
@@ -174,10 +181,47 @@ void Dashboard::on_rightTree_itemClicked(QTreeWidgetItem *item, int)
 void Dashboard::populateMediaItemPage() {
     ui->mediaItemSplitter->setSizes({1, 300});
 
-    // clear out comments and reviews
-    ui->commentTable->clear();
+    // set up comment list
+    // initialize columns for username/ comment
+    if (ui->commentTable->columnCount() == 0)
+    {
+        ui->commentTable->insertColumn(0); // username column
+        ui->commentTable->insertColumn(1); // comment column
+        ui->commentTable->setColumnWidth(0, 125);
+        ui->commentTable->setColumnWidth(1, 330);
+    }
+    // hide labels on comment table
+    ui->commentTable->horizontalHeader()->setVisible(false);
+    ui->commentTable->verticalHeader()->setVisible(false);
+    // ensure wordwrapping is enabled on comment list
+    ui->commentTable->setWordWrap(true);
+
+    // initialize columns for review list
+    if (ui->reviewTable->columnCount() == 0)
+    {
+        ui->reviewTable->insertColumn(0); // username
+        ui->reviewTable->insertColumn(1); // rating
+        ui->reviewTable->insertColumn(2); // review
+        ui->reviewTable->setColumnWidth(0, 120);
+        ui->reviewTable->setColumnWidth(1, 30);
+        ui->reviewTable->setColumnWidth(2, 305);
+    }
+    // hide labels on table
+    ui->reviewTable->horizontalHeader()->setVisible(false);
+    ui->reviewTable->verticalHeader()->setVisible(false);
+    // ensure wordwrapping is enabled
+    ui->reviewTable->setWordWrap(true);
+
+    // ensure only integers can be entered for rating score
+    ui->ratingNumber->setValidator(new QIntValidator(0, 100, this));
+
+    // set up initial review rating meter settings
+    ui->ratingMeter->setMinimum(0);
+    ui->ratingMeter->setMaximum(100);
+    ui->ratingMeter->setSliderPosition(50);
+
+    // clear any text left in comment or review box
     ui->commentBox->clear();
-    ui->commentTable->setRowCount(0);
     ui->reviewTable->clear();
     ui->reviewCommentBox->clear();
     ui->reviewTable->setRowCount(0);
@@ -186,20 +230,17 @@ void Dashboard::populateMediaItemPage() {
     // ensure first comment/review tab viewed is comment tab
     ui->commentTabWidget->setCurrentIndex(0);
 
-    // set up initial review tab settings
-    ui->ratingMeter->setMinimum(0);
-    ui->ratingMeter->setMaximum(100);
-    ui->ratingMeter->setSliderPosition(50);
+    // Load saved comments and reviews from DB to GUI
+    populateCommentList();
+    populateReviewList();
 
-    // ensure only integers can be entered for rating score
-    ui->ratingNumber->setValidator(new QIntValidator(0, 100, this));
-
+    //populate episode details
     ui->showName->setText(selectedShow.name);
     QString seasonText = "Season ";
     seasonText.append(QString::number(selectedSeason.seasonNumber));
     ui->seasonName->setText(seasonText);
     ui->episodeSummary->setText(selectedEpisode.summary);
-    ui->episodeName->setText(selectedEpisode.name);
+    ui->episodeName->setText("Episode " + QString::number(selectedEpisode.episodeNumber) + ": " + selectedEpisode.name);
     //@TODO: only show spoiler alert if user hasn't watched episode
     //if episode is in user's watched list:
     //hide watched warning and checkbox
@@ -227,7 +268,8 @@ void Dashboard::on_mediaItemTree_itemClicked(QTreeWidgetItem *item, int)
   if (item->childCount() == 0) { // the selection is a leaf (i.e. it's an episode)
         QTreeWidgetItem *parent = item->parent();
         selectedSeason = selectedShow.inspectSeason(parent->text(0).split(" ")[1].toInt());
-        selectedEpisode = selectedSeason.inspectEpisode(item->text(0));
+        QString itemText = item->text(0);
+        selectedEpisode = selectedSeason.inspectEpisode(itemText.right((itemText.length()-2)-itemText.indexOf(": "))); //get all the characters after the episode number
         //go to media item page
         populateMediaItemPage();
   }
@@ -274,7 +316,7 @@ void Dashboard::on_saveButton_clicked()
         QString message;
 
         DatabaseManagerSingleton::Instance().removeUser(theUser.username);
-        selectEnum Problems=userInfo->checkFieldsAndCreate(newFirstName,newLastName,theUser.username,newEmail,newPassword);
+        selectEnum Problems=userInfo->checkFieldsAndCreate(newFirstName,newLastName,theUser.username,newEmail,newPassword,false);
 
         switch (Problems)
         {
@@ -293,6 +335,11 @@ void Dashboard::on_saveButton_clicked()
         case selectEnum::VALUES_MISSING:
           {
             message="You must enter a first and last name";
+          }
+            break;
+        case selectEnum::USERNAME_TAKEN:
+          {
+            message="That user name is already taken, please try another";
           }
             break;
         case selectEnum::BAD_PASSWORD:
@@ -356,44 +403,111 @@ void Dashboard::on_logoutButton_clicked()
 
 /**
  * @brief Dashboard::on_commentButton_clicked is triggered when the user clicks on the post reply button on comment tab.
- * @post Adds new comment entered in text box to the table widget.
+ * @post Calls DatabaseManager to write new comment to DB
  *
  */
-// @TODO: Need to ensure comments added to an episode are saved in episode class using DBManager calls.
-// @TODO: Need to utilize reaction/reply/review classes.
 void Dashboard::on_commentButton_clicked()
 {
-    // initialize columns for username/ comment
-    if (ui->commentTable->columnCount() == 0)
-    {
-        ui->commentTable->insertColumn(0); // username column
-        ui->commentTable->insertColumn(1); // comment column
-        ui->commentTable->setColumnWidth(0, 125);
-        ui->commentTable->setColumnWidth(1, 330);
-    }
-    // hide labels on table
-    ui->commentTable->horizontalHeader()->setVisible(false);
-    ui->commentTable->verticalHeader()->setVisible(false);
+    QString commentText = ui->commentBox->toPlainText();
+    if (commentText.length() == 0) {
+        QMessageBox blankBoxMessage;
+        blankBoxMessage.setText("You must enter some text before you can submit your comment.");
+        blankBoxMessage.exec();
+    } else if (commentText.length() > 2000) {
+        QMessageBox tooLongMessage;
+        tooLongMessage.setText("Your comment cannot exceed 2000 characters");
+        tooLongMessage.exec();
+    } else {
+    Comment newComment(theUser.username, commentText);
+    EpisodeIdentifier ep;
+    ep.episodeId = selectedEpisode.episodeId;
+    ep.seasonId = selectedSeason.seasonId;
+    ep.tvShowId = selectedShow.showId;
+    DatabaseManagerSingleton::Instance().addEpisodeComment(ep, newComment);
 
-    // ensure wordwrapping is enabled
-    ui->commentTable->setWordWrap(true);
-
-    // add new row and new comment
-    int curRow = ui->commentTable->rowCount(); // current row of next comment
-    ui->commentTable->insertRow(curRow);
-    ui->commentTable->setRowHeight(curRow, 50);
-    // @TODO: Replace this explicit call to date to using date from reaction/review/reply class
-    QString userAndDate = theUser.username + "\n" + QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap");
-    ui->commentTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
-    ui->commentTable->setItem(curRow, 1, new QTableWidgetItem(ui->commentBox->toPlainText()));
-    QTextEdit *commentText = new QTextEdit;
-    commentText->setText(ui->commentTable->item(curRow, 1)->text());
-    commentText->setReadOnly(true);
-    ui->commentTable->setCellWidget(curRow, 1, commentText);
-    ui->commentTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
+    //scroll to bottom so user can see their post
+    ui->commentTable->scrollToBottom();
 
     // clear contents of comment box
     ui->commentBox->clear();
+    }
+}
+
+/**
+ * @brief Dashboard::populateReviewList populates the UI review table and average rating from the DB for the current media item
+ * @pre expects selectedEpisode to be set
+ */
+void Dashboard::populateReviewList() {
+    ui->reviewTable->clearContents();
+    ui->reviewTable->setRowCount(0);
+    int totalRatings = 0;
+    for (auto review : selectedEpisode.inspectReviews()) {
+        // add new row with new rating/review
+        int curRow = ui->reviewTable->rowCount(); // current row of next review
+        ui->reviewTable->insertRow(curRow);
+        ui->reviewTable->setRowHeight(curRow, 50);
+
+        // set data in new row
+        QDateTime utcTime = QDateTime::fromString(review.dateTimePosted, "MM/dd/yyyy h:m ap");
+        utcTime.setTimeSpec(Qt::UTC);
+        QString localTime = utcTime.toLocalTime().toString("MM/dd/yyyy h:mm ap");
+        QString userAndDate = review.username + "\n" + localTime;
+        ui->reviewTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
+        ui->reviewTable->setItem(curRow, 1, new QTableWidgetItem(QString::number(review.rating)));
+        QTextEdit *reviewText = new QTextEdit;
+        reviewText->setText(review.text);
+        reviewText->setReadOnly(true);
+        ui->reviewTable->setCellWidget(curRow, 2, reviewText);
+        ui->reviewTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
+        QColor lightBlue(194, 229, 255);
+        ui->reviewTable->item(curRow, 1)->setBackgroundColor(lightBlue);
+
+        //if this is the current user's review, set the review box to it so user can easily edit their review
+        if (review.username == theUser.username) {
+            ui->reviewCommentBox->setText(review.text);
+            ui->ratingMeter->setSliderPosition(review.rating);
+            ui->ratingNumber->setText(QString::number(ui->ratingMeter->sliderPosition()));
+        }
+
+        //add rating to summation
+        totalRatings += review.rating;
+        }
+
+        //update average rating
+        int numberOfReviews = selectedEpisode.inspectReviews().size();
+        if (numberOfReviews > 0) {
+            int newAverage = totalRatings / numberOfReviews;
+            ui->episodeRatingNum->setText(QString::number(newAverage));
+        }
+
+}
+
+/**
+ * @brief Dashboard::populateCommentList populates the UI comment list from the DB for the current media item
+ * @pre expects selectedEpisode to be set
+ */
+void Dashboard::populateCommentList() {
+    ui->commentTable->clearContents();
+    ui->commentTable->setRowCount(0);
+    for(auto comment : selectedEpisode.inspectComments()) {
+        // set up new row for comment
+        int curRow = ui->commentTable->rowCount(); // current row of next comment
+        ui->commentTable->insertRow(curRow);
+        ui->commentTable->setRowHeight(curRow, 50);
+
+        //set data in new row
+        QDateTime utcTime = QDateTime::fromString(comment.dateTimePosted, "MM/dd/yyyy h:m ap");
+        utcTime.setTimeSpec(Qt::UTC);
+        QString localTime = utcTime.toLocalTime().toString("MM/dd/yyyy h:mm ap");
+        QString userAndDate = comment.username + "\n" + localTime;
+        ui->commentTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
+        QTextEdit *commentText = new QTextEdit;
+        commentText->setText(comment.text);
+        commentText->setReadOnly(true);
+        ui->commentTable->setCellWidget(curRow, 1, commentText);
+        ui->commentTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
+    }
+
 }
 
 /**
@@ -408,57 +522,26 @@ void Dashboard::on_ratingMeter_valueChanged(int value)
 
 /**
  * @brief Dashboard::on_reviewButton_clicked() is triggered when user clicks on post rating button.
- * @post Adds users rating and review to the table widget
+ * @post Calls DatabaseManager to write new review to DB
  */
 void Dashboard::on_reviewButton_clicked()
 {
-    // initialize columns for username/ comment / rating
-    if (ui->reviewTable->columnCount() == 0)
-    {
-        ui->reviewTable->insertColumn(0); // username
-        ui->reviewTable->insertColumn(1); // rating
-        ui->reviewTable->insertColumn(2); // review
-        ui->reviewTable->setColumnWidth(0, 120);
-        ui->reviewTable->setColumnWidth(1, 30);
-        ui->reviewTable->setColumnWidth(2, 305);
+    QString reviewText = ui->reviewCommentBox->toPlainText();
+    if (reviewText.length() > 2000) {
+        QMessageBox tooLongMessage;
+        tooLongMessage.setText("Your review cannot exceed 2000 characters");
+        tooLongMessage.exec();
+    } else {
+        Review newReview(theUser.username, ui->reviewCommentBox->toPlainText(), ui->ratingNumber->text().toInt());
+        EpisodeIdentifier ep;
+        ep.episodeId = selectedEpisode.episodeId;
+        ep.seasonId = selectedSeason.seasonId;
+        ep.tvShowId = selectedShow.showId;
+        DatabaseManagerSingleton::Instance().addEpisodeReview(ep, newReview);
+
+        //scroll to bottom so user can see their post
+        ui->reviewTable->scrollToBottom();
     }
-    // hide labels on table
-    ui->reviewTable->horizontalHeader()->setVisible(false);
-    ui->reviewTable->verticalHeader()->setVisible(false);
-
-    // ensure wordwrapping is enabled
-    ui->reviewTable->setWordWrap(true);
-
-    // add new row with new rating/review
-    int curRow = ui->reviewTable->rowCount(); // current row of next review
-    ui->reviewTable->insertRow(curRow);
-    ui->reviewTable->setRowHeight(curRow, 50);
-    // @TODO: Replace this explicit call to date to using date from reaction/review/reply class
-    QString userAndDate = theUser.username + "\n" + QDateTime::currentDateTimeUtc().toString("MM/dd/yyyy h:m ap");
-    ui->reviewTable->setItem(curRow, 0, new QTableWidgetItem(userAndDate));
-    ui->reviewTable->setItem(curRow, 1, new QTableWidgetItem(ui->ratingNumber->text()));
-    ui->reviewTable->setItem(curRow, 2, new QTableWidgetItem(ui->reviewCommentBox->toPlainText()));
-    QTextEdit *reviewText = new QTextEdit;
-    reviewText->setText(ui->reviewTable->item(curRow, 2)->text());
-    reviewText->setReadOnly(true);
-    ui->reviewTable->setCellWidget(curRow, 2, reviewText);
-    ui->reviewTable->item(curRow, 0)->setBackgroundColor(Qt::lightGray);
-    QColor lightBlue(194, 229, 255);
-    ui->reviewTable->item(curRow, 1)->setBackgroundColor(lightBlue);
-
-    // calculate new overall rating score
-    int totalRatings = 0;
-    for (int i = 0; i < ui->reviewTable->rowCount(); i++)
-    {
-        totalRatings += ui->reviewTable->item(i, 1)->text().toInt();
-    }
-    int newAverage = totalRatings / (curRow+1);
-    ui->episodeRatingNum->setText(QString::number(newAverage));
-
-    // clear contents of comment box
-    ui->reviewCommentBox->clear();
-    ui->ratingMeter->setSliderPosition(50);
-    ui->ratingNumber->setText("50");
 }
 
 /**
@@ -470,4 +553,19 @@ void Dashboard::on_ratingNumber_textEdited(const QString &arg1)
 {
     int newRating = arg1.toInt();
     ui->ratingMeter->setValue(newRating);
+}
+
+/**
+ * @brief Dashboard::update updates selectedShow, selectedSeason, and selectedEpisode and GUI if user is on media item page. This slot is connected to DatabaseManager's notify() signal.
+ * @pre expects selectedShow, selectedSeason, and selectedEpisode to be set
+ */
+void Dashboard::update()
+{
+    if (ui->stackedWidget->currentIndex() == ITEM) {
+        selectedShow = DatabaseManagerSingleton::Instance().inspectTvShow(selectedShow.name);
+        selectedSeason = selectedShow.inspectSeason(selectedSeason.seasonNumber);
+        selectedEpisode = selectedSeason.inspectEpisode(selectedEpisode.name);
+        populateCommentList();
+        populateReviewList();
+    }
 }

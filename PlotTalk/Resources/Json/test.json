@@ -20,19 +20,19 @@
               [
                 {
                     "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EE}",
-                    "username":"plottalkadmin",
-                    "text":"It is amazing how this show is made.",
-                    "rating":5,
-                    "dateTimePosted":"1997-07-16T19:20:30.45+00:00"
+                    "username":"admin",
+                    "text":"This show is awesome!",
+                    "rating":100,
+                    "dateTimePosted":"11/24/2016 2:30 am"
                 }
               ],
               "comments":
               [
                 {
                     "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EF}",
-                    "username":"plottalkadmin",
+                    "username":"admin",
                     "text":"It is amazing how this show is made.",
-                    "dateTimePosted":"1997-07-16T19:20:30.46+00:00"
+                    "dateTimePosted":"11/24/2016 2:31 am"
                 }
               ]
             },

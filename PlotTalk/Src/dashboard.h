@@ -28,6 +28,9 @@ public:
 
     void hideAdminButton();
 
+public slots:
+    void update();
+
 private slots:
     void on_myAccountButton_clicked();
 
@@ -66,6 +69,8 @@ private slots:
 private:
     void populateSeasonList(QTreeWidget *treeWidget);
     void populateMediaItemPage();
+    void populateCommentList();
+    void populateReviewList();
 
     Ui::Dashboard *ui;
     AdminPage* adminWindow = NULL;

@@ -21,9 +21,11 @@
 #include "databasemanager.h"
 #include "jsonconnection.h"
 #include "plottalkexceptions.h"
+#include "user.h"
 #include "common.h"
 
 #include <QDebug>
+#include <QList>
 
 /**
  * @brief DatabaseManager::DatabaseManager Default constructor, currently defaults to using Json connection.
@@ -280,3 +282,4 @@ void DatabaseManager::emptyCache()
     tvShowMap.clear();
     userMap.clear();
 }
+
