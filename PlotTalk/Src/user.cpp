@@ -139,9 +139,6 @@ void User::removeWatchedEpisodeList(QList<EpisodeIdentifier> episodeList)
     }
 }
 
-
-
-
 QList<EpisodeIdentifier> User::inspectWatchedEpisodes()
 {
     return watchedEpisodes.values();

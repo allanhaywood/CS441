@@ -283,7 +283,6 @@ void DatabaseManager::addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QSt
 {
     userMap[username].addWatchedEpisode(episodeIdentifier);
     connection.addWatchedEpisode(episodeIdentifier, username);
-    emit notify();
 }
 
 /**
@@ -295,7 +294,27 @@ void DatabaseManager::removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, 
 {
     userMap[username].removeWatchedEpisode(episodeIdentifier);
     connection.removeWatchedEpisode(episodeIdentifier, username);
-    emit notify();
+}
+
+/**
+ * @brief DatabaseManager::getListOfWatchedTvShowNamesForUser Returns a list of tvshow names for the tvshows the specified username has watched.
+ * @param username The username to lookup.
+ * @return List of tvshow names that have been watched by the specified user.
+ */
+QList<QString> DatabaseManager::getListOfWatchedTvShowNamesForUser(QString username)
+{
+    QList<QString> watchedTvShowNames;
+
+    User user = inspectUser(username);
+
+    foreach(const EpisodeIdentifier &episodeIdentifier, user.inspectWatchedEpisodes())
+    {
+        if (!watchedTvShowNames.contains(getTvShowNameById(episodeIdentifier.tvShowId))) {
+            watchedTvShowNames.append(getTvShowNameById(episodeIdentifier.tvShowId));
+        }
+    }
+
+    return watchedTvShowNames;
 }
 
 /**

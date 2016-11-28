@@ -34,6 +34,7 @@ private slots:
     void TestAddEpisodeReview();
     void TestAddEpisodeComment();
     void TestAddAndRemoveWatchedEpisode();
+    void TestWatchedTvShowList();
 
 private:
     bool deleteTempJson();

@@ -36,6 +36,7 @@ void AccountManager::createAccount(User user)
 {
     DatabaseManagerSingleton::Instance().addUser(user);
     userHeldForRefresh = DatabaseManagerSingleton::Instance().inspectUser(user.username);
+
 }
 
 
@@ -49,6 +50,7 @@ User &AccountManager::getCurrentAccount()
 {
     userHeldForRefresh = DatabaseManagerSingleton::Instance().inspectUser(userHeldForRefresh.username);
     return userHeldForRefresh;
+
 }
 
 /**
@@ -133,7 +135,9 @@ bool AccountManager::checkEmailAndPassword(QString email, QString password, User
             {
                 user = hold;
 
+
                 userHeldForRefresh = user;
+
 
                 return true;
             }
@@ -155,8 +159,7 @@ bool AccountManager::EmailExists(QString email)//checks to see if an email exist
 
 void AccountManager::ClearForLogout()
 {
-    User BlankUser;
-    userHeldForRefresh = BlankUser;
+    userHeldForRefresh=User();
 }
 
 

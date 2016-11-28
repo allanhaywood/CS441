@@ -29,6 +29,7 @@ private:
 
     User userHeldForRefresh;
 
+
 public:
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
