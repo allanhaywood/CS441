@@ -66,6 +66,7 @@ bool AccountManager::createAccount(User user)
 
 User &AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
+    referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(referenceTodatabaseUser.username);
     return referenceTodatabaseUser;//useful for getting info into various pages without searching the database
 }
 

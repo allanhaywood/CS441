@@ -311,7 +311,9 @@ QList<QString> DatabaseManager::getListOfWatchedTvShowNamesForUser(QString usern
 
     foreach(const EpisodeIdentifier &episodeIdentifier, user.inspectWatchedEpisodes())
     {
-        watchedTvShowNames.append(getTvShowNameById(episodeIdentifier.tvShowId));
+        if (!watchedTvShowNames.contains(getTvShowNameById(episodeIdentifier.tvShowId))) {
+            watchedTvShowNames.append(getTvShowNameById(episodeIdentifier.tvShowId));
+        }
     }
 
     return watchedTvShowNames;
