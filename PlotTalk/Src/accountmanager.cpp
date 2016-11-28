@@ -31,43 +31,24 @@ AccountManager::~AccountManager()//destructor
     instance=NULL;//removes dangling pointers
 }
 
-/*
-/**
- * @brief places an account into the database
- * @param accepts user information in QString format in the order: first,last,Email,userName,password
- * @return true always as it will always call the database manager and insert the info
- */
 
-/*
-bool AccountManager::createAccount(QString first, QString last, QString Email, QString handle, QString password)
-{\
-return createAccount(first, last, Email, handle, password, false);
-}
-
-bool AccountManager::createAccount(QString first, QString last, QString Email, QString handle, QString password, bool isAdmin)
-{
-        User thisUser = User(handle, first, last, Email, password, isAdmin);//add Password Hash when possibl
-        DatabaseManagerSingleton::Instance().addUser(thisUser);
-        referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(handle);
-        return true;//reminant of previous code
-}
-*/
 void AccountManager::createAccount(User user)
 {
     DatabaseManagerSingleton::Instance().addUser(user);
-    referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(user.email);
+    userHeldForRefresh = DatabaseManagerSingleton::Instance().inspectUser(user.username);
 }
 
 
 /**
- * @brief gets the current account that is stored as a private object in the persistant account manager
+ * @brief refreshes account manager persistant user
  * @param none
  * @return a user object
  */
 
 User &AccountManager::getCurrentAccount()
-{//retuns the account information of the account held in the program
-    return referenceTodatabaseUser;//useful for getting info into various pages without searching the database
+{
+    userHeldForRefresh = DatabaseManagerSingleton::Instance().inspectUser(userHeldForRefresh.username);
+    return userHeldForRefresh;
 }
 
 /**
@@ -89,7 +70,7 @@ QString password = user.passwordHash;
     QRegularExpression checkPassword("(?=^.{8,30}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;&quot;:;'?/&gt;.&lt;,]).*$");//patterntitle retrived from http://regexlib.com/Search.aspx?k=password&c=-1&m=5&ps=20
 
     QValidator *validEmail=new QRegularExpressionValidator(checkEmail, 0);
-    QValidator *validPwd = new QRegularExpressionValidator(checkPassword,0);
+    QValidator *validPwd = new QRegularExpressionValidator(checkPassword, 0);
 
     /*
     Password filter that matches the NSA Password filter DLL ENPASFILT.DLL. At least 1 small-case
@@ -152,7 +133,7 @@ bool AccountManager::checkEmailAndPassword(QString email, QString password, User
             {
                 user = hold;
 
-                referenceTodatabaseUser = user;
+                userHeldForRefresh = user;
 
                 return true;
             }
@@ -175,7 +156,7 @@ bool AccountManager::EmailExists(QString email)//checks to see if an email exist
 void AccountManager::ClearForLogout()
 {
     User BlankUser;
-    referenceTodatabaseUser=BlankUser;
+    userHeldForRefresh = BlankUser;
 }
 
 

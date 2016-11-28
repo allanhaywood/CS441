@@ -17,7 +17,9 @@ void testAccountManager::testGetCurrentAccount()//returns the account that was c
 
     User holder;
     AccountManager *checkme= AccountManager::getInstance();
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle3,validEmail3,validPwd, false),selectEnum::ALLCLEAR);
+
+    User userHold= User (validHandle3,fName,lName,validEmail3,validPwd, false);
+    QCOMPARE(checkme->checkFieldsAndCreate(userHold),selectEnum::ALLCLEAR);
     holder=checkme->getCurrentAccount();
     QCOMPARE(holder.firstName,fName);
     QCOMPARE(holder.lastName,lName);
@@ -52,23 +54,105 @@ void testAccountManager::testCheckFields()
     // Remove test users before attempting to add.
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
     DatabaseManagerSingleton::Instance().removeUser(validHandle);
-    DatabaseManagerSingleton::Instance().removeUser(validHandle2);
+   // DatabaseManagerSingleton::Instance().removeUser(validHandle2);
 
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle,validEmail,Pwd1, false),selectEnum::ALLCLEAR);//account added
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle,validEmail2,Pwd1, false),selectEnum::USERNAME_TAKEN);//handle is already used
-    QCOMPARE(checkme->checkFieldsAndCreate(none,lName,validHandle2,validEmail2,Pwd1, false),selectEnum::VALUES_MISSING);//First Name is not acceptable
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,none,validHandle2,validEmail2,Pwd1, false),selectEnum::VALUES_MISSING);//Last Name is not acceptable
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail,Pwd1, false),selectEnum::DUPLICATE_EMAIL);//email is already used
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validHandle,Pwd1, false),selectEnum::BAD_EMAIL);//email format bad
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,badEmail,Pwd1, false),selectEnum::BAD_EMAIL);//less bad email is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd, false),selectEnum::BAD_PASSWORD);//bad password format is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd2, false),selectEnum::BAD_PASSWORD);//other bad password is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,Pwd2, false),selectEnum::BAD_PASSWORD);//bad passward is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd3, false),selectEnum::BAD_PASSWORD);//bad passward is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd4, false),selectEnum::BAD_PASSWORD);//bad passward is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,badPwd5, false),selectEnum::BAD_PASSWORD);//bad passward is rejected
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,Pwd1, false),selectEnum::ALLCLEAR);//second account is added
-    QCOMPARE(checkme->checkFieldsAndCreate(fName,lName,validHandle2,validEmail2,Pwd1, false),selectEnum::DUPLICATE_EMAIL);//email is already used
+    User toCheckAndChange = User(validHandle,fName,lName,validEmail,Pwd1, false);
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::ALLCLEAR);//account added
+
+    toCheckAndChange.username = validHandle;  //already taken
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = Pwd1;
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::USERNAME_TAKEN);//handle is already used
+
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.firstName = none;  //missing first name
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = Pwd1;
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::VALUES_MISSING);//First Name is not acceptable
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = none;   //missing last name
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = Pwd1;
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::VALUES_MISSING);//Last Name is not acceptable
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validEmail;  //email alraedy taken
+    toCheckAndChange.passwordHash = Pwd1;
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::DUPLICATE_EMAIL);//email is already used
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validHandle;   //a handle does not meet the criteria of an email
+    toCheckAndChange.passwordHash = Pwd1;
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::BAD_EMAIL);//email format bad
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = badEmail;      //this is a bad email format
+    toCheckAndChange.passwordHash = Pwd1;
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::BAD_EMAIL);//less bad email is rejected
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = badPwd;  //bad passwword format
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::BAD_PASSWORD);//bad password format is rejected
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = badPwd2;  //different format for bad password
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::BAD_PASSWORD);//other bad password is rejected
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = Pwd2;//no special characters in this password
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::BAD_PASSWORD);//bad passward is rejected
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = badPwd3;// another type of bad password
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::BAD_PASSWORD);//bad passward is rejected
+
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = badPwd4;//another type of bad password
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::BAD_PASSWORD);//bad passward is rejected
+
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = badPwd5;  //another type of bad password
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::BAD_PASSWORD);//bad passward is rejected
+
+
+    toCheckAndChange.firstName = fName;
+    toCheckAndChange.lastName = lName;
+    toCheckAndChange.username = validHandle2;
+    toCheckAndChange.email = validEmail2;
+    toCheckAndChange.passwordHash = Pwd1;  //all information is good
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::ALLCLEAR);//second account is added
+    QCOMPARE(checkme->checkFieldsAndCreate(toCheckAndChange),selectEnum::DUPLICATE_EMAIL);//email is already used
 
     // Remove temp users when done.
     DatabaseManagerSingleton::Instance().removeUser(validHandle);

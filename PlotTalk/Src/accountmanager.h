@@ -26,18 +26,16 @@ private:
     static AccountManager* instance;//creates the static instance
     AccountManager();//constructor
     ~AccountManager();//destructor
-    User BlankMan;
-    User &referenceTodatabaseUser=BlankMan;
+
+    User userHeldForRefresh;
 
 public:
 
     typedef Singleton<DatabaseManager> DatabaseManagerSingleton;
 
     static AccountManager* getInstance();
-    //bool createAccount(QString first, QString last, QString Email, QString handle, QString password);//done
-    //bool createAccount(QString first, QString last, QString Email, QString handle, QString password, bool isAdmin);
     void createAccount(User user);
-    User &getCurrentAccount();//done
+    User &getCurrentAccount();
     selectEnum checkFieldsAndCreate(User user);
     bool checkEmailAndPassword(QString email, QString password, User &user);
     bool EmailExists(QString email);
