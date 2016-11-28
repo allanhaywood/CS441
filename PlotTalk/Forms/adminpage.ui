@@ -551,6 +551,19 @@
       </widget>
      </widget>
     </widget>
+    <zorder>line_3</zorder>
+    <zorder>add_series</zorder>
+    <zorder>media</zorder>
+    <zorder>search_series</zorder>
+    <zorder>line_2</zorder>
+    <zorder>addUser</zorder>
+    <zorder>line</zorder>
+    <zorder>Users</zorder>
+    <zorder>commandLinkButton</zorder>
+    <zorder>delete_series</zorder>
+    <zorder>delete_movie</zorder>
+    <zorder>search_movie</zorder>
+    <zorder>Options</zorder>
    </widget>
    <zorder>frame</zorder>
    <zorder>UserList</zorder>

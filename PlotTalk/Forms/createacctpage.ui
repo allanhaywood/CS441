@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>396</width>
-    <height>412</height>
+    <width>397</width>
+    <height>433</height>
    </rect>
   </property>
   <property name="cursor">
@@ -172,7 +172,7 @@ font-family: verdana;
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>370</y>
+     <y>380</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -355,30 +355,11 @@ font-family: verdana;
     </font>
    </property>
   </widget>
-  <widget class="QLabel" name="pwdMatch">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>470</y>
-     <width>131</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-     <italic>true</italic>
-    </font>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#55aa00;&quot;&gt;Passwords Match!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="GoBack">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>370</y>
+     <y>380</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -398,6 +379,28 @@ font-family: verdana;
     <string>go back to login</string>
    </property>
   </widget>
+  <widget class="QLabel" name="pwdMatch">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>350</y>
+     <width>119</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <italic>true</italic>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#55aa00;&quot;&gt;Passwords Match!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
   <zorder>FirstNameLabel</zorder>
   <zorder>LastNameLabel</zorder>
   <zorder>passwordLabel2</zorder>
@@ -412,9 +415,9 @@ font-family: verdana;
   <zorder>LastNameBox</zorder>
   <zorder>emailBox</zorder>
   <zorder>handleBox</zorder>
-  <zorder>pwdMatch</zorder>
   <zorder>GoBack</zorder>
   <zorder>incorrectPasswordLabel</zorder>
+  <zorder>pwdMatch</zorder>
  </widget>
  <tabstops>
   <tabstop>FirstNameBox</tabstop>
