@@ -46,14 +46,14 @@ bool AccountManager::createAccount(QString first, QString last, QString Email, Q
 {
         User thisUser = User(handle, first, last, Email, password, isAdmin);//add Password Hash when possibl
         DatabaseManagerSingleton::Instance().addUser(thisUser);
-        referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(handle);
+        databaseUser = DatabaseManagerSingleton::Instance().inspectUser(handle);
         return true;//reminant of previous code
 }
 
 bool AccountManager::createAccount(User user)
 {
     DatabaseManagerSingleton::Instance().addUser(user);
-    referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(user.email);
+    databaseUser = DatabaseManagerSingleton::Instance().inspectUser(user.email);
     return true;
 }
 
@@ -66,8 +66,8 @@ bool AccountManager::createAccount(User user)
 
 User &AccountManager::getCurrentAccount()
 {//retuns the account information of the account held in the program
-    referenceTodatabaseUser = DatabaseManagerSingleton::Instance().inspectUser(referenceTodatabaseUser.username);
-    return referenceTodatabaseUser;//useful for getting info into various pages without searching the database
+    databaseUser = DatabaseManagerSingleton::Instance().inspectUser(databaseUser.username);
+    return databaseUser;//useful for getting info into various pages without searching the database
 }
 
 /**
@@ -145,7 +145,7 @@ bool AccountManager::checkEmailAndPassword(QString email, QString password, User
             {
                 user = hold;
 
-                referenceTodatabaseUser = user;
+                databaseUser = user;
 
                 return true;
             }
@@ -167,8 +167,7 @@ bool AccountManager::EmailExists(QString email)//checks to see if an email exist
 
 void AccountManager::ClearForLogout()
 {
-    User BlankMan;
-    referenceTodatabaseUser=BlankMan;
+    databaseUser=User();
 }
 
 
