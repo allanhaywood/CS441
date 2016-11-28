@@ -74,10 +74,17 @@ void Dashboard::on_popularButton_clicked()
     ui->stackedWidget->setCurrentIndex(NAVIGATION);
 }
 
+/**
+ * @brief Dashboard::on_watchedButton_clicked triggered when Watched button is clicked on left sidebar
+ */
 void Dashboard::on_watchedButton_clicked()
 {
     ui->leftList->setDisabled(false);
     ui->leftList->clear();
+    QString currentUsername = AccountManager::getInstance()->getCurrentAccount().username;
+    foreach (QString show, DatabaseManagerSingleton::Instance().getListOfWatchedTvShowNamesForUser(currentUsername)) {
+        ui->leftList->addItem(show);
+    }
     ui->stackedWidget->setCurrentIndex(NAVIGATION);
 }
 
@@ -241,18 +248,28 @@ void Dashboard::populateMediaItemPage() {
     ui->seasonName->setText(seasonText);
     ui->episodeSummary->setText(selectedEpisode.summary);
     ui->episodeName->setText("Episode " + QString::number(selectedEpisode.episodeNumber) + ": " + selectedEpisode.name);
-    //@TODO: only show spoiler alert if user hasn't watched episode
-    //if episode is in user's watched list:
-    //hide watched warning and checkbox
-    //don't hide additional episode items (summary, comments, reviews)
-    //else:
-    ui->episodeSummaryLabel->setVisible(false);
-    ui->episodeSummary->setVisible(false);
-    ui->commentTabWidget->setVisible(false);
-    ui->episodeRatingNum->setVisible(false);
-    ui->overallRatingLabel->setVisible(false);
-    ui->watchedWarning->setVisible(true);
-    ui->watchedConfirmButton->setVisible(true);
+
+    EpisodeIdentifier ep;
+    ep.episodeId = selectedEpisode.episodeId;
+    ep.seasonId = selectedSeason.seasonId;
+    ep.tvShowId = selectedShow.showId;
+    if (!AccountManager::getInstance()->getCurrentAccount().hasUserWatchedThisEpisode(ep)) {
+        ui->episodeSummaryLabel->setVisible(false);
+        ui->episodeSummary->setVisible(false);
+        ui->commentTabWidget->setVisible(false);
+        ui->episodeRatingNum->setVisible(false);
+        ui->overallRatingLabel->setVisible(false);
+        ui->watchedWarning->setVisible(true);
+        ui->watchedConfirmButton->setVisible(true);
+    } else {
+        ui->episodeSummaryLabel->setVisible(true);
+        ui->episodeSummary->setVisible(true);
+        ui->commentTabWidget->setVisible(true);
+        ui->episodeRatingNum->setVisible(true);
+        ui->overallRatingLabel->setVisible(true);
+        ui->watchedWarning->setVisible(false);
+        ui->watchedConfirmButton->setVisible(false);
+    }
 }
 
 /**
@@ -384,7 +401,12 @@ void Dashboard::on_watchedConfirmButton_clicked()
     ui->overallRatingLabel->setVisible(true);
     ui->watchedConfirmButton->setVisible(false);
     ui->watchedWarning->setVisible(false);
-    //@TODO add episode to watched list once it has been added to user class
+    EpisodeIdentifier ep;
+    ep.episodeId = selectedEpisode.episodeId;
+    ep.seasonId = selectedSeason.seasonId;
+    ep.tvShowId = selectedShow.showId;
+    QString currentUsername = AccountManager::getInstance()->getCurrentAccount().username;
+    DatabaseManagerSingleton::Instance().addWatchedEpisode(ep, currentUsername);
 }
 
 /**

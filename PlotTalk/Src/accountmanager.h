@@ -26,8 +26,7 @@ private:
     static AccountManager* instance;//creates the static instance
     AccountManager();//constructor
     ~AccountManager();//destructor
-    User BlankMan;
-    User &referenceTodatabaseUser=BlankMan;
+    User databaseUser;
 
 public:
 
