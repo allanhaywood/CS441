@@ -4,27 +4,40 @@
  */
 #ifndef SEASON_H
 #define SEASON_H
+#include "episode.h"
+
 #include <QString>
 #include <QVector>
-
-#include "episode.h"
+#include <QMap>
 
 class Season
 {
 public:
+    friend class TvShow;
     int seasonId;
     int seasonNumber;
     QString name;
 
     Season();
-    Season(int seasonId, int seasonNumber, QString name, QVector<Episode> episodes);
+    Season(int seasonId, int seasonNumber, QString name, QMap<int, Episode> episodes);
 
-    const QVector<Episode>& inspectEpisodes();
+    QVector<Episode> inspectEpisodes();
+
+    Episode inspectEpisode(int number);
+    Episode inspectEpisode(QString name);
+
     void addEpisode(Episode episode);
-    Episode getEpisode(QString name);
+
+    bool operator<(const Season &rhs) const;
 
 private:
-    QVector<Episode> episodes;
+    QMap<int, Episode> episodes;
+    QMap<int, Episode> &getEpisodes();
+    // @throws NotFound
+    const Episode &getEpisode(QString name);
+
+    // @throws NotFound
+    const Episode &getEpisode(int number);
 };
 
 #endif // SEASON_H

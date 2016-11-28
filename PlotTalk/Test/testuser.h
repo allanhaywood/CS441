@@ -15,6 +15,7 @@ private slots:
     void TestUserDefaultConstructor1();
     void TestUserConstructor2();
     void TestUserConstructor3();
+    void TestsForWatchedList();
 };
 
 #endif // TESTUSER_H

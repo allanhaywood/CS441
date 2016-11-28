@@ -54,7 +54,7 @@ void MainWindow::on_SignInButton_clicked()
     User toPass;
     AccountManager *account= AccountManager::getInstance();
 
-    if(account->checkEmailAndPassword(email,password,toPass))
+    if(account->checkEmailAndPassword(email, password, toPass))
     {
         Dashboard *dash = new Dashboard();//needs to accept user object
         dash->setWindowState(Qt::WindowMaximized);

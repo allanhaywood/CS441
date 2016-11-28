@@ -28,7 +28,8 @@ HEADERS += \
     Src/review.h \
     Src/comment.h \
     Src/season.h \
-    Src/episode.h
+    Src/episode.h \
+    Src/common.h
 
 SOURCES += \
     Src/main.cpp \
@@ -58,7 +59,6 @@ FORMS += \
     Forms/forgotpassword.ui \
     Forms/addnewmedia.ui \
     Forms/adminpage.ui \
-    Forms/accountdetails.ui \
     Forms/about.ui
 
 RESOURCES += \
@@ -81,7 +81,8 @@ test {
         Test/testaccountmanager.h \
         Test/testreply.h \
         Test/testuser.h \
-	Test/testseason.h
+        Test/testseason.h \
+        Test/testexceptions.h
 
     SOURCES += \
         Test/testmain.cpp \
@@ -91,8 +92,20 @@ test {
         Test/testaccountmanager.cpp \
         Test/testreply.cpp \
         Test/testuser.cpp \
-        Test/testseason.cpp
+        Test/testseason.cpp \
+        Test/testexceptions.cpp
 
 } else {
     message(Normal build)
 }
+
+DISTFILES += \
+    UML/class/browse_episodes_of_season.qmodel \
+    UML/class/creatingNewAcct.qmodel \
+    UML/class/databasemanager.qmodel \
+    UML/class/log_in_existing.qmodel \
+    UML/class/persbackstore.qmodel \
+    UML/class/tvshow.qmodel \
+    UML/class/uml_checkoffmedia.qmodel \
+    UML/class/uml_reactions.qmodel \
+    UML/class/user.qmodel

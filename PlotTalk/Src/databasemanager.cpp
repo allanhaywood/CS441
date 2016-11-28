@@ -21,9 +21,11 @@
 #include "databasemanager.h"
 #include "jsonconnection.h"
 #include "plottalkexceptions.h"
+#include "user.h"
+#include "common.h"
 
-#include <QMap>
 #include <QDebug>
+#include <QList>
 
 /**
  * @brief DatabaseManager::DatabaseManager Default constructor, currently defaults to using Json connection.
@@ -46,15 +48,31 @@ DatabaseManager::DatabaseManager(QString jsonPath) : connection(jsonPath)
  * @param name The name of the tvshow to fetch.
  * @return A reference to the TvShow object.
  */
-TvShow &DatabaseManager::getTvShow(QString name)
+const TvShow DatabaseManager::inspectTvShow(QString name)
 {
     // @todo Determine how to decide to use either json or mysql connection at runtime,
     // or at the very least, a single location to choose which one.
 
-    // @todo Add caching so that it doesn't call getTvShow if it isn't needed.
-    tvShowMap[name] = connection.getTvShow(name);
+    if ( tvShowMap.contains(name) )
+    {
+        return tvShowMap[name];
+    }
+    else
+    {
+        tvShowMap[name] = connection.getTvShow(name);
+    }
 
     return tvShowMap[name];
+}
+
+/**
+ * @brief DatabaseManager::getTvShowById Retrieves a reference to a tvshow by Id instead of name.
+ * @param tvShowId The tvshow id to find.
+ * @return A reference to the tvshow.
+ */
+const TvShow DatabaseManager::inspectTvShowById(int tvShowId)
+{
+    return inspectTvShow(connection.getTvShowNameById(tvShowId));
 }
 
 /**
@@ -64,10 +82,16 @@ TvShow &DatabaseManager::getTvShow(QString name)
  *
  * @throws NotFound if user is not found.
  */
-User &DatabaseManager::getUser(QString username)
+const User DatabaseManager::inspectUser(QString username)
 {
-    // @todo Add caching so that it doesn't call getUser if it isn't needed.
-    userMap[username] = connection.getUser(username);
+    if ( userMap.contains(username) )
+    {
+        return userMap[username];
+    }
+    else
+    {
+        userMap[username] = connection.getUser(username);
+    }
 
     return userMap[username];
 }
@@ -79,14 +103,11 @@ User &DatabaseManager::getUser(QString username)
  *
  * @throws NotFound if user is not found.
  */
-User &DatabaseManager::getUserByEmail(QString email)
+const User DatabaseManager::inspectUserByEmail(QString email)
 {
-    // @todo Add caching so that it doesn't call getUser if it isn't needed.
     QString username = connection.getUserNameByEmail(email);
 
-    userMap[username] = connection.getUser(username);
-
-    return userMap[username];
+    return inspectUser(username);
 }
 
 /**
@@ -121,21 +142,23 @@ void DatabaseManager::removeUser(QString username)
  *
  * @throws NotFound if the specified user is not found.
  */
+/*
 void DatabaseManager::updateUser(User user)
 {
     if (! connection.usernameExists(user.username))
     {
-        throw NotFound{};
+        throw NotFound("User name not found:" + user.username);
     }
 
-    userMap[user.username].firstName = user.firstName;
-    userMap[user.username].lastName = user.lastName;
-    userMap[user.username].passwordHash = user.passwordHash;
-    userMap[user.username].email = user.email;
+    userHash[user.username].firstName = user.firstName;
+    userHash[user.username].lastName = user.lastName;
+    userHash[user.username].passwordHash = user.passwordHash;
+    userHash[user.username].email = user.email;
 
     connection.removeUser(user.username);
     connection.addUser(user);
 }
+*/
 
 /**
  * @brief DatabaseManager::usernameExists Checks if the specified user already exists.
@@ -163,7 +186,20 @@ bool DatabaseManager::emailExists(QString email)
  */
 QList<QString> DatabaseManager::getListOfAllTvShows()
 {
-    return connection.getListOfAllTvShows();
+    QList<QString> list = connection.getListOfAllTvShows();
+    qSort(list);
+    return list;
+}
+
+/**
+ * @brief DatabaseManager::getListOfAllUsers Returns a list of all users recorded at the current connection.
+ * @return List of user objects.
+ */
+QList<QString> DatabaseManager::getListOfAllUsers()
+{
+    QList<QString> list = connection.getListOfAllUsers();
+    qSort(list);
+    return list;
 }
 
 /**
@@ -172,7 +208,113 @@ QList<QString> DatabaseManager::getListOfAllTvShows()
  */
 QList<QString> DatabaseManager::getListOfCachedTvShows()
 {
-    return tvShowMap.keys();
+    QList<QString> list = tvShowMap.keys();
+    qSort(list);
+    return list;
+}
+
+/**
+ * @brief DatabaseManager::getListOfCachedUsers Returns a list of all the locally cached users.
+ * @return List of user names.
+ */
+QList<QString> DatabaseManager::getListOfCachedUsers()
+{
+    QList<QString> list = userMap.keys();
+    qSort(list);
+    return list;
+}
+
+/**
+ * @brief DatabaseManager::getTvShowNameById Gets the tvshow name by its id.
+ * @param showId The show id to lookup the name for.
+ * @return The name of the tvshow.
+ */
+QString DatabaseManager::getTvShowNameById(int showId)
+{
+    qDebug() << "Looking for show id:" << showId;
+
+    // Look in cache first.
+    foreach (const TvShow &tvShow, tvShowMap.values())
+    {
+        if ( tvShow.showId == showId )
+        {
+            return tvShow.name;
+        }
+    }
+
+    // If not found in the cache, check the database connection.
+    return connection.getTvShowNameById(showId);
+}
+
+/**
+ * @brief DatabaseManager::addEpisodeReview Adds the specified review to the specified episode.
+ * @param episodeIdentifier The specific episode to add the review to.
+ * @param review The review to add.
+ *
+ * Adds the review to the local cache, and the datastore.
+ */
+void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
+{
+    QString tvShowName = inspectTvShowById(episodeIdentifier.tvShowId).name;
+    tvShowMap[tvShowName].addEpisodeReview(episodeIdentifier, review);
+    connection.addEpisodeReview(episodeIdentifier, review);
+    emit notify();
+}
+
+/**
+ * @brief DatabaseManager::addEpisodeComment Adds the speciifed comment to the specified episode.
+ * @param episodeIdentifier The specific episode to add the reivew to.
+ * @param comment The comment to add.
+ */
+void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
+{
+    QString tvShowName = inspectTvShowById(episodeIdentifier.tvShowId).name;
+    tvShowMap[tvShowName].addEpisodeComment(episodeIdentifier, comment);
+    connection.addEpisodeComment(episodeIdentifier, comment);
+    emit notify();
+}
+
+/**
+ * @brief DatabaseManager::addWatchedEpisode Adds the specified episode to the specified users watched episodes list.
+ * @param episodeIdentifier The episode to add to the users watched shows.
+ * @param username The username to add the watched episode to.
+ */
+void DatabaseManager::addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
+{
+    userMap[username].addWatchedEpisode(episodeIdentifier);
+    connection.addWatchedEpisode(episodeIdentifier, username);
+}
+
+/**
+ * @brief DatabaseManager::removeWatchedEpisode Removes the specified episode from the specified users watched episodes list.
+ * @param episodeIdentifier The episode to remove from the users watched shows.
+ * @param username The username to remove the watched episode from.
+ */
+void DatabaseManager::removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
+{
+    userMap[username].removeWatchedEpisode(episodeIdentifier);
+    connection.removeWatchedEpisode(episodeIdentifier, username);
+}
+
+/**
+ * @brief DatabaseManager::getListOfWatchedTvShowNamesForUser Returns a list of tvshow names for the tvshows the specified username has watched.
+ * @param username The username to lookup.
+ * @return List of tvshow names that have been watched by the specified user.
+ */
+QList<QString> DatabaseManager::getListOfWatchedTvShowNamesForUser(QString username)
+{
+    QList<QString> watchedTvShowNames;
+
+    User user = inspectUser(username);
+
+    foreach(const EpisodeIdentifier &episodeIdentifier, user.inspectWatchedEpisodes())
+    {
+        if (!watchedTvShowNames.contains(getTvShowNameById(episodeIdentifier.tvShowId))) {
+            watchedTvShowNames.append(getTvShowNameById(episodeIdentifier.tvShowId));
+        }
+    }
+
+    return watchedTvShowNames;
 }
 
 /**
@@ -183,3 +325,4 @@ void DatabaseManager::emptyCache()
     tvShowMap.clear();
     userMap.clear();
 }
+

@@ -15,7 +15,26 @@
               "episodeId": 63087,
               "episodeNumber": 1,
               "name": "Inside Game of Thrones",
-              "summary": "A short look into the film-making process for the production Game of Thrones"
+              "summary": "A short look into the film-making process for the production Game of Thrones",
+              "reviews":
+              [
+                {
+                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EE}",
+                    "username":"admin",
+                    "text":"This show is awesome!",
+                    "rating":100,
+                    "dateTimePosted":"11/24/2016 2:30 am"
+                }
+              ],
+              "comments":
+              [
+                {
+                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EF}",
+                    "username":"admin",
+                    "text":"It is amazing how this show is made.",
+                    "dateTimePosted":"11/24/2016 2:31 am"
+                }
+              ]
             },
             {
               "episodeId": 63086,
@@ -48,15 +67,15 @@
               "summary": "A prequel to Game of Thrones Season 2 which recaps on the first season and gives insight into what's to come."
             },
             {
-              "episodeId": 63093,
+              "episodeId": 63092,
               "episodeNumber": 7,
-              "name": "Politics of Marriage",
+              "name": "A Gathering Storm",
               "summary": "A prequel to Game of Thrones Season 3 which recaps on the first and second season and gives insight into what's to come."
             },
             {
-              "episodeId": 63087,
+              "episodeId": 63093,
               "episodeNumber": 8,
-              "name": "The Pointy End",
+              "name": "Politics of Marriage",
               "summary": "Love and marriage? They don't go together so well in 'Game of Thrones' where the concept of matrimony is all about making power plays and political alliances. Cast and crew members along with author George R.R. Martin take a fascinating look at this ancient institution and its place in the hit HBO series."
             },
             {
