@@ -283,7 +283,6 @@ void DatabaseManager::addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QSt
 {
     userMap[username].addWatchedEpisode(episodeIdentifier);
     connection.addWatchedEpisode(episodeIdentifier, username);
-    emit notify();
 }
 
 /**
@@ -295,7 +294,6 @@ void DatabaseManager::removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, 
 {
     userMap[username].removeWatchedEpisode(episodeIdentifier);
     connection.removeWatchedEpisode(episodeIdentifier, username);
-    emit notify();
 }
 
 /**
