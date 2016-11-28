@@ -16,23 +16,21 @@
               "episodeNumber": 1,
               "name": "Inside Game of Thrones",
               "summary": "A short look into the film-making process for the production Game of Thrones",
-              "reviews":
-              [
+              "reviews": [
                 {
-                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EE}",
-                    "username":"admin",
-                    "text":"This show is awesome!",
-                    "rating":100,
-                    "dateTimePosted":"11/24/2016 2:30 am"
+                  "postUuid": "{67C8770B-44F1-410A-AB9A-F9B5446F13EE}",
+                  "username": "admin",
+                  "text": "This show is awesome!",
+                  "rating": 100,
+                  "dateTimePosted": "11/24/2016 2:30 am"
                 }
               ],
-              "comments":
-              [
+              "comments": [
                 {
-                    "postUuid":"{67C8770B-44F1-410A-AB9A-F9B5446F13EF}",
-                    "username":"admin",
-                    "text":"It is amazing how this show is made.",
-                    "dateTimePosted":"11/24/2016 2:31 am"
+                  "postUuid": "{67C8770B-44F1-410A-AB9A-F9B5446F13EF}",
+                  "username": "admin",
+                  "text": "It is amazing how this show is made.",
+                  "dateTimePosted": "11/24/2016 2:31 am"
                 }
               ]
             },
@@ -3198,6 +3196,248 @@
               "episodeNumber": 8,
               "name": "Chapter Eight: The Upside Down",
               "summary": "Dr. Brenner holds Hopper and Joyce for questioning while the boys wait with Eleven in the gym. Back at Will's, Nancy and Jonathan prepare for battle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "showId": 62046,
+      "name": "Scream Queens",
+      "tmdbLink": "https://www.themoviedb.org/tv/62046-scream-queens",
+      "graphicLink": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/9e3A3bHh0gW7qs3bKS6vYO8dXjx.jpg",
+      "seasons": [
+        {
+          "seasonId": 69611,
+          "seasonNumber": 0,
+          "name": "Season 0",
+          "episodes": [
+            {
+              "episodeId": 1098497,
+              "episodeNumber": 1,
+              "name": "Special Preview",
+              "summary": "All hell is about to break loose on the Wallace University campus when, exactly 20 years after a mysterious tragedy, a devil-clad killer begins to target the sisters of Kappa House. The super-charged comedy-horror series is a modern take on the classic whodunit with a killer cast. With at least one casualty each week until the mystery is solved, anyone could be the next victim – or the murderer."
+            }
+          ]
+        },
+        {
+          "seasonId": 64995,
+          "seasonNumber": 1,
+          "name": "Season 1",
+          "episodes": [
+            {
+              "episodeId": 1080090,
+              "episodeNumber": 1,
+              "name": "Pilot",
+              "summary": "Twenty years after a mysterious death rocks Wallace University, another murder takes place."
+            },
+            {
+              "episodeId": 1080091,
+              "episodeNumber": 2,
+              "name": "Hell Week",
+              "summary": "Twenty years after a mysterious death rocks Wallace University, another murder takes place."
+            },
+            {
+              "episodeId": 1080092,
+              "episodeNumber": 3,
+              "name": "Chainsaw",
+              "summary": "Chanel finds a new project in Hester, Chanel #3 confesses a secret and Grace and Zayday uncover a surprising connection between two fellow students. Meanwhile, Denise sets her sights on one of the Kappas, and Dean Munsch appoints a new Wallace University mascot as Chad and Earl Grey lead the fraternity on a witch hunt for the Red Devil."
+            },
+            {
+              "episodeId": 1080093,
+              "episodeNumber": 4,
+              "name": "Haunted House",
+              "summary": "As Halloween approaches, Chanel creates a devious plan after Zayday makes a shocking announcement. Meanwhile Grace and Pete pay a visit to a mysterious woman with ties to Kappa's past. Also, Hester grows closer to Chad, Denise continues her search for the red devil killer and Dean Munsch does everything in her power to keep Wallace University open."
+            },
+            {
+              "episodeId": 1080094,
+              "episodeNumber": 5,
+              "name": "Pumpkin Patch",
+              "summary": "With Halloween just days away, Dean Munsch makes an announcement affecting the campus and, specifically, Chanel's plan to throw a pumpkin patch party in support of her Kappa Kappa Tau presidential campaign. Meanwhile, Grace and Pete lead a search party for a missing friend, which steers them closer to the Red Devil than ever before, and Chanel #3 and #5 learn what life would be like without Chanel."
+            },
+            {
+              "episodeId": 1098503,
+              "episodeNumber": 6,
+              "name": "Seven Minutes in Hell",
+              "summary": "In an attempt to protect herself from the killer, Chanel makes a surprising decision, which leaves Zayday in a position of power. To stay close to each other, the girls of Kappa Kappa Tau host a slumber party, but when a shocking discovery is made, not everyone will survive the night."
+            },
+            {
+              "episodeId": 1112646,
+              "episodeNumber": 7,
+              "name": "Beware of Young Girls",
+              "summary": "Dean Munsch is left in a desperate situation when a shocking event leads her to come face-to-face with her ex-husband's mistress. Meanwhile, in an attempt to determine who the Red Devil killer is, the Kappas use a Ouija board to communicate with Chanel #2 from beyond the grave and learn of a wicked plot against one of their own."
+            },
+            {
+              "episodeId": 1112647,
+              "episodeNumber": 8,
+              "name": "Mommie Dearest",
+              "summary": "Grace enlists Chanel’s help to learn more about KKT’s past, and ends up realizing she might not be so different from her nemesis after all. Dean Munsch goes “psycho” when she becomes the latest target of the Red Devils. Meanwhile, Denise becomes the new house mother of Kappa House and a shocking figure from the past returns."
+            },
+            {
+              "episodeId": 1133453,
+              "episodeNumber": 9,
+              "name": "Ghost Stories",
+              "summary": "Denise does little to calm the Kappas' fears when she spins a terrifying ghost story. Meanwhile, Hester's shocking announcement pushes Chanel to the edge, and a familiar face returns to campus as the Red Devil claims another victim."
+            },
+            {
+              "episodeId": 1136274,
+              "episodeNumber": 10,
+              "name": "Thanksgiving",
+              "summary": "Chad takes Chanel to his family home for Thanksgiving, where she meets his brothers, Brad and Thad, as well as his parents. However, an uninvited guest throws the holiday into chaos. Meanwhile, Dean Munsch gathers the survivors at Kappa House, but dinner quickly explodes into accusations of who among them is really the killer. Then, the Red Devil carves up a deadly main course as another victim falls."
+            },
+            {
+              "episodeId": 1138052,
+              "episodeNumber": 11,
+              "name": "Black Friday",
+              "summary": "After the horror-filled events of Thanksgiving, the Chanels decide to celebrate their favorite holiday -- Black Friday, but the Red Devil has plans to stop their shopping spree. When the Kappas conclude that Dean Munsch is the killer, they set a plan in motion to stop her once and for all. Meanwhile, Denise lands yet another job, Chad offers Pete a chance to join the Dickie Dollar Scholars and someone confesses to being the murderer."
+            },
+            {
+              "episodeId": 1140492,
+              "episodeNumber": 12,
+              "name": "Dorkus",
+              "summary": "Shocking confessions are made as the Red Devil is finally unmasked and the killer revealed."
+            },
+            {
+              "episodeId": 1140493,
+              "episodeNumber": 13,
+              "name": "The Final Girl(s)",
+              "summary": "Shocking confessions are made as the Red Devil is finally unmasked and the killer revealed."
+            }
+          ]
+        },
+        {
+          "seasonId": 75132,
+          "seasonNumber": 2,
+          "name": "Season 2",
+          "episodes": [
+            {
+              "episodeId": 1208781,
+              "episodeNumber": 1,
+              "name": "Scream Again",
+              "summary": "Years after the murderous events at Kappa House, Dean Munsch purchases an abandoned hospital under the guise of fixing the healthcare system in America. After recruiting surgeons, Dr. Brock Holt and Dr. Cassidy Cascade, as well as medical student Zayday Williams, the Dean shocks everyone when she enlists the services of the disgraced Chanels to join the ranks at the teaching hospital. Meanwhile, secrets from the hospital’s past begin to reveal themselves and a new killer surfaces."
+            },
+            {
+              "episodeId": 1224120,
+              "episodeNumber": 2,
+              "name": "Warts and All",
+              "summary": "A new patient with a hideous ailment visits the hospital in hope of a cure, but finds a love interest instead. Meanwhile, Chad returns to win Chanel back and, in the process, discovers a dark secret of Brock’s. Then, after another run-in with the killer, Munsch enlists the help of new Quantico special agent Denise Hemphill."
+            },
+            {
+              "episodeId": 1224122,
+              "episodeNumber": 3,
+              "name": "Handidates",
+              "summary": "Determined to find out who the killer is, Dean Munsch, Denise and the Chanels question Hester, as well as the sole survivor (guest star Alec Mapa) of the Halloween massacre. Chad accuses Brock of being the killer and makes a shocking proposal to Chanel. Meanwhile, a new patient with an outrageous disorder (guest star Cheri Oteri) leads Chanel #3 and Cassidy to grow closer, and another victim crashes a celebration."
+            },
+            {
+              "episodeId": 1224124,
+              "episodeNumber": 4,
+              "name": "Halloween Blues",
+              "summary": "After the latest attack by The Green Meanie leaves everyone shocked and saddened, Dean Munsch and Denise, along with Hester, devise a plan to catch the killer by throwing a Halloween party in the hospital. Meanwhile, Chanel celebrates a different kind of Chanel-O-Ween and attempts to make contact with the killer’s latest victim from beyond the grave. Once the party begins, an outbreak surprises the hospital, leading Brock and Cassidy to jump into action, and another victim falls."
+            },
+            {
+              "episodeId": 1232349,
+              "episodeNumber": 5,
+              "name": "Chanel Pour Homme-icide",
+              "summary": "The frightful events of Halloween force Dean Munsch to notify authorities of murders at the Institute, which leads to a surprising influx of new patients. Meanwhile,Chanel is tired of doing dirty work, so she concocts a plan that entails recruiting new patients to join the Chanels. Later, Zayday and Chanel #5 visit a person with ties to the hospital's past; and a new patient's problems have the staff going a bit mad."
+            },
+            {
+              "episodeId": 1239020,
+              "episodeNumber": 6,
+              "name": "Blood Drive",
+              "summary": "After an influx of patents at the C.U.R.E. institute, Dean Munsch and Chanel organize a blood drive to solve the hospital's severe shortage. Meanwhile, Nurse Hoffel sets a plan of revenge in motion, Hester finds a way to join the hospital's staff and a shocking revelation involving The Green Meanie occurs."
+            },
+            {
+              "episodeId": 1241156,
+              "episodeNumber": 7,
+              "name": "The Hand",
+              "summary": "In an effort to secure positive press for the hospital, Dean Munsch pitches a risky surgery to Dr. Holt, whose hand begins expressing more of a wild and dangerous personality than ever before. Meanwhile, Chanel #3 forces Cassidy to undergo a psych test to find the root of his condition with surprising results, and Nurse Hoffel sets a devious plan in motion."
+            },
+            {
+              "episodeId": 1241157,
+              "episodeNumber": 8,
+              "name": "Rapunzel, Rapunzel",
+              "summary": "A man from Dean Munsch's past checks in to the C.U.R.E. institute with plans to win her back, causing a jealous Brock to further question his relationship with Chanel. Meanwhile, Zayday and Chamberlain devise a plan to discover the origins of The Green Meanie killer with shocking results."
+            },
+            {
+              "episodeId": 1241158,
+              "episodeNumber": 9,
+              "name": "Lovin The D",
+              "summary": "The Chanels are overwhelmed when their TV idol, Dr. Scarlett Lovin, visits the C.U.R.E. Institute. Meanwhile, Hester calls a Green Meanie summit as the killer(s) put their final kill plan into effect."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "showId": 65495,
+      "name": "Atlanta",
+      "tmdbLink": "https://www.themoviedb.org/tv/65495-atlanta",
+      "graphicLink": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/18r0MTDYtKRZP5er2y9ddRIcuVY.jpg",
+      "seasons": [
+        {
+          "seasonId": 74333,
+          "seasonNumber": 1,
+          "name": "Season 1",
+          "episodes": [
+            {
+              "episodeId": 1206209,
+              "episodeNumber": 1,
+              "name": "The Big Bang",
+              "summary": "Paper Boi? Who the hell is that? I swear everybody want to be a rapper now-a- days smh. Song is bumpin tho."
+            },
+            {
+              "episodeId": 1219813,
+              "episodeNumber": 2,
+              "name": "Streets on Lock",
+              "summary": "See every rapper think he a thug, well you do the crime, you do the time. Dont drop the soap haha. Free my uncle Jay!"
+            },
+            {
+              "episodeId": 1219814,
+              "episodeNumber": 3,
+              "name": "Go for Broke",
+              "summary": "This man Earn broke as hell. How you gone go out on a date with no money? Umm mhmm these Atlanta dudes trifling. But Ok, Paper Boi might really be about that life tho."
+            },
+            {
+              "episodeId": 1223758,
+              "episodeNumber": 4,
+              "name": "The Streisand Effect",
+              "summary": "Paper Boi is tripping about this blog stuff but it's just Twitter bruh. It's just entertainment. Somebody needs to get Earn some money. Skreetmoney Worldwide man."
+            },
+            {
+              "episodeId": 1226740,
+              "episodeNumber": 5,
+              "name": "Nobody Beats the Biebs",
+              "summary": "Ayyye, okay! We got celebs in the building balling for the kids. I love me some Justin Bieber. Man, Paper Boi stay hating tho haha."
+            },
+            {
+              "episodeId": 1228071,
+              "episodeNumber": 6,
+              "name": "Value",
+              "summary": "I love my bestie for real but I can't stand her neither. Van just jealous cause her girl out here jet settin and poppin. Ok girl get yours."
+            },
+            {
+              "episodeId": 1229349,
+              "episodeNumber": 7,
+              "name": "B.A.N.",
+              "summary": "Baller Alert! NFL players, not to mention Jeff Miles and the bottle boys at Primal tonight. Paper Boi gonna be in this thang too. Liiiiiiiittttttttt. I got pre sale bands."
+            },
+            {
+              "episodeId": 1229351,
+              "episodeNumber": 8,
+              "name": "The Club",
+              "summary": "Baller Alert! NFL players, not to mention Jeff Miles and the bottle boys at Primal tonight. Paper Boi gonna be in this thang too. Liiiiiiiittttttttt. I got pre sale bands."
+            },
+            {
+              "episodeId": 1229353,
+              "episodeNumber": 9,
+              "name": "Juneteeth",
+              "summary": "Why my Auntie trying to make me go to one of these bougie Junteenth parties again? I don't like them sadity people and I'm gonna miss my shows. Le sigh."
+            },
+            {
+              "episodeId": 1229352,
+              "episodeNumber": 10,
+              "name": "The Jacket",
+              "summary": "Yo last night was 10 crazy. I bout lost my mind, Quita lost her phone, and this fool Earn lost his jacket smh. Who cares tho (laugh-crying emoji)."
             }
           ]
         }
