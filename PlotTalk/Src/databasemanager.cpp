@@ -314,6 +314,8 @@ QList<QString> DatabaseManager::getListOfWatchedTvShowNamesForUser(QString usern
         }
     }
 
+    qSort(watchedTvShowNames);
+
     return watchedTvShowNames;
 }
 
