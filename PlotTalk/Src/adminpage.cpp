@@ -76,9 +76,12 @@ void AdminPage::on_addUser_clicked()
 void AdminPage::on_CreateUser_clicked()
 {
   AccountManager *addingUser= AccountManager::getInstance();
-  User holdAdmin=addingUser->getCurrentAccount();
 
-  selectEnum Choice = addingUser->checkFieldsAndCreate(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->handleBox->text(),ui->emailBox->text(),ui->PasswordBox1->text(), ui->AdminButton->isChecked());
+
+  User holdAdmin=addingUser->getCurrentAccount();
+  User newUser = User(ui->handleBox->text(),ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->emailBox->text(),ui->PasswordBox1->text(), ui->AdminButton->isChecked());
+
+  selectEnum Choice = addingUser->checkFieldsAndCreate(newUser);
   switch(Choice)//attempts to create the user from the values supplied in the boxes on the UI
   {
   case selectEnum::ALLCLEAR://creates the user
@@ -120,7 +123,7 @@ void AdminPage::on_CreateUser_clicked()
         InvalidPwd = QMessageBox::question(this, "","The password does not meet security critera, override?",QMessageBox::Yes|QMessageBox::No);
         if (InvalidPwd == QMessageBox::Yes)
         {
-          addingUser->createAccount(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->emailBox->text(),ui->handleBox->text(),ui->PasswordBox1->text(),ui->AdminButton->isChecked());
+          addingUser->createAccount(newUser);
           QMessageBox UserCreated;
           UserCreated.setText("The account was created successfully");
           UserCreated.exec();
@@ -135,7 +138,7 @@ void AdminPage::on_CreateUser_clicked()
       MissingVals = QMessageBox::question(this, "","There are values missing, override?",QMessageBox::Yes|QMessageBox::No);
       if (MissingVals == QMessageBox::Yes)
       {
-        addingUser->createAccount(ui->FirstNameBox->text(),ui->LastNameBox->text(),ui->emailBox->text(),ui->handleBox->text(),ui->PasswordBox1->text(),ui->AdminButton->isChecked());
+        addingUser->createAccount(newUser);
         QMessageBox UserCreated;
         UserCreated.setText("The account was created successfully");
         UserCreated.exec();

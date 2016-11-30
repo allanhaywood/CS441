@@ -307,7 +307,7 @@ void Dashboard::on_saveButton_clicked()
     QString newPassword;
 
 
-    if(ui->newPasswordBox->text()==ui->confirmPasswordBox->text() && ui->confirmPasswordBox->text()!="")
+    if(ui->newPasswordBox->text() == ui->confirmPasswordBox->text() && ui->confirmPasswordBox->text()!="")
     {
         newPassword = ui->newPasswordBox->text();
     }
@@ -331,9 +331,9 @@ void Dashboard::on_saveButton_clicked()
     if(theUser.email!=newEmail || theUser.firstName!= newFirstName || theUser.lastName!=newLastName || newPassword!=theUser.passwordHash)
     {//add check for each field to determine when it is changed, set back if not.
         QString message;
-
+        User theNewUser = User(theUser.username,newFirstName,newLastName,newEmail,newPassword,false);
         DatabaseManagerSingleton::Instance().removeUser(theUser.username);
-        selectEnum Problems=userInfo->checkFieldsAndCreate(newFirstName,newLastName,theUser.username,newEmail,newPassword,false);
+        selectEnum Problems=userInfo->checkFieldsAndCreate(theNewUser);
 
         switch (Problems)
         {
