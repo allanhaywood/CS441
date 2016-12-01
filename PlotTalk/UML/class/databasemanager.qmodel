@@ -49,10 +49,11 @@
                          </base-DElement>
                          <object>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</object>
                          <name>DatabaseManager</name>
-                         <pos>x:195;y:440</pos>
-                         <rect>x:-220;y:-90;w:440;h:180</rect>
-                         <auto-sized>false</auto-sized>
-                         <visual-role>0</visual-role>
+                         <pos>x:415;y:515</pos>
+                         <rect>x:-220;y:-215;w:440;h:430</rect>
+                         <visual-role>6</visual-role>
+                         <visual-role2>2</visual-role2>
+                         <visual-emphasized>true</visual-emphasized>
                         </DObject>
                        </base-DObject>
                        <show-all-members>true</show-all-members>
@@ -70,32 +71,11 @@
                           </DElement>
                          </base-DElement>
                          <object>{91dccd19-091e-4cda-91c5-8ef79bf5963e}</object>
-                         <name>Connection</name>
-                         <pos>x:625;y:375</pos>
-                         <rect>x:-165;y:-70;w:330;h:140</rect>
-                         <auto-sized>false</auto-sized>
-                         <visual-role>0</visual-role>
-                        </DObject>
-                       </base-DObject>
-                       <show-all-members>true</show-all-members>
-                      </DClass>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DClass">
-                      <DClass>
-                       <base-DObject>
-                        <DObject>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{980a9a0a-78ad-49dc-8866-20f442301962}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{9d8f7e25-8599-4e80-9ad1-5820fdeb70f7}</object>
-                         <name>SqlLiteConnection</name>
-                         <pos>x:170;y:735</pos>
-                         <rect>x:-55;y:-35;w:110;h:70</rect>
-                         <visual-role>0</visual-role>
+                         <name>iConnection</name>
+                         <pos>x:895;y:240</pos>
+                         <rect>x:-245;y:-135;w:490;h:270</rect>
+                         <visual-role>6</visual-role>
+                         <visual-emphasized>true</visual-emphasized>
                         </DObject>
                        </base-DObject>
                        <show-all-members>true</show-all-members>
@@ -114,54 +94,13 @@
                          </base-DElement>
                          <object>{37c2168b-3d2a-4e03-94ff-99f9650d457e}</object>
                          <name>MySqlConnection</name>
-                         <pos>x:340;y:890</pos>
-                         <rect>x:-295;y:-75;w:590;h:150</rect>
+                         <pos>x:735;y:825</pos>
+                         <rect>x:-55;y:-75;w:110;h:150</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
                        <show-all-members>true</show-all-members>
                       </DClass>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DClass">
-                      <DClass>
-                       <base-DObject>
-                        <DObject>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{7b70fd60-6679-4108-8c85-89f2502bb64b}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{7fa5a772-8bfc-4549-9aeb-54978eb2e221}</object>
-                         <name>SqlConnection</name>
-                         <pos>x:610;y:635</pos>
-                         <rect>x:-120;y:-35;w:240;h:70</rect>
-                         <auto-sized>false</auto-sized>
-                         <visual-role>0</visual-role>
-                        </DObject>
-                       </base-DObject>
-                       <show-all-members>true</show-all-members>
-                      </DClass>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DDependency">
-                      <DDependency>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{461a6e28-50ff-43de-a236-b6df3fa38845}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{2d9088d7-7c13-4232-8dc8-d84c2304861a}</object>
-                         <a>{8ce53dfc-1022-4235-aa87-012052ae215f}</a>
-                         <b>{7b70fd60-6679-4108-8c85-89f2502bb64b}</b>
-                        </DRelation>
-                       </base-DRelation>
-                       <direction>1</direction>
-                      </DDependency>
                      </instance>
                     </item>
                     <item>
@@ -176,8 +115,8 @@
                          </base-DElement>
                          <object>{e6e599fd-6c9c-4e19-a37c-fd06dc0c748b}</object>
                          <name>CsvConnection</name>
-                         <pos>x:1135;y:705</pos>
-                         <rect>x:-150;y:-55;w:300;h:110</rect>
+                         <pos>x:1255;y:380</pos>
+                         <rect>x:-55;y:-45;w:110;h:90</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -216,9 +155,10 @@
                          </base-DElement>
                          <object>{c1338012-887d-40f1-b7f2-c83ff9132c06}</object>
                          <name>JsonConnection</name>
-                         <pos>x:1105;y:510</pos>
-                         <rect>x:-140;y:-55;w:280;h:110</rect>
-                         <visual-role>0</visual-role>
+                         <pos>x:1060;y:815</pos>
+                         <rect>x:-225;y:-340;w:450;h:680</rect>
+                         <visual-role>6</visual-role>
+                         <visual-emphasized>true</visual-emphasized>
                         </DObject>
                        </base-DObject>
                        <show-all-members>true</show-all-members>
@@ -249,38 +189,15 @@
                       <DAnnotation>
                        <base-DElement>
                         <DElement>
-                         <uid>{a031a661-a35a-4331-877b-23388062567d}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <text>Examples of options, probaby
-won't implement all of these.</text>
-                       <pos>x:920;y:400</pos>
-                       <rect>x:0;y:0;w:159.578;h:44</rect>
-                      </DAnnotation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
                          <uid>{3db16105-19e4-4b2a-ba16-421408de4c9a}</uid>
                         </DElement>
                        </base-DElement>
                        <text>Connection defines the methods the applicaiton can use to:
 Get data from the datastore
 Add data to the datastore
-Modify data in the data store
-When an object is to be returned from a function, that is backed by
-the database, a reference should be returned.
-
-NOTE: In order to have just one location to define what type of connection
-to use, Connection will be mostly abstract, except for its default constructor.
-The default constructor will implemented code to return the connection type
-the developer wants to be active. We may move the definition into a config
-file, but that isn't required.</text>
-                       <pos>x:455;y:80</pos>
-                       <rect>x:0;y:0;w:386.516;h:184</rect>
+Modify data in the data store</text>
+                       <pos>x:835;y:20</pos>
+                       <rect>x:0;y:0;w:304.313;h:72</rect>
                       </DAnnotation>
                      </instance>
                     </item>
@@ -294,7 +211,7 @@ file, but that isn't required.</text>
                        </base-DElement>
                        <text>DatabaseManager manages the connection to the datastore
 It optimizes the connection to the datastore using caching, and other
-capabilities to be added over time. It should provide a local observer design
+capabilities to be added over time. It provides a local observer design
 pattern to let the rest of the application know when there are updates. Ideally,
 also eventually implement observer design pattern against the server backend, 
 so polling isn't needed.
@@ -306,7 +223,7 @@ NOTE: Since DatabaseManager is doing caching, when a method is called that retur
 a reference to data that is cached, the cache (maybe in a dictionary) should be searched 
 so that if that object has already been created and a reference provided before,
 that same reference is provided again.</text>
-                       <pos>x:5;y:100</pos>
+                       <pos>x:185;y:60</pos>
                        <rect>x:0;y:0;w:449.859;h:212</rect>
                       </DAnnotation>
                      </instance>
@@ -326,31 +243,14 @@ that same reference is provided again.</text>
                          <b>{2d385b34-0269-4aa7-8417-955683a54755}</b>
                         </DRelation>
                        </base-DRelation>
-                       <b>
+                       <a>
                         <DAssociationEnd>
-                         <kind>2</kind>
+                         <cradinality>1</cradinality>
                         </DAssociationEnd>
-                       </b>
-                      </DAssociation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DAssociation">
-                      <DAssociation>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{60cc2f38-a6d9-4b28-bfe5-1394410804f0}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{d17ab489-bf3c-43aa-b1e5-7db8a8ed9a94}</object>
-                         <a>{980a9a0a-78ad-49dc-8866-20f442301962}</a>
-                         <b>{2d385b34-0269-4aa7-8417-955683a54755}</b>
-                        </DRelation>
-                       </base-DRelation>
+                       </a>
                        <b>
                         <DAssociationEnd>
+                         <cradinality>0..1</cradinality>
                          <kind>2</kind>
                         </DAssociationEnd>
                        </b>
@@ -372,8 +272,14 @@ that same reference is provided again.</text>
                          <b>{2d385b34-0269-4aa7-8417-955683a54755}</b>
                         </DRelation>
                        </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                        </DAssociationEnd>
+                       </a>
                        <b>
                         <DAssociationEnd>
+                         <cradinality>0..1</cradinality>
                          <kind>2</kind>
                         </DAssociationEnd>
                        </b>
@@ -389,21 +295,7 @@ that same reference is provided again.</text>
                         </DElement>
                        </base-DElement>
                        <text>Singleton</text>
-                       <pos>x:160;y:320</pos>
-                       <rect>x:0;y:0;w:60.875;h:30</rect>
-                      </DAnnotation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
-                         <uid>{ea2abeec-f4c7-4dd9-8de9-cec54b876d66}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <text>Singleton</text>
-                       <pos>x:590;y:280</pos>
+                       <pos>x:495;y:300</pos>
                        <rect>x:0;y:0;w:60.875;h:30</rect>
                       </DAnnotation>
                      </instance>
@@ -416,40 +308,39 @@ that same reference is provided again.</text>
                          <uid>{33fbabb8-3025-448f-beab-167817ef4104}</uid>
                         </DElement>
                        </base-DElement>
-                       <text>One Connection only</text>
-                       <pos>x:115;y:380</pos>
-                       <rect>x:0;y:0;w:116.547;h:30</rect>
+                       <text>One Connection at a time only.</text>
+                       <pos>x:655;y:410</pos>
+                       <rect>x:0;y:0;w:166.578;h:30</rect>
                       </DAnnotation>
                      </instance>
                     </item>
                     <item>
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
-                         <uid>{d2ebd50a-8eeb-419f-a697-80091ef5fc65}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <text>NOTE: Unless there are security concerns, there will most likely be just a single user connection
-to the db, used by the application, this is not the same as the user accounts for each end user.</text>
-                       <pos>x:5;y:975</pos>
-                       <rect>x:0;y:0;w:480.578;h:44</rect>
-                      </DAnnotation>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DAnnotation">
-                      <DAnnotation>
-                       <base-DElement>
-                        <DElement>
-                         <uid>{52c45c08-f2d2-4f74-a3f1-0b5a7f4a338d}</uid>
-                        </DElement>
-                       </base-DElement>
-                       <text>NOTE: Since sqlite and mysql should have some decent overlap
-ideally things that can be shared are implemented here</text>
-                       <pos>x:560;y:685</pos>
-                       <rect>x:0;y:0;w:324.438;h:44</rect>
-                      </DAnnotation>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{0d2bdf8b-7090-4b26-bcea-81c497d6be2e}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{94de0300-4037-452d-ba39-be1fdea7ade7}</object>
+                         <a>{3080505e-5201-409c-8db4-3b0c5a7702dc}</a>
+                         <b>{2d385b34-0269-4aa7-8417-955683a54755}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                        </DAssociationEnd>
+                       </a>
+                       <b>
+                        <DAssociationEnd>
+                         <cradinality>0..1</cradinality>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </b>
+                      </DAssociation>
                      </instance>
                     </item>
                     <item>
@@ -459,40 +350,20 @@ ideally things that can be shared are implemented here</text>
                         <DRelation>
                          <base-DElement>
                           <DElement>
-                           <uid>{aaf7a7ee-732e-4cd6-af7e-7d1a35c6c41c}</uid>
+                           <uid>{fa0393e7-ac2d-4441-87bc-9fa6a4896411}</uid>
                           </DElement>
                          </base-DElement>
-                         <object>{1462e944-b565-4788-a22e-64cf2b9a0ba0}</object>
-                         <a>{7b70fd60-6679-4108-8c85-89f2502bb64b}</a>
-                         <b>{994c68ba-0e94-4709-a010-a1f84e45887d}</b>
+                         <object>{0599ddb8-db15-4e4a-ac13-0d71189f5f7c}</object>
+                         <a>{994c68ba-0e94-4709-a010-a1f84e45887d}</a>
+                         <b>{8ce53dfc-1022-4235-aa87-012052ae215f}</b>
                         </DRelation>
                        </base-DRelation>
-                       <direction>1</direction>
-                      </DDependency>
-                     </instance>
-                    </item>
-                    <item>
-                     <instance type="DDependency">
-                      <DDependency>
-                       <base-DRelation>
-                        <DRelation>
-                         <base-DElement>
-                          <DElement>
-                           <uid>{1cce3749-0237-42d3-b216-786daa637f67}</uid>
-                          </DElement>
-                         </base-DElement>
-                         <object>{ff0524c4-9712-4811-8d78-05c98c8d8706}</object>
-                         <a>{7b70fd60-6679-4108-8c85-89f2502bb64b}</a>
-                         <b>{980a9a0a-78ad-49dc-8866-20f442301962}</b>
-                        </DRelation>
-                       </base-DRelation>
-                       <direction>1</direction>
                       </DDependency>
                      </instance>
                     </item>
                    </qlist>
                   </elements>
-                  <last-modified>1477611212647</last-modified>
+                  <last-modified>1480396539689</last-modified>
                   <toolbarid>Classes</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -561,30 +432,210 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{06ccb35e-7907-4362-a1b1-7436e86197d7}</uid>
+                    <uid>{e4efe473-35a8-42f2-b7f0-ebbcce444b22}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>DatabaseManager()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{fc583f14-469f-4dd5-af4f-3a65f4c36389}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>DatabaseManager(QString jsonPath)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{02b7d616-c098-49b9-bd52-6cca0fcc0b0a}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>const TvShow inspectTvShow(QString name)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5a263db2-e347-4c3a-b1f5-230b1b823216}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>const TvShow inspectTvShowById(int tvShowId)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{739d859f-7907-4f4b-9e05-99ed06581bbf}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>const User inspectUser(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{d8dd5513-2b83-4557-a641-9fba1bf43984}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>const User inspectUserByEmail(QString email)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{068bec5f-85e6-4a00-a937-9dc240f631df}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void addUser(User user)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{9971c067-2ea9-44e3-8d84-b2a741a6a436}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void removeUser(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ca344f54-debd-4bdb-b448-a8ab0449ff92}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>bool usernameExists(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{9ac005c4-b7b5-4c6d-898a-f9121b111a15}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>bool emailExists(QString email)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{9d3467b3-cc0f-4f95-9f70-713636a60c9d}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QList&lt;QString&gt; getListOfAllTvShows()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{19ef2ab5-46a0-4874-9598-1125b3cbfa62}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QList&lt;QString&gt; getListOfAllUsers()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7ce5d55b-cfdb-4c89-b4e5-f2882adc7651}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QList&lt;QString&gt; getListOfCachedTvShows()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{8c04b344-c4b1-4172-afa1-255c9a0ad878}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QList&lt;QString&gt; getListOfCachedUsers()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c5224bea-e9a1-4e20-be44-217f4472f3b8}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QString getTvShowNameById(int showId)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f4eb1805-b81c-49af-b9c4-fcacb6c6a28f}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{1c731f38-2f09-4214-8949-882101b5dd90}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{183f5304-d35f-4853-82b2-d0ff160fd732}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{16912914-8092-4cf1-98ef-8092f1cb7e56}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{6bdc870a-5241-4933-97b2-cf87f742ed1d}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QList&lt;QString&gt; getListOfWatchedTvShowNamesForUser(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{47afcb6b-ddde-49d6-8a50-e7c8d4cc3a31}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void emptyCache()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{289c2175-b0e1-4d04-83bf-af3985f4f200}</uid>
+                    <visibility>4</visibility>
+                    <type>2</type>
+                    <declaration>void notify()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{8950dafc-5008-43ae-81f3-928ad7b81dd3}</uid>
+                    <visibility>3</visibility>
                     <type>1</type>
-                    <declaration>connection</declaration>
+                    <declaration>QMap&lt;QString, TvShow&gt; tvShowMap</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{3f0f90b2-b786-4d4c-b4b3-cc3af4e78dc5}</uid>
-                    <type>2</type>
-                    <declaration>DatabaseManager:DatabaseManager(Connection connection)</declaration>
+                    <uid>{fd92475f-1129-466b-8649-5482198c9911}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>QMap&lt;QString, User&gt; userMap</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{33e8f2d9-a8e8-481a-a667-b6920c2eb224}</uid>
+                    <uid>{f4ab09a7-7089-4e44-a6fb-f979cbfe95ad}</uid>
+                    <visibility>3</visibility>
                     <type>2</type>
-                    <declaration>TvShow&amp;:getTvShow(QString name)</declaration>
+                    <declaration>DatabaseManager(DatabaseManager const&amp;)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{315d39e9-cc9f-46b2-9b43-09de182d1825}</uid>
-                    <type>2</type>
-                    <declaration>The above pattern for getTvShow will be repeated to allign with iconnection interface()</declaration>
+                    <uid>{65a05f09-e75c-4860-95d7-209efa30e195}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>JsonConnection connection</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -607,7 +658,7 @@ ideally things that can be shared are implemented here</text>
                     <uid>{91dccd19-091e-4cda-91c5-8ef79bf5963e}</uid>
                    </MElement>
                   </base-MElement>
-                  <name>Connection</name>
+                  <name>iConnection</name>
                   <relations>
                    <handles>
                     <handles>
@@ -768,37 +819,137 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{3b58d9dd-a470-4e38-ad40-77f07c65a32e}</uid>
+                    <uid>{ccd3008d-3b6a-44d3-a13f-05530ac35104}</uid>
+                    <visibility>1</visibility>
                     <type>2</type>
-                    <declaration>void:getTvShow(QString name, TvShow&amp; tvshow)</declaration>
+                    <properties>3</properties>
+                    <declaration>TvShow getTvShow(QString name)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{b9221b7e-28ee-4265-b0ef-5a22513822f5}</uid>
+                    <uid>{f09e6650-e42a-4eaf-8dd8-931b36107f39}</uid>
+                    <visibility>1</visibility>
                     <type>2</type>
-                    <declaration>User:getUser(QString username)</declaration>
+                    <properties>3</properties>
+                    <declaration>void addTvShow(TvShow tvShow)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9f829511-716f-4875-8f57-113918e45bf3}</uid>
+                    <uid>{8876dbb7-3d4d-463a-a283-179a3c9fddaf}</uid>
+                    <visibility>1</visibility>
                     <type>2</type>
-                    <declaration>addReactionToEpisode(Episode episode, Reaction reaction)</declaration>
+                    <properties>3</properties>
+                    <declaration>User getUser(QString username)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{b2f2f239-e053-4e11-9b7b-4a4ac915167f}</uid>
+                    <uid>{531a8a6f-7869-437c-a5ed-e68a161681ca}</uid>
+                    <visibility>1</visibility>
                     <type>2</type>
-                    <declaration>markEpisodeAsWatched(Episode episode)</declaration>
+                    <properties>3</properties>
+                    <declaration>QString getUserNameByEmail(QString email)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{bdfbb283-438e-4b15-a23b-9752f6d36fde}</uid>
+                    <uid>{421af22b-9e15-4c21-85e9-e46fdde9c764}</uid>
+                    <visibility>1</visibility>
                     <type>2</type>
-                    <declaration>... etc()</declaration>
+                    <properties>3</properties>
+                    <declaration>QString getTvShowNameById(int id)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0a51f389-573c-4603-854b-2ee6be4451bd}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>void addUser(User user)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7c61fc30-ce7d-4c9a-96d8-9733aed4f87f}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>void removeUser(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{af83ea1d-f522-4199-93b9-23c977e07cfe}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>bool usernameExists(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{935c8a10-4988-4bca-b318-3c27981b26f6}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>bool emailExists(QString email)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{e6756b6e-9934-423d-be8d-06cb1c53b5f8}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>QList&lt;QString&gt; getListOfAllTvShows()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c06bf37c-0675-4eec-8183-615d0b00f0f3}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>QList&lt;QString&gt; getListOfAllUsers()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2946ca29-893a-42bb-842e-3dd1a4794b79}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{6359043c-bbfb-4c30-bf69-cc686d07eb2b}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{14ffab52-94ec-4322-a3e4-199d48b35603}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>void addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f2b99cef-eea3-44ff-9590-6946224ae6fe}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <properties>3</properties>
+                    <declaration>void removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -863,7 +1014,7 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{9653ba66-9c24-4dc4-a42e-bf0140d399fe}</uid>
+                    <uid>{470770b1-5618-49ad-8d6c-a0f65db61411}</uid>
                     <type>1</type>
                     <declaration>pathToSq3</declaration>
                    </MClassMember>
@@ -910,12 +1061,40 @@ ideally things that can be shared are implemented here</text>
                              <b>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</b>
                             </MRelation>
                            </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                            </MAssociationEnd>
+                           </a>
                            <b>
                             <MAssociationEnd>
+                             <cardinality>0..1</cardinality>
                              <kind>2</kind>
                             </MAssociationEnd>
                            </b>
                           </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{0599ddb8-db15-4e4a-ac13-0d71189f5f7c}</uid>
+                        <target>
+                         <instance type="MDependency">
+                          <MDependency>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{0599ddb8-db15-4e4a-ac13-0d71189f5f7c}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{37c2168b-3d2a-4e03-94ff-99f9650d457e}</a>
+                             <b>{91dccd19-091e-4cda-91c5-8ef79bf5963e}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MDependency>
                          </instance>
                         </target>
                        </handle>
@@ -930,44 +1109,44 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{5e73cb34-744d-4cd0-89e0-03b4c56178be}</uid>
+                    <uid>{a8458681-439f-4e60-8034-7d6946a15d3a}</uid>
                     <type>1</type>
                     <declaration>-QString host</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{4c7013e3-ad2a-4d8b-97cd-0016dde46654}</uid>
+                    <uid>{4bb32b77-1eb7-46e0-98b9-94f9f6714dc1}</uid>
                     <type>1</type>
-                    <declaration>-quint port</declaration>
+                    <declaration>-int port</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{61d17a9b-d4aa-47fc-abb8-c03f2f8deb1d}</uid>
+                    <uid>{9a51bcd5-71c7-4bfb-857c-6ba0db90aeed}</uid>
                     <type>1</type>
                     <declaration>-QString username</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{894f24f1-e1b6-4c94-9155-bd8f2ea6275a}</uid>
+                    <uid>{d515bfec-b842-4a55-866b-ec66e53642a1}</uid>
                     <type>1</type>
                     <declaration>-QString password</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9fe3afa6-1751-4329-bc3a-0c3308b889b7}</uid>
+                    <uid>{e7499f60-707b-49c1-8ab0-840d5c754e0f}</uid>
                     <type>1</type>
                     <declaration>-QString database</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{86ed999a-2c97-4077-af67-a987aaed4b4f}</uid>
+                    <uid>{8c563dfb-8127-4ac8-8b7c-848398c6ad25}</uid>
                     <type>2</type>
-                    <declaration>MySqlConnection:MySqlConnection(QString host, quint port, QString username, QString password, QString database)</declaration>
+                    <declaration>NotImplemented()</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -1095,7 +1274,7 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{cfa1c45d-6a5a-4eb9-88a1-463b92cab99c}</uid>
+                    <uid>{53462369-bfbf-4167-962a-0c1c39862e38}</uid>
                     <type>2</type>
                     <declaration>...implement abstract methods from parent()</declaration>
                    </MClassMember>
@@ -1142,8 +1321,14 @@ ideally things that can be shared are implemented here</text>
                              <b>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</b>
                             </MRelation>
                            </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                            </MAssociationEnd>
+                           </a>
                            <b>
                             <MAssociationEnd>
+                             <cardinality>0..1</cardinality>
                              <kind>2</kind>
                             </MAssociationEnd>
                            </b>
@@ -1162,23 +1347,16 @@ ideally things that can be shared are implemented here</text>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{088cca8f-37e5-4668-8cec-76a301bbf915}</uid>
+                    <uid>{a976d0d1-1312-4ded-9a36-f533e770845b}</uid>
                     <type>1</type>
                     <declaration>-pathToCsvFolder</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{432e3498-98e1-4af2-9a58-99c1dc0449a3}</uid>
+                    <uid>{5d1b112c-9dd6-4e44-98b4-95d20c1be7f7}</uid>
                     <type>2</type>
-                    <declaration>CsvConnection:CsvConnection(QString pathToCsvFolder)</declaration>
-                   </MClassMember>
-                  </item>
-                  <item>
-                   <MClassMember>
-                    <uid>{7ce79dce-3668-45f3-8af3-609e634d9eab}</uid>
-                    <type>2</type>
-                    <declaration>...implement abstract methods from parent()</declaration>
+                    <declaration>NotImplemented()</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -1202,29 +1380,401 @@ ideally things that can be shared are implemented here</text>
                    </MElement>
                   </base-MElement>
                   <name>JsonConnection</name>
+                  <relations>
+                   <handles>
+                    <handles>
+                     <qlist>
+                      <item>
+                       <handle>
+                        <uid>{94de0300-4037-452d-ba39-be1fdea7ade7}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{94de0300-4037-452d-ba39-be1fdea7ade7}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{c1338012-887d-40f1-b7f2-c83ff9132c06}</a>
+                             <b>{c7f01165-523a-433d-8b9f-f5a6cb55a465}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                            </MAssociationEnd>
+                           </a>
+                           <b>
+                            <MAssociationEnd>
+                             <cardinality>0..1</cardinality>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </b>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                     </qlist>
+                    </handles>
+                   </handles>
+                  </relations>
                  </MObject>
                 </base-MObject>
                 <members>
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{a847811d-d501-49ea-bf47-074225630d71}</uid>
+                    <uid>{bd0ff703-417d-4112-8e9c-f345938bb63c}</uid>
+                    <visibility>1</visibility>
                     <type>1</type>
-                    <declaration>-pathToJson</declaration>
+                    <declaration>QJsonObject json</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{f93090fe-c6f5-42b8-ad67-7e1721e9da3f}</uid>
+                    <uid>{f90c1ae5-699b-46b6-bc64-eeb9e23a435e}</uid>
+                    <visibility>1</visibility>
                     <type>2</type>
-                    <declaration>JsonConnection:JsonConnection(QString pathToJson)</declaration>
+                    <declaration>JsonConnection()</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{5c22b96c-9d94-42c2-bcad-d422af1176b7}</uid>
+                    <uid>{287e9658-ea05-4beb-b02c-0c367ecb7a17}</uid>
+                    <visibility>1</visibility>
                     <type>2</type>
-                    <declaration>...implement abstract methods from parent()</declaration>
+                    <declaration>JsonConnection(QString pathToJson)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ddf78f35-4077-40c2-8e06-35eebd2cb811}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QString getPathToJson()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0ca6d192-7f02-4905-978f-cdcf3f2f250c}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void setPathToJson(QString newPathToJson)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0ce79ab7-944c-4834-b56c-afe13648f56c}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>TvShow getTvShow(QString name)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{b200e926-78c8-4f9e-bb24-63bc01c596e2}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void addTvShow(TvShow tvShow)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{af26d8e4-cbaa-475d-8903-502d34393132}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>User getUser(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{8704bcd3-1c6e-4758-83bd-59ecb6e238eb}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QString getUserNameByEmail(QString email)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{52c62070-3c2e-41d7-a19b-e5625e201b1d}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QString getTvShowNameById(int id)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{fe75bf7a-41f8-4634-a7dc-414a4acfdf08}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void addUser(User user)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{cd8b284a-20cd-4e4c-9621-1f4e353f3c12}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void removeUser(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c3eccd1d-330f-4502-a015-ce2fa9db47ff}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>bool usernameExists(QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a0c444ae-d848-43c8-bd8b-e8e0ab5439ce}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>bool emailExists(QString email)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{03d751d3-d5d9-4819-9ac6-1dd1e5689090}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QList&lt;QString&gt; getListOfAllTvShows()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{02424fce-c32e-4bfd-ad28-ddc5718f6c7a}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QList&lt;QString&gt; getListOfAllUsers()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a0d5355b-1ef2-49d1-9a4a-3801d4183443}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{43dde694-b90d-4ae5-bea8-8dc117387d3c}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5116713b-3411-4908-b2ea-4e147ceaf750}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{3749bde5-d1b9-42bb-b05a-79f7246c1d3c}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{eb14a19d-6d51-4eff-97e0-86815e84c04a}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void loadJson()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{04c7e5cf-fce9-4138-893a-1f86a27efb80}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>void saveJson()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a3bde98d-d14c-4227-b461-d864f8cdf8b4}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>const QString JSON_USER_ARRAY_NAME</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{5708c64f-bd6b-49a2-8349-8c7c89c49349}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>const QString JSON_TVSHOW_ARRAY_NAME</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{24e74207-854b-4182-929b-924fb0d05322}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>QString pathToJson</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{db0ff277-6a96-4fa6-8142-9283a614688e}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonArray getTopLevelJsonArray(QString jsonArrayName)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{34acb505-169b-47ab-9102-e43d69630555}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QMap&lt;int, Season&gt; getSeasons(QJsonArray jsonSeasons)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c5429e23-df39-4148-9443-45cbb1b5cc25}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>Season getSeason(QJsonObject jsonSeason)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f87dadb1-a1fd-434a-9884-005b3fb1d97f}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QMap&lt;int, Episode&gt; getEpisodes(QJsonArray jsonEpisodes)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{43b1550e-de0e-4119-8212-c0a3ecd72a00}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>Episode getEpisode(QJsonObject jsonEpisode)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{8a562ec4-7be5-4d7c-9e9a-2f068b1d53d3}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QMap&lt;QString, Review&gt; getReviews(QJsonValue jsonReviews)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{4b65aa18-ac70-401b-92f4-592ad7c84201}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QList&lt;Comment&gt; getComments(QJsonValue jsonComments)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{3f26a0bc-7f84-442b-af17-5ba850654c66}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonObject tvShowToJsonObject(TvShow tvShow)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{3775df15-0966-46f0-9564-87a0c249ce5b}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonArray seasonsToJsonArray(QVector&lt;Season&gt; seasons)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{533c8071-73e0-4a27-a36f-95cee4dbebf6}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonValue seasonToJsonValue(Season season)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{eefffc36-c0c4-413f-b960-1d4d40036de0}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonArray episodesToJsonArray(QVector&lt;Episode&gt; episodes)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{28191cda-9182-460d-bb40-0fde46eeb21b}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonValue episodeToJsonValue(Episode episode)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{97275f50-24a8-407b-8a49-116dc6a76b3e}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonArray reviewsToJsonArray(QList&lt;Review&gt; reviews)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{3df45097-c9f9-4efe-826c-b115e3c1b76b}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonValue reviewToJsonValue(Review review)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7db6e058-ceeb-46ec-b283-14dbfc1442f1}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonArray commentsToJsonArray(QList&lt;Comment&gt; comments)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a027b6e6-ff94-4525-a9a6-064836174779}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonValue commentToJsonValue(Comment comment)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{65c91c7d-b217-4cbd-b4d1-6903159e90e1}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonObject userToJsonObject(User user)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{0d150a56-c492-4070-8ea4-f0db93d7e1a2}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QJsonArray watchedEpisodesToJsonArray(QList&lt;EpisodeIdentifier&gt; watchedEpisodes)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c6b17db9-0384-4190-8fbf-8ff1e5f0225f}</uid>
+                    <visibility>3</visibility>
+                    <type>2</type>
+                    <declaration>QList&lt;EpisodeIdentifier&gt; getWatchedEpisodes(QJsonArray jsonWatchedEpisodes)</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
