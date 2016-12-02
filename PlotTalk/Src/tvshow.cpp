@@ -100,6 +100,8 @@ void TvShow::addSeason(Season season)
  */
 const Season &TvShow::getSeason(int number)
 {
+    // Foreach cannot be used here, as it provides a copy, and the original reference cannot be returned.
+    // for auto is used here instead, as it allows a proper reference to the original to be returned.
     for (auto &season : seasons)
     {
         if ( season.seasonNumber == number )

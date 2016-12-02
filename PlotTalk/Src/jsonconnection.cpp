@@ -1,5 +1,12 @@
 /* JsonConnection class handles reading and writting data to a json formatted file.
  *
+ * It is important to note that there are some shortcomings with QJson when it comes to modifying existing nested json.
+ * The methods used to get at deeper json objects return copies, and not references to originals.
+ * This prevents making in-place modifications to a more complex json object.
+ * Instead the top level json object needs to be rebuild from scratch, and the original overritten.
+ *
+ * There is mention of this potentially being improved in the future.
+ *
  * @author Allan Haywood
  */
 #include "jsonconnection.h"
@@ -18,15 +25,15 @@
 /**
  * @brief JsonConnection::JsonConnection construcs Json connection.
  *
- * Since no path is being provided, it will attempt to find a json file in system temp.
- * If there is no file there, it will copy test.json out of the resources. *
+ * Since no path is being provided, it will attempt to find a json file in system current path (next to executable).
+ * If there is no file there, it will copy test.json out of the resources.
  */
 JsonConnection::JsonConnection()
 {
     // Create a test json file
-    QString tempPath = QDir::tempPath();
-    tempPath.append("/testJson.json");
-    QString jsonPath = QDir::cleanPath(tempPath);
+    QString currentPath = QDir::currentPath();
+    currentPath.append("/plotTalk.json");
+    QString jsonPath = QDir::cleanPath(currentPath);
 
     // Check if a file already exists at that location.
     // If it doesn't, the one from the resources will be used.
@@ -131,6 +138,8 @@ void JsonConnection::addTvShow(TvShow tvShow)
     try
     {
         TvShow testExistTvShow = getTvShow(tvShow.name);
+
+        // The show whould not exist, so if this line is reached, then we cannot add it.
         throw AlreadyExists("Tv show already exists:" + tvShow.name);
     }
     catch (NotFound)
@@ -138,12 +147,16 @@ void JsonConnection::addTvShow(TvShow tvShow)
         qDebug() << "Tvshow not found, we can continue.";
     }
 
+    // Get a copy of the current tvShow list.
     QJsonArray tvShows = getTopLevelJsonArray(JSON_TVSHOW_ARRAY_NAME);
 
+    // Add the additional tvshow to the tvshow list
     tvShows.append(tvShowToJsonObject(tvShow));
 
+    // Overrwrite the tvshow array with the updated version.
     json[JSON_TVSHOW_ARRAY_NAME] = tvShows;
 
+    // Save the changes to the json file.
     saveJson();
 }
 
@@ -607,12 +620,16 @@ void JsonConnection::addUser(User user)
         qDebug() << "User not found, we can continue.";
     }
 
+    // Get the current array of users.
     QJsonArray users = getTopLevelJsonArray(JSON_USER_ARRAY_NAME);
 
+    // Append the new user.
     users.append(userToJsonObject(user));
 
+    // Overrwite with the udpated array of users.
     json[JSON_USER_ARRAY_NAME] = users;
 
+    // Save the changes to file.
     saveJson();
 }
 
@@ -675,7 +692,7 @@ void JsonConnection::removeUser(QString username)
 
     // Loops through each element in the users array to try and find a match on the name.
     QJsonObject obj;
-    int count = 0;
+    int index = 0;
     foreach (const QJsonValue &value, users)
     {
         // If there is a match on the user name, extract all the elements needed to construct
@@ -688,13 +705,16 @@ void JsonConnection::removeUser(QString username)
             break;
         }
 
-        count += 1;
+        index += 1;
     }
 
-    users.removeAt(count);
+    // Now that the index location of the user is known, remove it from the array.
+    users.removeAt(index);
 
+    // Overwrite with the updated user array.
     json[JSON_USER_ARRAY_NAME] = users;
 
+    // Save the changes to file.
     saveJson();
 }
 
@@ -815,12 +835,16 @@ void JsonConnection::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Revie
         throw NotFound("Episode not found:" + QString::number(episodeIdentifier.episodeId));
     }
 
+    // Add the episode review to the copy of the tvshow.
     tvShow.addEpisodeReview(episodeIdentifier, review);
 
+    // Replace the old copy of the tvshow, with the udpated one.
     tvShows.replace(index, tvShowToJsonObject(tvShow));
 
+    // Overrite with the updated tvshow array.
     json[JSON_TVSHOW_ARRAY_NAME] = tvShows;
 
+    // Save the changes to file.
     saveJson();
 }
 
@@ -856,12 +880,16 @@ void JsonConnection::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comm
         throw NotFound("Episode not found:" + QString::number(episodeIdentifier.episodeId));
     }
 
+    // Add the episode comment to the proper tvshow.
     tvShow.addEpisodeComment(episodeIdentifier, comment);
 
+    // Replace the old copy of the tvshow, with the updated version.
     tvShows.replace(index, tvShowToJsonObject(tvShow));
 
+    // Overwrite the old tvshow array with the new one.
     json[JSON_TVSHOW_ARRAY_NAME] = tvShows;
 
+    // Save the changes to file.
     saveJson();
 }
 
@@ -899,12 +927,16 @@ void JsonConnection::addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QStr
         throw NotFound("User not found:" + username);
     }
 
+    // Add the watched episode to the proper user.
     user.addWatchedEpisode(episodeIdentifier);
 
+    // Replace the old copy of the user, with the updated one.
     users.replace(index, userToJsonObject(user));
 
+    // Overwrite the user array with the udpated one.
     json[JSON_USER_ARRAY_NAME] = users;
 
+    // Save the changes to file.
     saveJson();
 }
 
@@ -940,12 +972,16 @@ void JsonConnection::removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, Q
         throw NotFound("User not found:" + username);
     }
 
+    // Remove the watched episode from the proper user.
     user.removeWatchedEpisode(episodeIdentifier);
 
+    // Replace the old copy of the user, with the udpated one.
     users.replace(index, userToJsonObject(user));
 
+    // Overwrite the old user array with the updated one.
     json[JSON_USER_ARRAY_NAME] = users;
 
+    // Save the changes to file.
     saveJson();
 }
 

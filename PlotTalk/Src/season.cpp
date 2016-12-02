@@ -41,6 +41,9 @@ Season::Season(int seasonId, int seasonNumber, QString name, QMap<int, Episode> 
 QVector<Episode> Season::inspectEpisodes()
 {
     QVector<Episode> vector = episodes.values().toVector();
+
+    // Episodes overload the proper comparison operator so they are sorted by episode number (not episode id)
+    // this allows the episodes to show up in the order they originally aired.
     qSort(vector);
     return vector;
 }
@@ -69,6 +72,8 @@ void Season::addEpisode(Episode episode)
  * @brief Season::operator < Compares two Seasons, used for sorting
  * @param rhs The Object to compare to.
  * @return True if lhs is less than right hand side.
+ *
+ * This sorts the seasons by seasonNumber, so they are sorted according to original air date.
  */
 bool Season::operator<(const Season &rhs) const
 {
@@ -83,6 +88,8 @@ bool Season::operator<(const Season &rhs) const
  */
 const Episode &Season::getEpisode(QString name)
 {
+    // Foreach cannot be used here, as it provides a copy, and the original reference cannot be returned.
+    // for auto is used here instead, as it allows a proper reference to the original to be returned.
     for (auto &episode : episodes)
     {
         if (episode.name == name)
@@ -101,6 +108,8 @@ const Episode &Season::getEpisode(QString name)
  */
 const Episode &Season::getEpisode(int number)
 {
+    // Foreach cannot be used here, as it provides a copy, and the original reference cannot be returned.
+    // for auto is used here instead, as it allows a proper reference to the original to be returned.
     for (auto &episode : episodes)
     {
         if (episode.episodeNumber == number)

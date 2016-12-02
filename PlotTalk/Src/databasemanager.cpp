@@ -47,12 +47,14 @@ DatabaseManager::DatabaseManager(QString jsonPath) : connection(jsonPath)
  * @brief DatabaseManager::getTvShow Updates the provided TvShow reference to the requested tvshow.
  * @param name The name of the tvshow to fetch.
  * @return A reference to the TvShow object.
+ *
+ * @throws NotFound
  */
 const TvShow DatabaseManager::inspectTvShow(QString name)
 {
-    // @todo Determine how to decide to use either json or mysql connection at runtime,
-    // or at the very least, a single location to choose which one.
 
+    // If the tvshow is already in the cache, use that copy instead.
+    // Otherwise, get it from the currently active connection.
     if ( tvShowMap.contains(name) )
     {
         return tvShowMap[name];
@@ -69,6 +71,8 @@ const TvShow DatabaseManager::inspectTvShow(QString name)
  * @brief DatabaseManager::getTvShowById Retrieves a reference to a tvshow by Id instead of name.
  * @param tvShowId The tvshow id to find.
  * @return A reference to the tvshow.
+ *
+ * @throws NotFound
  */
 const TvShow DatabaseManager::inspectTvShowById(int tvShowId)
 {
@@ -84,6 +88,8 @@ const TvShow DatabaseManager::inspectTvShowById(int tvShowId)
  */
 const User DatabaseManager::inspectUser(QString username)
 {
+    // If the user is already in the local cache, return from there.
+    // If not, get user from connection.
     if ( userMap.contains(username) )
     {
         return userMap[username];
@@ -255,9 +261,16 @@ QString DatabaseManager::getTvShowNameById(int showId)
  */
 void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Review review)
 {
+    // Get the tvshow name using the tvshow id.
     QString tvShowName = inspectTvShowById(episodeIdentifier.tvShowId).name;
+
+    // Call addEpisodeReview on the tvshow itself to update the local copy.
     tvShowMap[tvShowName].addEpisodeReview(episodeIdentifier, review);
+
+    // Call addEpisode review to update the datastore.
     connection.addEpisodeReview(episodeIdentifier, review);
+
+    // Notify any listeners (ex. dashboard) that an update has occured.
     emit notify();
 }
 
@@ -268,9 +281,16 @@ void DatabaseManager::addEpisodeReview(EpisodeIdentifier episodeIdentifier, Revi
  */
 void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Comment comment)
 {
+    // Get the tvshow name using the tvshow id.
     QString tvShowName = inspectTvShowById(episodeIdentifier.tvShowId).name;
+
+    // Call addEpisodeComment on the tvshow itself to udpate the local copy.
     tvShowMap[tvShowName].addEpisodeComment(episodeIdentifier, comment);
+
+    // Call addEpisode review to update the datastore.
     connection.addEpisodeComment(episodeIdentifier, comment);
+
+    // Notify any listeners (ex. dashboard) that an udpate has occured.
     emit notify();
 }
 
@@ -281,7 +301,10 @@ void DatabaseManager::addEpisodeComment(EpisodeIdentifier episodeIdentifier, Com
  */
 void DatabaseManager::addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
 {
+    // Add a watched episode to the local copy of the specified user.
     userMap[username].addWatchedEpisode(episodeIdentifier);
+
+    // Add the watched episode to the user in the datastore.
     connection.addWatchedEpisode(episodeIdentifier, username);
 }
 
@@ -292,7 +315,10 @@ void DatabaseManager::addWatchedEpisode(EpisodeIdentifier episodeIdentifier, QSt
  */
 void DatabaseManager::removeWatchedEpisode(EpisodeIdentifier episodeIdentifier, QString username)
 {
+    // Remove the watched episode from the local copy of the specified user.
     userMap[username].removeWatchedEpisode(episodeIdentifier);
+
+    // Remove the watched episode from the user in the datastore.
     connection.removeWatchedEpisode(episodeIdentifier, username);
 }
 
@@ -307,13 +333,17 @@ QList<QString> DatabaseManager::getListOfWatchedTvShowNamesForUser(QString usern
 
     User user = inspectUser(username);
 
+    // Get the list of watched tvshow names for the user.
     foreach(const EpisodeIdentifier &episodeIdentifier, user.inspectWatchedEpisodes())
     {
-        if (!watchedTvShowNames.contains(getTvShowNameById(episodeIdentifier.tvShowId))) {
+        // Don't allow duplicates.
+        if (!watchedTvShowNames.contains(getTvShowNameById(episodeIdentifier.tvShowId)))
+        {
             watchedTvShowNames.append(getTvShowNameById(episodeIdentifier.tvShowId));
         }
     }
 
+    // Sort the result so it shows up in the dashboard alphabetically.
     qSort(watchedTvShowNames);
 
     return watchedTvShowNames;

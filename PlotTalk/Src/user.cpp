@@ -139,6 +139,10 @@ void User::removeWatchedEpisodeList(QList<EpisodeIdentifier> episodeList)
     }
 }
 
+/**
+ * @brief User::inspectWatchedEpisodes Returns a copy of the watched episodes for this uer.
+ * @return A QList of the episode identifiers that this user has watched.
+ */
 QList<EpisodeIdentifier> User::inspectWatchedEpisodes()
 {
     return watchedEpisodes.values();

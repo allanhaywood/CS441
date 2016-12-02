@@ -72,6 +72,8 @@ void Episode::addComment(Comment comment)
  * @brief Episode::operator < Compares to episodes to be able to sort by episode order.
  * @param rhs
  * @return Returns true if this episode is earlier than the rhs episode.
+ *
+ * This allows the episode to be sorted by the original air date.
  */
 bool Episode::operator<(const Episode &rhs) const
 {
@@ -85,6 +87,8 @@ bool Episode::operator<(const Episode &rhs) const
 QList<Review> Episode::inspectReviews()
 {
     QList<Review> list = reviews.values();
+
+    // Reaction (the parent class of Review) has overloaded the proper comparison operators to allow sorting by posted date using qSort.
     qSort(list);
     return list;
 }
@@ -95,6 +99,7 @@ QList<Review> Episode::inspectReviews()
  */
 const QList<Comment> &Episode::getComments()
 {
+    // Reaction (the parent class of Comment) has overloaded the proper comparison operators to allow sorting by posted date using qSort.
     qSort(comments);
     return comments;
 }
